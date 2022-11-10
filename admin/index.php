@@ -17,6 +17,16 @@ require_once "./header.php";
 if (isset($_GET['actAdmin'])) {
     $actAdmin = $_GET['actAdmin'];
     switch ($actAdmin) {
+        case 'deleteProduct':
+            if(isset($_GET['id']) && $_GET['id'] > 0){
+                $id = $_GET['id'];
+                productDeleteAllImage($id);
+                productDelete($id);
+                $notification = "Xóa sản phẩm thành công";
+            }
+            $listProduct = getAllProduct();
+            require_once "./products/list.php";
+            break;
         case 'addProduct':
             if (isset($_POST['btn--addProduct'])) {
                 $name = $_POST['nameProduct'];
@@ -45,6 +55,7 @@ if (isset($_GET['actAdmin'])) {
             require_once "./products/add.php";
             break;
         case 'showProduct':
+            $listProduct = getAllProduct();
             require_once "./products/list.php";
             break;
         default:
