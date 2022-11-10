@@ -17,6 +17,52 @@ require_once "./header.php";
 if (isset($_GET['actAdmin'])) {
     $actAdmin = $_GET['actAdmin'];
     switch ($actAdmin) {
+              // long code  danh mục
+        case 'addCategory':
+            if (isset($_POST['btn--addProduct'])) {
+                // status 
+                // 0 là hiển thị 
+                // 1 là ẩn 
+                $name = $_POST['name'];
+                $status = $_POST['status'];
+                category_insert($name, $status);
+            }
+            $listdm = category_selectAll();
+            require_once "./categories/add.php";
+            break;
+
+        case 'listdm':
+            $listdm = category_selectAll();
+            require_once "./categories/list.php";
+            break;
+        case 'xoadm':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                category_delete($id);
+            }
+            $listdm = category_selectAll();
+            require_once "./categories/list.php";
+            break;
+        case 'suadm';
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $detailDm = category_select($id);
+            }
+            require_once "./categories/edit.php";
+            break;
+        case 'updatedm';
+            if (isset($_POST['btn-editProduct'])) {
+                $name = $_POST['name'];
+                $status = $_POST['status'];
+                $id = $_POST['id'];
+                category_update($id, $name, $status);
+            }
+            $listdm = category_selectAll();
+            require_once "./categories/list.php";
+            break;
+            //xong  Danh mục 
+            
+            
         case 'deleteProduct':
             if(isset($_GET['id']) && $_GET['id'] > 0){
                 $id = $_GET['id'];
