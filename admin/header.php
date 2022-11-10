@@ -68,8 +68,8 @@
                             <a href="index.php" class="canHidden">Trang chủ</a>
                         </li>
                         <li>
-                            <a href="./products/"><i class="fa-brands fa-product-hunt"></i></a>
-                            <a href="product.html" class="canHidden">Quản lý sản phẩm</a>
+                            <a href="index.php?actAdmin=showProduct"><i class="fa-brands fa-product-hunt"></i></a>
+                            <a href="index.php?actAdmin=showProduct" class="canHidden">Quản lý sản phẩm</a>
                         </li>
                         <li>
                             <a href="category.html"><i class="fa-solid fa-book-atlas"></i></a>
