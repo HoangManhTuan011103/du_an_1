@@ -64,11 +64,11 @@
                 <nav class="navigationListFisrt">
                     <ul>
                         <li>
-                            <a href="index.html"><i class="fa-solid fa-house"></i></a>
-                            <a href="index.html" class="canHidden">Trang chủ</a>
+                            <a href="index.php"><i class="fa-solid fa-house"></i></a>
+                            <a href="index.php" class="canHidden">Trang chủ</a>
                         </li>
                         <li>
-                            <a href="product.html"><i class="fa-brands fa-product-hunt"></i></a>
+                            <a href="./products/"><i class="fa-brands fa-product-hunt"></i></a>
                             <a href="product.html" class="canHidden">Quản lý sản phẩm</a>
                         </li>
                         <li>
