@@ -103,10 +103,11 @@
         <div class="contentManager contentManager--product">
             <div class="contentManager--product__header">
                 <div class="contentManager--product__header--title">
-                    <h2 style="color: #ffffff;">Thêm danh mục mới</h2>
+                    <h2 style="color: #ffffff;">
+                    Sưar danh mục</h2>
                 </div>
                 <div class="contentManager--product__header--control">
-                    <span><i class="fa-solid fa-house"></i>Trang chủ</span> <span style="padding: 0 10px; font-size: 22px;">></span> <span><i class="fa-solid fa-book-atlas"></i>Quản lý danh mục</span><span style="padding: 0 10px; font-size: 22px;">></span> <span>Thêm danh mục mới</span>
+                    <span><i class="fa-solid fa-house"></i>Trang chủ</span> <span style="padding: 0 10px; font-size: 22px;">></span> <span><i class="fa-solid fa-book-atlas"></i>Quản lý danh mục</span><span style="padding: 0 10px; font-size: 22px;">></span> <span>Sửa danh mục</span>
                 </div>
             </div>
             <div class="contentManager--product__footer contentManager--product__footer--addProduct">
