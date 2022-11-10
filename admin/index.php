@@ -25,7 +25,9 @@ if (isset($_GET['actAdmin'])) {
                 // 1 là ẩn 
                 $name = $_POST['name'];
                 $status = $_POST['status'];
-                category_insert($name, $status);
+                $avatar = $_FILES['avatar']['name'];
+                move_uploaded_file($_FILES['avatar']['tmp_name'],"../imageProduct/".$avatar);
+                category_insert($name, $avatar, $status);
             }
             $listdm = category_selectAll();
             require_once "./categories/add.php";
@@ -53,9 +55,18 @@ if (isset($_GET['actAdmin'])) {
         case 'updatedm';
             if (isset($_POST['btn-editProduct'])) {
                 $name = $_POST['name'];
+                $avatar_new = $_FILES['avatar_new'];
+                $avatar = $avatar_new['name'];
                 $status = $_POST['status'];
                 $id = $_POST['id'];
-                category_update($id, $name, $status);
+                if($avatar_new['size'] > 0){
+
+                    move_uploaded_file($avatar_new['tmp_name'],"../imageProduct/".$avatar );
+                }
+                else{
+                    $avatar=$_POST['avatar_old'];
+                }
+                category_update($id, $name,$avatar, $status);
             }
             $listdm = category_selectAll();
             require_once "./categories/list.php";
