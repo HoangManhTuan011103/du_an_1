@@ -9,7 +9,7 @@
     // Comment thêm tên chức năng nữa nhé
     require_once "./header.php";
     if(isset($_GET['act'])){
-        $actAdmin = $_GET['a'];
+        $actAdmin = $_GET['act'];
         switch($actAdmin){
             case 'showProducts':
                 require_once "";
