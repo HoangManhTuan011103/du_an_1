@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -89,7 +91,8 @@
                         </li>
                         <li>
                             <a href="statistical.html"><i class="fa-solid fa-database"></i></a>
-                            <a href="statistical.html" class="canHidden">Thống kê báo cáo</a></li>
+                            <a href="statistical.html" class="canHidden">Thống kê báo cáo</a>
+                        </li>
                         <li>
                             <a href=""><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
                             <a href="" class="canHidden">Đăng xuất</a>

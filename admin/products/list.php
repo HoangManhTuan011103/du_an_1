@@ -42,12 +42,12 @@
                 <tbody>
                     <?php foreach ($listProduct as $key => $value) : ?>
                         <?php
-                            $imagePath = "../imageProduct/" . $value['avatar'];
-                            if (is_file($imagePath)) {
-                                $image = "<img src='" . $imagePath . "' alt='' width='120px' height='150px'>";
-                            } else {
-                                $image = "<h4 style='color: #ffffff' >Không có hình ảnh</h4>";
-                            }
+                        $imagePath = "../imageProduct/" . $value['avatar'];
+                        if (is_file($imagePath)) {
+                            $image = "<img src='" . $imagePath . "' alt='' width='120px' height='150px'>";
+                        } else {
+                            $image = "<h4 style='color: #ffffff' >Không có hình ảnh</h4>";
+                        }
                         ?>
                         <tr>
                             <td><input type="checkbox"></td>
@@ -55,7 +55,7 @@
                             <td>SP00<?= $value['id'] ?></td>
                             <td class="name"><?= $value['nameProduct'] ?></td>
                             <td class="image">
-                                <?= $image  ?>
+                                <?= $image ?>
                             </td>
                             <td class="category">
                                 <?= $value['name'] ?>
@@ -80,7 +80,7 @@
                                 <?= $value['created_at'] ?>
                             </td>
                             <td class="btn-action">
-                                <a href="index.php?actAdmin=editProduct&&id=<?= $value['id'] ?>" class="update"><button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button></a>
+                                <a href="" class="update"><button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button></a>
                                 <a onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm <?= $value['nameProduct'] ?> không?')" href="index.php?actAdmin=deleteProduct&&id=<?= $value['id'] ?>" class="remove"><button><i class="fa-sharp fa-solid fa-trash"></i></button></a>
                             </td>
                         </tr>

@@ -17,7 +17,13 @@ require_once "./header.php";
 if (isset($_GET['actAdmin'])) {
     $actAdmin = $_GET['actAdmin'];
     switch ($actAdmin) {
-        case 'showProduct':
+        case 'deleteProduct':
+            if(isset($_GET['id']) && $_GET['id'] > 0){
+                $id = $_GET['id'];
+                productDeleteAllImage($id);
+                productDelete($id);
+                $notification = "Xóa sản phẩm thành công";
+            }
             $listProduct = getAllProduct();
             require_once "./products/list.php";
             break;
@@ -39,11 +45,10 @@ if (isset($_GET['actAdmin'])) {
                     move_uploaded_file($tmp_name, "../imageProduct/" . $value);
                 }
                 move_uploaded_file($file['tmp_name'], "../imageProduct/" . $file['name']);
-                $idProduct = InsertProduct($name, $category, $name_image, $description, $quantity, $price, $discount, $hotProduct,$status);
+                $idProduct = InsertProduct($name, $category, $name_image, $description, $quantity, $price, $discount, $hotProduct);
                 foreach ($files['name'] as $value) {
                     pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$value')");
                 }
-                $notification = "Bạn đã thêm sản phẩm thành công";
             }
             $listCategories = getAllCategories();
             require_once "./products/add.php";
@@ -107,10 +112,9 @@ if (isset($_GET['actAdmin'])) {
                 $price = $_POST['price'];
                 $discount = $_POST['discount'];
                 $quantity = $_POST['quantity'];
-                $status = $_POST['status'];
                 $hotProduct = (isset($_POST['hotProduct']) ? 1 : 0);
                 
-                updateProduct($name,$category,$avatar,$description,$quantity,$price,$discount,$hotProduct,$idProduct,$status);
+                updateProduct($name,$category,$avatar,$description,$quantity,$price,$discount,$hotProduct,$idProduct);
                 $notification = "Bạn đã thay đổi sản phẩm thành công";
                 header("location: index.php?actAdmin=showProduct");
             }
