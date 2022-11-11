@@ -1,0 +1,13 @@
+.contentManager--product__footer--table table td.detailBill .detailBill--see {
+    padding: 5px 5px;
+    background-color: #93D3A1;
+    font-weight: bold;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+
+.contentManager--product__footer--table table td.detailBill .detailBill--see:hover {
+    background-color: #74b182;
+}
