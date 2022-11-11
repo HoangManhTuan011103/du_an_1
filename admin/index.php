@@ -17,6 +17,66 @@ require_once "./header.php";
 if (isset($_GET['actAdmin'])) {
     $actAdmin = $_GET['actAdmin'];
     switch ($actAdmin) {
+
+            // long code categories
+        case 'addCategory':
+            if (isset($_POST['btn--addProduct'])) {
+                // status 
+                // 0 là hiển thị 
+                // 1 là ẩn 
+                $name = $_POST['name'];
+                $status = $_POST['status'];
+                $avatar =uniqid()  . $_FILES['avatar']['name'];
+                move_uploaded_file($_FILES['avatar']['tmp_name'], "../imageProduct/" . $avatar);
+                category_insert($name, $avatar, $status);
+                $notification = "Thêm danh mục thành công";
+            }
+            $listdm = category_selectAllDesc();
+            require_once "./categories/add.php";
+            break;
+
+        case 'listdm':
+            $listdm = category_selectAllDesc();
+            require_once "./categories/list.php";
+            break;
+        case 'deleteCategory':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                category_delete($id);
+                $notification = "Xóa danh mục thành công";
+            }
+            $listdm = category_selectAllDesc();
+            require_once "./categories/list.php";
+            break;
+        case 'editCategories';
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $detailDm = category_select($id);
+            }
+            require_once "./categories/edit.php";
+            break;
+        case 'updateCategory';
+            if (isset($_POST['btn-editProduct'])) {
+                $name = $_POST['name'];
+                $avatar_new = $_FILES['avatar_new'];
+                $avatar =uniqid()  . $avatar_new['name'];
+                $status = $_POST['status'];
+                $id = $_POST['id'];
+                if ($avatar_new['size'] > 0) {
+                    move_uploaded_file($avatar_new['tmp_name'], "../imageProduct/" . $avatar);
+                } else {
+                    $avatar = $_POST['avatar_old'];
+                }
+                category_update($id, $name, $avatar, $status);
+                $notification = "Bạn đã chỉnh sửa danh mục thành công";
+
+            }
+            $listdm = category_selectAllDesc();
+            require_once "./categories/list.php";
+            break;
+            // long code categories
+
+            // products
         case 'deleteProduct':
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
@@ -117,7 +177,7 @@ if (isset($_GET['actAdmin'])) {
                 $status = $_POST['status'];
                 $hotProduct = (isset($_POST['hotProduct']) ? 1 : 0);
 
-                updateProduct($name, $category, $avatar, $description, $quantity, $price, $discount, $hotProduct, $idProduct,$status);
+                updateProduct($name, $category, $avatar, $description, $quantity, $price, $discount, $hotProduct, $idProduct, $status);
                 $notification = "Bạn đã thay đổi sản phẩm thành công";
                 header("location: index.php?actAdmin=showProduct");
             }
