@@ -24,8 +24,8 @@
                 <div class="titlePageAdmin">
                     <div class="logoBrand">
                         <!-- <a href=""><img src="src/image/FSport.png" alt=""></a> -->
-                        <a href=""><img src="../src/image/FSport1.png" alt=""></a>
-                        <a href="" class="hiddenImage"><img src="../src/image/FSport2.png" alt=""></a>
+                        <a href=""><img src="../src/imageAdmin/FSport1.png" alt=""></a>
+                        <a href="" class="hiddenImage"><img src="../src/imageAdmin/FSport2.png" alt=""></a>
                     </div>
                 </div>
                 <div class="spaceLogoBrand">
@@ -36,7 +36,7 @@
                     </div>
                     <div class="accountAdmin row">
                         <div class="avatarAdmin row">
-                            <img src="../src/image/avatar.jpg" alt="">
+                            <img src="../src/imageAdmin/avatar.jpg" alt="">
                         </div>
                         <div class="nameAdmin row">
                             Hoàng Mạnh Tuấn
@@ -50,7 +50,7 @@
             <div class="listMainFirst">
                 <div class="accountAdmin accountAdmin--canHidden">
                     <div class="avatarAdmin">
-                        <img src="../src/image/avatar.jpg" alt="">
+                        <img src="../src/imageAdmin/avatar.jpg" alt="">
                     </div>
                     <div class="nameAdmin nameAdmin--navLeft">
                         Hoàng Mạnh Tuấn

@@ -18,7 +18,7 @@ if (isset($_GET['actAdmin'])) {
     $actAdmin = $_GET['actAdmin'];
     switch ($actAdmin) {
         case 'deleteProduct':
-            if(isset($_GET['id']) && $_GET['id'] > 0){
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
                 productDeleteAllImage($id);
                 productDelete($id);
@@ -45,7 +45,7 @@ if (isset($_GET['actAdmin'])) {
                     move_uploaded_file($tmp_name, "../imageProduct/" . $value);
                 }
                 move_uploaded_file($file['tmp_name'], "../imageProduct/" . $file['name']);
-                $idProduct = InsertProduct($name, $category, $name_image, $description, $quantity, $price, $discount, $hotProduct,$status);
+                $idProduct = InsertProduct($name, $category, $name_image, $description, $quantity, $price, $discount, $hotProduct, $status);
                 // var_dump($idProduct);
                 // die();
                 foreach ($files['name'] as $value) {
@@ -54,6 +54,85 @@ if (isset($_GET['actAdmin'])) {
             }
             $listCategories = getAllCategories();
             require_once "./products/add.php";
+            break;
+        case 'editProduct':
+            $id = isset($_GET['id']) ? $_GET['id'] : "";
+            if ($id > 0 && is_numeric($id)) {
+                $detailProduct = getProductFollowId($id);
+                $listCategories = getAllCategories();
+                $listImagesProduct = getProductAllImage($id);
+            }
+            require_once "./products/edit.php";
+            break;
+        case 'updateProduct':
+            if (isset($_POST['btn--updateProduct'])) {
+                $idProduct = $_POST['idProduct'];
+                $avatarProduct = getAvatarProduct($idProduct);
+                $file = $_FILES['image'];
+                $files = $_FILES['images'];
+                $avatar = $avatarProduct['avatar'];
+                if ($file['error'] == 0) {
+                    if ($avatarProduct["avatar"] != "" && file_exists("../imageProduct/" . $avatarProduct["avatar"])) {
+                        unlink("../imageProduct/" . $avatarProduct["avatar"]);
+                    }
+                    $dir_uploads = "../imageProduct/";
+                    if (!file_exists($dir_uploads)) {
+                        mkdir($dir_uploads);
+                    }
+                    $avatar = time() . "-" . $file['name'];
+                    move_uploaded_file($file['tmp_name'], $dir_uploads . $avatar);
+                }
+
+                if (!empty($files['name'][0])) {
+                    $result = getProductAllImage($idProduct);
+                    for ($i = 0; $i < count($result); $i++) {
+                        if ($result[$i]["images"] != "" && file_exists("../imageProduct/" . $result[$i]["images"])) {
+                            unlink("../imageProduct/" . $result[$i]["images"]);
+                        }
+                    }
+                    productDeleteAllImage($idProduct);
+                }
+                for ($i = 0; $i < count($files["name"]); $i++) {
+                    if ($files["error"][$i] == 0) {
+                        // $product_images_model->product_id = $id; // Chỗ này
+                        $files_insert = time() . '-' . $files["name"][$i];
+                        // $product_images_model->avatar = $avatars_insert; // Chỗ này
+                        $is_insert = pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$files_insert')");; // Chỗ này
+
+                        $dir_uploads = '../imageProduct/';
+
+                        if (!file_exists($dir_uploads)) {
+                            mkdir($dir_uploads);
+                        }
+                        move_uploaded_file($files['tmp_name'][$i], $dir_uploads . $files_insert);
+                    }
+                }
+                $name = $_POST['nameProduct'];
+                $description = $_POST['description'];
+                $category = $_POST['category'];
+                $price = $_POST['price'];
+                $discount = $_POST['discount'];
+                $quantity = $_POST['quantity'];
+                $status = $_POST['status'];
+                $hotProduct = (isset($_POST['hotProduct']) ? 1 : 0);
+
+                updateProduct($name, $category, $avatar, $description, $quantity, $price, $discount, $hotProduct, $idProduct,$status);
+                $notification = "Bạn đã thay đổi sản phẩm thành công";
+                header("location: index.php?actAdmin=showProduct");
+            }
+            $listProduct = getAllProduct();
+            $listCategories = getAllCategories();
+            require_once "./products/list.php";
+            break;
+        case 'deleteProduct':
+            $id = isset($_GET['id']) ? $_GET['id'] : "";
+            if ($id > 0 && is_numeric($id)) {
+                productDeleteAllImage($id);
+                productDelete($id);
+                $notification = "Xóa sản phẩm thành công";
+            }
+            $listProduct = getAllProduct();
+            require_once "./products/list.php";
             break;
         case 'showProduct':
             $listProduct = getAllProduct();

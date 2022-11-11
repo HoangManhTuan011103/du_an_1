@@ -23,4 +23,16 @@
         $sql="delete from product_images where product_id=$id";
         pdo_execute($sql,$id);
     }
+    function getProductFollowId($id){
+        $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.id as 'idCategory',B.name from products A INNER JOIN categories B ON A.category_id = B.id where A.id=$id";
+        return pdo_query_one($sql);
+    }
+    function getProductAllImage($id){
+        $sql="select images from product_images where product_id=$id";
+        return pdo_query($sql);
+    }
+    function getAvatarProduct($id){
+        $sql="select avatar from products where id=$id";
+        return pdo_query_one($sql);
+    }
 ?>
