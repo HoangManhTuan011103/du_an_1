@@ -51,6 +51,7 @@ if (isset($_GET['actAdmin'])) {
                 foreach ($files['name'] as $value) {
                     pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$value')");
                 }
+                $notification = "Thêm sản phẩm thành công";
             }
             $listCategories = getAllCategories();
             require_once "./products/add.php";

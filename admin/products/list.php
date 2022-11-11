@@ -80,7 +80,7 @@
                                 <?= $value['created_at'] ?>
                             </td>
                             <td class="btn-action">
-                                <a href="" class="update"><button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button></a>
+                                <a href="index.php?actAdmin=editProduct&&id=<?= $value['id'] ?>" class="update"><button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button></a>
                                 <a onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm <?= $value['nameProduct'] ?> không?')" href="index.php?actAdmin=deleteProduct&&id=<?= $value['id'] ?>" class="remove"><button><i class="fa-sharp fa-solid fa-trash"></i></button></a>
                             </td>
                         </tr>
@@ -110,3 +110,6 @@
 </div>
 </div>
 <script src="../src/js/animation.js"></script>
+</body>
+
+</html>
