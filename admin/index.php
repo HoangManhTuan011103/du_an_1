@@ -32,13 +32,14 @@ if (isset($_GET['actAdmin'])) {
                 $price = $_POST['price'];
                 $discount = $_POST['discount'];
                 $quantity = $_POST['quantity'];
+                $status = $_POST['status'];
                 $hotProduct = (isset($_POST['hotProduct']) ? 1 : 0);
                 foreach ($files['name'] as $key => $value) {
                     $tmp_name = $files['tmp_name'][$key];
                     move_uploaded_file($tmp_name, "../imageProduct/" . $value);
                 }
                 move_uploaded_file($file['tmp_name'], "../imageProduct/" . $file['name']);
-                $idProduct = InsertProduct($name, $category, $name_image, $description, $quantity, $price, $discount, $hotProduct);
+                $idProduct = InsertProduct($name, $category, $name_image, $description, $quantity, $price, $discount, $hotProduct,$status);
                 foreach ($files['name'] as $value) {
                     pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$value')");
                 }
@@ -106,9 +107,10 @@ if (isset($_GET['actAdmin'])) {
                 $price = $_POST['price'];
                 $discount = $_POST['discount'];
                 $quantity = $_POST['quantity'];
+                $status = $_POST['status'];
                 $hotProduct = (isset($_POST['hotProduct']) ? 1 : 0);
                 
-                updateProduct($name,$category,$avatar,$description,$quantity,$price,$discount,$hotProduct,$idProduct);
+                updateProduct($name,$category,$avatar,$description,$quantity,$price,$discount,$hotProduct,$idProduct,$status);
                 $notification = "Bạn đã thay đổi sản phẩm thành công";
                 header("location: index.php?actAdmin=showProduct");
             }

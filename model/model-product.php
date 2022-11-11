@@ -1,11 +1,11 @@
 <?php
     // require_once "./pdo.php";
-    function InsertProduct($name,$category,$name_image,$description,$quantity,$price,$discount,$hotProduct){
-        $sql = "INSERT INTO `products`(`name`, `category_id`, `avatar`, `description`, `quantity`, `price`, `discount`, `hot_product`) VALUES ('$name','$category','$name_image','$description','$quantity','$price','$discount','$hotProduct')";
+    function InsertProduct($name,$category,$name_image,$description,$quantity,$price,$discount,$hotProduct,$status){
+        $sql = "INSERT INTO `products`(`name`, `category_id`, `avatar`, `description`, `quantity`, `price`, `discount`, `hot_product`,`status`) VALUES ('$name','$category','$name_image','$description','$quantity','$price','$discount','$hotProduct','$status')";
         return pdo_execute_return_lastInsertId($sql);
     }
-    function updateProduct($name,$category,$name_image,$description,$quantity,$price,$discount,$hotProduct,$id){
-        $sql = "UPDATE `products` SET `name`='$name', `category_id`='$category', `avatar`='$name_image', `description`='$description', `quantity`='$quantity', `price`='$price', `discount`='$discount', `hot_product`='$hotProduct' WHERE id=$id";
+    function updateProduct($name,$category,$name_image,$description,$quantity,$price,$discount,$hotProduct,$id,$status){
+        $sql = "UPDATE `products` SET `name`='$name', `category_id`='$category', `avatar`='$name_image', `description`='$description', `quantity`='$quantity', `price`='$price', `discount`='$discount', `hot_product`='$hotProduct', `status`='$status' WHERE id=$id";
         pdo_execute($sql);
     }
     function getAllProduct(){

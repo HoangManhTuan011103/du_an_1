@@ -68,11 +68,11 @@
                             </td>
                             <td class="status">
                                 <?php
-                                    if( $value['quantity'] == 0 ){
-                                        echo " <button class='status-empty'>Hết hàng</button>";
+                                    if( $value['status'] == 0 ){
+                                        echo "<button class='status-isset'>Active</button>";
                                         
                                     }else{
-                                        echo "<button class='status-isset'>Còn hàng</button>";
+                                        echo " <button class='status-empty'>Disable</button>";
                                     }
                                 ?>
                             </td>

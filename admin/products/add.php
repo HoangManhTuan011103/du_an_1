@@ -45,6 +45,15 @@
                             </select>
                             
                         </div>
+                        <div class="status">
+                            <p>Trạng thái hoạt động:</p>
+                            <select name="status" id="">
+                                <option value="" hidden>-- Chọn trạng thái --</option>
+                                <option value="0">Active</option>
+                                <option value="1">Disable</option>
+                            </select>
+                            
+                        </div>
                         <div class="pice">
                             <p>Giá sản phẩm:</p>
                             <input type="number" name="price">
