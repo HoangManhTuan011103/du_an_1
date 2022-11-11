@@ -1,0 +1,25 @@
+.grid .category--review--flex{
+    display: flex;
+}
+.grid .category--grid--review{
+    display: flex;
+    display: grid;
+    	grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.grid .category--col-1--name{
+    /* border: 1px solid black; */
+}
+/* .grid.review--category__p--more{
+    
+} */
+.grid.review--category__p--more p{
+    text-align: center;
+    border: 1px solid #ff2d37;
+    color: #ffffff;
+    background-color: #ff2d37;
+    cursor: pointer;
+    height: 30px;
+    padding-top: 5px;
+    width: 50%;
+    border-radius: 5px;
+}
