@@ -87,12 +87,9 @@ if (isset($_GET['actAdmin'])) {
                 }
                 for ($i = 0; $i < count($files["name"]); $i++) {
                     if ($files["error"][$i] == 0) {
-
                         // $product_images_model->product_id = $id; // Chỗ này
                         $files_insert = time() . '-' . $files["name"][$i];
-
                         // $product_images_model->avatar = $avatars_insert; // Chỗ này
-
                         $is_insert = pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$files_insert')");; // Chỗ này
 
                         $dir_uploads = '../imageProduct/';
