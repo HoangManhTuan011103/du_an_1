@@ -41,7 +41,6 @@
                     <?php
 
                     foreach ($listdm as $key => $category) :
-
                     ?>
                         <tr>
                             <td><input type="checkbox"></td>
@@ -55,7 +54,7 @@
                             <td class="status">
                                 <button class="status-isset"><?= ($category['status'] == 0) ? 'Active' : 'Disable' ?></button>
                             </td>
-                            <td><?= $category['quantity_prodcut'] ?></td>
+                            <td><?= $category['total_product'] ?></td>
                             <td class="dateCreate">
                                 <?= $category['created_at'] ?>
                             </td>

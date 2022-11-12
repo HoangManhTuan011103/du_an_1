@@ -74,8 +74,8 @@
                             <a href="index.php?actAdmin=showProduct" class="canHidden">Quản lý sản phẩm</a>
                         </li>
                         <li>
-                            <a href="index.php?actAdmin=listdm"><i class="fa-solid fa-book-atlas"></i></a>
-                            <a href="index.php?actAdmin=listdm" class="canHidden">Quản lý danh mục</a>
+                            <a href="index.php?actAdmin=listCategories"><i class="fa-solid fa-book-atlas"></i></a>
+                            <a href="index.php?actAdmin=listCategories" class="canHidden">Quản lý danh mục</a>
                         </li>
                         <li>
                             <a href="bill.html"><i class="fa-solid fa-cart-flatbed-suitcase"></i></a>
