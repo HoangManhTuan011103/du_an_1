@@ -27,8 +27,8 @@
                     <p>Trạng thái</p>
                     <select name="status" id="">
                         <option value="" hidden>-- Trạng thái hiển thị --</option>
-                        <option value="0">Hiển thị</option>
-                        <option value="1">Ẩn đi</option>
+                        <option value="0">Active</option>
+                        <option value="1">Disable</option>
                     </select>
                 </div>
                 <div class="btn__action btn__action--addProduct">

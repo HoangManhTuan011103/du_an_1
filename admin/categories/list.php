@@ -53,7 +53,7 @@
                             </td>
 
                             <td class="status">
-                                <button class="status-isset"><?= ($category['status'] == 0) ? 'Hiển thị' : 'Ẩn đi' ?></button>
+                                <button class="status-isset"><?= ($category['status'] == 0) ? 'Active' : 'Disable' ?></button>
                             </td>
                             <td><?= $category['quantity_prodcut'] ?></td>
                             <td class="dateCreate">
