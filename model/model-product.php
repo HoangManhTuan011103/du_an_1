@@ -35,4 +35,30 @@
         $sql="select avatar from products where id=$id";
         return pdo_query_one($sql);
     }
+
+    // Hiệp hiện thị top 5 sản phẩm mới nhất
+    function loadall_product_home(){
+        $sql = "select * from products where 1 order by id desc limit 0,5";
+        $listproduct = pdo_query($sql);
+        return $listproduct;
+    }
+    // hiện thị top 8 sản phẩm mới nhất
+    function loadtop8_product_home(){
+        $sql = "select * from products where 1 order by id desc limit 0,8";
+        $listproduct = pdo_query($sql);
+        return $listproduct;
+    }
+    // hiện thị top 4 sản phẩm cu nhat
+    function loadtop4_product_home(){
+        $sql = "select * from products where 1 order by id asc limit 0,4";
+        $listproduct = pdo_query($sql);
+        return $listproduct;
+    }
+     // hiện thị top 16 sản phẩm mới nhất
+     function loadtop16_product_home(){
+        $sql = "select * from products where 1 order by id desc limit 0,16";
+        $listproduct = pdo_query($sql);
+        return $listproduct;
+    }
+
 ?>

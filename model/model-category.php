@@ -1,3 +1,4 @@
+
 <?php
 function getAllCategories()
 {
@@ -34,3 +35,23 @@ function category_update($id, $name, $avatar, $status)
 
     pdo_execute($sql);
 }
+//Hiệp load all danh mục
+function loadall_category()
+{
+    $sql = "select * from categories order by id desc  ";
+    $listcategory = pdo_query($sql);
+    return $listcategory;
+}
+function load2_category()
+{
+    $sql = "select * from categories order by id desc  limit 0,2";
+    $listcategory = pdo_query($sql);
+    return $listcategory;
+}
+function load3_category()
+{
+    $sql = "select * from categories order by id asc  limit 0,3";
+    $listcategory = pdo_query($sql);
+    return $listcategory;
+}
+?>
