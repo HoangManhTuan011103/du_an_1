@@ -31,21 +31,24 @@ if (isset($_GET['actAdmin'])) {
                 category_insert($name, $avatar, $status);
                 $notification = "Thêm danh mục thành công";
             }
-            $listdm = category_selectAllDesc();
+            $listdm = getAllCategories();
             require_once "./categories/add.php";
             break;
 
-        case 'listdm':
-            $listdm = category_selectAllDesc();
+        case 'listCategories':
+            $listdm = getAllCategories();
             require_once "./categories/list.php";
             break;
         case 'deleteCategory':
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
+                deleteAllImageProductFlowCategory($id);
+                deleteProductFlowCategory($id);
                 category_delete($id);
+
                 $notification = "Xóa danh mục thành công";
             }
-            $listdm = category_selectAllDesc();
+            $listdm = getAllCategories();
             require_once "./categories/list.php";
             break;
         case 'editCategories';
@@ -71,7 +74,7 @@ if (isset($_GET['actAdmin'])) {
                 $notification = "Bạn đã chỉnh sửa danh mục thành công";
 
             }
-            $listdm = category_selectAllDesc();
+            $listdm = getAllCategories();
             require_once "./categories/list.php";
             break;
             // long code categories

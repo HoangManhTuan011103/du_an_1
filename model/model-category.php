@@ -7,8 +7,10 @@ function getAllCategories()
 function category_selectAllDesc()
 {
     $sql = "select products.quantity  as quantity_prodcut , categories.* from categories join products on products.category_id = categories.id order by id desc";
+    
     return pdo_query($sql);
 }
+
 // Insert data
 function category_insert($ten_loai, $avatar, $status)
 {
