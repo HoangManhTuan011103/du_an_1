@@ -33,8 +33,8 @@ if (is_array($detailDm)) {
                     <p>Trạng thái</p>
                     <select name="status" id="">
                         <option value="" hidden>-- Trạng thái hiển thị --</option>
-                        <option value="0" <?= ($status === 0) ? 'selected' : '' ?>>Active</option>
-                        <option value="1" <?= ($status == 1) ? 'selected' : '' ?>>Disable</option>
+                        <option value="0" <?= $status == 0 ? 'selected' : '' ?>>Active</option>
+                        <option value="1" <?= $status == 1 ? 'selected' : '' ?>>Disable</option>
                     </select>
                 </div>
 
@@ -44,9 +44,9 @@ if (is_array($detailDm)) {
                 </div>
             </div>
             <?php
-            if (isset($thongbao) && $thongbao != "") {
-                echo $thongbao;
-            }
+                if (isset($thongbao) && $thongbao != "") {
+                    echo $thongbao;
+                }
             ?>
         </form>
     </div>

@@ -60,14 +60,9 @@ function deleteAllImageProductFlowCategory($id_cagtegory)
     $convert_int= (int)$id_cagtegory;
     $id =  selectAllImageProductFlowCategory($convert_int);
     foreach ($id as $value) {
-    extract($value);
-    // echo($convert_int);
-    var_dump($value);
-    var_dump($id);
-    // die;
-    $sql = "delete from product_images where product_id =$id ";
-    pdo_execute($sql);
-
+        extract($value);
+        $sql = "delete from product_images where product_id =$id ";
+        pdo_execute($sql);
     }
 }
   // Hiệp hiện thị top 5 sản phẩm mới nhất

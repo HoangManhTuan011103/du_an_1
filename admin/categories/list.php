@@ -52,7 +52,14 @@
                             </td>
 
                             <td class="status">
-                                <button class="status-isset"><?= ($category['status'] == 0) ? 'Active' : 'Disable' ?></button>
+                                <?php
+                                    if( $category['status'] == 0 ){
+                                        echo "<button class='status-isset'>Active</button>";
+                                        
+                                    }else{
+                                        echo " <button class='status-empty'>Disable</button>";
+                                    }
+                                ?>
                             </td>
                             <td><?= $category['total_product'] ?></td>
                             <td class="dateCreate">
