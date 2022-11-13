@@ -65,6 +65,20 @@ function deleteAllImageProductFlowCategory($id_cagtegory)
         pdo_execute($sql);
     }
 }
+// Update product total in category
+function getIdCategoryUpdateCount($id){
+    $sql = "SELECT B.`id` FROM products A INNER JOIN categories B ON A.category_id=B.id WHERE A.id=$id";
+    return pdo_query_value($sql);
+}
+function countProductFollowCat($id){
+    $sql = "UPDATE `categories` SET `total_product`=`total_product`+1 WHERE id=$id";
+    pdo_execute($sql);
+}
+function reduceProductFollowCat($id){
+    $sql = "UPDATE `categories` SET `total_product`=`total_product`-1 WHERE id=$id";
+    pdo_execute($sql);
+}
+// Update product total in category
   // Hiệp hiện thị top 5 sản phẩm mới nhất
   function loadall_product_home(){
     $sql = "select * from products where 1 order by id desc limit 0,5";

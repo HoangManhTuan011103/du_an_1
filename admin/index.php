@@ -83,9 +83,15 @@ if (isset($_GET['actAdmin'])) {
         case 'deleteProduct':
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
+                // Update total product
+                $getIdCategory = getIdCategoryUpdateCount($id);
+                // Update total product
                 productDeleteAllImage($id);
                 productDelete($id);
+                reduceProductFollowCat($getIdCategory);
+                // Update total product
                 $notification = "Xóa sản phẩm thành công";
+                
             }
             $listProduct = getAllProduct();
             require_once "./products/list.php";
@@ -109,8 +115,9 @@ if (isset($_GET['actAdmin'])) {
                 }
                 move_uploaded_file($file['tmp_name'], "../imageProduct/" . $file['name']);
                 $idProduct = InsertProduct($name, $category, $name_image, $description, $quantity, $price, $discount, $hotProduct, $status);
-                // var_dump($idProduct);
-                // die();
+                // Update total product
+                countProductFollowCat($category);
+                // Update total product
                 foreach ($files['name'] as $value) {
                     pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$value')");
                 }

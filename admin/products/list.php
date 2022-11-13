@@ -61,7 +61,7 @@
                                 <?= $value['name'] ?>
                             </td>
                             <td class="price">
-                                <?= $value['price'] ?>
+                                <?= number_format($value['price'])."đ" ?>
                             </td>
                             <td class="quantity">
                                 <?= $value['quantity'] ?>
