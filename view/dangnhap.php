@@ -49,7 +49,7 @@
             <a href="index.php?act=dangky">Đăng ký</a>
           </div>
         </form>
-        <div class="hoac__login--with-fb-gg">
+        <!-- <div class="hoac__login--with-fb-gg">
           <p>Hoặc đăng nhập bằng</p>
           <div class="login__fb--gg">
             <div>
@@ -61,7 +61,7 @@
               <span>Google</span>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="login__bottom-form-right">
         <form action="index.php?act=dangnhap" method="post" enctype="multipart/form-data">

@@ -57,7 +57,11 @@ if (isset($_GET['act'])) {
                     }
                 }
             }
-            require_once "./view/dangnhap.php";
+            if (isset($_SESSION['user'])) {
+                header("Location: index.php?");
+            } else {
+                require_once "./view/dangnhap.php";
+            }
             break;
         case 'dangky':
             if (isset($_POST['dangky'])) {
@@ -129,7 +133,11 @@ if (isset($_GET['act'])) {
                     ob_end_flush();
                 }
             }
-            require_once "view/dangky.php";
+            if (isset($_SESSION['user'])) {
+                header("Location: index.php?");
+            } else {
+                require_once "view/dangky.php";
+            }
             break;
         case 'dangxuat':
             session_destroy();

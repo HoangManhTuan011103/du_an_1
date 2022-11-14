@@ -62,7 +62,7 @@
             <a href="index.php?act=dangnhap">Đăng nhập</a>
           </div>
         </form>
-        <div class="hoac__login--with-fb-gg">
+        <!-- <div class="hoac__login--with-fb-gg">
           <p>Hoặc đăng nhập bằng</p>
           <div class="login__fb--gg">
             <div>
@@ -73,7 +73,7 @@
               <i class="fa-brands fa-google-plus-g"></i>
               <span>Google</span>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
