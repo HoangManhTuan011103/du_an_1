@@ -8,7 +8,7 @@ function getAllCategories()
 function category_selectAllDesc()
 {
     $sql = "select products.quantity  as quantity_prodcut , categories.* from categories join products on products.category_id = categories.id order by id desc";
-    
+
     return pdo_query($sql);
 }
 
@@ -40,19 +40,19 @@ function category_update($id, $name, $avatar, $status)
 //Hiệp load all danh mục
 function loadall_category()
 {
-    $sql = "select * from categories order by id desc  ";
+    $sql = "select * from categories where status = 0 order by id desc  ";
     $listcategory = pdo_query($sql);
     return $listcategory;
 }
 function load2_category()
 {
-    $sql = "select * from categories order by id desc  limit 0,2";
+    $sql = "select * from categories where status = 0 order by id desc  limit 0,2";
     $listcategory = pdo_query($sql);
     return $listcategory;
 }
 function load3_category()
 {
-    $sql = "select * from categories order by id asc  limit 0,3";
+    $sql = "select * from categories where status = 0 order by id asc  limit 0,3";
     $listcategory = pdo_query($sql);
     return $listcategory;
 }
