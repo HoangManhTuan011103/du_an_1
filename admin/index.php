@@ -91,7 +91,6 @@ if (isset($_GET['actAdmin'])) {
                 reduceProductFollowCat($getIdCategory);
                 // Update total product
                 $notification = "Xóa sản phẩm thành công";
-                
             }
             $listProduct = getAllProduct();
             require_once "./products/list.php";
