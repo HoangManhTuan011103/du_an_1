@@ -8,20 +8,20 @@ require_once "./model/model-user.php";
 require_once "./model/model-product.php";
 require_once "./model/model-category.php";
 $pronew = loadall_product_home();
-    // Ai làm bên này có giao diện người dùng thì tự động thêm vào
-    // Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
-    // Comment thêm tên chức năng nữa nhé
-    $protop8 =  loadtop8_product_home();
-    $protop16 = loadtop16_product_home();
-    $protop4 = loadtop4_product_home();
-    $dsdm= loadall_category();
-    $load2dm = load2_category();
-    $load3dm = load3_category();
+// Ai làm bên này có giao diện người dùng thì tự động thêm vào
+// Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
+// Comment thêm tên chức năng nữa nhé
+$protop8 =  loadtop8_product_home();
+$protop16 = loadtop16_product_home();
+$protop4 = loadtop4_product_home();
+$dsdm = loadall_category();
+$load2dm = load2_category();
+$load3dm = load3_category();
 require_once "view/header.php";
 if (isset($_GET['act'])) {
     $actAdmin = $_GET['act'];
     switch ($actAdmin) {
-        // Hiệp làm showProducts
+            // Hiệp làm showProducts
         case 'showProducts':
             require_once "view/showProducts.php";
             break;
@@ -73,17 +73,34 @@ if (isset($_GET['act'])) {
                 $image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/512px-User_font_awesome.svg.png?20160212005950';
                 $role = 0;
                 // Vaidate form đăng ký
-                if (is_numeric($ho) || (strlen($ho) < 2)) {
+                if ($ho == "") {
+                    $thongbao[1] = "Họ không được bỏ trống !!!";
+                    $check = false;
+                } else if (is_numeric($ho) || (strlen($ho) < 2)) {
                     $thongbao[1] = "Họ không phải là số , tối thiểu 2 ký tự !";
                     $_POST['ho'] = "";
                     $check = false;
                 }
-                if (is_numeric($ten) || (strlen($ten) < 2)) {
+                if ($ten == "") {
+                    $thongbao[2] = "Tên không được bỏ trống !!!";
+                    $check = false;
+                } else if (is_numeric($ten) || (strlen($ten) < 2)) {
                     $thongbao[2] = "Tên không phải là số , tối thiểu 2 ký tự !";
                     $_POST['ten'] = "";
                     $check = false;
                 }
-                if ((strlen($password) < 6)) {
+                if ($email == "") {
+                    $thongbao[5] = "Email không được bỏ trống !!!";
+                    $check = false;
+                } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $thongbao[5] = "Email không đúng định dạng";
+                    $_POST['ten'] = "";
+                    $check = false;
+                }
+                if ($password == "") {
+                    $thongbao[3] = "Mật khẩu không được bỏ trống !!!";
+                    $check = false;
+                } else if ((mb_strlen($password) < 6)) {
                     $thongbao[3] = "Mật khẩu tối thiểu 6 ký tự !";
                     $check = false;
                 }
@@ -107,7 +124,14 @@ if (isset($_GET['act'])) {
                     $_POST['ho'] = "";
                     $_POST['ten'] = "";
                     $_POST['email'] = "";
+                    $email = convert_vi_to_en($email);
+                    $email = strtolower($email);
+                    $password = convert_vi_to_en($password);
+                    $password = strtolower($password);
+                    $password = preg_replace('/\s+/', '', $password);
                     InsertUser($name, $email, $password, $phone, $address, $image, $role);
+                    header("Location: index.php?act=dangnhap&msg=Tạo tài khoản thành công !!!");
+                    ob_end_flush();
                 }
             }
             require_once "view/dangky.php";
