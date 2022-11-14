@@ -131,14 +131,14 @@
     /* padding-top: 10px; */
 }
 .product__banner__price--sale{
-    color: #ff2d37;
+    color: #333;
     padding-left: 20px;
 }
 /* .product__banner__btn--detail{
     width: 70px;
     height: 25px;
 } */
-.product__banner__btn--detail button{
+.product__banner__btn--detail a{
     border:none;
     background-color: #ff2d37;
     color: #ffffff;
@@ -146,11 +146,14 @@
     width: 70px;
     height: 25px;
     border-radius: 5px;
+    padding: 5px 8px 5px 8px;
+    
 }
-.product__banner__btn--detail button:hover{
+.product__banner__btn--detail a:hover{
     background-color: #f9ddde;
     border: 1px solid #ff2d37;
     color: #ff2d37;
+   
 }
 .section__product--hot h2{
     text-align: center;

@@ -25,8 +25,16 @@ if (isset($_GET['act'])) {
         case 'showProducts':
             require_once "view/showProducts.php";
             break;
-        case 'showCategoriess':
-            require_once "";
+        case 'detail_product':
+            if(isset($_GET['id'])&&($_GET['id']>0)){
+                $id = $_GET['id'];
+                $onepro_categories =  loadone_detail_product_flow_categories($id);
+                $list_image_product=loadone_detail_product_flow_product_images($id);
+                require_once "view/detail_product.php";
+            }else{
+                require_once "view/home.php";
+            } 
+           
             break;
             // Đức làm đăng ký đăng nhập quên mật khẩu
         case 'dangnhap':

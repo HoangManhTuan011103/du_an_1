@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./src/css/section.css">
     <link rel="stylesheet" href="./src/css/category.css">
     <link rel="stylesheet" href="./src/css/sanpham.css">
+    <link rel="stylesheet" href="./src/css/detail_product.css">
 </head>
 
 <body>
