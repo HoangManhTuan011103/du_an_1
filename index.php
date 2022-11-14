@@ -33,15 +33,15 @@ if (isset($_GET['act'])) {
             if (isset($_POST['dangnhap'])) {
                 $email = $_POST['email'];
                 $password = $_POST['password'];
-                CheckUser($email, $password);
+                $password = md5($password);
                 $checkuser_success = CheckUser($email, $password);
                 if (!is_array($checkuser_success)) {
                     $thongbao[0] = "Đăng nhập thất bại (kiểm tra lại email hoặc mật khẩu) !";
                 } else {
+                    $_SESSION['user'] = $checkuser_success;
                     $thongbao[0] = "Đăng nhập thành công !";
                     header("Location: index.php");
                     ob_end_flush();
-                    //echo "<script>window.location.href='target.php';</script>";
                 }
             }
             if (isset($_POST['quenmatkhau'])) {
@@ -70,7 +70,7 @@ if (isset($_GET['act'])) {
                 $password = $_POST['password'];
                 $phone = '';
                 $address = '';
-                $image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/512px-User_font_awesome.svg.png?20160212005950';
+                $image = 'https://raw.githubusercontent.com/ogdp/notepad/95bf9e262c8f72bd2184dfd51d650296b740b99b/profile_user_default.png';
                 $role = 0;
                 // Vaidate form đăng ký
                 if ($ho == "") {
@@ -106,13 +106,7 @@ if (isset($_GET['act'])) {
                 }
                 $checkmail_dangky = CheckEmail($email);
                 if (is_array($checkmail_dangky)) {
-                    echo '
-                    <style>
-                        .form_validate_dangky{
-                            display: none !important;
-                        }
-                    </style>
-                    ';
+                    echo '<style> .form_validate_dangky{display: none !important;}</style>';
                     $_POST['ho'] = "";
                     $_POST['ten'] = "";
                     $_POST['email'] = "";
@@ -129,6 +123,7 @@ if (isset($_GET['act'])) {
                     $password = convert_vi_to_en($password);
                     $password = strtolower($password);
                     $password = preg_replace('/\s+/', '', $password);
+                    $password = md5($password);
                     InsertUser($name, $email, $password, $phone, $address, $image, $role);
                     header("Location: index.php?act=dangnhap&msg=Tạo tài khoản thành công !!!");
                     ob_end_flush();
@@ -136,8 +131,12 @@ if (isset($_GET['act'])) {
             }
             require_once "view/dangky.php";
             break;
+        case 'dangxuat':
+            session_destroy();
+            header("Location: index.php?&msg=Đã đăng xuất !!!");
+            break;
         default:
-            require_once "";
+            // require_once "";
             break;
     }
 } else {

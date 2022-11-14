@@ -154,6 +154,69 @@ body {
     text-decoration: none;
 }
 
+
+/* CSS FOR ICON USER */
+.ctn__user--img-2 {
+    width: 46px;
+    height: 46px;
+    object-fit: cover;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: -1px;
+    margin-top: -1px;
+  }
+  
+.user__sup-menu{
+    position: absolute;
+    min-width: 200px;
+    min-height: 20px;
+    background-color: #ff2d37;
+    top: 10;
+    left: 0;
+    transform: translate(-50%, 31%);
+    margin-left: 26px;
+    border-radius: 6px;
+    padding: 20px 15px 20px 15px;
+    display: none;
+}
+.user__sup-menu::after{
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 90px;
+    background-color: #ff2d37;
+    width: 10px;
+    height: 10px;
+    transform: rotate(224deg);
+    z-index: -1;
+    padding-top: 0 !important;
+}
+.user__sup-menu>li{
+    display: block;
+    background-color: white;
+    border-radius: 30px;
+    margin-bottom: 6px;
+    border: 1px solid #ff2d37;
+}
+.user__sup-menu>li:hover{
+    border: 1px solid white;
+    background-color: #ff2d37;
+
+}
+.user__sup-menu>li:hover a{
+    color: white;
+}
+.ccc__334{
+    padding: 9px 0px;
+}
+.user__sup-menu>li a{
+    height: 10px !important;
+    color: #ff2d37;
+}
+.mid-header__user:hover .user__sup-menu {
+    display: block;
+}
+/* 
 .user__sup-menu {
     width: 200px;
     border: 1px solid white;
@@ -203,8 +266,6 @@ body {
     color: white;
     font-family: 'Roboto', sans-serif;
     position: absolute;
-    top: 6px;
-    left: 25px
 }
 
 .user__sup-menu__sign-up a {
@@ -213,7 +274,7 @@ body {
     position: absolute;
     top: 6px;
     left: 34px
-}
+} */
 
 .mid-header__user__icon {
     font-size: large;
