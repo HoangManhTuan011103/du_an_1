@@ -78,6 +78,15 @@ function reduceProductFollowCat($id){
     $sql = "UPDATE `categories` SET `total_product`=`total_product`-1 WHERE id=$id";
     pdo_execute($sql);
 }
+function getTotalProductCat($idCategory){
+    $sql = "SELECT COUNT(B.id) as 'countProduct' FROM `categories` A INNER JOIN `products` B ON A.id=B.category_id WHERE A.id = $idCategory";
+    return pdo_query_one($sql);
+}
+function getTotalProductCat2($idCategory){
+    $sql = "SELECT total_product FROM `categories` WHERE id = $idCategory";
+    return pdo_query_one($sql);
+}
+
 // Update product total in category
   // Hiệp hiện thị top 5 sản phẩm mới nhất
   function loadall_product_home(){
