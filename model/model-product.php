@@ -20,12 +20,12 @@ function getAllProduct()
 function productDelete($id)
 {
     $sql = "delete from products where id=$id";
-    pdo_execute($sql, $id);
+    pdo_execute($sql);
 }
 function productDeleteAllImage($id)
 {
     $sql = "delete from product_images where product_id=$id";
-    pdo_execute($sql, $id);
+    pdo_execute($sql);
 }
 function getProductFollowId($id)
 {
