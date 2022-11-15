@@ -11,20 +11,20 @@ $pronew = loadall_product_home();
 if (!isset($_SESSION['mycart'])) {
     $_SESSION['mycart'] = [];
 }
-// Ai làm bên này có giao diện người dùng thì tự động thêm vào
-// Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
-// Comment thêm tên chức năng nữa nhé
-$protop8 =  loadtop8_product_home();
-$protop16 = loadtop16_product_home();
-$protop4 = loadtop4_product_home();
-$dsdm = loadall_category();
-$load2dm = load2_category();
-$load3dm = load3_category();
+    // Ai làm bên này có giao diện người dùng thì tự động thêm vào
+    // Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
+    // Comment thêm tên chức năng nữa nhé
+    $protop8 =  loadtop8_product_home();
+    $protop16 = loadtop16_product_home();
+    $protop4 = loadtop4_product_home();
+    $dsdm= loadall_category();
+    $load2dm = load2_category();
+    $load3dm = load3_category();
 require_once "view/header.php";
 if (isset($_GET['act'])) {
     $actAdmin = $_GET['act'];
     switch ($actAdmin) {
-            // Hiệp làm showProducts
+        // Hiệp làm showProducts
         case 'showProducts':
             require_once "view/showProducts.php";
             break;
@@ -44,16 +44,16 @@ if (isset($_GET['act'])) {
             if (isset($_POST['dangnhap'])) {
                 $email = $_POST['email'];
                 $password = $_POST['password'];
-                CheckUser($email, $password);
+                $password = md5($password);
                 $checkuser_success = CheckUser($email, $password);
                 if (!is_array($checkuser_success)) {
                     $_SESSION['user'] = $checkuser_success;
                     $thongbao[0] = "Đăng nhập thất bại (kiểm tra lại email hoặc mật khẩu) !";
                 } else {
+                    $_SESSION['user'] = $checkuser_success;
                     $thongbao[0] = "Đăng nhập thành công !";
                     header("Location: index.php");
                     ob_end_flush();
-                    //echo "<script>window.location.href='target.php';</script>";
                 }
             }
             if (isset($_POST['quenmatkhau'])) {
@@ -69,7 +69,11 @@ if (isset($_GET['act'])) {
                     }
                 }
             }
-            require_once "./view/dangnhap.php";
+            if (isset($_SESSION['user'])) {
+                header("Location: index.php?");
+            } else {
+                require_once "./view/dangnhap.php";
+            }
             break;
         case 'dangky':
             if (isset($_POST['dangky'])) {
@@ -82,32 +86,43 @@ if (isset($_GET['act'])) {
                 $password = $_POST['password'];
                 $phone = '';
                 $address = '';
-                $image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/512px-User_font_awesome.svg.png?20160212005950';
+                $image = 'https://raw.githubusercontent.com/ogdp/notepad/95bf9e262c8f72bd2184dfd51d650296b740b99b/profile_user_default.png';
                 $role = 0;
                 // Vaidate form đăng ký
-                if (is_numeric($ho) || (strlen($ho) < 2)) {
+                if ($ho == "") {
+                    $thongbao[1] = "Họ không được bỏ trống !!!";
+                    $check = false;
+                } else if (is_numeric($ho) || (strlen($ho) < 2)) {
                     $thongbao[1] = "Họ không phải là số , tối thiểu 2 ký tự !";
                     $_POST['ho'] = "";
                     $check = false;
                 }
-                if (is_numeric($ten) || (strlen($ten) < 2)) {
+                if ($ten == "") {
+                    $thongbao[2] = "Tên không được bỏ trống !!!";
+                    $check = false;
+                } else if (is_numeric($ten) || (strlen($ten) < 2)) {
                     $thongbao[2] = "Tên không phải là số , tối thiểu 2 ký tự !";
                     $_POST['ten'] = "";
                     $check = false;
                 }
-                if ((strlen($password) < 6)) {
+                if ($email == "") {
+                    $thongbao[5] = "Email không được bỏ trống !!!";
+                    $check = false;
+                } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $thongbao[5] = "Email không đúng định dạng";
+                    $_POST['ten'] = "";
+                    $check = false;
+                }
+                if ($password == "") {
+                    $thongbao[3] = "Mật khẩu không được bỏ trống !!!";
+                    $check = false;
+                } else if ((mb_strlen($password) < 6)) {
                     $thongbao[3] = "Mật khẩu tối thiểu 6 ký tự !";
                     $check = false;
                 }
                 $checkmail_dangky = CheckEmail($email);
                 if (is_array($checkmail_dangky)) {
-                    echo '
-                    <style>
-                        .form_validate_dangky{
-                            display: none !important;
-                        }
-                    </style>
-                    ';
+                    echo '<style> .form_validate_dangky{display: none !important;}</style>';
                     $_POST['ho'] = "";
                     $_POST['ten'] = "";
                     $_POST['email'] = "";
@@ -119,10 +134,26 @@ if (isset($_GET['act'])) {
                     $_POST['ho'] = "";
                     $_POST['ten'] = "";
                     $_POST['email'] = "";
+                    $email = convert_vi_to_en($email);
+                    $email = strtolower($email);
+                    $password = convert_vi_to_en($password);
+                    $password = strtolower($password);
+                    $password = preg_replace('/\s+/', '', $password);
+                    $password = md5($password);
                     InsertUser($name, $email, $password, $phone, $address, $image, $role);
+                    header("Location: index.php?act=dangnhap&msg=Tạo tài khoản thành công !!!");
+                    ob_end_flush();
                 }
             }
-            require_once "view/dangky.php";
+            if (isset($_SESSION['user'])) {
+                header("Location: index.php?");
+            } else {
+                require_once "view/dangky.php";
+            }
+            break;
+        case 'dangxuat':
+            session_destroy();
+            header("Location: index.php?&msg=Đã đăng xuất !!!");
             break;
 
             // long cart 
@@ -209,7 +240,7 @@ if (isset($_GET['act'])) {
 
         // Tiếp tục cho tối nay
         default:
-            require_once "";
+            // require_once "";
             break;
     }
 } else {

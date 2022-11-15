@@ -9,7 +9,7 @@
           <a href="">Đăng nhập tài khoản</a>
         </li>
       </ul>
-    </div>  
+    </div>
     <div class="login__top--title-2">
       <p class="title_login--children">Đăng nhập tài khoản</p>
       <p class="title_login--children-2">ĐĂNG NHẬP TÀI KHOẢN</p>
@@ -19,6 +19,9 @@
     <div class="login__bottom-form--title">
       <div>
         <span>Nếu bạn đã có tài khoản, đăng nhập tại đây.</span>
+        <p class="login__thongbao success__color--pr lg_succes">
+          <?= isset($_GET['msg']) ? $_GET['msg'] : $_GET['msg'] = ''; ?>
+        </p>
       </div>
       <div>
         <span>Bạn quên mật khẩu? Nhập địa chỉ email để lấy lại mật khẩu qua
@@ -30,11 +33,11 @@
         <form action="index.php?act=dangnhap" method="post" enctype="multipart/form-data">
           <div>
             <p>Email *</p>
-            <input type="email" name="email" id="email" placeholder="Email" required/>
+            <input type="email" name="email" id="email" placeholder="Email" required />
           </div>
           <div>
             <p>Mật khẩu *</p>
-            <input type="password" name="password" id="password" placeholder="Mật khẩu" required/>
+            <input type="password" name="password" id="password" placeholder="Mật khẩu" required />
           </div>
           <div>
             <p class="login__thongbao">
@@ -46,7 +49,7 @@
             <a href="index.php?act=dangky">Đăng ký</a>
           </div>
         </form>
-        <div class="hoac__login--with-fb-gg">
+        <!-- <div class="hoac__login--with-fb-gg">
           <p>Hoặc đăng nhập bằng</p>
           <div class="login__fb--gg">
             <div>
@@ -58,13 +61,13 @@
               <span>Google</span>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="login__bottom-form-right">
         <form action="index.php?act=dangnhap" method="post" enctype="multipart/form-data">
           <div>
             <p>Email *</p>
-            <input type="email" name="email" id="email" placeholder="Email" required/>
+            <input type="email" name="email" id="email" placeholder="Email" required />
             <div>
               <span class="login__thongbao">
                 <?= isset($thongbao[1]) ? $thongbao[1] : $thongbao[1] = ''; ?>
