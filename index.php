@@ -47,6 +47,7 @@ if (isset($_GET['act'])) {
                 CheckUser($email, $password);
                 $checkuser_success = CheckUser($email, $password);
                 if (!is_array($checkuser_success)) {
+                    $_SESSION['user'] = $checkuser_success;
                     $thongbao[0] = "Đăng nhập thất bại (kiểm tra lại email hoặc mật khẩu) !";
                 } else {
                     $thongbao[0] = "Đăng nhập thành công !";
@@ -129,10 +130,8 @@ if (isset($_GET['act'])) {
 
         case "cart":
             require_once "./view/cart/giohang.php";
-
             break;
         case "addToCart":
-
             $temp = -1;
             if (isset($_POST['btn-addCart'])) {
                 $id = $_POST['id'];
@@ -204,10 +203,11 @@ if (isset($_GET['act'])) {
                 exit;
             }
             else{
-               
-            require_once "./view/cart/pay_detail.php";
+                require_once "./view/cart/pay_detail.php";
             }
             break;
+
+        // Tiếp tục cho tối nay
         default:
             require_once "";
             break;

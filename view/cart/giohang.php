@@ -137,7 +137,9 @@ $sum = 0;
             </div>
           </div>
           <div>
-          <input type="submit" value="Tiến hành thanh toán" />
+         
+            <input type="submit" value="Tiến hành thanh toán" />
+         
           </div>
         </div>
       </div>
