@@ -55,7 +55,7 @@
     width: 70px;
     height: 25px;
 } */
-.product__banner__btn--detail button{
+.product__banner__btn--detail a{
     border:none;
     background-color: #ff2d37;
     color: #ffffff;
@@ -64,7 +64,7 @@
     height: 25px;
     border-radius: 5px;
 }
-.product__banner__btn--detail button:hover{
+.product__banner__btn--detail a:hover{
     background-color: #f9ddde;
     border: 1px solid #ff2d37;
     color: #ff2d37;

@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="./src/css/section.css">
     <link rel="stylesheet" href="./src/css/category.css">
     <link rel="stylesheet" href="./src/css/sanpham.css">
+    <link rel="stylesheet" href="./src/css/detail_product.css">
+    <link rel="stylesheet" href="./src/css/pay_detail.css">
+
 </head>
 
 <body>
@@ -61,7 +64,7 @@
 
                     </div>
                     <div class="mid-header__cart">
-                        <a href=""><i class="mid-header__cart__icon mid-header__cart__icon--color fas fa-shopping-cart"></i></a>
+                        <a href="index.php?act=cart"><i class="mid-header__cart__icon mid-header__cart__icon--color fas fa-shopping-cart"></i></a>
                     </div>
                 </div>
             </div>

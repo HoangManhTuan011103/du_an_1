@@ -6,9 +6,6 @@
 }
 
 .col {
-    text-align: center;
-    background-color: #ccc;
-    background-clip: content-box;
     margin-top: 8px;
     margin-bottom: 8px;
 }
@@ -356,11 +353,13 @@ body {
     font-size: 14px;
     font-weight: 200;
     text-align: center;
-    
+
 }
-.footer--license--h3{
+
+.footer--license--h3 {
     margin-top: 20px;
 }
+
 .footer--license a {
     text-decoration: none;
     color: #ff2d37;

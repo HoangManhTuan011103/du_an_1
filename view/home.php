@@ -128,6 +128,7 @@
                 <?php 
                     foreach ($pronew as $pro) {
                         extract($pro);
+                        $linkpro = "index.php?act=detail_product&id=".$id;
                         $hinh = $image_path.$avatar;
                         $giagiam = $price * $discount;
                         echo ' <div class="grid wide l-2-4 m-6 c-6">
@@ -141,11 +142,11 @@
                         </div>
                         <div class="product__banner__price">
                             <div>
-                                <p class="product__banner__price--cost">'.$price.' <u>đ</u></p>
-                                <p class="product__banner__price--sale">'.$giagiam.'<u>đ</u></p>
+                                <p class="product__banner__price--cost">'.$giagiam.' <u>đ</u></p>
+                                <p class="product__banner__price--sale"><del>'.$price.'</del><u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
-                                <button href="">chi tiết</button>
+                                <a href="'.$linkpro.'">chi tiết</a>
                             </div>
                         </div>
                     </div>';
@@ -269,6 +270,7 @@
                 <?php 
                     foreach ($pronew as $pro) {
                         extract($pro);
+                        $linkpro = "index.php?act=detail_product&id=".$id;
                         $hinh = $image_path.$avatar;
                         $giagiam = $price * ($discount/100);
                         echo ' <div class="grid wide l-2-4 m-6 c-6">
@@ -283,10 +285,10 @@
                         <div class="product__banner__price">
                             <div>
                                 <p class="product__banner__price--cost">'.$giagiam.' <u>đ</u></p>
-                                <p class="product__banner__price--sale">'.$price.'<u>đ</u></p>
+                                <p class="product__banner__price--sale"><del>'.$price.'</del><u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
-                                <button href="">chi tiết</button>
+                                <a href="'.$linkpro.'">chi tiết</a>
                             </div>
                         </div>
                     </div>';
@@ -411,6 +413,7 @@
                     foreach ($pronew as $pro) {
                         extract($pro);
                         $hinh = $image_path.$avatar;
+                        $linkpro = "index.php?act=detail_product&id=".$id;
                         $giagiam = $price * ($discount/100) ;
                         echo ' <div class="grid wide l-2-4 m-6 c-6">
                         <div class="product__banner">
@@ -424,10 +427,10 @@
                         <div class="product__banner__price">
                             <div>
                                 <p class="product__banner__price--cost">'.$giagiam.' <u>đ</u></p>
-                                <p class="product__banner__price--sale">'.$price.'<u>đ</u></p>
+                                <p class="product__banner__price--sale"><del>'.$price.'</del><u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
-                                <button href="">chi tiết</button>
+                                <a href="'.$linkpro.'">chi tiết</a>
                             </div>
                         </div>
                     </div>';
@@ -566,6 +569,7 @@
                     <?php 
                     foreach ($protop8 as $pr) {
                         extract($pr);
+                        $linkpro = "index.php?act=detail_product&id=".$id;
                         $hinh = $image_path.$avatar;
                         $giagiam = ($price * $discount)/100 ;
                         echo ' <div class="grid wide l-2-4 m-6 c-6">
@@ -580,10 +584,10 @@
                         <div class="product__banner__price">
                             <div>
                                 <p class="product__banner__price--cost">'.$giagiam.' <u>đ</u></p>
-                                <p class="product__banner__price--sale">'.$price.'<u>đ</u></p>
+                                <p class="product__banner__price--sale"><del><del>'.$price.'</del></del><u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
-                                <button href="">chi tiết</button>
+                                <a href="'.$linkpro.'">chi tiết</a>
                             </div>
                         </div>
                     </div>';
