@@ -103,6 +103,21 @@ function loadtop4_product_home(){
     $listproduct = pdo_query($sql);
     return $listproduct;
 }
+// load all sản phẩm theo danh mục
+  function loadall_product($kyw="",$cagtegory_id=0){
+      $sql = "select * from products where 1";
+      if($kyw != ""){
+          $sql.=" and name like '%".$kyw."%'"; 
+      }
+      if($cagtegory_id > 0){
+          $sql.=" and category_id ='".$cagtegory_id."'";
+      }
+      $sql.=" order by id desc";
+      $listproduct = pdo_query($sql);
+      return $listproduct;
+  }
+  
+   
 // hiện thị 1 sản phẩm
 function loadone_detail_product_flow_categories($id){
     $sql = "SELECT A.*,b.name as name_category FROM products A JOIN categories b on A.category_id=b.id where A.id=$id";

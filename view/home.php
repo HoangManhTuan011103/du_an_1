@@ -10,6 +10,7 @@
                         $i=0;
                         foreach ($load2dm as $dm) {
                             extract($dm);
+                            $linkdm = "index.php?act=showProducts&id=".$id;
                             $hinh = $image_path.$avatar;
                             if(($i == 0)){
                                 $a = "product-1-col-1 l-8 m-12 c-12";
@@ -20,9 +21,9 @@
                             <div class="product_hover_change">
         
                                 <img class="product-1__img" src="./src/image/img_header_hoan/1.png" alt="">
-                                <p class="product-1__name">
+                                <a href="'.$linkdm .'" class="product-1__name">
                                     '.$name.'
-                                </p>
+                                </a>
                                 <p class="section--product-1__amount">
                                    '.$total_product.'
                                 </p>
@@ -37,14 +38,15 @@
                         
                         foreach ($load3dm as $dm) {
                             extract($dm);
+                            $linkdm = "index.php?act=showProducts&id=".$id;
                             $hinh = $image_path.$avatar;
                             echo '<div class="grid wide product-1  product-1-col-1 l-4 m-0 c-0">
                             <div class="product_hover_change">
         
                                 <img class="product-1__img" src="./src/image/img_header_hoan/aaps037-7__1__40f1ec058366467c8abf519485986b0c_large.webp" alt="">
-                                <p class="product-1__name">
+                                <a href="'.$linkdm.'" class="product-1__name">
                                     '.$name.'
-                                </p>
+                                </a>
                                 <p class="section--product-1__amount">
                                    '.$total_product.'
                                 </p>
@@ -546,8 +548,8 @@
                      <?php
                          foreach ($dsdm as $dm) {
                              extract($dm);
-                             $linkdm = "index.php?act=sanpham&iddm=".$id;
-                             echo ' <p href="'.$linkdm.'" class="p--sup--product--menu">'.$name.'</p> ';
+                             $linkdm = "index.php?act=showProducts&id=".$id;
+                             echo ' <li class="p--sup--product--menu"> <a href="'.$linkdm.'" >'.$name.'</a></li> ';
                          }
                      ?>
                     <!-- <p class="p--sup--product--menu">Quần áo nam</p>

@@ -125,9 +125,10 @@
         <hr>
         <div class="sp">
             <?php
-               foreach ($protop16  as $pro) {
+               foreach ($prolist  as $pro) {
                    extract($pro);
                    $hinh = $image_path.$avatar;
+                   $linkpro = "index.php?act=detail_product&id=".$id;
                    $giagiam = ($price * $discount)/100 ;
                    echo '<div class="spt">
                    <div class="sp__banner">
@@ -144,8 +145,8 @@
                            <p class="sp__banner__price--del"><del>'.$price.'</del><u>đ</u></p>
                            <p class="sp__banner__price--sale"></p>
                        </div>
-                       <div class="sp__banner__btn--detail">
-                           <button href="">chi tiết</button>
+                       <div class="product__banner__btn--detail">
+                           <a href="'.$linkpro.'">chi tiết</a>
                        </div>
                    </div>
                </div>';
@@ -410,6 +411,7 @@
                foreach ($protop4  as $pro) {
                    extract($pro);
                    $hinh = $image_path.$avatar;
+                   $linkpro = "index.php?act=detail_product&id=".$id;
                    $giagiam = ($price * $discount)/100 ;
                    echo '<div class="spt">
                    <div class="sp__banner">
@@ -426,8 +428,8 @@
                            <p class="sp__banner__price--del"><del>'.$price.'</del><u>đ</u></p>
                            <p class="sp__banner__price--sale"></p>
                        </div>
-                       <div class="sp__banner__btn--detail">
-                           <button href="">chi tiết</button>
+                       <div class="product__banner__btn--detail">
+                           <a href="'.$linkpro.'">chi tiết</a>
                        </div>
                    </div>
                </div>';

@@ -22,8 +22,15 @@ if (isset($_GET['act'])) {
     $actAdmin = $_GET['act'];
     switch ($actAdmin) {
         // Hiệp làm showProducts
-        case 'showProducts':
-            require_once "view/showProducts.php";
+        case 'showProducts':  // hiện thị sản phẩm theo danh mục
+            if(isset($_GET['id'])&& ($_GET['id'] > 0)){
+                $idcategori = $_GET['id'];
+                $prolist = loadall_product("",$idcategori);
+                require_once "view/showProducts.php";
+            }else{
+                require_once "view/home.php";
+            }
+           
             break;
         case 'detail_product':
             if(isset($_GET['id'])&&($_GET['id']>0)){
