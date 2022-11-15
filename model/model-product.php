@@ -20,12 +20,12 @@ function getAllProduct()
 function productDelete($id)
 {
     $sql = "delete from products where id=$id";
-    pdo_execute($sql, $id);
+    pdo_execute($sql);
 }
 function productDeleteAllImage($id)
 {
     $sql = "delete from product_images where product_id=$id";
-    pdo_execute($sql, $id);
+    pdo_execute($sql);
 }
 function getProductFollowId($id)
 {
@@ -112,7 +112,7 @@ function loadtop4_product_home(){
     $listproduct = pdo_query($sql);
     return $listproduct;
 }
-// hiện thị 1 sản phẩm
+// hiện thị 1 sản phẩm theo danh mục ở detail product
 function loadone_detail_product_flow_categories($id){
     $sql = "SELECT A.*,b.name as name_category FROM products A JOIN categories b on A.category_id=b.id where A.id=$id";
     $pro = pdo_query_one($sql);
@@ -124,4 +124,11 @@ function loadone_detail_product_flow_product_images($id){
     return $pro;
 }
 
+
+// lấy 1 sản phẩm theo id 
+function getOneProductFlowId($id)
+{
+    $sql="select id,name,quantity,avatar,price,	discount from products  where id=$id";
+    return pdo_query_one($sql);
+}
 ?>

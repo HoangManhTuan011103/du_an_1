@@ -86,7 +86,7 @@
                     <!-- số lượng -->
                     <div class="product__one_quantity">
 
-                        <form action="#" id="form_quantity">
+                        <form action="index.php?act=addToCart" id="form_quantity" method="post" enctype="multipart/form-data">
                             <div class="form_product_submit_quatity">
                                 <p class="product_quantity_name">
                                     Số lượng :
@@ -101,6 +101,7 @@
                             <!-- form id price sp -->
                             <input type="hidden" name="id" value="<?=$id?>">
                             <input type="hidden" name="price" value="<?=$price?>">
+                            <input type="hidden" name="giagiam" value="<?=$giagiam?>">
                             <!--  -->
                             <div class="one_product_btn_buy">
 
