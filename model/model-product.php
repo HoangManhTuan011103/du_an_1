@@ -116,7 +116,18 @@ function loadtop4_product_home(){
       $listproduct = pdo_query($sql);
       return $listproduct;
   }
-  
+  // load tên danh mục
+  function load_name_category($id){
+      if($id > 0 ){
+        $sql = "select * from categories where id=".$id;
+        $category = pdo_query_one($sql);
+        extract($category);
+        return $name;
+      }else{
+          return "";
+      }
+      
+  }
    
 // hiện thị 1 sản phẩm
 function loadone_detail_product_flow_categories($id){

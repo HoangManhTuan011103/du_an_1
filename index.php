@@ -12,7 +12,7 @@ $pronew = loadall_product_home();
     // Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
     // Comment thêm tên chức năng nữa nhé
     $protop8 =  loadtop8_product_home();
-    $protop16 = loadtop16_product_home();
+   
     $protop4 = loadtop4_product_home();
     $dsdm= loadall_category();
     $load2dm = load2_category();
@@ -23,14 +23,20 @@ if (isset($_GET['act'])) {
     switch ($actAdmin) {
         // Hiệp làm showProducts
         case 'showProducts':  // hiện thị sản phẩm theo danh mục
+            if(isset($_POST['kyw'])&& ($_POST['kyw'] !="")){
+                $kyw = $_POST['kyw'];
+            }else{
+                $kyw = "";
+            }
             if(isset($_GET['id'])&& ($_GET['id'] > 0)){
                 $idcategori = $_GET['id'];
-                $prolist = loadall_product("",$idcategori);
-                require_once "view/showProducts.php";
+               
             }else{
-                require_once "view/home.php";
+                $idcategori = 0;
             }
-           
+            $prolist = loadall_product($kyw,$idcategori);
+            $namecategory = load_name_category($idcategori);
+            require_once "view/showProducts.php";
             break;
         case 'detail_product':
             if(isset($_GET['id'])&&($_GET['id']>0)){

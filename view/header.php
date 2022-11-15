@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="mid-header__nav">
-                    <form action="" class="mid-header__form" method="post">
+                    <form action="index.php?act=showProducts" class="mid-header__form" method="post">
                         <input type="text" name="kyw" class="mid-header__form__ip__searchTerm mid-header__form__ip--size" placeholder="Tìm kiếm...">
                         <button type="submit" class="mid-header__form__btn__searchIcon" name="search">
                             <i class="fas fa-search" style="font-size:22px;color:#ff2d37"></i>

@@ -7,7 +7,7 @@
             </ul>
             
         </div>
-    <h1>Tất cả sản phẩm</h1>
+    <h1><?=$namecategory?></h1>
     <div class="boxleft">
         <div class="rows">
             <h2>DANH MỤC SẢN PHẨM</h2>
@@ -407,6 +407,7 @@
         </div>
         <div class="love">
             <div class="td-yeuthich">CÓ THỂ BẠN THÍCH</div>
+          
             <?php
                foreach ($protop4  as $pro) {
                    extract($pro);
@@ -414,25 +415,25 @@
                    $linkpro = "index.php?act=detail_product&id=".$id;
                    $giagiam = ($price * $discount)/100 ;
                    echo '<div class="spt">
-                   <div class="sp__banner">
-                       <div class="sp--hot__img">
-                           <img src="'.$hinh.'" alt="" width="100px">
-                       </div>
-                       <div class="sp__banner__name">
-                           <p>'.$name.'</p>
-                       </div>
-                   </div>
-                   <div class="sp__banner__price">
-                       <div>
-                           <p class="sp__banner__price--cost">'.$giagiam.'<u>đ</u></p>
-                           <p class="sp__banner__price--del"><del>'.$price.'</del><u>đ</u></p>
-                           <p class="sp__banner__price--sale"></p>
-                       </div>
-                       <div class="product__banner__btn--detail">
-                           <a href="'.$linkpro.'">chi tiết</a>
-                       </div>
-                   </div>
-               </div>';
+                            <div class="sp__banner">
+                                <div class="sp--hot__img">
+                                    <img src="'.$hinh.'" alt="" width="100px">
+                                </div>
+                                <div class="sp__banner__name">
+                                    <p>'.$name.'</p>
+                                </div>
+                            </div>
+                            <div class="sp__banner__price">
+                                <div>
+                                    <p class="sp__banner__price--cost">'.$giagiam.'<u>đ</u></p>
+                                    <p class="sp__banner__price--del"><del>'.$price.'</del><u>đ</u></p>
+                                    <p class="sp__banner__price--sale"></p>
+                                </div>
+                                <div class="product__banner__btn--detail">
+                                    <a href="'.$linkpro.'">chi tiết</a>
+                                </div>
+                            </div>
+                        </div>';
                }
             ?>
             <!-- <div class="spt">
@@ -520,5 +521,6 @@
             </div> -->
             
         </div>
+       
     </div>
 </div>
