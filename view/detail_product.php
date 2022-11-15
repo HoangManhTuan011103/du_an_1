@@ -13,7 +13,13 @@
         </p>
     </div>
     <?php 
-                        extract($onepro_categories) ?>
+                        extract($onepro_categories)
+                        // $imagePath = "../imageProduct/" .$onepro_categories['avatar'];
+                        // if(is_file($imagePath)){
+                        //     $image = "<img src='" . $imagePath . "' alt=''>";
+                        // }else{
+                        //     $image = "<h4 style='color: #ffffff' > không có hình ảnh</h4>";
+                        // } ?>
     <p class="product_title_name"><?=$name?></p>
     <div class="row">
         <div class="col l-9">
@@ -21,7 +27,7 @@
                 <!-- ảnh -->
 
                 <div class="col l-6">
-                    <img src="./src/image/<?=$avatar?>" alt="">
+                    <img src="./imageProduct/<?=$avatar?>" alt="">
 
                 </div>
                 <div class="col l-6">
@@ -32,7 +38,7 @@
                             $giagiam = ($price * $discount)/100 ;
                          ?>
                         <div class="col l-3 product__list_img-onec">
-                            <img src="./src/image/<?=$images?>" alt="">
+                            <img src="./imageProduct/<?=$images?>" alt="">
                         </div>
                         <!-- <div class="col l-3 product__list_img-onec">
                             <img src="./src/image/a3.webp" alt="">
