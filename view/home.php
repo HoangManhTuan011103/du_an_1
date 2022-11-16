@@ -545,13 +545,16 @@
                     <h2>Danh mục sản phẩm</h2>
                     <p class="p--category--product--menu">Trang chủ</p>
                     <p class="p--category--product--menu">Sản phẩm</p>
+                    <ul class="ul--sup--product--menu">
                      <?php
                          foreach ($dsdm as $dm) {
                              extract($dm);
                              $linkdm = "index.php?act=showProducts&id=".$id;
-                             echo ' <li class="p--sup--product--menu"> <a href="'.$linkdm.'" >'.$name.'</a></li> ';
+                             echo ' <li class="li--sup--product--menu"> <a class="a--sup--product--menu"
+                            href="'.$linkdm.'" >'.$name.'</a></li> ';
                          }
                      ?>
+                     </ul>
                     <!-- <p class="p--sup--product--menu">Quần áo nam</p>
                     <p class="p--sup--product--menu">Quần áo nữ</p>
                     <p class="p--sup--product--menu">Quần áo trẻ con</p>

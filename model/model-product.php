@@ -98,11 +98,7 @@ function loadtop4_product_home(){
     return $listproduct;
 }
  // hiện thị top 16 sản phẩm mới nhất
- function loadtop16_product_home(){
-    $sql = "select * from products where status = 0 order by id desc limit 0,16";
-    $listproduct = pdo_query($sql);
-    return $listproduct;
-}
+
 // load all sản phẩm theo danh mục
   function loadall_product($kyw="",$cagtegory_id=0){
       $sql = "select * from products where 1";

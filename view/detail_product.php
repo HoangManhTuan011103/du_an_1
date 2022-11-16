@@ -476,6 +476,7 @@
             </div>
         </section>
     </div>
+</div>
     <script>
     let btn_decre = document.querySelector(".btn_decre");
     let btn_incre = document.querySelector(".btn_incre");
