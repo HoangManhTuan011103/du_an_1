@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="./src/css/sanpham.css">
     <link rel="stylesheet" href="./src/css/detail_product.css">
     <link rel="stylesheet" href="./src/css/pay_detail.css">
+    <link rel="stylesheet" href="./src/css/yourOrder.css">
 
 </head>
 
@@ -65,7 +66,7 @@
                                 <ul class="user__sup-menu">
                                     <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>
                                     <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=capnhattaikhoan">Cập nhật tài khoản</a></li>
-                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat">Đăng xuất</a></li>
+                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat" onclick="return confirm("Bạn có chắc chắn muốn đăng xuất không?")" >Đăng xuất</a></li>
                                 </ul>
                                 </li>';
                             } else {

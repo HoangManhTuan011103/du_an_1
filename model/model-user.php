@@ -4,7 +4,7 @@
     return pdo_execute_return_lastInsertId($sql);
 }
 function CheckUser($email,$password){
-    $sql = "SELECT * FROM users WHERE email='$email' AND `password`='$password';";
+    $sql = "SELECT * FROM users WHERE `email`='$email' AND `password`='$password';";
     $info =  pdo_query_one($sql);
     return $info;
 }

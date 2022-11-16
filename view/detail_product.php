@@ -30,7 +30,7 @@
                     <div class="row product_list_img">
                         <?php foreach($list_image_product as $value){
                             extract($value);
-                            $giagiam = ($price * $discount)/100 ;
+                            $giagiam = $price * ($discount/100) ;
                          ?>
                         <div class="col l-3 product__list_img-onec">
                             <img src="./imageProduct/<?=$images?>" alt="">
@@ -39,7 +39,7 @@
                     </div>
 
                     <!-- titile production -->
-                    <h3 class="one_product_title_name_"><?=$name?></h3>
+                    <h3 class="one_product_title_name_" style="text-align: left;" ><?=$name?></h3>
                     <!-- thương hiệu -->
                     <div class="product_name_brand_quantity">
                         <p class="product_brand">
@@ -62,9 +62,9 @@
                     <div class="one_product_price_detail">
 
                         <p class="product_one_price">
-                            <?=$giagiam?> <span class="product_currency">đ</span>
+                            <?= number_format($price-$giagiam) ?> <span class="product_currency">đ</span>
                         <p class="product_one_price_old">
-                            <?=$price?>
+                            <?= number_format($price)?>
                             <span class="product_currency">đ</span>
                         </p>
                         </p>
@@ -87,7 +87,7 @@
                             <!-- form id price sp -->
                             <input type="hidden" name="id" value="<?=$id?>">
                             <input type="hidden" name="price" value="<?=$price?>">
-                            <input type="hidden" name="giagiam" value="<?=$giagiam?>">
+                            <input type="hidden" name="giagiam" value="<?= $price-$giagiam ?>">
                             <!--  -->
                             <div class="one_product_btn_buy">
 
@@ -247,7 +247,8 @@
                 <?php
                   foreach ($protop4 as $value) {
                       extract($value);
-                      $pricesale = ($price * $discount)/100 ;
+                      $pricesale = $price * ($discount/100);
+
                       $img =  $image_path.$avatar;
                       $linkpro = "index.php?act=detail_product&id=".$id;
                       echo '<div class="one_collection_product_list--item-detail">
@@ -260,9 +261,9 @@
                         '.$name.'
                     </a>
                 </p>
-                <p class="red_word">'.$pricesale.'<span class="product_currency">đ</span>
+                <p class="red_word">'.number_format($price-$pricesale).'<span class="product_currency">đ</span>
                 </p>
-                <span class="product_one_price_old">'.$price.'<span class="product_currency">đ</span>
+                <span class="product_one_price_old">'.number_format($price).'<span class="product_currency">đ</span>
                 </span>
             </div>
         </div>';
@@ -335,7 +336,7 @@
                 <?php
                     foreach ($protop4 as $value) {
                       extract($value);
-                      $pricesale = ($price * $discount)/100 ;
+                      $pricesale = $price * ($discount/100);
                       $img =  $image_path.$avatar;
                       $linkpro = "index.php?act=detail_product&id=".$id;
                       echo '<div class="grid wide l-2-4 m-6 c-6">
@@ -350,8 +351,8 @@
                       </div>
                       <div class="product__banner__price">
                           <div>
-                              <p class="product__banner__price--cost">'.$pricesale.'<u>đ</u></p>
-                              <p class="product__banner__price--sale">'.$price.'</p>
+                              <p class="product__banner__price--cost">'.number_format($price-$pricesale).'<u>đ</u></p>
+                              <p class="product__banner__price--sale">'.number_format($price).'<u>đ</u></p>
                           </div>
                           <div class="product__banner__btn--detail">
                               <a href="'.$linkpro.'">chi tiết</a>

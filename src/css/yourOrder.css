@@ -1,0 +1,65 @@
+.grid.wide.your--order {
+    padding-top: 30px;
+}
+
+.link--yourOder>ul>li>a {
+    display: block;
+    padding-right: 8px;
+    color: #000000;
+}
+
+.detail--yourOrder {
+    padding-top: 50px;
+}
+
+.detail--yourOrder>.title__detail--yourOrder>h2 {
+    text-align: center;
+    padding-bottom: 30px;
+    font-size: 24px;
+    color: #ff2d37;
+}
+
+.detail--yourOrder>.title__detail--yourOrder>h3 {
+    padding: 10px 0;
+    font-size: 18px;
+}
+
+.detail--yourOrder>.table__detail--yourOrde {
+    width: 100%;
+}
+
+.detail--yourOrder>.table__detail--yourOrder>table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.detail--yourOrder>.table__detail--yourOrder>table th {
+    padding: 20px 0;
+    background-color: #ff2d37;
+    color: #ffffff;
+    font-size: 16px;
+    border-color: #ffffff;
+}
+
+.detail--yourOrder>.table__detail--yourOrder>table td {
+    text-align: center;
+    padding: 10px 0;
+    border-color: #ccc;
+}
+
+button.btnSee__detail--yourOrder {
+    padding: 7px 10px;
+    background-color: #ff2d37;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s linear;
+}
+
+button.btnSee__detail--yourOrder:hover {
+    background-color: rgb(121, 21, 21);
+}

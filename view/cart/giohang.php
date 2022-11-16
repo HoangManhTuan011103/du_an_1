@@ -39,7 +39,7 @@ $sum = 0;
     <div class="login__top--title-2">
       <p class="title_login--children">Giỏ hàng</p>
       <p class="title_login--children-2 giohang__title">
-        Giỏ hàng của bạn <span class="titl__slsp">(<?=sizeof($cart)?> sản phẩm)</span>
+        Giỏ hàng của bạn <span class="titl__slsp">(<?= sizeof($cart) ?> sản phẩm)</span>
       </p>
     </div>
   </div>
@@ -55,15 +55,12 @@ $sum = 0;
           </tr>
         </thead>
         <tbody>
+         
           <!-- hiển thị hàng hóa đặt -->
-          <?php foreach ($cart as $id => $value) :
-          ?>
+          <?php foreach ($cart as $id => $value) : ?>
             <tr class="ctn9993">
-              <!-- <div class="dong_ke--982j7"></div> -->
-
               <td class="hinhanhs__99is">
                 <div>
-                  <!-- <img src="https://bizweb.dktcdn.net/thumb/compact/100/342/645/products/1aeccbab979c6d695c3221cda5219094f2db3b3c.png" alt="" /> -->
                   <img src="./imageProduct/<?= $value['avatar'] ?>" alt="" />
                 </div>
                 <div>
@@ -75,7 +72,7 @@ $sum = 0;
                 </div>
               </td>
               <td>
-                <h5 class="fs---393 color__text--red"><?= $value['giagiam'] ?> ₫</h5>
+                <h5 class="fs---393 color__text--red"><?= number_format($value['giagiam']) ?> ₫</h5>
               </td>
               <td>
                 <div>
@@ -87,40 +84,18 @@ $sum = 0;
               </td>
               <td>
                 <h5 class="fs---393 color__text--red">
-                  <?php $result = $value['use_quantity_buy'] * $value['giagiam'];
-                  echo $result;
-                  $sum += $result; ?>₫
+                  <?php 
+                    $result = $value['use_quantity_buy'] * $value['giagiam'];
+                    echo number_format($result);
+                    $sum += $result;
+                  ?>₫
                 </h5>
               </td>
             </tr>
+            <!-- Thông tin chuyển qua thanh toán -->
+            <input type="hidden" name="totalAllProductPay" value="<?= $sum ?>">
+            <!-- Thông tin chuyển qua thanh toán -->
           <?php endforeach; ?>
-
-          <!-- <tr class="ctn9993">-->
-          <!-- <div class="dong_ke--982j7"></div>  -->
-          <!--   <td class="hinhanhs__99is">
-                <div>
-                  <img src="https://bizweb.dktcdn.net/thumb/compact/100/342/645/products/1aeccbab979c6d695c3221cda5219094f2db3b3c.png" alt="" />
-                </div>
-                <div>
-                  <p>Giày thể thao Just Do It nam nữ loại đẹp</p>
-                  <a href="" class="cls__f_t_a color__text--red size__a--92"><i class="fa-solid fa-trash-can"></i> Xóa
-                    sản phẩm</a>
-                </div>
-              </td>
-              <td>
-                <h5 class="fs---393 color__text--red">980.000 ₫</h5>
-              </td>
-              <td>
-                <div>
-                  <span>-</span>
-                  <input class="sl__sp--092" type="number" value="1" min="1" name="" id="" />
-                  <span>+</span>
-                </div>
-              </td>
-              <td>
-                <h5 class="fs---393 color__text--red">3.600.000 ₫</h5>
-              </td>
-            </tr> -->
         </tbody>
       </table>
       <div class="bottom__thtt--ctn">
@@ -133,16 +108,18 @@ $sum = 0;
               <p>Thành tiền:</p>
             </div>
             <div>
-              <p><?= $sum ?> đ</p>
+              <p><?= number_format($sum) ?> đ</p>
             </div>
           </div>
+          
           <div>
-         
+
             <input type="submit" value="Tiến hành thanh toán" />
-         
+
           </div>
         </div>
       </div>
+     
     </form>
   </div>
 </section>

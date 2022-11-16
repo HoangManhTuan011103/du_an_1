@@ -6,6 +6,8 @@ require_once "../global.php";
 require_once "../model/pdo.php";
 require_once "../model/model-product.php";
 require_once "../model/model-category.php";
+require_once "../model/model-order.php";
+
 // Đang nối file như này để nó hiện ra giao diện 
 // Phần này do tôi thiết kế giao diện admin không có footer nên để như này là chuẩn rồi nhé
 // Giờ chỉ việc chỉnh code vào thôi nhé
@@ -214,6 +216,20 @@ if (isset($_GET['actAdmin'])) {
         case 'showProduct':
             $listProduct = getAllProduct();
             require_once "./products/list.php";
+            break;
+        case 'showOrder':
+            $listOrderUser = getAllOrderToAdmin();
+            require_once "./orders/list.php";
+            break;
+        case 'deleteOrder':
+            $id = isset($_GET['id']) ? $_GET['id'] : "";
+            if ($id > 0 && is_numeric($id)) {
+                deleteOrderDetailToAdmin($id);
+                deleteOrderToAdmin($id);
+                $notification = "Xóa đơn hàng thành công";
+            }
+            $listOrderUser = getAllOrderToAdmin();
+            require_once "./orders/list.php";
             break;
         default:
             require_once "";

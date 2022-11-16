@@ -78,8 +78,8 @@
                             <a href="index.php?actAdmin=listCategories" class="canHidden">Quản lý danh mục</a>
                         </li>
                         <li>
-                            <a href="bill.html"><i class="fa-solid fa-cart-flatbed-suitcase"></i></a>
-                            <a href="bill.html" class="canHidden">Quản lý đơn hàng</a>
+                            <a href="index.php?actAdmin=showOrder"><i class="fa-solid fa-cart-flatbed-suitcase"></i></a>
+                            <a href="index.php?actAdmin=showOrder" class="canHidden">Quản lý đơn hàng</a>
                         </li>
                         <li>
                             <a href="user.html"><i class="fa-solid fa-user"></i></a>

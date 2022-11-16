@@ -7,6 +7,7 @@ require_once "./model/pdo.php";
 require_once "./model/model-user.php";
 require_once "./model/model-product.php";
 require_once "./model/model-category.php";
+require_once "./model/model-order.php";
 $pronew = loadall_product_home();
 if (!isset($_SESSION['mycart'])) {
     $_SESSION['mycart'] = [];
@@ -47,7 +48,6 @@ if (isset($_GET['act'])) {
                 $password = md5($password);
                 $checkuser_success = CheckUser($email, $password);
                 if (!is_array($checkuser_success)) {
-                    $_SESSION['user'] = $checkuser_success;
                     $thongbao[0] = "Đăng nhập thất bại (kiểm tra lại email hoặc mật khẩu) !";
                 } else {
                     $_SESSION['user'] = $checkuser_success;
@@ -172,7 +172,6 @@ if (isset($_GET['act'])) {
                 $product_value['use_quantity_buy'] = $product_quantity_input;
                 $product_value['giagiam'] = $giagiam;
 
-
                 foreach ($_SESSION['mycart'] as $key => $item) {
                     if ($id == $item['id']) {
                         $temp = $key;
@@ -180,7 +179,6 @@ if (isset($_GET['act'])) {
                     }
                 }
                 if ($temp == -1) {
-
                     $_SESSION['mycart'][] = $product_value;
                 } else {
                     // nếu id của sp đã có trong giỏ hàng rồi
@@ -234,8 +232,49 @@ if (isset($_GET['act'])) {
                 exit;
             }
             else{
+                $totalAllProductPay = isset($_POST['totalAllProductPay']) ? $_POST['totalAllProductPay'] : $_POST['totalPricePay'] ;
+                if(isset($_POST['btn-orderSuccess'])){
+                    $errors = [];
+                    $name = $_POST['name'];
+                    $id = $_SESSION['user']['id'];
+                    $phoneNumber = $_POST['phone_number'];
+                    $address = $_POST['address'];
+                    $payWhen = isset($_POST['payWhen']) ? $_POST['payWhen'] : "";
+                    $note = $_POST['note'];
+                    $totalPricePay = $_POST['totalPricePay'];
+                    if($phoneNumber == ""){
+                        $errors['phoneNumber'] = "Bạn phải nhập số điện thoại";
+                    }else if(!is_numeric($phoneNumber)){
+                        $errors['phoneNumber'] = "Địa chỉ số điện thoại phải là số";
+                    }
+                    else if(strlen($phoneNumber) != 10  || substr($phoneNumber,0,1) != 0){
+                        $errors['phoneNumber'] = "Số điện thoại không tồn tại";
+                    }
+                    if($address == ""){
+                        $errors['address'] = "Bạn phải nhập địa chỉ";
+                    }
+                    if(!$errors){
+                        $idOrder = insertToOrder($id,$payWhen,$totalPricePay,$note,$address);
+                        foreach($_SESSION['mycart'] as $value){
+                            insertToOrderDetail($idOrder,$value['id'],$value['use_quantity_buy'],$value['giagiam']);
+                        }
+                        echo "<script>Bạn đã đặt hàng thành công</script>";
+                        header("location: index.php");
+                    }
+                }
                 require_once "./view/cart/pay_detail.php";
             }
+            break;
+        case "dsdonhang":
+            if (!isset($_SESSION['user'])) {
+                require_once "./view/dangnhap.php";
+                exit;
+            }else{
+                $id = $_SESSION['user']['id'];
+                $listYourOrder = getYourOrder($id);
+                require_once "./view/cart/pay_finished.php";
+            }
+            
             break;
 
         // Tiếp tục cho tối nay
