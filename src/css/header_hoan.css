@@ -154,6 +154,7 @@ body {
 }
 
 /* CSS FOR ICON USER */
+
 .ctn__user--img-2 {
   width: 46px;
   height: 46px;
@@ -178,15 +179,15 @@ body {
   display: none;
 }
 .user__sup-menu::before {
-    content: "";
-    position: absolute;
-    transform: translate(-50% -50%);
-    height: 70px;
-    width: 70px;
-    background-color: rgba(0, 0, 255, 0);
-    z-index: -3;
-    top: -20px;
-    left: 32%;
+  content: "";
+  position: absolute;
+  transform: translate(-50% -50%);
+  height: 70px;
+  width: 70px;
+  background-color: rgba(0, 0, 255, 0);
+  z-index: -3;
+  top: -20px;
+  left: 32%;
 }
 .user__sup-menu::after {
   content: "";
@@ -231,7 +232,18 @@ body {
   left: 15px;
   top: 14px;
 }
-
+span.mid-header__user__icon {
+  font-size: large;
+  position: absolute;
+  left: 23px;
+  top: 9px;
+  font-weight: 400;
+  font-size: 1.6rem;
+  transform: translate(-52%, 0%);
+}
+span.mid-header__user__icon:hover {
+  color: #fff !important;
+}
 .mid-header__user__icon--color {
   color: white;
 }

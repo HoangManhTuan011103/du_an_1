@@ -1,0 +1,33 @@
+=== Ngày 15/11/2022
+
+Những việc đã làm:
+1- Phần quản trị:
+    - Code giao diện và điều hướng quản lý tài khoản người dùng bao gồm:
+        + Danh sách người dùng.
+        + Thêm người dùng.
+        + Sửa người dùng.
+        + Xóa người dùng.
+2- Phần khách hàng
+    - Code phần validate form:
+        + Đăng ký.
+        + Đăng nhập.
+        + Quên mật khẩu.
+    - Đăng nhập thành công
+        + Hiển thị ảnh người dùng nhỏ góc phải trên phần nav.
+        + Show các điều hướng(Cập nhật thông tin, Danh sách đơn hàng, Đăng xuất).
+        + Code đăng xuất.
+    # Các opition mới:
+        + Update hiển thị ảnh profile khi mới đăng ký bằng chữ cái đầu tên in hoa
+        + Mật khẩu mã hóa md5() trước khi được thêm vào Database.
+        + Kiểm tra trạng thái tài khoản (active, vô hiệu hóa) mới đăng nhập được vào website.
+        + Tài khoản đã đăng nhập không thể vào lại trang đăng ký hay trang đăng nhập được.
+        + Đăng ký thành công điều hướng đến trang đăng nhập
+        + Đăng nhập thành công điều hướng đến trang chủ
+        + Mật khẩu khi đăng ký thành công: 
+                                + Nếu tiếng việt tự động chuyển sang.
+                                => Tiếng anh viết liền không dấu, không có khoảng trắng.
+3- Database:
+    Bảng Users:
+        + Cập nhật thêm cột `status` trước cột `role`.
+
+======

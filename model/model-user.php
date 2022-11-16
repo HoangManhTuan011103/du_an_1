@@ -1,19 +1,28 @@
 <?php
- function InsertUser($name,$email,$password,$phone,$address,$image,$role){
+function InsertUser($name, $email, $password, $phone, $address, $image, $role)
+{
     $sql = "INSERT INTO `users`(`name`, `email`, `password`, `phone`, `address`, `image`, `role`) VALUES ('$name','$email','$password','$phone','$address','$image','$role')";
     return pdo_execute_return_lastInsertId($sql);
 }
-function CheckUser($email,$password){
+function InsertUser2($name, $email, $password, $phone, $address, $image, $status, $role)
+{
+    $sql = "INSERT INTO `users`(`name`, `email`, `password`, `phone`, `address`, `image`,`status`, `role`) VALUES ('$name','$email','$password','$phone','$address','$image','$status','$role')";
+    return pdo_execute_return_lastInsertId($sql);
+}
+function CheckUser($email, $password)
+{
     $sql = "SELECT * FROM users WHERE email='$email' AND `password`='$password';";
     $info =  pdo_query_one($sql);
     return $info;
 }
-function CheckEmail($email){
+function CheckEmail($email)
+{
     $sql = "SELECT * FROM users WHERE email='$email'";
     $info =  pdo_query_one($sql);
     return $info;
 }
-function convert_vi_to_en($str) {
+function convert_vi_to_en($str)
+{
     $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", "a", $str);
     $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", "e", $str);
     $str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", "i", $str);
@@ -30,4 +39,35 @@ function convert_vi_to_en($str) {
     $str = preg_replace("/(Đ)/", "D", $str);
     //$str = str_replace(" ", "-", str_replace("&*#39;","",$str));
     return $str;
+}
+function getAllUser()
+{
+    $sql = "SELECT * FROM users order by id desc ";
+    return pdo_query($sql);
+}
+function UserDelete($id)
+{
+    $sql = "delete from Users where id='$id';";
+    pdo_execute($sql);
+}
+function SearchUser($kyw)
+{
+    $sql = "SELECT * FROM users WHERE 1";
+    if ($kyw != "") {
+        $sql .= " and name like '%" . $kyw . "%'";
+    }
+    $sql .= " ORDER BY id DESC";
+    $listUsers = pdo_query($sql);
+    return $listUsers;
+}
+function getUserFollowId($id)
+{
+    $sql = "SELECT * FROM users WHERE id = '$id';";
+    $info =  pdo_query_one($sql);
+    return $info;
+}
+function UpdatetUser($name, $email, $password, $phone, $address, $image, $status, $role, $id)
+{
+    $sql = "UPDATE `users` SET `name`='$name', `email`='$email', `password`='$password', `phone`='$phone', `address`='$address', `image`='$image', `status`='$status', `role`='$role' WHERE `id`='$id';";
+    pdo_execute($sql);
 }

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../src/css/categoryAdmin.css">
     <link rel="stylesheet" href="../src/css/comment.css">
     <link rel="stylesheet" href="../src/css/billAdmin.css">
+    <link rel="stylesheet" href="../src/css/showUser.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 
@@ -82,8 +83,8 @@
                             <a href="bill.html" class="canHidden">Quản lý đơn hàng</a>
                         </li>
                         <li>
-                            <a href="user.html"><i class="fa-solid fa-user"></i></a>
-                            <a href="user.html" class="canHidden">Quản lý người dùng</a>
+                            <a href="index.php?actAdmin=showUsers"><i class="fa-solid fa-user"></i></a>
+                            <a href="index.php?actAdmin=showUsers" class="canHidden">Quản lý người dùng</a>
                         </li>
                         <li>
                             <a href="comment.html"><i class="fa-solid fa-comment"></i></a>
