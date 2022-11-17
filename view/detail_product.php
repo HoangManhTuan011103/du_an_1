@@ -7,8 +7,7 @@
         <span>></span>
         <p>
             <span class="red_word">
-
-                Giày đá bóng sân cỏ nhân tạo
+                Chi tiết sản phẩm
             </span>
         </p>
     </div>
@@ -477,24 +476,24 @@
         </section>
     </div>
 </div>
-    <script>
-    let btn_decre = document.querySelector(".btn_decre");
-    let btn_incre = document.querySelector(".btn_incre");
+<script>
+let btn_decre = document.querySelector(".btn_decre");
+let btn_incre = document.querySelector(".btn_incre");
 
-    let btn_product_quantity_input = document.querySelector("#btn_product_quantity_input")
+let btn_product_quantity_input = document.querySelector("#btn_product_quantity_input")
 
-    btn_incre.addEventListener("click", () => {
+btn_incre.addEventListener("click", () => {
 
-        btn_product_quantity_input.value++;
-    });
-    btn_decre.addEventListener("click", () => {
-        if (btn_product_quantity_input.value == 1) {
+    btn_product_quantity_input.value++;
+});
+btn_decre.addEventListener("click", () => {
+    if (btn_product_quantity_input.value == 1) {
 
-            btn_decre.style.cursor = 'no-drop';
-        } else {
-            btn_decre.style.cursor = 'pointer';
-            console.log(btn_product_quantity_input.value);
-            --btn_product_quantity_input.value;
-        }
-    });
-    </script>
+        btn_decre.style.cursor = 'no-drop';
+    } else {
+        btn_decre.style.cursor = 'pointer';
+        console.log(btn_product_quantity_input.value);
+        --btn_product_quantity_input.value;
+    }
+});
+</script>
