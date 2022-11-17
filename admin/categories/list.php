@@ -48,7 +48,7 @@
                             <td>DM00<?= $category['id'] ?></td>
                             <td class="name"><?= $category['name'] ?></td>
                             <td class="name">
-                                <img style="width: 100px; height: 100px;" src="../imageProduct/<?= $category['avatar'] ?>" alt="">
+                                <img style="width: 100px;" src="../imageProduct/<?= $category['avatar'] ?>" alt="">
                             </td>
 
                             <td class="status">

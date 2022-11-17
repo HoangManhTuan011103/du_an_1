@@ -18,13 +18,6 @@
     <link rel="stylesheet" href="./src/css/section.css">
     <link rel="stylesheet" href="./src/css/category.css">
     <link rel="stylesheet" href="./src/css/sanpham.css">
-    <link rel="stylesheet" href="./src/css/detail_product.css">
-    <link rel="stylesheet" href="./src/css/pay_detail.css">
-    <link rel="stylesheet" href="./src/css/yourOrder.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
 </head>
 
 <body>
@@ -40,9 +33,9 @@
                 </div>
 
                 <div class="mid-header__nav">
-                    <form action="index.php?act=showProducts" class="mid-header__form" method="post">
-                        <input type="text" name="kyw" class="mid-header__form__ip__searchTerm mid-header__form__ip--size" placeholder="Tìm kiếm...">
-                        <button type="submit" class="mid-header__form__btn__searchIcon" name="search">
+                    <form action="" class="mid-header__form" method="post">
+                        <input type="text" class="mid-header__form__ip__searchTerm mid-header__form__ip--size" placeholder="Tìm kiếm...">
+                        <button type="submit" class="mid-header__form__btn__searchIcon">
                             <i class="fas fa-search" style="font-size:22px;color:#ff2d37"></i>
                         </button>
                     </form>
@@ -58,7 +51,7 @@
 
                     <div class="mid-header__user">
                         <ul class="mid-header__user-menu">
-                        <?php
+                            <?php
                             if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
                                 extract($_SESSION['user']);
                                 if ($_SESSION['user']['image'] != "") {
@@ -119,7 +112,7 @@
                         </ul>
                     </div>
                     <div class="mid-header__cart">
-                        <a href="index.php?act=cart"><i class="mid-header__cart__icon mid-header__cart__icon--color fas fa-shopping-cart"></i></a>
+                        <a href=""><i class="mid-header__cart__icon mid-header__cart__icon--color fas fa-shopping-cart"></i></a>
                     </div>
                 </div>
             </div>

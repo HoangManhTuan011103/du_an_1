@@ -8,8 +8,6 @@ require_once "../model/pdo.php";
 require_once "../model/model-user.php";
 require_once "../model/model-product.php";
 require_once "../model/model-category.php";
-require_once "../model/model-order.php";
-
 // Đang nối file như này để nó hiện ra giao diện 
 // Phần này do tôi thiết kế giao diện admin không có footer nên để như này là chuẩn rồi nhé
 // Giờ chỉ việc chỉnh code vào thôi nhé
@@ -124,7 +122,6 @@ if (isset($_GET['actAdmin'])) {
                     pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$value')");
                 }
                 $notification = "Thêm sản phẩm thành công";
-                header("location: index.php?actAdmin=showProduct");
             }
             $listCategories = getAllCategories();
             require_once "./products/add.php";
@@ -168,9 +165,13 @@ if (isset($_GET['actAdmin'])) {
                 }
                 for ($i = 0; $i < count($files["name"]); $i++) {
                     if ($files["error"][$i] == 0) {
+                        // $product_images_model->product_id = $id; // Chỗ này
                         $files_insert = time() . '-' . $files["name"][$i];
-                        $is_insert = pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$files_insert')");
+                        // $product_images_model->avatar = $avatars_insert; // Chỗ này
+                        $is_insert = pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$files_insert')");; // Chỗ này
+
                         $dir_uploads = '../imageProduct/';
+
                         if (!file_exists($dir_uploads)) {
                             mkdir($dir_uploads);
                         }
@@ -187,16 +188,6 @@ if (isset($_GET['actAdmin'])) {
                 $hotProduct = (isset($_POST['hotProduct']) ? 1 : 0);
 
                 updateProduct($name, $category, $avatar, $description, $quantity, $price, $discount, $hotProduct, $idProduct, $status);
-                // Start fix error here (Completed)
-                $idCateNew = getIdCategoryUpdateCount($idProduct);
-                $idCateOld = $_POST['categoryCLone'];
-                $totalCurrent = getTotalProductCat($idCateNew);
-                $totalUpđate = getTotalProductCat2($idCateNew);
-                if ($totalCurrent != $totalUpđate) {
-                    countProductFollowCat($idCateNew);
-                    reduceProductFollowCat($idCateOld);
-                }
-                // End fix error here (Completed)
                 $notification = "Bạn đã thay đổi sản phẩm thành công";
                 header("location: index.php?actAdmin=showProduct");
             }
@@ -217,27 +208,6 @@ if (isset($_GET['actAdmin'])) {
         case 'showProduct':
             $listProduct = getAllProduct();
             require_once "./products/list.php";
-            break;
-        case 'showOrder':
-            $listOrderUser = getAllOrderToAdmin();
-            require_once "./orders/list.php";
-            break;
-        case 'deleteOrder':
-            $id = isset($_GET['id']) ? $_GET['id'] : "";
-            if ($id > 0 && is_numeric($id)) {
-                deleteOrderDetailToAdmin($id);
-                deleteOrderToAdmin($id);
-                $notification = "Xóa đơn hàng thành công";
-            }
-            $listOrderUser = getAllOrderToAdmin();
-            require_once "./orders/list.php";
-            break;
-        case "detailOrder":
-            $id = isset($_GET['id']) ? $_GET['id'] : "";
-            if ($id > 0 && is_numeric($id)) {
-                $listOrderAdmin = getOrderAdmin($id);
-            }
-            require_once "./orders/detailOrder.php";
             break;
             // Đức - Quản lý người dùng
         case 'showUsers':
