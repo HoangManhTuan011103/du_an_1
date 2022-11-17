@@ -11,7 +11,7 @@
 
 
     <h2 class="products_all red_word">
-        <?= $namecategory ?>
+        <?= isset($namecategory) ? $namecategory : $namecategory = ''; ?>
     </h2>
     <div class="row">
         <div class="col l-3">
@@ -23,12 +23,12 @@
                 <div class="product_fillter_flow_content">
                     <ul>
                         <?php
-                         foreach ($dsdm as $dm) {
-                             extract($dm);
-                             $linkdm = "index.php?act=showProducts&id=".$id;
-                             echo '<li><a href="'.$linkdm.'">'.$name.'</a></li>';
-                         }
-                     ?>
+                        foreach ($dsdm as $dm) {
+                            extract($dm);
+                            $linkdm = "index.php?act=showProducts&id=" . $id;
+                            echo '<li><a href="' . $linkdm . '">' . $name . '</a></li>';
+                        }
+                        ?>
                         <!-- <li><a href="">Trang chủ </a></li>
                         <li><a href="">Sản phẩm </a></li>
                         <li><a href="">Giày thể thao</a></li>
@@ -262,33 +262,33 @@
 
             <div class="row category--grid--review">
 
-                <?php 
-                       foreach ($prolist  as $pro) {
-                        extract($pro);
-                        $hinh = $image_path . $avatar;
-                        $linkpro = "index.php?act=detail_product&id=" . $id;
-                        $giagiam = ($price * $discount) / 100;
-                        $pricesale = $price - $giagiam;
-                        echo '<div class="grid wide col l-3 m-4 c-6">
+                <?php
+                foreach ($prolist  as $pro) {
+                    extract($pro);
+                    $hinh = $image_path . $avatar;
+                    $linkpro = "index.php?act=detail_product&id=" . $id;
+                    $giagiam = ($price * $discount) / 100;
+                    $pricesale = $price - $giagiam;
+                    echo '<div class="grid wide col l-3 m-4 c-6">
                         <div class="product__banner">
                             <div class="product--hot__img">
-                                <img src="'.$hinh.'" alt="">
+                                <img src="' . $hinh . '" alt="">
                             </div>
                             <div class="product__banner__name">
-                                <p>'.$name.'</p>
+                                <p>' . $name . '</p>
                             </div>
                         </div>
                         <div class="product__banner__price">
                             <div>
-                                <p class="product__banner__price--cost">'.$pricesale.'<u>đ</u></p>
-                                <p class="product__banner__price--sale"><del>'.$price.'</del><u>đ</u></p>
+                                <p class="product__banner__price--cost">' . $pricesale . '<u>đ</u></p>
+                                <p class="product__banner__price--sale"><del>' . $price . '</del><u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
-                                <a href="'.$linkpro.'">chi tiết</a>
+                                <a href="' . $linkpro . '">chi tiết</a>
                             </div>
                         </div>
                     </div>';
-                       }
+                }
                 ?>
 
 
@@ -320,33 +320,33 @@
             <h2 class="products_all">Có thể bạn thích</h2>
             <div class="row category--grid--review">
 
-                <?php 
-                       foreach ($protop4 as $pro) {
-                        extract($pro);
-                        $hinh = $image_path . $avatar;
-                        $linkpro = "index.php?act=detail_product&id=" . $id;
-                        $giagiam = ($price * $discount) / 100;
-                        $pricesale = $price - $giagiam;
-                        echo '<div class="grid wide col l-3 m-4 c-6">
+                <?php
+                foreach ($protop4 as $pro) {
+                    extract($pro);
+                    $hinh = $image_path . $avatar;
+                    $linkpro = "index.php?act=detail_product&id=" . $id;
+                    $giagiam = ($price * $discount) / 100;
+                    $pricesale = $price - $giagiam;
+                    echo '<div class="grid wide col l-3 m-4 c-6">
                         <div class="product__banner">
                             <div class="product--hot__img">
-                                <img src="'.$hinh.'" alt="">
+                                <img src="' . $hinh . '" alt="">
                             </div>
                             <div class="product__banner__name">
-                                <p>'.$name.'</p>
+                                <p>' . $name . '</p>
                             </div>
                         </div>
                         <div class="product__banner__price">
                             <div>
-                                <p class="product__banner__price--cost">'.$pricesale.'<u>đ</u></p>
-                                <p class="product__banner__price--sale"><del>'.$price.'</del><u>đ</u></p>
+                                <p class="product__banner__price--cost">' . $pricesale . '<u>đ</u></p>
+                                <p class="product__banner__price--sale"><del>' . $price . '</del><u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
-                                <a href="'.$linkpro.'">chi tiết</a>
+                                <a href="' . $linkpro . '">chi tiết</a>
                             </div>
                         </div>
                     </div>';
-                       }
+                }
                 ?>
                 <!-- <div class="grid wide col l-3 m-4 c-6">
                     <div class="product__banner">
