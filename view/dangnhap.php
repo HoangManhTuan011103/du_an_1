@@ -33,11 +33,19 @@
         <form action="index.php?act=dangnhap" method="post" enctype="multipart/form-data">
           <div>
             <p>Email *</p>
-            <input type="email" name="email" id="email" placeholder="Email" required />
+            <input type="text" 
+            value="<?= isset($_POST['email_login'])? $_POST['email_login'] : $_POST['email_login'] =''; ?>" 
+            name="email_login" id="email" placeholder="Email" />
+            <p class="login__thongbao">
+              <?= isset($thongbao[1]) ? $thongbao[1] : $thongbao[1] = ''; ?>
+            </p>
           </div>
           <div>
             <p>Mật khẩu *</p>
-            <input type="password" name="password" id="password" placeholder="Mật khẩu" required />
+            <input type="password" name="password" id="password" placeholder="Mật khẩu" />
+            <p class="login__thongbao">
+              <?= isset($thongbao[2]) ? $thongbao[2] : $thongbao[2] = ''; ?>
+            </p>
           </div>
           <div>
             <p class="login__thongbao">
@@ -67,10 +75,10 @@
         <form action="index.php?act=dangnhap" method="post" enctype="multipart/form-data">
           <div>
             <p>Email *</p>
-            <input type="email" name="email" id="email" placeholder="Email" required />
+            <input type="text" name="email" id="email" placeholder="Email" />
             <div>
               <span class="login__thongbao">
-                <?= isset($thongbao[1]) ? $thongbao[1] : $thongbao[1] = ''; ?>
+                <?= isset($thongbao[3]) ? $thongbao[3] : $thongbao[3] = ''; ?>
               </span>
             </div>
           </div>

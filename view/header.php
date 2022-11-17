@@ -61,25 +61,59 @@
                             <?php
                             if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
                                 extract($_SESSION['user']);
-                                echo
-                                '   <li class="ctn__user--img-1">
+                                if ($_SESSION['user']['image'] != "") {
+                                    echo
+                                    '   <li class="ctn__user--img-1">
                                 <a href="">
                                 <img class="ctn__user--img-2" src="https://pixinvent.com/demo/vuexy-bootstrap-laravel-admin-template/demo-1/images/profile/user-uploads/user-04.jpg" alt="" srcset="">
                                 </a>
                                 <ul class="user__sup-menu">
-                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>
-                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=capnhattaikhoan">Cập nhật tài khoản</a></li>
-                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat" onclick="return confirm("Bạn có chắc chắn muốn đăng xuất không?")" >Đăng xuất</a></li>
+                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>';
+                                    if ($_SESSION['user']['role'] == 1) {
+                                        echo '<li class="user__sup-menu__sign-in li-sign ccc__334"><a href="admin/index.php">Trang quản trị</a></li>';
+                                    }
+                                    echo ' <li class="user__sup-menu__sign-in li-sign ccc__334"><a onclick="return confirm("Bạn có chắc chắn muốn đăng xuất không?")" href="index.php?act=capnhattaikhoan">Cập nhật tài khoản</a></li>
+                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat">Đăng xuất</a></li>
                                 </ul>
                                 </li>';
-                            } else {
-                                echo
-                                '<li><a href=""><i class="mid-header__user__icon mid-header__user__icon--color fas fa-user"></i></a>
+                                } else {
+                                    $string1 = $_SESSION['user']['name'];
+                                    $string = convert_vi_to_en($string1);
+                                    $pieces = explode(' ', $string);
+                                    $name_user1 = array_pop($pieces);
+                                    $name_user2 = ucfirst($name_user1);
+                                    $name_user3 = substr($name_user2, 0, 1);
+                                    echo
+                                    '   <li class="ctn__user--img-1">
+                                <a href="">
+                                    <span class="mid-header__user__icon mid-header__user__icon--color">' . $name_user3 . '
+                                    </span>
+                                </a>
                                 <ul class="user__sup-menu">
-                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangnhap">Đăng nhập</a></li>
-                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangky">Đăng ký</a></li>
+                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>';
+                                    if ($_SESSION['user']['role'] == 1) {
+                                        echo '<li class="user__sup-menu__sign-in li-sign ccc__334"><a href="admin/index.php">Trang quản trị</a></li>';
+                                    }
+                                    echo ' <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=capnhattaikhoan">Cập nhật tài khoản</a></li>
+                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat">Đăng xuất</a></li>
                                 </ul>
                                 </li>';
+                                }
+                            } else {
+                                echo '
+                               <li>
+                                <a href="">
+                                <i class="mid-header__user__icon mid-header__user__icon--color fas fa-user">
+                                </i>
+                                </a>
+                                <ul class="user__sup-menu">
+                                <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangnhap">Đăng nhập</a>
+                                </li>
+                                <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangky">Đăng ký</a>
+                                </li>
+                                </ul>
+                                </li>
+                               ';
                             }
                             ?>
                         </ul>
@@ -100,7 +134,6 @@
                     <li class="nav__ul__li--list nav__ul--contact"><a href="">Liên hệ</a></li>
                     <li class="nav__ul__li--list nav__ul--introduce"><a href="">Giới thiệu</a></li>
                     <li class="nav__ul__li--list nav__ul--news"><a href="">Tin tức</a></li>
-
                 </ul>
             </nav>
         </div>

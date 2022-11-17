@@ -55,30 +55,53 @@ if (isset($_GET['act'])) {
             break;
             // Đức làm đăng ký đăng nhập quên mật khẩu
         case 'dangnhap':
-            if (isset($_POST['dangnhap'])) {
-                $email = $_POST['email'];
+            if (isset($_POST['dangnhap']) == true) {
+                $email_login = $_POST['email_login'];
                 $password = $_POST['password'];
+                $check = true;
+                if ($email_login == "") {
+                    $thongbao[1] = "Email không được bỏ trống !";
+                    $check = false;
+                } else if (!filter_var($email_login, FILTER_VALIDATE_EMAIL)) {
+                    $thongbao[1] = "Email sai định dạng VD: duc@abc.xyz !";
+                    $check = false;
+                }
+                if ($password == "") {
+                    $thongbao[2] = "Mật khẩu không được bỏ trống !";
+                    $check = false;
+                } else if (strlen($password) < 6) {
+                    $thongbao[2] = "Mật khẩu tối thiểu 6 ký tự";
+                    $check = false;
+                }
                 $password = md5($password);
-                $checkuser_success = CheckUser($email, $password);
-                if (!is_array($checkuser_success)) {
-                    $thongbao[0] = "Đăng nhập thất bại (kiểm tra lại email hoặc mật khẩu) !";
-                } else {
-                    $_SESSION['user'] = $checkuser_success;
-                    $thongbao[0] = "Đăng nhập thành công !";
-                    header("Location: index.php");
-                    ob_end_flush();
+                $checkuser_success = CheckUser($email_login, $password);
+                if ($check == true) {
+                    if (is_array($checkuser_success)) {
+                        if (($checkuser_success['status'] == 1)) {
+                            $thongbao[0] = "Tài khoản của bạn đã bị vô hiệu hóa liên hệ admin để được hỗ trợ !";
+                        } else {
+                            $_SESSION['user'] = $checkuser_success;
+                            $thongbao[0] = "Đăng nhập thành công !";
+                            header("Location: index.php");
+                            ob_end_flush();
+                        }
+                    } else {
+                        $thongbao[0] = "Sai email hoặc mật khẩu !";
+                    }
                 }
             }
-            if (isset($_POST['quenmatkhau'])) {
+            if (isset($_POST['quenmatkhau']) == true) {
                 $email = $_POST['email'];
                 if ($email == "") {
-                    $thongbao[1] = "Vui lòng nhập email";
+                    $thongbao[3] = "Vui lòng nhập email";
+                } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $thongbao[3] = "Email sai định dạng VD: duc@abc.xyz !";
                 } else {
                     $check_email = CheckEmail($email);
                     if (is_array($check_email)) {
-                        $thongbao[1] = 'Mật khẩu của bạn là: ' . $check_email['password'];
+                        $thongbao[3] = 'Mật khẩu của bạn là: ' . $check_email['password'];
                     } else {
-                        $thongbao[1] = 'Email ' . $email . ' không tồn tại';
+                        $thongbao[3] = 'Email ' . $email . ' không tồn tại';
                     }
                 }
             }
@@ -99,7 +122,7 @@ if (isset($_GET['act'])) {
                 $password = $_POST['password'];
                 $phone = '';
                 $address = '';
-                $image = 'https://raw.githubusercontent.com/ogdp/notepad/95bf9e262c8f72bd2184dfd51d650296b740b99b/profile_user_default.png';
+                $image = '';
                 $role = 0;
                 // Vaidate form đăng ký
                 if ($ho == "") {
