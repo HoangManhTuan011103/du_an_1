@@ -279,7 +279,7 @@ border: 1px solid #ddd;
         font-size: 15px;
     }
     .one_product_list--item-detail-nameproduct a:hover{
-color: #ff2d37;
+       color: #ff2d37;
     }
     .one_product_list--item-detail-nameproduct .red_word{
         font-weight: 550;

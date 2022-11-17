@@ -298,9 +298,7 @@
                         </span>
                     </div>
                 </div>
-
-
-                <div class="one_collection_product_list--item-detail">
+            <div class="one_collection_product_list--item-detail">
                     <div class="one_product_list--item-detail-img">
                         <a href=""> <img src="./src/image/a3.webp" alt=""></a>
                     </div>
@@ -332,9 +330,6 @@
                         </span>
                     </div>
                 </div> -->
-
-
-
             </div>
         </div>
     </div>
