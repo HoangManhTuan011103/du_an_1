@@ -100,7 +100,6 @@
 }
 .product__banner{
     border: 1px dotted #dddcdc;
-    margin: 3px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
@@ -251,12 +250,26 @@
 .p--category--product--menu{
     color: #ff2d37;
     padding-top:20px;
-    font-family:'Roboto', sans-serif ;
     font-size: 16px;
 }
 .p--sup--product--menu{
     padding-top:12px;
-    font-family:'Roboto', sans-serif ;
     font-size: 15px;
     padding-left: 15px;  
+}
+.ul--sup--product--menu ul{
+    padding: 10px 15px; 
+    list-style-type:none;
+}
+.ul--sup--product--menu li{
+   
+}
+.ul--sup--product--menu li a{
+    display: block;
+    padding: 10px;
+    color: #282828;
+    list-style: none;
+}
+.ul--sup--product--menu li a:hover{  
+    color: #ff2d37;
 }
