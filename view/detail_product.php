@@ -11,7 +11,6 @@
             </span>
         </p>
     </div>
-
     <?php
     extract($onepro_categories)
     // $imagePath = "../imageProduct/" .$onepro_categories['avatar'];
@@ -293,7 +292,6 @@
             </div>
         </div>
     </div>
-
     <!-- hàng cùng loại -->
     <div class="row">
         <section class="grid wide section__product--hot">
@@ -327,10 +325,10 @@
                       </div>';
                 }
                 ?>
-
             </div>
         </section>
     </div>
+</div>
     <script>
     let btn_decre = document.querySelector(".btn_decre");
     let btn_incre = document.querySelector(".btn_incre");
