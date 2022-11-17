@@ -122,6 +122,7 @@ if (isset($_GET['actAdmin'])) {
                     pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$value')");
                 }
                 $notification = "Thêm sản phẩm thành công";
+                header("location: index.php?actAdmin=showProduct");
             }
             $listCategories = getAllCategories();
             require_once "./products/add.php";
@@ -165,13 +166,9 @@ if (isset($_GET['actAdmin'])) {
                 }
                 for ($i = 0; $i < count($files["name"]); $i++) {
                     if ($files["error"][$i] == 0) {
-                        // $product_images_model->product_id = $id; // Chỗ này
                         $files_insert = time() . '-' . $files["name"][$i];
-                        // $product_images_model->avatar = $avatars_insert; // Chỗ này
-                        $is_insert = pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$files_insert')");; // Chỗ này
-
+                        $is_insert = pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$files_insert')");
                         $dir_uploads = '../imageProduct/';
-
                         if (!file_exists($dir_uploads)) {
                             mkdir($dir_uploads);
                         }
@@ -188,6 +185,16 @@ if (isset($_GET['actAdmin'])) {
                 $hotProduct = (isset($_POST['hotProduct']) ? 1 : 0);
 
                 updateProduct($name, $category, $avatar, $description, $quantity, $price, $discount, $hotProduct, $idProduct, $status);
+                // Start fix error here (Completed)
+                $idCateNew = getIdCategoryUpdateCount($idProduct);
+                $idCateOld = $_POST['categoryCLone'];
+                $totalCurrent = getTotalProductCat($idCateNew);
+                $totalUpđate = getTotalProductCat2($idCateNew);
+                if($totalCurrent != $totalUpđate ){
+                    countProductFollowCat($idCateNew);
+                    reduceProductFollowCat($idCateOld);
+                }
+                // End fix error here (Completed)
                 $notification = "Bạn đã thay đổi sản phẩm thành công";
                 header("location: index.php?actAdmin=showProduct");
             }
