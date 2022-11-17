@@ -123,8 +123,9 @@ if (isset($_GET['actAdmin'])) {
                 foreach ($files['name'] as $value) {
                     pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$value')");
                 }
-                $notification = "Thêm sản phẩm thành công";
-                header("location: index.php?actAdmin=showProduct");
+                
+                header("location: index.php?actAdmin=showProduct&&notification=Thêm sản phẩm thành công");
+                // $notification = "Thêm sản phẩm thành công";
             }
             $listCategories = getAllCategories();
             require_once "./products/add.php";
@@ -197,8 +198,8 @@ if (isset($_GET['actAdmin'])) {
                     reduceProductFollowCat($idCateOld);
                 }
                 // End fix error here (Completed)
-                $notification = "Bạn đã thay đổi sản phẩm thành công";
-                header("location: index.php?actAdmin=showProduct");
+                // $notification = "Bạn đã thay đổi sản phẩm thành công";
+                header("location: index.php?actAdmin=showProduct&&notification=Thay đổi sản phẩm thành công");
             }
             $listProduct = getAllProduct();
             $listCategories = getAllCategories();

@@ -35,12 +35,16 @@
                     <div class="row product_list_img">
                         <?php foreach ($list_image_product as $value) {
                             extract($value);
-                            $giagiam = $price * ($discount/100) ;
+                            
                          ?>
+                       
                         <div class="col l-3 product__list_img-onec">
                             <img src="./imageProduct/<?=$images?>" alt="">
                         </div>
                         <?php } ?>
+                        <?php
+                             $giagiam = $price * ($discount/100) ;
+                         ?>
                     </div>
 
                     <!-- titile production -->
