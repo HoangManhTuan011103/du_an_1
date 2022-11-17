@@ -12,21 +12,34 @@ $pronew = loadall_product_home();
 if (!isset($_SESSION['mycart'])) {
     $_SESSION['mycart'] = [];
 }
-// Ai làm bên này có giao diện người dùng thì tự động thêm vào
-// Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
-// Comment thêm tên chức năng nữa nhé
-$protop8 =  loadtop8_product_home();
-$protop16 = loadtop16_product_home();
-$protop4 = loadtop4_product_home();
-$dsdm = loadall_category();
-$load2dm = load2_category();
-$load3dm = load3_category();
+    // Ai làm bên này có giao diện người dùng thì tự động thêm vào
+    // Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
+    // Comment thêm tên chức năng nữa nhé
+    $protop8 =  loadtop8_product_home();
+    // $protop16 = loadtop16_product_home();
+    $protop4 = loadtop4_product_home();
+    $dsdm= loadall_category();
+    $load2dm = load2_category();
+    $load3dm = load3_category();
 require_once "view/header.php";
 if (isset($_GET['act'])) {
     $actAdmin = $_GET['act'];
     switch ($actAdmin) {
-            // Hiệp làm showProducts
-        case 'showProducts':
+          // Hiệp làm showProducts
+          case 'showProducts':  // hiện thị sản phẩm theo danh mục
+            if(isset($_POST['kyw'])&& ($_POST['kyw'] !="")){
+                $kyw = $_POST['kyw'];
+            }else{
+                $kyw = "";
+            }
+            if(isset($_GET['id'])&& ($_GET['id'] > 0)){
+                $idcategori = $_GET['id'];
+               
+            }else{
+                $idcategori = 0;
+            }
+            $prolist = loadall_product($kyw,$idcategori);
+            $namecategory = load_name_category($idcategori);
             require_once "view/showProducts.php";
             break;
         case 'detail_product':

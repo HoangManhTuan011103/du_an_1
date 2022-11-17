@@ -185,6 +185,10 @@ div.detail_payment--success>table td.image img {
     margin: 0 auto;
 }
 
+.link--yourOder ul li {
+    display: inline-block;
+}
+
 .detail_payment--success-hidden {
     display: none;
 }

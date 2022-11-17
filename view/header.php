@@ -58,7 +58,7 @@
 
                     <div class="mid-header__user">
                         <ul class="mid-header__user-menu">
-                            <?php
+                        <?php
                             if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
                                 extract($_SESSION['user']);
                                 if ($_SESSION['user']['image'] != "") {
@@ -68,18 +68,12 @@
                                 <img class="ctn__user--img-2" src="https://pixinvent.com/demo/vuexy-bootstrap-laravel-admin-template/demo-1/images/profile/user-uploads/user-04.jpg" alt="" srcset="">
                                 </a>
                                 <ul class="user__sup-menu">
-<<<<<<< HEAD
                                     <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>';
                                     if ($_SESSION['user']['role'] == 1) {
                                         echo '<li class="user__sup-menu__sign-in li-sign ccc__334"><a href="admin/index.php">Trang quản trị</a></li>';
                                     }
                                     echo ' <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=capnhattaikhoan">Cập nhật tài khoản</a></li>
                                     <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat">Đăng xuất</a></li>
-=======
-                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>
-                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=capnhattaikhoan">Cập nhật tài khoản</a></li>
-                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat" onclick="return confirm("Bạn có chắc chắn muốn đăng xuất không?")" >Đăng xuất</a></li>
->>>>>>> tuan
                                 </ul>
                                 </li>';
                                 } else {

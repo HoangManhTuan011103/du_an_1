@@ -11,7 +11,7 @@
             </span>
         </p>
     </div>
-<<<<<<< HEAD
+
     <?php
     extract($onepro_categories)
     // $imagePath = "../imageProduct/" .$onepro_categories['avatar'];
@@ -42,7 +42,7 @@
                     <div class="row product_list_img">
                         <?php foreach ($list_image_product as $value) {
                             extract($value);
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
                             $giagiam = ($price * $discount) / 100;
                         ?>
                             <div class="col l-3 product__list_img-onec">
@@ -57,22 +57,22 @@
                         <div class="col l-3 product__list_img-onec">
                             <img src="./src/image/a5.webp" alt="">
                         </div> -->
-=======
+=========
                             $giagiam = $price * ($discount/100) ;
                          ?>
                         <div class="col l-3 product__list_img-onec">
                             <img src="./imageProduct/<?=$images?>" alt="">
                         </div>
->>>>>>> tuan
+>>>>>>>>> Temporary merge branch 2
                         <?php } ?>
                     </div>
 
                     <!-- titile production -->
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
                     <h3 class="one_product_title_name_"><?= $name ?></h3>
-=======
+=========
                     <h3 class="one_product_title_name_" style="text-align: left;" ><?=$name?></h3>
->>>>>>> tuan
+>>>>>>>>> Temporary merge branch 2
                     <!-- thương hiệu -->
                     <div class="product_name_brand_quantity">
                         <p class="product_brand">
@@ -95,15 +95,15 @@
                     <div class="one_product_price_detail">
 
                         <p class="product_one_price">
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
                             <?= $giagiam ?> <span class="product_currency">đ</span>
                         <p class="product_one_price_old">
                             <?= $price ?>
-=======
+=========
                             <?= number_format($price-$giagiam) ?> <span class="product_currency">đ</span>
                         <p class="product_one_price_old">
                             <?= number_format($price)?>
->>>>>>> tuan
+>>>>>>>>> Temporary merge branch 2
                             <span class="product_currency">đ</span>
                         </p>
                         </p>
@@ -123,15 +123,15 @@
                                 </div>
                             </div>
                             <!-- form id price sp -->
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
                             <input type="hidden" name="id" value="<?= $id ?>">
                             <input type="hidden" name="price" value="<?= $price ?>">
                             <input type="hidden" name="giagiam" value="<?= $giagiam ?>">
-=======
+=========
                             <input type="hidden" name="id" value="<?=$id?>">
                             <input type="hidden" name="price" value="<?=$price?>">
                             <input type="hidden" name="giagiam" value="<?= $price-$giagiam ?>">
->>>>>>> tuan
+>>>>>>>>> Temporary merge branch 2
                             <!--  -->
                             <div class="one_product_btn_buy">
 
@@ -254,14 +254,14 @@
             <h3 class="collection_product_list">Bộ sưu tập hot</h3>
             <div class=" collection_product_list--item ">
                 <?php
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
                 foreach ($protop4 as $value) {
                     extract($value);
                     $pricesale = ($price * $discount) / 100;
                     $img =  $image_path . $avatar;
                     $linkpro = "index.php?act=detail_product&id=" . $id;
                     echo '<div class="one_collection_product_list--item-detail">
-=======
+=========
                   foreach ($protop4 as $value) {
                       extract($value);
                       $pricesale = $price * ($discount/100);
@@ -269,7 +269,7 @@
                       $img =  $image_path.$avatar;
                       $linkpro = "index.php?act=detail_product&id=".$id;
                       echo '<div class="one_collection_product_list--item-detail">
->>>>>>> tuan
+>>>>>>>>> Temporary merge branch 2
                       <div class="one_product_list--item-detail-img">
                           <a href="' . $linkpro . '"> <img src="' . $img . '" alt=""></a>
             </div>
@@ -279,15 +279,15 @@
                         ' . $name . '
                     </a>
                 </p>
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
                 <p class="red_word">' . $pricesale . '<span class="product_currency">đ</span>
                 </p>
                 <span class="product_one_price_old">' . $price . '<span class="product_currency">đ</span>
-=======
+=========
                 <p class="red_word">'.number_format($price-$pricesale).'<span class="product_currency">đ</span>
                 </p>
                 <span class="product_one_price_old">'.number_format($price).'<span class="product_currency">đ</span>
->>>>>>> tuan
+>>>>>>>>> Temporary merge branch 2
                 </span>
             </div>
         </div>';
@@ -353,21 +353,21 @@
             <h2 class="product_list_with_categories_title">SẢN PHẨM cùng loại</h2>
             <div class="section__product--hot__banner review__product--hot">
                 <?php
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
                 foreach ($protop4 as $value) {
                     extract($value);
                     $pricesale = ($price * $discount) / 100;
                     $img =  $image_path . $avatar;
                     $linkpro = "index.php?act=detail_product&id=" . $id;
                     echo '<div class="grid wide l-2-4 m-6 c-6">
-=======
+=========
                     foreach ($protop4 as $value) {
                       extract($value);
                       $pricesale = $price * ($discount/100);
                       $img =  $image_path.$avatar;
                       $linkpro = "index.php?act=detail_product&id=".$id;
                       echo '<div class="grid wide l-2-4 m-6 c-6">
->>>>>>> tuan
+>>>>>>>>> Temporary merge branch 2
                       <div class="product__banner">
                           <div class="product--hot__img">
                               <img src="' . $img . '"
@@ -379,13 +379,13 @@
                       </div>
                       <div class="product__banner__price">
                           <div>
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
                               <p class="product__banner__price--cost">' . $pricesale . '<u>đ</u></p>
                               <p class="product__banner__price--sale">' . $price . '</p>
-=======
+=========
                               <p class="product__banner__price--cost">'.number_format($price-$pricesale).'<u>đ</u></p>
                               <p class="product__banner__price--sale">'.number_format($price).'<u>đ</u></p>
->>>>>>> tuan
+>>>>>>>>> Temporary merge branch 2
                           </div>
                           <div class="product__banner__btn--detail">
                               <a href="' . $linkpro . '">chi tiết</a>
@@ -398,9 +398,15 @@
             </div>
         </section>
     </div>
-    <script>
+</div>
+<script>
+<<<<<<<<< Temporary merge branch 1
     let btn_decre = document.querySelector(".btn_decre");
     let btn_incre = document.querySelector(".btn_incre");
+=========
+let btn_decre = document.querySelector(".btn_decre");
+let btn_incre = document.querySelector(".btn_incre");
+>>>>>>>>> Temporary merge branch 2
 
 let btn_product_quantity_input = document.querySelector("#btn_product_quantity_input")
 
@@ -411,6 +417,7 @@ btn_incre.addEventListener("click", () => {
 btn_decre.addEventListener("click", () => {
     if (btn_product_quantity_input.value == 1) {
 
+<<<<<<<<< Temporary merge branch 1
             btn_decre.style.cursor = 'no-drop';
         } else {
             btn_decre.style.cursor = 'pointer';
@@ -418,4 +425,36 @@ btn_decre.addEventListener("click", () => {
             --btn_product_quantity_input.value;
         }
     });
-    </script>
+
+
+
+    // chuyển tab 
+    let tab_iteam = document.querySelectorAll('.tab-item');
+    let tab_pane = document.querySelectorAll('.tab-pane');
+
+
+    tab_iteam.forEach((tab, index) => {
+        tab.onclick = function() {
+            const panes = tab_pane[index];
+
+            document.querySelector(".tab-item.active").classList.remove("active");
+
+
+            document.querySelector(".tab-pane.active").classList.remove("active");
+
+
+            this.classList.add("active");
+            panes.classList.add("active");
+
+        }
+    })
+=========
+        btn_decre.style.cursor = 'no-drop';
+    } else {
+        btn_decre.style.cursor = 'pointer';
+        console.log(btn_product_quantity_input.value);
+        --btn_product_quantity_input.value;
+    }
+});
+>>>>>>>>> Temporary merge branch 2
+</script>

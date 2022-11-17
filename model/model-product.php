@@ -107,11 +107,32 @@ function loadtop4_product_home(){
     return $listproduct;
 }
  // hiện thị top 16 sản phẩm mới nhất
- function loadtop16_product_home(){
-    $sql = "select * from products where status = 0 order by id desc limit 0,16";
-    $listproduct = pdo_query($sql);
-    return $listproduct;
-}
+//  load all sản phẩm theo danh mục
+  function loadall_product($kyw="",$cagtegory_id=0){
+      $sql = "select * from products where 1";
+      if($kyw != ""){
+          $sql.=" and name like '%".$kyw."%'"; 
+      }
+      if($cagtegory_id > 0){
+          $sql.=" and category_id ='".$cagtegory_id."'";
+      }
+      $sql.=" order by id desc";
+      $listproduct = pdo_query($sql);
+      return $listproduct;
+  }
+  // load tên danh mục
+  function load_name_category($id){
+      if($id > 0 ){
+        $sql = "select * from categories where id=".$id;
+        $category = pdo_query_one($sql);
+        extract($category);
+        return $name;
+      }else{
+          return "";
+      }
+      
+  }
+   
 // hiện thị 1 sản phẩm
 function loadone_detail_product_flow_categories($id){
     $sql = "SELECT A.*,b.name as name_category FROM products A JOIN categories b on A.category_id=b.id where A.id=$id";

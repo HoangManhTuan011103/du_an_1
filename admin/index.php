@@ -192,7 +192,7 @@ if (isset($_GET['actAdmin'])) {
                 $idCateOld = $_POST['categoryCLone'];
                 $totalCurrent = getTotalProductCat($idCateNew);
                 $totalUpđate = getTotalProductCat2($idCateNew);
-                if($totalCurrent != $totalUpđate ){
+                if ($totalCurrent != $totalUpđate) {
                     countProductFollowCat($idCateNew);
                     reduceProductFollowCat($idCateOld);
                 }
@@ -217,6 +217,88 @@ if (isset($_GET['actAdmin'])) {
         case 'showProduct':
             $listProduct = getAllProduct();
             require_once "./products/list.php";
+            break;
+        case 'showOrder':
+            $listOrderUser = getAllOrderToAdmin();
+            require_once "./orders/list.php";
+            break;
+        case 'deleteOrder':
+            $id = isset($_GET['id']) ? $_GET['id'] : "";
+            if ($id > 0 && is_numeric($id)) {
+                deleteOrderDetailToAdmin($id);
+                deleteOrderToAdmin($id);
+                $notification = "Xóa đơn hàng thành công";
+            }
+            $listOrderUser = getAllOrderToAdmin();
+            require_once "./orders/list.php";
+            break;
+        case "detailOrder":
+            $id = isset($_GET['id']) ? $_GET['id'] : "";
+            if ($id > 0 && is_numeric($id)) {
+                $listOrderAdmin = getOrderAdmin($id);
+            }
+            require_once "./orders/detailOrder.php";
+            break;
+            // Đức - Quản lý người dùng
+        case 'showUsers':
+            $listUser = getAllUser();
+            require_once "./users/list.php";
+            break;
+        case 'SearchUsers':
+            $kyw = $_POST['kyw'];
+            $listUser = SearchUser($kyw);
+            require_once "./users/list.php";
+            break;
+        case 'addUser':
+            if (isset($_POST['btn--addUser'])) {
+                $name = $_POST['name'];
+                $image = $_FILES['image'];
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $phone = $_POST['phone'];
+                $address = $_POST['address'];
+                $status = $_POST['status'];
+                $role = $_POST['role'];
+                $password = md5($password);
+                InsertUser2($name, $email, $password, $phone, $address, $image, $status, $role);
+                header('Location: index.php?actAdmin=showUsers&&msg=Thêm người thành công !');
+                ob_end_flush();
+            }
+            require_once "./users/add.php";
+            break;
+        case 'editUser':
+            $id = $_GET['id'];
+            $infoUser = getUserFollowId($id);
+            if (isset($_POST['btn--editUser'])) {
+                if (is_array($infoUser)) {
+                    extract($infoUser);
+                }
+                $id = $_GET['id'];
+                $name_update = $_POST['name'];
+                $email_update = $_POST['email'];
+                $password_update = $_POST['password'];
+                $phone_update = $_POST['phone'];
+                $address_update = $_POST['address'];
+                $image_update = $_FILES['image'];
+                $status_update = $_POST['status'];
+                $role_update = $_POST['role'];
+                if ($password_update != $password) {
+                    $password_update = md5($password_update);
+                }
+                UpdatetUser($name_update, $email_update, $password_update, $phone_update, $address_update, $image_update, $status_update, $role_update, $id);
+                header('Location: index.php?actAdmin=showUsers&&msg=Cập nhật thành công !');
+                ob_end_flush();
+            }
+            require_once "./users/edit.php";
+            break;
+        case 'deleteUser':
+            $id = $_GET['id'];
+            if (isset($id) && $id != "") {
+                UserDelete($id);
+                $notification = "Xóa tài khoản thành công !";
+                $listUser = getAllUser();
+                require_once "./users/list.php";
+            }
             break;
         default:
             require_once "";
