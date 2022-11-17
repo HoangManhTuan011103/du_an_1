@@ -6,11 +6,16 @@
 }
 
 .col {
+<<<<<<< HEAD
   text-align: center;
   background-color: #ccc;
   background-clip: content-box;
   margin-top: 8px;
   margin-bottom: 8px;
+=======
+    margin-top: 8px;
+    margin-bottom: 8px;
+>>>>>>> hiep
 }
 
 /* .container {
@@ -371,6 +376,7 @@ span.mid-header__user__icon:hover {
 }
 
 .footer--license {
+<<<<<<< HEAD
   align-items: center;
   font-family: "Roboto Slab", serif;
   color: #ffffff;
@@ -380,7 +386,21 @@ span.mid-header__user__icon:hover {
 }
 .footer--license--h3 {
   margin-top: 20px;
+=======
+    align-items: center;
+    font-family: 'Roboto Slab', serif;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 200;
+    text-align: center;
+
 }
+
+.footer--license--h3 {
+    margin-top: 20px;
+>>>>>>> hiep
+}
+
 .footer--license a {
   text-decoration: none;
   color: #ff2d37;

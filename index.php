@@ -8,25 +8,33 @@ require_once "./model/model-user.php";
 require_once "./model/model-product.php";
 require_once "./model/model-category.php";
 $pronew = loadall_product_home();
-// Ai làm bên này có giao diện người dùng thì tự động thêm vào
-// Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
-// Comment thêm tên chức năng nữa nhé
-$protop8 =  loadtop8_product_home();
-$protop16 = loadtop16_product_home();
-$protop4 = loadtop4_product_home();
-$dsdm = loadall_category();
-$load2dm = load2_category();
-$load3dm = load3_category();
+    // Ai làm bên này có giao diện người dùng thì tự động thêm vào
+    // Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
+    // Comment thêm tên chức năng nữa nhé
+    $protop8 =  loadtop8_product_home();
+    $protop16 = loadtop16_product_home();
+    $protop4 = loadtop4_product_home();
+    $dsdm= loadall_category();
+    $load2dm = load2_category();
+    $load3dm = load3_category();
 require_once "view/header.php";
 if (isset($_GET['act'])) {
     $actAdmin = $_GET['act'];
     switch ($actAdmin) {
-            // Hiệp làm showProducts
+        // Hiệp làm showProducts
         case 'showProducts':
             require_once "view/showProducts.php";
             break;
-        case 'showCategoriess':
-            require_once "";
+        case 'detail_product':
+            if(isset($_GET['id'])&&($_GET['id']>0)){
+                $id = $_GET['id'];
+                $onepro_categories =  loadone_detail_product_flow_categories($id);
+                $list_image_product=loadone_detail_product_flow_product_images($id);
+                require_once "view/detail_product.php";
+            }else{
+                require_once "view/home.php";
+            } 
+           
             break;
             // Đức làm đăng ký đăng nhập quên mật khẩu
         case 'dangnhap':
