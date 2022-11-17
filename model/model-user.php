@@ -4,13 +4,7 @@ function InsertUser($name, $email, $password, $phone, $address, $image, $role)
     $sql = "INSERT INTO `users`(`name`, `email`, `password`, `phone`, `address`, `image`, `role`) VALUES ('$name','$email','$password','$phone','$address','$image','$role')";
     return pdo_execute_return_lastInsertId($sql);
 }
-function InsertUser2($name, $email, $password, $phone, $address, $image, $status, $role)
-{
-    $sql = "INSERT INTO `users`(`name`, `email`, `password`, `phone`, `address`, `image`,`status`, `role`) VALUES ('$name','$email','$password','$phone','$address','$image','$status','$role')";
-    return pdo_execute_return_lastInsertId($sql);
-}
-function CheckUser($email, $password)
-{
+function CheckUser($email,$password){
     $sql = "SELECT * FROM users WHERE email='$email' AND `password`='$password';";
     $info =  pdo_query_one($sql);
     return $info;
@@ -21,8 +15,7 @@ function CheckEmail($email)
     $info =  pdo_query_one($sql);
     return $info;
 }
-function convert_vi_to_en($str)
-{
+function convert_vi_to_en($str) {
     $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", "a", $str);
     $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", "e", $str);
     $str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", "i", $str);

@@ -8,6 +8,8 @@ require_once "../model/pdo.php";
 require_once "../model/model-user.php";
 require_once "../model/model-product.php";
 require_once "../model/model-category.php";
+require_once "../model/model-order.php";
+
 // Đang nối file như này để nó hiện ra giao diện 
 // Phần này do tôi thiết kế giao diện admin không có footer nên để như này là chuẩn rồi nhé
 // Giờ chỉ việc chỉnh code vào thôi nhé
@@ -215,67 +217,6 @@ if (isset($_GET['actAdmin'])) {
         case 'showProduct':
             $listProduct = getAllProduct();
             require_once "./products/list.php";
-            break;
-            // Đức - Quản lý người dùng
-        case 'showUsers':
-            $listUser = getAllUser();
-            require_once "./users/list.php";
-            break;
-        case 'SearchUsers':
-            $kyw = $_POST['kyw'];
-            $listUser = SearchUser($kyw);
-            require_once "./users/list.php";
-            break;
-        case 'addUser':
-            if (isset($_POST['btn--addUser'])) {
-                $name = $_POST['name'];
-                $image = $_FILES['image'];
-                $email = $_POST['email'];
-                $password = $_POST['password'];
-                $phone = $_POST['phone'];
-                $address = $_POST['address'];
-                $status = $_POST['status'];
-                $role = $_POST['role'];
-                $password = md5($password);
-                InsertUser2($name, $email, $password, $phone, $address, $image, $status, $role);
-                header('Location: index.php?actAdmin=showUsers&&msg=Thêm người thành công !');
-                ob_end_flush();
-            }
-            require_once "./users/add.php";
-            break;
-        case 'editUser':
-            $id = $_GET['id'];
-            $infoUser = getUserFollowId($id);
-            if (isset($_POST['btn--editUser'])) {
-                if (is_array($infoUser)) {
-                    extract($infoUser);
-                }
-                $id = $_GET['id'];
-                $name_update = $_POST['name'];
-                $email_update = $_POST['email'];
-                $password_update = $_POST['password'];
-                $phone_update = $_POST['phone'];
-                $address_update = $_POST['address'];
-                $image_update = $_FILES['image'];
-                $status_update = $_POST['status'];
-                $role_update = $_POST['role'];
-                if ($password_update != $password) {
-                    $password_update = md5($password_update);
-                }
-                UpdatetUser($name_update, $email_update, $password_update, $phone_update, $address_update, $image_update, $status_update, $role_update, $id);
-                header('Location: index.php?actAdmin=showUsers&&msg=Cập nhật thành công !');
-                ob_end_flush();
-            }
-            require_once "./users/edit.php";
-            break;
-        case 'deleteUser':
-            $id = $_GET['id'];
-            if (isset($id) && $id != "") {
-                UserDelete($id);
-                $notification = "Xóa tài khoản thành công !";
-                $listUser = getAllUser();
-                require_once "./users/list.php";
-            }
             break;
         default:
             require_once "";

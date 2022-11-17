@@ -66,7 +66,6 @@
                             <select name="categoryCLone" id="" hidden>
                                 <?php foreach($listCategories as $value): ?>
                                     <option value="<?= $value['id'] ?>" <?= $value['id'] == $detailProduct['idCategory'] ? "selected" : "" ?> ><?= $value['name'] ?></option>
-                                    
                                 <?php endforeach; ?>
                             </select>
                             
