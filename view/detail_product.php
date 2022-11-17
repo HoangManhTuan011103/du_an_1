@@ -12,23 +12,30 @@
             </span>
         </p>
     </div>
-    <?php 
-         extract($onepro_categories)
+
+    <?php
+    extract($onepro_categories)
+    // $imagePath = "../imageProduct/" .$onepro_categories['avatar'];
+    // if(is_file($imagePath)){
+    //     $image = "<img src='" . $imagePath . "' alt=''>";
+    // }else{
+    //     $image = "<h4 style='color: #ffffff' > không có hình ảnh</h4>";
+    // } 
     ?>
-    <p class="product_title_name"><?=$name?></p>
+    <p class="product_title_name"><?= $name ?></p>
     <div class="row">
         <div class="col l-9">
             <div class="row">
                 <!-- ảnh -->
 
                 <div class="col l-6">
-                    <img src="./imageProduct/<?=$avatar?>" alt="">
+                    <img src="./imageProduct/<?= $avatar ?>" alt="">
 
                 </div>
                 <div class="col l-6">
                     <!-- list ảnh -->
                     <div class="row product_list_img">
-                        <?php foreach($list_image_product as $value){
+                        <?php foreach ($list_image_product as $value) {
                             extract($value);
                             $giagiam = $price * ($discount/100) ;
                          ?>
@@ -45,7 +52,7 @@
                         <p class="product_brand">
                             Danh mục:
                             <span class="red_word">
-                                <?=$name_category?> </span>
+                                <?= $name_category ?> </span>
                         </p>
                         <p class="product_brand">
                             Kho :
@@ -65,6 +72,7 @@
                             <?= number_format($price-$giagiam) ?> <span class="product_currency">đ</span>
                         <p class="product_one_price_old">
                             <?= number_format($price)?>
+
                             <span class="product_currency">đ</span>
                         </p>
                         </p>
@@ -79,8 +87,7 @@
                                 </p>
                                 <div class="quantity_change_number">
                                     <div class="btn_decre">-</div>
-                                    <input type="text" id="btn_product_quantity_input" min="1"
-                                        name="product_quantity_input" value="1">
+                                    <input type="text" id="btn_product_quantity_input" min="1" name="product_quantity_input" value="1">
                                     <div class="btn_incre">+</div>
                                 </div>
                             </div>
@@ -91,8 +98,7 @@
                             <!--  -->
                             <div class="one_product_btn_buy">
 
-                                <button type="submit" name="btn-addCart"
-                                    class="btn_buy_products">Mua
+                                <button type="submit" name="btn-addCart" class="btn_buy_products">Mua
                                     ngay</button>
                                 <div class="contact_information">
                                     <p>Mua số lượng lớn
@@ -114,63 +120,29 @@
             <!-- tab chọn bình luận -->
             <div class="row">
                 <ul class="product_change_tab">
-                    <li>Mô tả sản phẩm</li>
-                    <li>Tab tùy chỉnh</li>
-                    <li>Đánh giá</li>
+                    <li class='tab-item active'>Mô tả sản phẩm</li>
+                    <li class="tab-item">Tab tùy chỉnh</li>
+                    <li class="tab-item">Đánh giá</li>
                 </ul>
             </div>
-            <div class="row">
-                <div class="product_desc_detail">
+            <div class="row product_desc_detail">
+                <!-- mô tả sản phẩm  -->
+                <div class="tab-pane active">
                     <p>
-                        <?=$description?>
-                        <!-- Giày Đá Bóng Sân Cỏ cho độ bám sàn tốt cũng như có độ bền cùng độ dẻo
-                        dai
-                        cao, là chọn lựa lý
-                        tưởng của những bạn nam yêu thích thể thao. Thân giày đá bóng cỏ tự
-                        nhiên
-                        được làm từ da PU
-                        cao cấp
+                        <?= $description ?>
 
-                        Giày Đá Bóng Sân Cỏ cho độ bám sàn tốt cũng như có độ bền cùng độ
-                        dẻo dai
-                        cao, là chọn lựa
-                        lý tưởng của những bạn nam yêu thích thể thao.
-
-                        Thân giày đá bóng cỏ tự nhiên được làm từ da PU cao cấp, bề mặt bóng
-                        chống
-                        bám bẩn, chống
-                        thấm nước. Bên cạnh đó, lớp da của phần upper được tráng một lớp
-                        firm mỏng
-                        giúp bảo vệ phần
-                        da giày tốt hơn.
-
-                        Đế giày được may toàn bộ quanh mũi giày và gót nên rất chắc chắn,
-                        thích ứng
-                        với sân cỏ nhân
-                        tạo. Giày thiết kế dành riêng cho bề mặt sân cỏ tự nhiên với các
-                        khối đinh
-                        lớn hình tam giác
-                        có độ cao vừa phải, tránh trơn trượt ngay cả khi bạn chạy trên sân
-                        cỏ tự
-                        nhiên; đồng thời hỗ
-                        trợ tuyệt vời cho những pha xử lý bóng bằng gầm giày, những cú ngoặt
-                        bóng
-                        siêu nhanh.
-
-                        Phần lõi trong đôi giày đá banh tự nhiên là lớp vải mềm giúp thấm
-                        hút mồ hôi
-                        và tạo sự thông
-                        thoáng cho đôi chân, không gây mùi khó chịu khi sử dụng.
-
-                        Chất liệu cao su thiên nhiên tạo sự đàn hồi nhất định cho đôi giày,
-                        mang đến
-                        cảm giác êm ái,
-                        thoải mái khi sử dụng sản phẩm.
-
-                        Form giày đá bóng chuẩn ôm sát chân tạo cảm giác bóng tốt, làm tăng
-                        khả năng
-                        xử lý bóng,
-                        đồng thời giúp cho việc kiểm soát bóng của bạn trở nên dễ dàng hơn -->
+                    </p>
+                </div>
+                <!-- tab tùy chỉnh -->
+                <div class="tab-pane">
+                    <p>
+                        Viết gì ở đây
+                    </p>
+                </div>
+                <!-- tab tùy chỉnh -->
+                <div class="tab-pane">
+                    <p>
+                        đổi nội dung
                     </p>
                 </div>
             </div>
@@ -253,12 +225,12 @@
                       $linkpro = "index.php?act=detail_product&id=".$id;
                       echo '<div class="one_collection_product_list--item-detail">
                       <div class="one_product_list--item-detail-img">
-                          <a href="'.$linkpro.'"> <img src="'.$img.'" alt=""></a>
+                          <a href="' . $linkpro . '"> <img src="' . $img . '" alt=""></a>
             </div>
             <div class="one_product_list--item-detail-nameproduct">
                 <p>
                     <a href="">
-                        '.$name.'
+                        ' . $name . '
                     </a>
                 </p>
                 <p class="red_word">'.number_format($price-$pricesale).'<span class="product_currency">đ</span>
@@ -267,8 +239,8 @@
                 </span>
             </div>
         </div>';
-        }
-        ?>
+                }
+                ?>
 
 
                 <!-- 
@@ -342,11 +314,11 @@
                       echo '<div class="grid wide l-2-4 m-6 c-6">
                       <div class="product__banner">
                           <div class="product--hot__img">
-                              <img src="'.$img.'"
+                              <img src="' . $img . '"
                                   alt="">
                           </div>
                           <div class="product__banner__name">
-                              <p>'.$name.'</p>
+                              <p>' . $name . '</p>
                           </div>
                       </div>
                       <div class="product__banner__price">
@@ -355,116 +327,18 @@
                               <p class="product__banner__price--sale">'.number_format($price).'<u>đ</u></p>
                           </div>
                           <div class="product__banner__btn--detail">
-                              <a href="'.$linkpro.'">chi tiết</a>
+                              <a href="' . $linkpro . '">chi tiết</a>
                           </div>
                       </div>
                       </div>';
-                    }
+                }
                 ?>
-                <!-- <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-2 copy.webp"
-                                alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-2 copy.webp"
-                                alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-2 copy.webp"
-                                alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-2 copy.webp"
-                                alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-2 copy.webp"
-                                alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div> -->
+
             </div>
         </section>
     </div>
-    <script>
+</div>
+<script>
     let btn_decre = document.querySelector(".btn_decre");
     let btn_incre = document.querySelector(".btn_incre");
 
@@ -484,4 +358,27 @@
             --btn_product_quantity_input.value;
         }
     });
-    </script>
+
+
+
+    // chuyển tab 
+    let tab_iteam = document.querySelectorAll('.tab-item');
+    let tab_pane = document.querySelectorAll('.tab-pane');
+
+
+    tab_iteam.forEach((tab, index) => {
+        tab.onclick = function() {
+            const panes = tab_pane[index];
+
+            document.querySelector(".tab-item.active").classList.remove("active");
+
+
+            document.querySelector(".tab-pane.active").classList.remove("active");
+
+
+            this.classList.add("active");
+            panes.classList.add("active");
+
+        }
+    })
+</script>
