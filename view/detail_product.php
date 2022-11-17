@@ -368,5 +368,6 @@ btn_decre.addEventListener("click", () => {
 
             this.classList.add("active");
             panes.classList.add("active");
-        });
+        }
+    });
     </script>
