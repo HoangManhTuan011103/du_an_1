@@ -24,15 +24,50 @@
                     <th>Thao tác</th>
                 </tr>
                 <?php if(count($listYourOrder) > 0): ?>
-                    <?php foreach($listYourOrder as $value): ?>
-                        <tr>
+                    <?php foreach($listYourOrder as $key => $value): ?>
+                        <tr class="totalModal">
                             <td>DH00<?= $value['id'] ?></td>
                             <td><?= $value['created_at'] ?></td>
                             <td><?= $value['address'] ?></td>
                             <td><?= number_format($value['total_price'])."đ" ?></td>
                             <td ><?= $value['payment']==0 ? "Thanh toán khi nhận hàng" : "" ?></td>
                             <td>
-                                <a href=""><button class="btnSee__detail--yourOrder">Xem chi tiết</button></a>
+                                <button class="btnSee__detail--yourOrder">Xem chi tiết</button>
+                                <?php
+                                    $detailPayS = getDeltailPaySuccess($value['id']);
+                                ?>
+                                <div class="over-lay detail_payment--success-hidden" >
+                                    <div class="detail_payment--success">
+                                        <div class="btn-exitOut" style="text-align: right; padding: 10px 20px 0 0;">
+                                            <i class="fa-regular fa-circle-xmark" style="font-size: 28px; color: #ff2d37;"></i>
+                                        </div>
+                                        <h2>Chi tiết đơn hàng DH00<?= $value['id'] ?></h2>
+                                        <table border="1">
+                                            <tr>
+                                                <th>Mã sản phẩm</th>
+                                                <th>Tên sản phẩm</th>
+                                                <th>Ảnh sản phẩm</th>
+                                                <th>Số lượng</th>
+                                                <th>Giá</th>
+                                            </tr>
+                                            <?php foreach($detailPayS as $valueDetail): ?>
+                                                <?php
+                                                    $imagePath = "./imageProduct/" . $valueDetail['avatar'];
+                                                    $image = "<img class='imageOrder' src='" . $imagePath . "' alt=''>";
+                                                ?>
+                                            <tr class="detail">
+                                                <td>SP00<?= $valueDetail['id'] ?></td>
+                                                <td><?= $valueDetail['name'] ?></td>
+                                                <td class="image"><?= $image ?></td>
+                                                <td><?= $valueDetail['quantity'] ?></td>
+                                                <td><?= number_format($valueDetail['price_product'])."đ" ?></td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </table>  
+                                        
+                                    </div>
+                                </div>
+                                    
                             </td>
                         </tr>
                     <?php endforeach; ?>

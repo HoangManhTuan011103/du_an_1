@@ -24,6 +24,18 @@
         $sql = "DELETE FROM `orders_detail` WHERE order_id=$id";
         pdo_execute($sql);
     }
+    function getDeltailPaySuccess($id){
+        $sql = "SELECT B.id,B.avatar,A.quantity,A.price_product, B.name FROM `orders_detail` A INNER JOIN `products` B ON A.product_id=B.id where A.order_id=$id ";
+        return pdo_query($sql);
+    }
+    function getAllDetailOrderAdmin($id){
+        $sql = "SELECT B.id,B.avatar,A.quantity,A.price_product, B.name FROM `orders_detail` A INNER JOIN `products` B ON A.product_id=B.id where A.order_id=$id ";
+        return pdo_query($sql);
+    }
+    function getOrderAdmin($id){
+        $sql = "SELECT A.`id`, A.`user_id`,`B`.`name`,  A.`payment`, A.`status`, A.`total_price`, A.`note`, A.`address`, A.`created_at` FROM `orders` A INNER JOIN `users` B ON A.user_id=B.id WHERE A.id=$id";
+        return pdo_query_one($sql);
+    }
     // Lấy đơn hàng bên phía Admin
 
 

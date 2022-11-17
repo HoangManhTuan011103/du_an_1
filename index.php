@@ -12,20 +12,20 @@ $pronew = loadall_product_home();
 if (!isset($_SESSION['mycart'])) {
     $_SESSION['mycart'] = [];
 }
-    // Ai làm bên này có giao diện người dùng thì tự động thêm vào
-    // Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
-    // Comment thêm tên chức năng nữa nhé
-    $protop8 =  loadtop8_product_home();
-    $protop16 = loadtop16_product_home();
-    $protop4 = loadtop4_product_home();
-    $dsdm= loadall_category();
-    $load2dm = load2_category();
-    $load3dm = load3_category();
+// Ai làm bên này có giao diện người dùng thì tự động thêm vào
+// Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
+// Comment thêm tên chức năng nữa nhé
+$protop8 =  loadtop8_product_home();
+$protop16 = loadtop16_product_home();
+$protop4 = loadtop4_product_home();
+$dsdm = loadall_category();
+$load2dm = load2_category();
+$load3dm = load3_category();
 require_once "view/header.php";
 if (isset($_GET['act'])) {
     $actAdmin = $_GET['act'];
     switch ($actAdmin) {
-        // Hiệp làm showProducts
+            // Hiệp làm showProducts
         case 'showProducts':
             require_once "view/showProducts.php";
             break;
@@ -220,7 +220,7 @@ if (isset($_GET['act'])) {
             } else {
                 $_SESSION['mycart'][$id]['use_quantity_buy']++;
             }
-           
+
             require_once "./view/cart/giohang.php";
 
             break;
@@ -230,10 +230,9 @@ if (isset($_GET['act'])) {
             if (!isset($_SESSION['user'])) {
                 require_once "./view/dangnhap.php";
                 exit;
-            }
-            else{
-                $totalAllProductPay = isset($_POST['totalAllProductPay']) ? $_POST['totalAllProductPay'] : $_POST['totalPricePay'] ;
-                if(isset($_POST['btn-orderSuccess'])){
+            } else {
+                $totalAllProductPay = isset($_POST['totalAllProductPay']) ? $_POST['totalAllProductPay'] : $_POST['totalPricePay'];
+                if (isset($_POST['btn-orderSuccess'])) {
                     $errors = [];
                     $name = $_POST['name'];
                     $id = $_SESSION['user']['id'];
@@ -242,24 +241,27 @@ if (isset($_GET['act'])) {
                     $payWhen = isset($_POST['payWhen']) ? $_POST['payWhen'] : "";
                     $note = $_POST['note'];
                     $totalPricePay = $_POST['totalPricePay'];
-                    if($phoneNumber == ""){
+                    if ($phoneNumber == "") {
                         $errors['phoneNumber'] = "Bạn phải nhập số điện thoại";
-                    }else if(!is_numeric($phoneNumber)){
+                    } else if (!is_numeric($phoneNumber)) {
                         $errors['phoneNumber'] = "Địa chỉ số điện thoại phải là số";
-                    }
-                    else if(strlen($phoneNumber) != 10  || substr($phoneNumber,0,1) != 0){
+                    } else if (strlen($phoneNumber) != 10  || substr($phoneNumber, 0, 1) != 0) {
                         $errors['phoneNumber'] = "Số điện thoại không tồn tại";
                     }
-                    if($address == ""){
+                    if ($address == "") {
                         $errors['address'] = "Bạn phải nhập địa chỉ";
                     }
-                    if(!$errors){
-                        $idOrder = insertToOrder($id,$payWhen,$totalPricePay,$note,$address);
-                        foreach($_SESSION['mycart'] as $value){
-                            insertToOrderDetail($idOrder,$value['id'],$value['use_quantity_buy'],$value['giagiam']);
+                    if (!$errors) {
+                        $idOrder = insertToOrder($id, $payWhen, $totalPricePay, $note, $address);
+                        foreach ($_SESSION['mycart'] as $value) {
+                            insertToOrderDetail($idOrder, $value['id'], $value['use_quantity_buy'], $value['giagiam']);
                         }
-                        echo "<script>Bạn đã đặt hàng thành công</script>";
-                        header("location: index.php");
+                        // header("location: index.php?act=dsdonhang");
+                        echo "<script> 
+                                alert('Bạn đã mua hàng thành công');
+                                window.location.href = 'index.php?act=dsdonhang';
+                            </script>";
+                        
                     }
                 }
                 require_once "./view/cart/pay_detail.php";
@@ -269,15 +271,13 @@ if (isset($_GET['act'])) {
             if (!isset($_SESSION['user'])) {
                 require_once "./view/dangnhap.php";
                 exit;
-            }else{
+            } else {
                 $id = $_SESSION['user']['id'];
                 $listYourOrder = getYourOrder($id);
                 require_once "./view/cart/pay_finished.php";
             }
-            
-            break;
 
-        // Tiếp tục cho tối nay
+            break;
         default:
             // require_once "";
             break;

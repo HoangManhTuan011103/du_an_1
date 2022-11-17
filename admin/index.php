@@ -231,6 +231,13 @@ if (isset($_GET['actAdmin'])) {
             $listOrderUser = getAllOrderToAdmin();
             require_once "./orders/list.php";
             break;
+        case "detailOrder":
+            $id = isset($_GET['id']) ? $_GET['id'] : "";
+            if ($id > 0 && is_numeric($id)) {
+                $listOrderAdmin = getOrderAdmin($id);
+            }
+            require_once "./orders/detailOrder.php";
+            break;
         default:
             require_once "";
             break;
