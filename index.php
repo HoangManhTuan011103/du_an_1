@@ -16,7 +16,7 @@ if (!isset($_SESSION['mycart'])) {
     // Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
     // Comment thêm tên chức năng nữa nhé
     $protop8 =  loadtop8_product_home();
-    $protop16 = loadtop16_product_home();
+    // $protop16 = loadtop16_product_home();
     $protop4 = loadtop4_product_home();
     $dsdm= loadall_category();
     $load2dm = load2_category();
