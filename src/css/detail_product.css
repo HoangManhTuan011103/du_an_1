@@ -221,6 +221,7 @@ border: 1px solid #ddd;
         color: #282828;
         padding-left: 4px;
         font-size: 15px;
+    text-align: left;
     }
     .product_info_shipper-title .product_info_shipper-title--name{
         padding-bottom: 4px;

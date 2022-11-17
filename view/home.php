@@ -579,8 +579,8 @@
                         </div>
                         <div class="product__banner__price">
                             <div>
-                                <p class="product__banner__price--cost">'.$giagiam.' <u>đ</u></p>
-                                <p class="product__banner__price--sale">'.$price.'<u>đ</u></p>
+                                <p class="product__banner__price--cost">'.number_format($price-$giagiam).' <u>đ</u></p>
+                                <p class="product__banner__price--sale">'.number_format($price).'<u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
                                 <button href="">chi tiết</button>

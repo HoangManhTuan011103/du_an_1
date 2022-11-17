@@ -122,6 +122,7 @@ if (isset($_GET['actAdmin'])) {
                     pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$value')");
                 }
                 $notification = "Thêm sản phẩm thành công";
+                header("location: index.php?actAdmin=showProduct");
             }
             $listCategories = getAllCategories();
             require_once "./products/add.php";
@@ -188,8 +189,8 @@ if (isset($_GET['actAdmin'])) {
                 $hotProduct = (isset($_POST['hotProduct']) ? 1 : 0);
 
                 updateProduct($name, $category, $avatar, $description, $quantity, $price, $discount, $hotProduct, $idProduct, $status);
-                $notification = "Bạn đã thay đổi sản phẩm thành công";
-                header("location: index.php?actAdmin=showProduct");
+                // $notification = "Bạn đã thay đổi sản phẩm thành công";
+                header("location: index.php?actAdmin=showProduct&&notification=Thay đổi sản phẩm thành công");
             }
             $listProduct = getAllProduct();
             $listCategories = getAllCategories();
