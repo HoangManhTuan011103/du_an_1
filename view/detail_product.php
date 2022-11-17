@@ -7,8 +7,7 @@
         <span>></span>
         <p>
             <span class="red_word">
-
-                Giày đá bóng sân cỏ nhân tạo
+                Chi tiết sản phẩm
             </span>
         </p>
     </div>
@@ -259,9 +258,7 @@
                         </span>
                     </div>
                 </div>
-
-
-                <div class="one_collection_product_list--item-detail">
+            <div class="one_collection_product_list--item-detail">
                     <div class="one_product_list--item-detail-img">
                         <a href=""> <img src="./src/image/a3.webp" alt=""></a>
                     </div>
@@ -293,9 +290,6 @@
                         </span>
                     </div>
                 </div> -->
-
-
-
             </div>
         </div>
     </div>
@@ -337,19 +331,18 @@
             </div>
         </section>
     </div>
-</div>
-<script>
+    <script>
     let btn_decre = document.querySelector(".btn_decre");
     let btn_incre = document.querySelector(".btn_incre");
 
-    let btn_product_quantity_input = document.querySelector("#btn_product_quantity_input")
+let btn_product_quantity_input = document.querySelector("#btn_product_quantity_input")
 
-    btn_incre.addEventListener("click", () => {
+btn_incre.addEventListener("click", () => {
 
-        btn_product_quantity_input.value++;
-    });
-    btn_decre.addEventListener("click", () => {
-        if (btn_product_quantity_input.value == 1) {
+    btn_product_quantity_input.value++;
+});
+btn_decre.addEventListener("click", () => {
+    if (btn_product_quantity_input.value == 1) {
 
             btn_decre.style.cursor = 'no-drop';
         } else {
@@ -358,9 +351,6 @@
             --btn_product_quantity_input.value;
         }
     });
-
-
-
     // chuyển tab 
     let tab_iteam = document.querySelectorAll('.tab-item');
     let tab_pane = document.querySelectorAll('.tab-pane');
@@ -378,7 +368,5 @@
 
             this.classList.add("active");
             panes.classList.add("active");
-
-        }
-    })
-</script>
+        });
+    </script>
