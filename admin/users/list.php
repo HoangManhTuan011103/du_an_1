@@ -37,10 +37,10 @@
                         <th>Tên</th>
                         <th>Ảnh</th>
                         <th>Email</th>
-                        <th>Mật khẩu</th>
                         <th>Điện thoại</th>
                         <th>Địa chỉ</th>
-                        <th>Status</th>
+                        <th>Trạng thái</th>
+                        <th>Vai trò</th>
                         <th>Ngày tạo</th>
                         <th>Thao tác</th>
                     </tr>
@@ -58,7 +58,7 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td><?= $key + 1 ?></td>
-                            <td>MTK00<?= $value['id'] ?></td>
+                            <td>KH00<?= $value['id'] ?></td>
                             <td class="name"><?= $value['name'] ?></td>
                             <td class="image">
                                 <?= $image ?>
@@ -66,20 +66,28 @@
                             <td class="category">
                                 <?= $value['email'] ?>
                             </td>
-                            <td class="price">
-                                <?= $value['password'] ?>
-                            </td>
                             <td class="quantity">
                                 <?= $value['phone'] ?>
                             </td>
                             <td class="dateCreate">
                                 <?= $value['address'] ?>
                             </td>
-                            <td class="dateCreate">
-                                <?php if ($value['status'] == 0) {
-                                    echo 'Active';
+
+                            <td class="status">
+                                <?php
+                                if ($value['status'] == 0) {
+                                    echo "<button class='status-isset'>Active</button>";
                                 } else {
-                                    echo 'Disable';
+                                    echo " <button class='status-empty'>Disable</button>";
+                                }
+                                ?>
+                            </td>
+                            <td class="status user">
+                                <?php
+                                if ($value['role'] == 0) {
+                                    echo "<button class='status-isset'>Người dùng</button>";
+                                } else {
+                                    echo " <button class='status-empty'>Quản trị</button>";
                                 }
                                 ?>
                             </td>
