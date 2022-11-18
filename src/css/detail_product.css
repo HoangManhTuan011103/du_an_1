@@ -1,19 +1,7 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-}
-
 a {
     text-decoration: none;
+    color: #282828;
 }
-
-img {
-    width: 100%;
-    height: 100%;
-}
-
 
 /* path router */
 
@@ -47,9 +35,12 @@ img {
 .product_list_img {
     text-align: center;
     padding: 0 20px;
-    margin-bottom: 10px;
+    height: 85px;
 }
-
+.product_list_img img{
+    width: 100%;
+    height: 100%;
+}
 .one_product_title_name_ {
     font-size: 20px;
     border-top: 1px dotted #ff2d37;
@@ -182,11 +173,13 @@ img {
     font-size: 14px;
     display: flex;
     position: relative;
+    cursor: pointer;
     text-align: center;
     border-radius: 50px 0px 0px 50px;
 }
 
 .prodcut_icon_phone_number {
+    cursor: pointer;
     position: absolute;
     background-color: #ff2d37;
     color: #fff;
@@ -299,7 +292,7 @@ img {
 .one_collection_product_list--item-detail {
     padding: 10px;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     border: 1px dotted #ddd;
 }
 
@@ -340,4 +333,9 @@ h2.product_list_with_categories_title {
     text-transform: uppercase;
     font-weight: normal;
     padding: 15px 0 20px 0;
+}
+
+.product__banner__price--sale.product_one_price_old{
+    padding-left: 10px;
+
 }
