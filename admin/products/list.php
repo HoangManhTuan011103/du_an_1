@@ -18,14 +18,14 @@
             <a href="index.php?actAdmin=addProduct"><button><i class="fa-solid fa-plus"></i> Thêm sản phẩm mới</button></a>
         </div>
         
+        <?php if(isset($_COOKIE['notification'])): ?>
+            <div class="alert alert-success">
+                <?= $_COOKIE['notification'] ?>
+            </div>
+        <?php endif ?>
         <?php if(isset($notification)): ?>
             <div class="alert alert-success">
                 <?= $notification ?>
-            </div>
-        <?php endif ?>
-        <?php if(isset($_GET['notification'])): ?>
-            <div class="alert alert-success">
-                <?= $_GET['notification'] ?>
             </div>
         <?php endif ?>
       

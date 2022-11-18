@@ -280,8 +280,8 @@
                         </div>
                         <div class="product__banner__price">
                             <div>
-                                <p class="product__banner__price--cost">'.$pricesale.'<u>đ</u></p>
-                                <p class="product__banner__price--sale"><del>'.$price.'</del><u>đ</u></p>
+                                <p class="product__banner__price--cost">'.number_format($pricesale).'<u>đ</u></p>
+                                <p class="product__banner__price--sale"><del>'.number_format($price).'</del><u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
                                 <a href="'.$linkpro.'">chi tiết</a>
@@ -338,8 +338,8 @@
                         </div>
                         <div class="product__banner__price">
                             <div>
-                                <p class="product__banner__price--cost">'.$pricesale.'<u>đ</u></p>
-                                <p class="product__banner__price--sale"><del>'.$price.'</del><u>đ</u></p>
+                                <p class="product__banner__price--cost">'.number_format($pricesale).'<u>đ</u></p>
+                                <p class="product__banner__price--sale"><del>'.number_format($price).'</del><u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
                                 <a href="'.$linkpro.'">chi tiết</a>
