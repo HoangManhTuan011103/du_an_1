@@ -593,8 +593,8 @@
                         </div>
                         <div class="product__banner__price">
                             <div>
-                                <p class="product__banner__price--cost">'.$giagiam.' <u>đ</u></p>
-                                <p class="product__banner__price--sale"><del><del>'.$price.'</del></del><u>đ</u></p>
+                                <p class="product__banner__price--cost">'.number_format($price-$giagiam).'<u>đ</u></p>
+                                <p class="product__banner__price--sale"><del><del>'.number_format($price).'</del></del><u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
                                 <a href="'.$linkpro.'">chi tiết</a>
@@ -605,7 +605,8 @@
                    ?>
 
             <div class="grid wide review--category__p--more">
-                <p>Xem tất cả<i class="fa-solid fa-angle-right"></i></p>
+                <a href="index.php?act=showProducts">Xem tất cả<i
+                        class="fa-solid fa-angle-right"></i></a>
             </div>
         </div>
 

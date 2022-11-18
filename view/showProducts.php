@@ -268,7 +268,7 @@
                         $hinh = $image_path . $avatar;
                         $linkpro = "index.php?act=detail_product&id=" . $id;
                         $giagiam = ($price * $discount) / 100;
-                        $pricesale = $price - $giagiam;
+                      
                         echo '<div class="grid wide col l-3 m-4 c-6">
                         <div class="product__banner">
                             <div class="product--hot__img">
@@ -280,8 +280,8 @@
                         </div>
                         <div class="product__banner__price">
                             <div>
-                                <p class="product__banner__price--cost">'.$pricesale.'<u>đ</u></p>
-                                <p class="product__banner__price--sale"><del>'.$price.'</del><u>đ</u></p>
+                                <p class="product__banner__price--cost">'.number_format($price-$giagiam).'<u>đ</u></p>
+                                <p class="product__banner__price--sale"><del>'.number_format($price).'</del><u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
                                 <a href="'.$linkpro.'">chi tiết</a>
@@ -338,8 +338,8 @@
                         </div>
                         <div class="product__banner__price">
                             <div>
-                                <p class="product__banner__price--cost">'.$pricesale.'<u>đ</u></p>
-                                <p class="product__banner__price--sale"><del>'.$price.'</del><u>đ</u></p>
+                                <p class="product__banner__price--cost">'.number_format($price-$giagiam).'<u>đ</u></p>
+                                <p class="product__banner__price--sale"><del>'.number_format($price).'</del><u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
                                 <a href="'.$linkpro.'">chi tiết</a>

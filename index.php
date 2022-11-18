@@ -84,6 +84,7 @@ if (isset($_GET['act'])) {
                             $thongbao[0] = "Đăng nhập thành công !";
                             header("Location: index.php");
                             ob_end_flush();
+                           
                         }
                     } else {
                         $thongbao[0] = "Sai email hoặc mật khẩu !";
