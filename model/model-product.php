@@ -109,7 +109,7 @@ function loadtop4_product_home(){
  // hiện thị top 16 sản phẩm mới nhất
 //  load all sản phẩm theo danh mục
   function loadall_product($kyw="",$cagtegory_id=0){
-      $sql = "select * from products where 1";
+      $sql = "select * from products where status = 0";
       if($kyw != ""){
           $sql.=" and name like '%".$kyw."%'"; 
       }
