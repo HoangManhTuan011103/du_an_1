@@ -20,7 +20,7 @@
                     </div>
                 <?php endif; ?>
                 <div class="contentManager--product__footer--table">
-                    <table border="1">
+                    <table border="1" class="orderAdminTable">
                         <thead>
                             <tr>
                                 <th><input type="checkbox"></th>
@@ -44,10 +44,30 @@
                                     <td class="price">
                                         <?= number_format($value['total_price'])."đ" ?>
                                     </td>
-                                    <td class="status">
+                                    <td class="status order-status">
                                         <?php if($value['status'] == 0): ?>
                                             <button class="status-isset">Đơn hàng mới</button>
+                                        <?php elseif($value['status'] == 1): ?>
+                                            <button class="status-isset" style="background-color: #24448f;">Đơn đã duyệt</button>
+                                            
                                         <?php endif; ?>
+                                        <?php if($value['status'] == 0): ?>
+                                            <div class="tick--Order">
+                                                <p style="color: #ffffff;">Duyệt đơn mới</p>
+                                                <a href="index.php?actAdmin=updateOrderAdmin&&status=1&&id=<?= $value['id'] ?>">
+                                                    <i class="fa-solid fa-check"></i>
+                                                </a>
+                                            </div>
+                                        <?php elseif($value['status'] == 1): ?>
+                                            <div class="tick--Order">
+                                                <p style="color: #ffffff;">Hủy duyệt đơn</p>
+                                                <a href="index.php?actAdmin=updateOrderAdmin&&status=0&&id=<?= $value['id'] ?>">
+                                                    <i class="fa-solid fa-xmark" style="color: #24448f;"></i>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+
+                                        
                                     </td>
                                     <td class="dateCreate">
                                         <?= $value['created_at'] ?>
@@ -56,7 +76,6 @@
                                         <a href="index.php?actAdmin=detailOrder&&id=<?= $value['id'] ?>"><button class="detailBill--see"><i class="fa-solid fa-eye" style="padding-right: 5px;" ></i>Xem chi tiết</button></a>
                                     </td>
                                     <td class="btn-action">
-                                    <a href="index.php?actAdmin=editProduct&&id=<?= $value['id'] ?>" class="update"><button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button></a>
                                         <a onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng DH00<?= $value['id'] ?> không')" href="index.php?actAdmin=deleteOrder&id=<?= $value['id'] ?>"><button><i class="fa-sharp fa-solid fa-trash"></i></button></a>
                                     </td>
                                 </tr>

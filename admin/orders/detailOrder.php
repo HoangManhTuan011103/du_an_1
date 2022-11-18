@@ -17,7 +17,16 @@
                         <h3>Địa chỉ: <span><?= $listOrderAdmin['address'] ?></span></h3>
                         <h3>Ngày đặt hàng: <span><?= $listOrderAdmin['created_at'] ?></span></h3>
                         <h3>PT thanh toán: <span><?= $listOrderAdmin['payment'] == 0 ? "Thanh toán khi nhận hàng" : "" ?></span></h3>
-                        <h3>Trạng thái đơn: <span><?= $listOrderAdmin['status'] == 0 ? "Đơn hàng mới" : "" ?></span></h3>
+                        <h3>Trạng thái đơn: <span>
+                            <?php 
+                                if($listOrderAdmin['status'] == 0){
+                                    echo "Đơn hàng mới";
+                                }elseif($listOrderAdmin['status'] == 1)
+                                {
+                                    echo "Đơn đã duyệt";
+                                }
+                            ?>
+                            </span></h3>
                         <a href="index.php?actAdmin=showOrder"><button>Quay Lại</button></a>
                     </div>
                     <div class="table__detailOrdered">

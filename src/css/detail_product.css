@@ -3,6 +3,7 @@ a {
     color: #282828;
 }
 
+
 /* path router */
 
 .product_title_path {
@@ -37,10 +38,12 @@ a {
     padding: 0 20px;
     height: 85px;
 }
-.product_list_img img{
+
+.product_list_img img {
     width: 100%;
     height: 100%;
 }
+
 .one_product_title_name_ {
     font-size: 20px;
     border-top: 1px dotted #ff2d37;
@@ -335,7 +338,6 @@ h2.product_list_with_categories_title {
     padding: 15px 0 20px 0;
 }
 
-.product__banner__price--sale.product_one_price_old{
+.product__banner__price--sale.product_one_price_old {
     padding-left: 10px;
-
 }

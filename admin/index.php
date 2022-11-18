@@ -225,6 +225,15 @@ if (isset($_GET['actAdmin'])) {
             $listOrderUser = getAllOrderToAdmin();
             require_once "./orders/list.php";
             break;
+        case 'updateOrderAdmin':
+            $id = isset($_GET['id']) ? $_GET['id'] : "";
+            $status = isset($_GET['status']) ? $_GET['status'] : "";
+            if ($id > 0 && is_numeric($id) && $status >= 0 && is_numeric($status)) {
+                tickOrderAdmin($id,$status);
+            }
+            $listOrderUser = getAllOrderToAdmin();
+            require_once "./orders/list.php";
+            break;
         case 'deleteOrder':
             $id = isset($_GET['id']) ? $_GET['id'] : "";
             if ($id > 0 && is_numeric($id)) {

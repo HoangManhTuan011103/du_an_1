@@ -270,6 +270,7 @@ if (isset($_GET['act'])) {
             } else {
                 $totalAllProductPay = isset($_POST['totalAllProductPay']) ? $_POST['totalAllProductPay'] : $_POST['totalPricePay'];
                 if (isset($_POST['btn-orderSuccess'])) {
+                    date_default_timezone_set("Asia/Ho_Chi_Minh");
                     $errors = [];
                     $name = $_POST['name'];
                     $id = $_SESSION['user']['id'];
@@ -278,6 +279,9 @@ if (isset($_GET['act'])) {
                     $payWhen = isset($_POST['payWhen']) ? $_POST['payWhen'] : "";
                     $note = $_POST['note'];
                     $totalPricePay = $_POST['totalPricePay'];
+                    $dateCurrent = time();
+                    $dateToInt = date("Y-m-d h:i:s", $dateCurrent);
+                    
                     if ($phoneNumber == "") {
                         $errors['phoneNumber'] = "Bạn phải nhập số điện thoại";
                     } else if (!is_numeric($phoneNumber)) {
@@ -289,7 +293,7 @@ if (isset($_GET['act'])) {
                         $errors['address'] = "Bạn phải nhập địa chỉ";
                     }
                     if (!$errors) {
-                        $idOrder = insertToOrder($id, $payWhen, $totalPricePay, $note, $address);
+                        $idOrder = insertToOrder($id, $payWhen, $totalPricePay, $note, $address,$dateToInt);
                         foreach ($_SESSION['mycart'] as $value) {
                             insertToOrderDetail($idOrder, $value['id'], $value['use_quantity_buy'], $value['giagiam']);
                         }
