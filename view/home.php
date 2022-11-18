@@ -8,248 +8,89 @@
 <section class="grid wide section--product-1">
     <div class="product-1-row-1">
         <?php
-                        $i=0;
-                        foreach ($load2dm as $dm) {
-                            extract($dm);
-                            $linkdm = "index.php?act=showProducts&id=".$id;
-                            $hinh = $image_path.$avatar;
-                            if(($i == 0)){
-                                $a = "product-1-col-1 l-8 m-12 c-12";
-                            }else{
-                                $a="product-1-col-2 l-4 m-0 c-0";
-                            }
-                            echo '<div class="grid wide product-1 '.$a.'">
+        $i = 0;
+        foreach ($load2dm as $dm) {
+            extract($dm);
+            $linkdm = "index.php?act=showProducts&id=" . $id;
+            $hinh = $image_path . $avatar;
+            if (($i == 0)) {
+                $a = "product-1-col-1 l-8 m-12 c-12";
+            } else {
+                $a = "product-1-col-2 l-4 m-0 c-0";
+            }
+            echo '<div class="grid wide product-1 ' . $a . '">
                             <div class="product_hover_change">
         
-                                <img class="product-1__img" src="'.$hinh.'" alt="">
-                                <a href="'.$linkdm .'" class="product-1__name">
-                                    '.$name.'
+                                <img class="product-1__img" src="' . $hinh . '" alt="">
+                                <a href="' . $linkdm . '" class="product-1__name">
+                                    ' . $name . '
                                 </a>
                                 <p class="section--product-1__amount">
-                                   '.$total_product.' sản phẩm
+                                   ' . $total_product . ' sản phẩm
                                 </p>
                             </div>
                           </div> ';
-                          $i += 1;
-                        } 
-                      ?>
+            $i += 1;
+        }
+        ?>
     </div>
     <div class="product-1-row-2">
         <?php
-                        
-                        foreach ($load3dm as $dm) {
-                            extract($dm);
-                            $linkdm = "index.php?act=showProducts&id=".$id;
-                            $hinh = $image_path.$avatar;
-                            echo '<div class="grid wide product-1  product-1-col-1 l-4 m-0 c-0">
+
+        foreach ($load3dm as $dm) {
+            extract($dm);
+            $linkdm = "index.php?act=showProducts&id=" . $id;
+            $hinh = $image_path . $avatar;
+            echo '<div class="grid wide product-1  product-1-col-1 l-4 m-0 c-0">
                             <div class="product_hover_change">
         
-                                <img class="product-1__img" src="'.$hinh.'" alt="">
-                                <a href="'.$linkdm.'" class="product-1__name">
-                                    '.$name.'
+                                <img class="product-1__img" src="' . $hinh . '" alt="">
+                                <a href="' . $linkdm . '" class="product-1__name">
+                                    ' . $name . '
                                 </a>
                                 <p class="section--product-1__amount">
-                                   '.$total_product.' sản phẩm
+                                   ' . $total_product . ' sản phẩm
                                 </p>
                             </div>
                           </div> ';
-                          $i += 1;
-                        } 
-                      ?>
+            $i += 1;
+        }
+        ?>
     </div>
 
 
-    <!-- <div class="product-1-row-1">
-                <div class="grid wide product-1 product-1-col-1 l-8 m-12 c-12">
-                    <div class="product_hover_change">
-
-                        <img class="product-1__img" src="./src/image/img_header_hoan/1.png" alt="">
-                        <p class="product-1__name">
-                            BÓNG ĐÁ NAM
-                        </p>
-                        <p class="section--product-1__amount">
-                            8 sản phẩm
-                        </p>
-                    </div>
-                </div>
-                <div class="grid wide product-1 product-1-col-2 l-4 m-0 c-0">
-                    <div class="product_hover_change">
-                        <img class="product-1__img"
-                        src="./src/image/img_header_hoan/aaps037-7__1__40f1ec058366467c8abf519485986b0c_large.webp" alt="">
-                        <p class="product-1__name">
-                            BÓNG ĐÁ NAM
-                        </p>
-                        <p class="section--product-1__amount">
-                            8 sản phẩm
-                        </p>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="product-1-row-2">
-                <div class="grid wide product-1 product-1-col-1 l-4 m-0 c-0">
-                    <div class="product_hover_change">
-                        <img class="product-1__img"
-                        src="./src/image/img_header_hoan/aaps037-7__1__40f1ec058366467c8abf519485986b0c_large.webp" alt="">
-                        <p class="product-1__name">
-                            BÓNG ĐÁ NAM
-                        </p>
-                        <p class="section--product-1__amount">
-                            8 sản phẩm
-                        </p>
-                    </div>
-                </div>
-                <div class="grid wide product-1 product-1-col-1 l-4 m-0 c-0">
-                    <div class="product_hover_change">
-                        <img class="product-1__img"
-                        src="./src/image/img_header_hoan/aaps037-7__1__40f1ec058366467c8abf519485986b0c_large.webp" alt="">
-                        <p class="product-1__name">
-                            BÓNG ĐÁ NAM
-                        </p>
-                        <p class="section--product-1__amount">
-                            8 sản phẩm
-                        </p>
-                    </div>
-                </div>
-                <div class="grid wide product-1 product-1-col-1 l-4 m-0 c-0">
-                    <div class="product_hover_change">
-                        <img class="product-1__img"
-                        src="./src/image/img_header_hoan/aaps037-7__1__40f1ec058366467c8abf519485986b0c_large.webp" alt="">
-                        <p class="product-1__name">
-                            BÓNG ĐÁ NAM
-                        </p>
-                        <p class="section--product-1__amount">
-                            8 sản phẩm
-                        </p>
-                    </div>
-                </div>
-            </div> -->
 </section>
 <section class="grid wide section__product--hot">
     <h2>SẢN PHẨM BÁN CHẠY</h2>
     <div class="section__product--hot__banner review__product--hot">
-        <?php 
-                    foreach ($pronew as $pro) {
-                        extract($pro);
-                        $linkpro = "index.php?act=detail_product&id=".$id;
-                        $hinh = $image_path.$avatar;
-                        $giagiam = $price * ($discount/100) ;
-                        echo ' <div class="grid wide l-2-4 m-6 c-6">
+        <?php
+        foreach ($pronew as $pro) {
+            extract($pro);
+            $linkpro = "index.php?act=detail_product&id=" . $id;
+            $hinh = $image_path . $avatar;
+            $giagiam = $price * ($discount / 100);
+            echo ' <div class="grid wide l-2-4 m-6 c-6">
                         <div class="product__banner">
                             <div class="product--hot__img">
-                                <img src="'.$hinh.'" alt="">
+                            <a href="' . $linkpro . '">  <img src="' . $hinh . '" alt="">  </a>
                             </div>
                             <div class="product__banner__name">
-                                <p>'.$name.'</p>
+                            <a href="' . $linkpro . '">   <p>' . $name . '</p></a>
                             </div>
                         </div>
                         <div class="product__banner__price">
                             <div>
-                                <p class="product__banner__price--cost">'.number_format($price-$giagiam).' <u>đ</u></p>
-                                <p class="product__banner__price--sale"><del>'.number_format($price).'</del><u>đ</u></p>
+                                <p class="product__banner__price--cost">' . number_format($price - $giagiam) . ' <u>đ</u></p>
+                                <p class="product__banner__price--sale product_one_price_old">' . number_format($price) . '<u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
-                                <a href="'.$linkpro.'">chi tiết</a>
+                                <a href="' . $linkpro . '">chi tiết</a>
                             </div>
                         </div>
                     </div>';
-                    }
-                ?>
-        <!-- <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div> -->
-        <!-- <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div> -->
+        }
+        ?>
+
     </div>
 </section>
 <section class="grid wide section__wrap--review--1">
@@ -273,129 +114,35 @@
         </div>
     </div>
     <div class="section__product--hot__banner warp--review--1--row-2">
-        <?php 
-                    foreach ($pronew as $pro) {
-                        extract($pro);
-                        $linkpro = "index.php?act=detail_product&id=".$id;
-                        $hinh = $image_path.$avatar;
-                        $giagiam = $price * ($discount/100);
-                        echo ' <div class="grid wide l-2-4 m-6 c-6">
+        <?php
+        foreach ($pronew as $pro) {
+            extract($pro);
+            $linkpro = "index.php?act=detail_product&id=" . $id;
+            $hinh = $image_path . $avatar;
+            $giagiam = $price * ($discount / 100);
+            echo ' <div class="grid wide l-2-4 m-6 c-6">
                         <div class="product__banner">
                             <div class="product--hot__img">
-                                <img src="'.$hinh.'" alt="">
+                            <a href="' . $linkpro . '">   <img src="' . $hinh . '" alt="">  </a>
                             </div>
                             <div class="product__banner__name">
-                                <p>'.$name.'</p>
+                            <a href="' . $linkpro . '">    <p>' . $name . '</p>  </a>
                             </div>
                         </div>
                         <div class="product__banner__price">
                             <div>
-                            <p class="product__banner__price--cost">'.number_format($price-$giagiam).' <u>đ</u></p>
-                            <p class="product__banner__price--sale"><del>'.number_format($price).'</del><u>đ</u></p>
+                            <p class="product__banner__price--cost">' . number_format($price - $giagiam) . ' <u>đ</u></p>
+                            <p class="product__banner__price--sale product_one_price_old">' . number_format($price) . '<u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
-                                <a href="'.$linkpro.'">chi tiết</a>
+                                <a href="' . $linkpro . '">chi tiết</a>
                             </div>
                         </div>
                     </div>';
-                    }
-                ?>
+        }
+        ?>
         <!--Hiệp Hiện thị sản phẩm -->
-        <!-- <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div> -->
+
     </div>
 </section>
 <section class="grid wide section__wrap--review--2">
@@ -418,128 +165,34 @@
         </div>
     </div>
     <div class="section__product--hot__banner warp--review--1--row-2">
-        <?php 
-                    foreach ($pronew as $pro) {
-                        extract($pro);
-                        $hinh = $image_path.$avatar;
-                        $linkpro = "index.php?act=detail_product&id=".$id;
-                        $giagiam = $price * ($discount/100) ;
-                        echo ' <div class="grid wide l-2-4 m-6 c-6">
+        <?php
+        foreach ($pronew as $pro) {
+            extract($pro);
+            $hinh = $image_path . $avatar;
+            $linkpro = "index.php?act=detail_product&id=" . $id;
+            $giagiam = $price * ($discount / 100);
+            echo ' <div class="grid wide l-2-4 m-6 c-6">
                         <div class="product__banner">
                             <div class="product--hot__img">
-                                <img src="'.$hinh.'" alt="">
+                            <a href="' . $linkpro . '">  <img src="' . $hinh . '" alt="">  </a>
                             </div>
                             <div class="product__banner__name">
-                                <p>'.$name.'</p>
+                            <a href="' . $linkpro . '">    <p>' . $name . '</p>  </a>
                             </div>
                         </div>
                         <div class="product__banner__price">
                             <div>
-                            <p class="product__banner__price--cost">'.number_format($price-$giagiam).' <u>đ</u></p>
-                            <p class="product__banner__price--sale"><del>'.number_format($price).'</del><u>đ</u></p>
+                            <p class="product__banner__price--cost">' . number_format($price - $giagiam) . ' <u>đ</u></p>
+                            <p class="product__banner__price--sale product_one_price_old">' . number_format($price) . '<u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
-                                <a href="'.$linkpro.'">chi tiết</a>
+                                <a href="' . $linkpro . '">chi tiết</a>
                             </div>
                         </div>
                     </div>';
-                    }
-                ?>
-        <!-- <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid wide l-2-4 m-6 c-6">
-                    <div class="product__banner">
-                        <div class="product--hot__img">
-                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
-                        </div>
-                        <div class="product__banner__name">
-                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                        </div>
-                    </div>
-                    <div class="product__banner__price">
-                        <div>
-                            <p class="product__banner__price--cost">677.455 <u>đ</u></p>
-                            <p class="product__banner__price--sale"></p>
-                        </div>
-                        <div class="product__banner__btn--detail">
-                            <button href="">chi tiết</button>
-                        </div>
-                    </div>
-                </div> -->
+        }
+        ?>
+
     </div>
 </section>
 <section class="grid wide section__wrap--category--review">
@@ -555,12 +208,12 @@
             <div class="ul--sup--product--menu">
                 <ul>
                     <?php
-                            foreach ($dsdm as $dm) {
-                                extract($dm);
-                                $linkdm = "index.php?act=showProducts&id=".$id;
-                                echo '<li><a href="'.$linkdm.'" >'.$name.'</a></li>';
-                            }
-                        ?>
+                    foreach ($dsdm as $dm) {
+                        extract($dm);
+                        $linkdm = "index.php?act=showProducts&id=" . $id;
+                        echo '<li><a href="' . $linkdm . '" >' . $name . '</a></li>';
+                    }
+                    ?>
                 </ul>
             </div>
 
@@ -576,40 +229,40 @@
 
         </div>
         <div class="category--grid--review grid wide l-9">
-            <?php 
-                    foreach ($protop8 as $pr) {
-                        extract($pr);
-                        $linkpro = "index.php?act=detail_product&id=".$id;
-                        $hinh = $image_path.$avatar;
-                        $giagiam = ($price * $discount)/100 ;
-                        echo ' <div class="grid wide l-2-4 m-6 c-6">
+            <?php
+            foreach ($protop8 as $pr) {
+                extract($pr);
+                $linkpro = "index.php?act=detail_product&id=" . $id;
+                $hinh = $image_path . $avatar;
+                $giagiam = ($price * $discount) / 100;
+                echo ' <div class="grid wide col l-3 m-6 c-6">
                         <div class="product__banner">
                             <div class="product--hot__img">
-                                <img src="'.$hinh.'" alt="">
+                            <a href="' . $linkpro . '">   <img src="' . $hinh . '" alt="">  </a>
                             </div>
                             <div class="product__banner__name">
-                                <p>'.$name.'</p>
+                            <a href="' . $linkpro . '">  <p>' . $name . '</p></a>
                             </div>
                         </div>
                         <div class="product__banner__price">
                             <div>
 
-                                <p class="product__banner__price--cost">'.number_format($price-$giagiam).'<u>đ</u></p>
+                                <p class="product__banner__price--cost">' . number_format($price - $giagiam) . '<u>đ</u></p>
 
 
-                                <p class="product__banner__price--sale"><del><del>'.number_format($price).'</del></del><u>đ</u></p>
+                                <p class="product__banner__price--sale product_one_price_old">
+                                ' . number_format($price) . '<u>đ</u></p>
                             </div>
                             <div class="product__banner__btn--detail">
-                                <a href="'.$linkpro.'">chi tiết</a>
+                                <a href="' . $linkpro . '">chi tiết</a>
                             </div>
                         </div>
                     </div>';
-                    }
-                   ?>
+            }
+            ?>
 
             <div class="grid wide review--category__p--more">
-                <a href="index.php?act=showProducts">Xem tất cả<i
-                        class="fa-solid fa-angle-right"></i></a>
+                <a href="index.php?act=showProducts">Xem tất cả<i class="fa-solid fa-angle-right"></i></a>
             </div>
         </div>
 

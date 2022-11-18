@@ -3,15 +3,9 @@
 }
 .grid .category--grid--review{
     display: flex;
-    display: grid;
-    	grid-template-columns: repeat(4, minmax(0, 1fr));
+   
 }
-.grid .category--col-1--name{
-    /* border: 1px solid black; */
-}
-/* .grid.review--category__p--more{
-    
-} */
+
 .grid.review--category__p--more a{
     text-align: center;
     border: 1px solid #ff2d37;
@@ -26,4 +20,11 @@
 .grid.review--category__p--more a:hover{
     color: #ff2d37;
     background-color: #ffffff;
+}
+
+.product--hot__img {
+    height: 198px;
+}
+.grid .review--category__p--more{
+    margin-top: 10px;
 }

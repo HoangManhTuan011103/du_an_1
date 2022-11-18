@@ -247,56 +247,6 @@
         </div>';
                 }
                 ?>
-
-
-                <!-- 
-                <div class="one_collection_product_list--item-detail">
-                    <div class="one_product_list--item-detail-img">
-                        <a href=""> <img src="./src/image/a3.webp" alt=""></a>
-                    </div>
-                    <div class="one_product_list--item-detail-nameproduct">
-                        <p>
-                            <a href=""> Giày thể thao nữ cổ thấp mẫu mới nhất</a>
-                        </p>
-                        <p class="red_word">268.000 <span class="product_currency">đ</span>
-                        </p>
-                        <span class="product_one_price_old">268.000 <span
-                                class="product_currency">đ</span>
-                        </span>
-                    </div>
-                </div>
-            <div class="one_collection_product_list--item-detail">
-                    <div class="one_product_list--item-detail-img">
-                        <a href=""> <img src="./src/image/a3.webp" alt=""></a>
-                    </div>
-                    <div class="one_product_list--item-detail-nameproduct">
-                        <p>
-                            <a href=""> Giày thể thao nữ cổ thấp mẫu mới nhất</a>
-                        </p>
-                        <p class="red_word">268.000 <span class="product_currency">đ</span>
-                        </p>
-                        <span class="product_one_price_old">268.000 <span
-                                class="product_currency">đ</span>
-                        </span>
-                    </div>
-                </div>
-
-
-                <div class="one_collection_product_list--item-detail">
-                    <div class="one_product_list--item-detail-img">
-                        <a href=""> <img src="./src/image/a3.webp" alt=""></a>
-                    </div>
-                    <div class="one_product_list--item-detail-nameproduct">
-                        <p>
-                            <a href=""> Giày thể thao nữ cổ thấp mẫu mới nhất</a>
-                        </p>
-                        <p class="red_word">268.000 <span class="product_currency">đ</span>
-                        </p>
-                        <span class="product_one_price_old">268.000 <span
-                                class="product_currency">đ</span>
-                        </span>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -305,6 +255,7 @@
         <section class="grid wide section__product--hot">
             <h2 class="product_list_with_categories_title">SẢN PHẨM cùng loại</h2>
             <div class="section__product--hot__banner review__product--hot">
+             
                 <?php
                     foreach ($protop4 as $value) {
                       extract($value);
@@ -314,17 +265,17 @@
                       echo '<div class="grid wide l-2-4 m-6 c-6">
                       <div class="product__banner">
                           <div class="product--hot__img">
-                              <img src="' . $img . '"
-                                  alt="">
+                          <a href="' . $linkpro . '"> <img src="' . $img . '"
+                                  alt="">  </a>
                           </div>
                           <div class="product__banner__name">
-                              <p>' . $name . '</p>
+                          <a href="' . $linkpro . '">   <p>' . $name . '</p>  </a>
                           </div>
                       </div>
                       <div class="product__banner__price">
                           <div>
                               <p class="product__banner__price--cost">'.number_format($price-$pricesale).'<u>đ</u></p>
-                              <p class="product__banner__price--sale">'.number_format($price).'<u>đ</u></p>
+                              <p class="product__banner__price--sale product_one_price_old">'.number_format($price).'<u>đ</u></p>
                           </div>
                           <div class="product__banner__btn--detail">
                               <a href="' . $linkpro . '">chi tiết</a>
