@@ -56,7 +56,7 @@
                                         <a href="index.php?actAdmin=detailOrder&&id=<?= $value['id'] ?>"><button class="detailBill--see"><i class="fa-solid fa-eye" style="padding-right: 5px;" ></i>Xem chi tiết</button></a>
                                     </td>
                                     <td class="btn-action">
-                                        
+                                    <a href="index.php?actAdmin=editProduct&&id=<?= $value['id'] ?>" class="update"><button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button></a>
                                         <a onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng DH00<?= $value['id'] ?> không')" href="index.php?actAdmin=deleteOrder&id=<?= $value['id'] ?>"><button><i class="fa-sharp fa-solid fa-trash"></i></button></a>
                                     </td>
                                 </tr>

@@ -172,6 +172,10 @@ body {
     margin-top: -2px;
 }
 
+.user__sup-menu.user__sup-menu--haveAccount.user__sup-menu--haveAccount--Admin {
+    margin-top: -63px;
+}
+
 .user__sup-menu {
     position: absolute;
     min-width: 200px;
