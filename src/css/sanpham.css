@@ -9,6 +9,7 @@
 
 .products_alllllll li {
     list-style: none;
+    /* display: flex; */
 }
 
 .products_alllllll a {
@@ -24,19 +25,17 @@
 
 .product_fillter_flow_content {
     border: 1px solid #ccc;
-
 }
 
 .product_fillter_flow_content ul {
     padding: 10px 15px;
-    
+    text-align: left;
 }
 
 .product_fillter_flow_content li a {
     display: block;
     padding: 10px;
     color: #282828;
-   
 }
 
 .product_fillter_flow_content li a:hover {
@@ -59,45 +58,48 @@
     height: 24px;
     border-radius: 50%;
 }
-.fillter_product_color >li:first-child a{
+
+.fillter_product_color>li:first-child a {
     background-color: #ff2d37;
 }
-.fillter_product_color >li:nth-child(2) a{
+
+.fillter_product_color>li:nth-child(2) a {
     background-color: yellow;
 }
-.fillter_product_color >li:nth-child(3) a{
+
+.fillter_product_color>li:nth-child(3) a {
     background-color: black;
 }
-.fillter_product_color >li:nth-child(4) a{
+
+.fillter_product_color>li:nth-child(4) a {
     background-color: #FF00CC;
 }
-.fillter_product_color >li:nth-child(5) a{
+
+.fillter_product_color>li:nth-child(5) a {
     background-color: #E74C3C;
 }
-.fillter_product_color >li:nth-child(6) a{
+
+.fillter_product_color>li:nth-child(6) a {
     background-color: #2ECC71;
 }
-.fillter_product_color >li:nth-child(7) a{
+
+.fillter_product_color>li:nth-child(7) a {
     background-color: #9B59B6;
 }
-.fillter_product_color >li:nth-child(8) a{
+
+.fillter_product_color>li:nth-child(8) a {
     background-color: #E67E22;
 }
-
-
 
 .product_fillter_size a {
     margin-right: 10px;
 }
 
 
-
 /* lọc bên sản phẩm theo thời gian  */
-
 
 .fillter_news {
     padding: 20px 0 20px 5px;
-
 }
 
 .fillter_products_time {
@@ -115,7 +117,6 @@
     margin-right: 5px;
 }
 
-
 .products_alllllll .product--hot__img {
     width: 204px;
     height: 204px;
@@ -129,7 +130,6 @@
 .grid.wide.col.l-3.m-4.c-6+.grid.wide.col.l-3.m-4.c-6 {
     margin-bottom: 20px;
 }
-
 
 .product_fillter_page {
     display: flex;
