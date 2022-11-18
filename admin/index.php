@@ -121,7 +121,7 @@ if (isset($_GET['actAdmin'])) {
                 foreach ($files['name'] as $value) {
                     pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$value')");
                 }
-                $notification = "Thêm sản phẩm thành công";
+                setcookie("notification","Thêm sản phẩm thành công", time() + 1);
                 header("location: index.php?actAdmin=showProduct");
             }
             $listCategories = getAllCategories();
@@ -190,7 +190,8 @@ if (isset($_GET['actAdmin'])) {
 
                 updateProduct($name, $category, $avatar, $description, $quantity, $price, $discount, $hotProduct, $idProduct, $status);
                 // $notification = "Bạn đã thay đổi sản phẩm thành công";
-                header("location: index.php?actAdmin=showProduct&&notification=Thay đổi sản phẩm thành công");
+                setcookie("notification","Thay đổi sản phẩm thành công", time() + 1);
+                header("location: index.php?actAdmin=showProduct");
             }
             $listProduct = getAllProduct();
             $listCategories = getAllCategories();
@@ -202,9 +203,11 @@ if (isset($_GET['actAdmin'])) {
                 productDeleteAllImage($id);
                 productDelete($id);
                 $notification = "Xóa sản phẩm thành công";
+                header("location: index.php?actAdmin=showProduct");
+                exit;
             }
-            $listProduct = getAllProduct();
-            require_once "./products/list.php";
+            // $listProduct = getAllProduct();
+            // require_once "./products/list.php";
             break;
         case 'showProduct':
             $listProduct = getAllProduct();

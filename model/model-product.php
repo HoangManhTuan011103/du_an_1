@@ -14,7 +14,7 @@ function updateProduct($name, $category, $name_image, $description, $quantity, $
 
 function getAllProduct()
 {
-    $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.name from products A INNER JOIN categories B ON A.category_id = B.id";
+    $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.name from products A INNER JOIN categories B ON A.category_id = B.id order by id desc";
     return pdo_query($sql);
 }
 function productDelete($id)

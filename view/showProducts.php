@@ -360,25 +360,41 @@
                 </div>
             </div>
 
-            <div class="spt">
-                <div class="sp__banner">
-                    <div class="sp--hot__img">
-                        <img src="./src/css/image/iphone14.jpg" alt="" width="100px">
-                    </div>
-                    <div class="sp__banner__name">
-                        <p>Bộ quần áo bóng đá nam AATR035-5</p>
-                    </div>
-                </div>
-                <div class="sp__banner__price">
-                    <div>
-                        <p class="sp__banner__price--cost">1.200.000 <u>đ</u></p>
-                        <p class="sp__banner__price--del"><del>1.500.000</del><u>đ</u></p>
-                        <p class="sp__banner__price--sale"></p>
-                    </div>
-                    <div class="sp__banner__btn--detail">
-                        <button href="">chi tiết</button>
-                    </div>
-                </div>
+
+            <!-- sản phẩm -->
+
+            <div class="row category--grid--review">
+
+                <?php 
+                       foreach ($prolist  as $pro) {
+                        extract($pro);
+                        $hinh = $image_path . $avatar;
+                        $linkpro = "index.php?act=detail_product&id=" . $id;
+                        $giagiam = ($price * $discount) / 100;
+                        $pricesale = $price - $giagiam;
+                        echo '<div class="grid wide col l-3 m-4 c-6">
+                        <div class="product__banner">
+                            <div class="product--hot__img">
+                                <img src="'.$hinh.'" alt="">
+                            </div>
+                            <div class="product__banner__name">
+                                <p>'.$name.'</p>
+                            </div>
+                        </div>
+                        <div class="product__banner__price">
+                            <div>
+                                <p class="product__banner__price--cost">'.$pricesale.'<u>đ</u></p>
+                                <p class="product__banner__price--sale"><del>'.$price.'</del><u>đ</u></p>
+                            </div>
+                            <div class="product__banner__btn--detail">
+                                <a href="'.$linkpro.'">chi tiết</a>
+                            </div>
+                        </div>
+                    </div>';
+                       }
+                ?>
+
+
             </div>
 
             <div class="spt">
@@ -401,45 +417,46 @@
                     </div>
                 </div>
             </div> -->
+            <!-- bạn thích -->
+            <h2 class="products_all">Có thể bạn thích</h2>
+            <div class="row category--grid--review">
 
-            
-        </div>
-        <div class="love">
-            <div class="td-yeuthich">CÓ THỂ BẠN THÍCH</div>
-            <?php
-               foreach ($protop4  as $pro) {
-                   extract($pro);
-                   $hinh = $image_path.$avatar;
-                   $giagiam = ($price * $discount)/100 ;
-                   echo '<div class="spt">
-                   <div class="sp__banner">
-                       <div class="sp--hot__img">
-                           <img src="'.$hinh.'" alt="" width="100px">
-                       </div>
-                       <div class="sp__banner__name">
-                           <p>'.$name.'</p>
-                       </div>
-                   </div>
-                   <div class="sp__banner__price">
-                       <div>
-                           <p class="sp__banner__price--cost">'.$giagiam.'<u>đ</u></p>
-                           <p class="sp__banner__price--del"><del>'.$price.'</del><u>đ</u></p>
-                           <p class="sp__banner__price--sale"></p>
-                       </div>
-                       <div class="sp__banner__btn--detail">
-                           <button href="">chi tiết</button>
-                       </div>
-                   </div>
-               </div>';
-               }
-            ?>
-            <!-- <div class="spt">
-                <div class="sp__banner">
-                    <div class="sp--hot__img">
-                        <img src="./src/css/image/iphone14.jpg" alt="" width="100px">
-                    </div>
-                    <div class="sp__banner__name">
-                        <p>Bộ quần áo bóng đá nam AATR035-5</p>
+                <?php 
+                       foreach ($protop4 as $pro) {
+                        extract($pro);
+                        $hinh = $image_path . $avatar;
+                        $linkpro = "index.php?act=detail_product&id=" . $id;
+                        $giagiam = ($price * $discount) / 100;
+                        $pricesale = $price - $giagiam;
+                        echo '<div class="grid wide col l-3 m-4 c-6">
+                        <div class="product__banner">
+                            <div class="product--hot__img">
+                                <img src="'.$hinh.'" alt="">
+                            </div>
+                            <div class="product__banner__name">
+                                <p>'.$name.'</p>
+                            </div>
+                        </div>
+                        <div class="product__banner__price">
+                            <div>
+                                <p class="product__banner__price--cost">'.$pricesale.'<u>đ</u></p>
+                                <p class="product__banner__price--sale"><del>'.$price.'</del><u>đ</u></p>
+                            </div>
+                            <div class="product__banner__btn--detail">
+                                <a href="'.$linkpro.'">chi tiết</a>
+                            </div>
+                        </div>
+                    </div>';
+                       }
+                ?>
+                <!-- <div class="grid wide col l-3 m-4 c-6">
+                    <div class="product__banner">
+                        <div class="product--hot__img">
+                            <img src="./src/image/img_header_hoan/san-phan-ban-chay-1.webp" alt="">
+                        </div>
+                        <div class="product__banner__name">
+                            <p>Bộ quần áo bóng đá nam AATR035-5</p>
+                        </div>
                     </div>
                 </div>
                 <div class="sp__banner__price">
