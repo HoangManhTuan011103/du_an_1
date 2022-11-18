@@ -11,7 +11,6 @@
             </span>
         </p>
     </div>
-
     <?php
     extract($onepro_categories)
     // $imagePath = "../imageProduct/" .$onepro_categories['avatar'];
@@ -36,12 +35,16 @@
                     <div class="row product_list_img">
                         <?php foreach ($list_image_product as $value) {
                             extract($value);
-                            $giagiam = $price * ($discount/100) ;
+                            
                          ?>
+
                         <div class="col l-3 product__list_img-onec">
                             <img src="./imageProduct/<?=$images?>" alt="">
                         </div>
                         <?php } ?>
+                        <?php
+                             $giagiam = $price * ($discount/100) ;
+                         ?>
                     </div>
 
                     <!-- titile production -->
@@ -297,7 +300,6 @@
             </div>
         </div>
     </div>
-
     <!-- hàng cùng loại -->
     <div class="row">
         <section class="grid wide section__product--hot">
@@ -331,7 +333,6 @@
                       </div>';
                 }
                 ?>
-
             </div>
         </section>
     </div>
@@ -356,7 +357,7 @@ btn_decre.addEventListener("click", () => {
         --btn_product_quantity_input.value;
     }
 });
-// chuyển tab 
+// chuyển tab
 let tab_iteam = document.querySelectorAll('.tab-item');
 let tab_pane = document.querySelectorAll('.tab-pane');
 

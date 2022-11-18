@@ -2,7 +2,7 @@
 <?php
 function getAllCategories()
 {
-    $sql = "select * from categories";
+    $sql = "select * from categories order by id desc";
     return pdo_query($sql);
 }
 function category_selectAllDesc()

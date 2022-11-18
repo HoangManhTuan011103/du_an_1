@@ -8,12 +8,12 @@
         pdo_execute($sql);
     }
     function getYourOrder($id){
-        $sql = "SELECT `id`, `user_id`, `payment`, `status`, `total_price`, `note`, `address`, `created_at` FROM `orders` WHERE user_id=$id";
+        $sql = "SELECT `id`, `user_id`, `payment`, `status`, `total_price`, `note`, `address`, `created_at` FROM `orders` WHERE user_id=$id order by id desc";
         return pdo_query($sql);
     }
     // Lấy đơn hàng bên phía Admin
     function getAllOrderToAdmin(){
-        $sql = "SELECT A.`id`,B.`name`, A.`status`, A.`total_price`, A.`address`, A.`created_at` FROM `orders` A INNER JOIN `users` B ON A.user_id=B.id where 1";
+        $sql = "SELECT A.`id`,B.`name`, A.`status`, A.`total_price`, A.`address`, A.`created_at` FROM `orders` A INNER JOIN `users` B ON A.user_id=B.id where 1 order by id desc";
         return pdo_query($sql);
     }
     function deleteOrderToAdmin($id){
