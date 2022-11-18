@@ -225,6 +225,8 @@ body {
 .mid-header__user:hover .user__sup-menu {
   display: block;
 }
+/* ====== */
+
 
 .mid-header__user__icon {
   font-size: large;
