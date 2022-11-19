@@ -7,7 +7,7 @@
 
 .col {
   text-align: center;
-  background-color: #ccc;
+  /* background-color: #ccc; */
   background-clip: content-box;
   margin-top: 8px;
   margin-bottom: 8px;
@@ -17,6 +17,7 @@
     width: 1200px;
     margin: auto;
 } */
+
 body {
   margin: 0;
 }
@@ -165,6 +166,10 @@ body {
   margin-top: -1px;
 }
 
+.user__sup-menu.user__sup-menu--haveAccount {
+  margin-top: -2px;
+}
+
 .user__sup-menu {
   position: absolute;
   min-width: 200px;
@@ -177,6 +182,7 @@ body {
   border-radius: 6px;
   padding: 20px 15px 20px 15px;
   display: none;
+  margin-top: 15px;
 }
 .user__sup-menu::before {
   content: "";
@@ -189,6 +195,7 @@ body {
   top: -20px;
   left: 32%;
 }
+
 .user__sup-menu::after {
   content: "";
   position: absolute;
@@ -201,6 +208,7 @@ body {
   z-index: -1;
   padding-top: 0 !important;
 }
+
 .user__sup-menu > li {
   display: block;
   background-color: white;
@@ -208,25 +216,34 @@ body {
   margin-bottom: 6px;
   border: 1px solid #ff2d37;
 }
+
 .user__sup-menu > li:hover {
   border: 1px solid white;
   background-color: #ff2d37;
 }
+
 .user__sup-menu > li:hover a {
   color: white;
 }
+
 .ccc__334 {
   padding: 9px 0px;
 }
+
 .user__sup-menu > li a {
   color: #ff2d37;
   display: block;
 }
+
 .mid-header__user:hover .user__sup-menu {
   display: block;
 }
-/* ====== */
-
+.mid-header__user:hover .user__sup-menu.avtUser {
+  margin-top: -45px;
+}
+.mid-header__user:hover .user__sup-menu.avtUserRole {
+  margin-top: -57px;
+}
 
 .mid-header__user__icon {
   font-size: large;
@@ -234,6 +251,7 @@ body {
   left: 15px;
   top: 14px;
 }
+
 span.mid-header__user__icon {
   font-size: large;
   position: absolute;
@@ -243,9 +261,11 @@ span.mid-header__user__icon {
   font-size: 1.6rem;
   transform: translate(-52%, 0%);
 }
+
 span.mid-header__user__icon:hover {
   color: #fff !important;
 }
+
 .mid-header__user__icon--color {
   color: white;
 }
@@ -380,9 +400,11 @@ span.mid-header__user__icon:hover {
   font-weight: 200;
   text-align: center;
 }
+
 .footer--license--h3 {
   margin-top: 20px;
 }
+
 .footer--license a {
   text-decoration: none;
   color: #ff2d37;
@@ -398,6 +420,7 @@ span.mid-header__user__icon:hover {
 /* .grid .bot--footer-sp{
     height: 100px;
 } */
+
 .bot--footer-sp {
   font-family: "Roboto Slab", serif;
   font-size: 17px;

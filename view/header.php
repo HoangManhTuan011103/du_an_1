@@ -18,6 +18,13 @@
     <link rel="stylesheet" href="./src/css/section.css">
     <link rel="stylesheet" href="./src/css/category.css">
     <link rel="stylesheet" href="./src/css/sanpham.css">
+    <link rel="stylesheet" href="./src/css/detail_product.css">
+    <link rel="stylesheet" href="./src/css/pay_detail.css">
+    <link rel="stylesheet" href="./src/css/yourOrder.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
 </head>
 
 <body>
@@ -33,9 +40,9 @@
                 </div>
 
                 <div class="mid-header__nav">
-                    <form action="" class="mid-header__form" method="post">
-                        <input type="text" class="mid-header__form__ip__searchTerm mid-header__form__ip--size" placeholder="Tìm kiếm...">
-                        <button type="submit" class="mid-header__form__btn__searchIcon">
+                    <form action="index.php?act=showProducts" class="mid-header__form" method="post">
+                        <input type="text" name="kyw" class="mid-header__form__ip__searchTerm mid-header__form__ip--size" placeholder="Tìm kiếm...">
+                        <button type="submit" class="mid-header__form__btn__searchIcon" name="search">
                             <i class="fas fa-search" style="font-size:22px;color:#ff2d37"></i>
                         </button>
                     </form>
@@ -58,17 +65,23 @@
                                     echo
                                     '   <li class="ctn__user--img-1">
                                 <a href="">
-                                <img class="ctn__user--img-2" src="https://pixinvent.com/demo/vuexy-bootstrap-laravel-admin-template/demo-1/images/profile/user-uploads/user-04.jpg" alt="" srcset="">
-                                </a>
-                                <ul class="user__sup-menu">
-                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>';
+                                <img class="ctn__user--img-2" src="Admin/UserAvt/' . $_SESSION['user']['image'] . '" alt="" srcset="">
+                                </a>';
                                     if ($_SESSION['user']['role'] == 1) {
-                                        echo '<li class="user__sup-menu__sign-in li-sign ccc__334"><a href="admin/index.php">Trang quản trị</a></li>';
+                                        echo '
+                                        <ul class="user__sup-menu user__sup-menu--haveAccount avtUserRole">
+                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>
+                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="admin/index.php">Trang quản trị</a></li><li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=capnhattaikhoan">Cập nhật tài khoản</a></li>
+                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat">Đăng xuất</a></li>';
+                                    } else {
+                                        echo ' 
+                                        <ul class="user__sup-menu user__sup-menu--haveAccount avtUser">
+                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>
+                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=capnhattaikhoan">Cập nhật tài khoản</a></li>
+                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat">Đăng xuất</a></li>
+                                    </ul>
+                                    </li>';
                                     }
-                                    echo ' <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=capnhattaikhoan">Cập nhật tài khoản</a></li>
-                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat">Đăng xuất</a></li>
-                                </ul>
-                                </li>';
                                 } else {
                                     $string1 = $_SESSION['user']['name'];
                                     $string = convert_vi_to_en($string1);
@@ -82,7 +95,7 @@
                                     <span class="mid-header__user__icon mid-header__user__icon--color">' . $name_user3 . '
                                     </span>
                                 </a>
-                                <ul class="user__sup-menu">
+                                <ul class="user__sup-menu user__sup-menu--haveAccount">
                                     <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>';
                                     if ($_SESSION['user']['role'] == 1) {
                                         echo '<li class="user__sup-menu__sign-in li-sign ccc__334"><a href="admin/index.php">Trang quản trị</a></li>';
@@ -112,7 +125,7 @@
                         </ul>
                     </div>
                     <div class="mid-header__cart">
-                        <a href=""><i class="mid-header__cart__icon mid-header__cart__icon--color fas fa-shopping-cart"></i></a>
+                        <a href="index.php?act=cart"><i class="mid-header__cart__icon mid-header__cart__icon--color fas fa-shopping-cart"></i></a>
                     </div>
                 </div>
             </div>

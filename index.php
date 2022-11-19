@@ -7,26 +7,51 @@ require_once "./model/pdo.php";
 require_once "./model/model-user.php";
 require_once "./model/model-product.php";
 require_once "./model/model-category.php";
+require_once "./model/model-order.php";
 $pronew = loadall_product_home();
-// Ai làm bên này có giao diện người dùng thì tự động thêm vào
-// Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
-// Comment thêm tên chức năng nữa nhé
-$protop8 =  loadtop8_product_home();
-$protop16 = loadtop16_product_home();
-$protop4 = loadtop4_product_home();
-$dsdm = loadall_category();
-$load2dm = load2_category();
-$load3dm = load3_category();
+if (!isset($_SESSION['mycart'])) {
+    $_SESSION['mycart'] = [];
+}
+    // Ai làm bên này có giao diện người dùng thì tự động thêm vào
+    // Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
+    // Comment thêm tên chức năng nữa nhé
+    $protop8 =  loadtop8_product_home();
+    // $protop16 = loadtop16_product_home();
+    $protop4 = loadtop4_product_home();
+    $dsdm= loadall_category();
+    $load2dm = load2_category();
+    $load3dm = load3_category();
 require_once "view/header.php";
 if (isset($_GET['act'])) {
     $actAdmin = $_GET['act'];
     switch ($actAdmin) {
-            // Hiệp làm showProducts
-        case 'showProducts':
+          // Hiệp làm showProducts
+          case 'showProducts':  // hiện thị sản phẩm theo danh mục
+            if(isset($_POST['kyw'])&& ($_POST['kyw'] !="")){
+                $kyw = $_POST['kyw'];
+            }else{
+                $kyw = "";
+            }
+            if(isset($_GET['id'])&& ($_GET['id'] > 0)){
+                $idcategori = $_GET['id'];
+               
+            }else{
+                $idcategori = 0;
+            }
+            $prolist = loadall_product($kyw,$idcategori);
+            $namecategory = load_name_category($idcategori);
             require_once "view/showProducts.php";
             break;
-        case 'showCategoriess':
-            require_once "";
+        case 'detail_product':
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $id = $_GET['id'];
+                $onepro_categories =  loadone_detail_product_flow_categories($id);
+                $list_image_product = loadone_detail_product_flow_product_images($id);
+                require_once "view/detail_product.php";
+            } else {
+                require_once "view/home.php";
+            }
+
             break;
             // Đức làm đăng ký đăng nhập quên mật khẩu
         case 'dangnhap':
@@ -59,6 +84,7 @@ if (isset($_GET['act'])) {
                             $thongbao[0] = "Đăng nhập thành công !";
                             header("Location: index.php");
                             ob_end_flush();
+                           
                         }
                     } else {
                         $thongbao[0] = "Sai email hoặc mật khẩu !";
@@ -165,6 +191,129 @@ if (isset($_GET['act'])) {
         case 'dangxuat':
             session_destroy();
             header("Location: index.php?&msg=Đã đăng xuất !!!");
+            break;
+
+            // long cart 
+
+
+        case "cart":
+            require_once "./view/cart/giohang.php";
+            break;
+        case "addToCart":
+            $temp = -1;
+            if (isset($_POST['btn-addCart'])) {
+                $id = $_POST['id'];
+                $giagiam = $_POST['giagiam'];
+                $product_quantity_input = $_POST['product_quantity_input'];
+                $product_value = getOneProductFlowId($id);
+                $product_value['use_quantity_buy'] = $product_quantity_input;
+                $product_value['giagiam'] = $giagiam;
+
+                foreach ($_SESSION['mycart'] as $key => $item) {
+                    if ($id == $item['id']) {
+                        $temp = $key;
+                        break;
+                    }
+                }
+                if ($temp == -1) {
+                    $_SESSION['mycart'][] = $product_value;
+                } else {
+                    // nếu id của sp đã có trong giỏ hàng rồi
+                    // lấy ra số index của sản phẩm bị trùng
+                    // cập nhật số lượng quantity ++
+                    $_SESSION['mycart'][$temp]['use_quantity_buy'] += $product_quantity_input;
+                }
+
+                echo "<script>window.location.href='index.php?act=cart';</script>";
+            }
+
+            // $_SESSION['mycart'] = [];
+
+            require_once "./view/cart/giohang.php";
+
+            break;
+            // delete product cart
+        case "delete_product_cart_byId":
+
+            $id = $_GET['id'];
+            unset($_SESSION['mycart'][$id]);
+            // echo "<script>
+            // window.location.href = 'index.php?act=cart';
+            // </script>";
+            require_once "./view/cart/giohang.php";
+
+            break;
+            // update quantity use by product
+        case "update_quantity_products_Cart":
+            $id = $_GET['id'];
+            $type = $_GET['type'];
+            if ($type == 'decre') {
+                if ($_SESSION['mycart'][$id]['use_quantity_buy'] > 1) {
+
+                    $_SESSION['mycart'][$id]['use_quantity_buy']--;
+                } else {
+                    unset($_SESSION['mycart'][$id]);
+                }
+            } else {
+                $_SESSION['mycart'][$id]['use_quantity_buy']++;
+            }
+
+            require_once "./view/cart/giohang.php";
+
+            break;
+
+            //pay money 
+        case "payMoneyProducts":
+            if (!isset($_SESSION['user'])) {
+                require_once "./view/dangnhap.php";
+                exit;
+            } else {
+                $totalAllProductPay = isset($_POST['totalAllProductPay']) ? $_POST['totalAllProductPay'] : $_POST['totalPricePay'];
+                if (isset($_POST['btn-orderSuccess'])) {
+                    $errors = [];
+                    $name = $_POST['name'];
+                    $id = $_SESSION['user']['id'];
+                    $phoneNumber = $_POST['phone_number'];
+                    $address = $_POST['address'];
+                    $payWhen = isset($_POST['payWhen']) ? $_POST['payWhen'] : "";
+                    $note = $_POST['note'];
+                    $totalPricePay = $_POST['totalPricePay'];
+                    if ($phoneNumber == "") {
+                        $errors['phoneNumber'] = "Bạn phải nhập số điện thoại";
+                    } else if (!is_numeric($phoneNumber)) {
+                        $errors['phoneNumber'] = "Địa chỉ số điện thoại phải là số";
+                    } else if (strlen($phoneNumber) != 10  || substr($phoneNumber, 0, 1) != 0) {
+                        $errors['phoneNumber'] = "Số điện thoại không tồn tại";
+                    }
+                    if ($address == "") {
+                        $errors['address'] = "Bạn phải nhập địa chỉ";
+                    }
+                    if (!$errors) {
+                        $idOrder = insertToOrder($id, $payWhen, $totalPricePay, $note, $address);
+                        foreach ($_SESSION['mycart'] as $value) {
+                            insertToOrderDetail($idOrder, $value['id'], $value['use_quantity_buy'], $value['giagiam']);
+                        }
+                        // header("location: index.php?act=dsdonhang");
+                        echo "<script> 
+                                alert('Bạn đã mua hàng thành công');
+                                window.location.href = 'index.php?act=dsdonhang';
+                            </script>";
+                        
+                    }
+                }
+                require_once "./view/cart/pay_detail.php";
+            }
+            break;
+        case "dsdonhang":
+            if (!isset($_SESSION['user'])) {
+                require_once "./view/dangnhap.php";
+                exit;
+            } else {
+                $id = $_SESSION['user']['id'];
+                $listYourOrder = getYourOrder($id);
+                require_once "./view/cart/pay_finished.php";
+            }
+
             break;
         default:
             // require_once "";

@@ -12,14 +12,18 @@
 /* .grid.review--category__p--more{
     
 } */
-.grid.review--category__p--more p{
+.grid.review--category__p--more a{
     text-align: center;
     border: 1px solid #ff2d37;
     color: #ffffff;
     background-color: #ff2d37;
     cursor: pointer;
     height: 30px;
-    padding-top: 5px;
+    padding: 5px;
     width: 50%;
     border-radius: 5px;
+}
+.grid.review--category__p--more a:hover{
+    color: #ff2d37;
+    background-color: #ffffff;
 }

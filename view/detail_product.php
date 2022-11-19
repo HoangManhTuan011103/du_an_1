@@ -37,7 +37,7 @@
                             extract($value);
                             
                          ?>
-                       
+
                         <div class="col l-3 product__list_img-onec">
                             <img src="./imageProduct/<?=$images?>" alt="">
                         </div>
@@ -48,7 +48,7 @@
                     </div>
 
                     <!-- titile production -->
-                    <h3 class="one_product_title_name_" style="text-align: left;" ><?=$name?></h3>
+                    <h3 class="one_product_title_name_" style="text-align: left;"><?=$name?></h3>
                     <!-- thương hiệu -->
                     <div class="product_name_brand_quantity">
                         <p class="product_brand">
@@ -71,7 +71,8 @@
                     <div class="one_product_price_detail">
 
                         <p class="product_one_price">
-                            <?= number_format($price-$giagiam) ?> <span class="product_currency">đ</span>
+                            <?= number_format($price-$giagiam) ?> <span
+                                class="product_currency">đ</span>
                         <p class="product_one_price_old">
                             <?= number_format($price)?>
 
@@ -82,14 +83,16 @@
                     <!-- số lượng -->
                     <div class="product__one_quantity">
 
-                        <form action="index.php?act=addToCart" id="form_quantity" method="post" enctype="multipart/form-data">
+                        <form action="index.php?act=addToCart" id="form_quantity" method="post"
+                            enctype="multipart/form-data">
                             <div class="form_product_submit_quatity">
                                 <p class="product_quantity_name">
                                     Số lượng :
                                 </p>
                                 <div class="quantity_change_number">
                                     <div class="btn_decre">-</div>
-                                    <input type="text" id="btn_product_quantity_input" min="1" name="product_quantity_input" value="1">
+                                    <input type="text" id="btn_product_quantity_input" min="1"
+                                        name="product_quantity_input" value="1">
                                     <div class="btn_incre">+</div>
                                 </div>
                             </div>
@@ -100,7 +103,8 @@
                             <!--  -->
                             <div class="one_product_btn_buy">
 
-                                <button type="submit" name="btn-addCart" class="btn_buy_products">Mua
+                                <button type="submit" name="btn-addCart"
+                                    class="btn_buy_products">Mua
                                     ngay</button>
                                 <div class="contact_information">
                                     <p>Mua số lượng lớn
@@ -333,9 +337,9 @@
         </section>
     </div>
 </div>
-    <script>
-    let btn_decre = document.querySelector(".btn_decre");
-    let btn_incre = document.querySelector(".btn_incre");
+<script>
+let btn_decre = document.querySelector(".btn_decre");
+let btn_incre = document.querySelector(".btn_incre");
 
 let btn_product_quantity_input = document.querySelector("#btn_product_quantity_input")
 
@@ -346,30 +350,30 @@ btn_incre.addEventListener("click", () => {
 btn_decre.addEventListener("click", () => {
     if (btn_product_quantity_input.value == 1) {
 
-            btn_decre.style.cursor = 'no-drop';
-        } else {
-            btn_decre.style.cursor = 'pointer';
-            console.log(btn_product_quantity_input.value);
-            --btn_product_quantity_input.value;
-        }
-    });
-    // chuyển tab 
-    let tab_iteam = document.querySelectorAll('.tab-item');
-    let tab_pane = document.querySelectorAll('.tab-pane');
+        btn_decre.style.cursor = 'no-drop';
+    } else {
+        btn_decre.style.cursor = 'pointer';
+        console.log(btn_product_quantity_input.value);
+        --btn_product_quantity_input.value;
+    }
+});
+// chuyển tab
+let tab_iteam = document.querySelectorAll('.tab-item');
+let tab_pane = document.querySelectorAll('.tab-pane');
 
 
-    tab_iteam.forEach((tab, index) => {
-        tab.onclick = function() {
-            const panes = tab_pane[index];
+tab_iteam.forEach((tab, index) => {
+    tab.onclick = function() {
+        const panes = tab_pane[index];
 
-            document.querySelector(".tab-item.active").classList.remove("active");
-
-
-            document.querySelector(".tab-pane.active").classList.remove("active");
+        document.querySelector(".tab-item.active").classList.remove("active");
 
 
-            this.classList.add("active");
-            panes.classList.add("active");
-        }
-    });
-    </script>
+        document.querySelector(".tab-pane.active").classList.remove("active");
+
+
+        this.classList.add("active");
+        panes.classList.add("active");
+    }
+});
+</script>

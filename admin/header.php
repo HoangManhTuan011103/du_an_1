@@ -37,10 +37,10 @@
                     </div>
                     <div class="accountAdmin row">
                         <div class="avatarAdmin row">
-                            <img src="../src/imageAdmin/avatar.jpg" alt="">
+                        <img src="./UserAvt/<?=$_SESSION['user']['image']?>" alt="">
                         </div>
                         <div class="nameAdmin row">
-                            Hoàng Mạnh Tuấn
+                        <?=$_SESSION['user']['name']?>
                         </div>
                     </div>
                 </div>
@@ -51,10 +51,10 @@
             <div class="listMainFirst">
                 <div class="accountAdmin accountAdmin--canHidden">
                     <div class="avatarAdmin">
-                        <img src="../src/imageAdmin/avatar.jpg" alt="">
+                        <img src="./UserAvt/<?=$_SESSION['user']['image']?>" alt="">
                     </div>
                     <div class="nameAdmin nameAdmin--navLeft">
-                        Hoàng Mạnh Tuấn
+                        <?=$_SESSION['user']['name']?>
                         <div class="statusAdmin">
                             <div></div>
                             <p>Online</p>
@@ -79,8 +79,8 @@
                             <a href="index.php?actAdmin=listCategories" class="canHidden">Quản lý danh mục</a>
                         </li>
                         <li>
-                            <a href="bill.html"><i class="fa-solid fa-cart-flatbed-suitcase"></i></a>
-                            <a href="bill.html" class="canHidden">Quản lý đơn hàng</a>
+                            <a href="index.php?actAdmin=showOrder"><i class="fa-solid fa-cart-flatbed-suitcase"></i></a>
+                            <a href="index.php?actAdmin=showOrder" class="canHidden">Quản lý đơn hàng</a>
                         </li>
                         <li>
                             <a href="index.php?actAdmin=showUsers"><i class="fa-solid fa-user"></i></a>
