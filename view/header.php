@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fsport</title>
+    <link href="./src/css/magiczoomplus-trial/magiczoomplus/magiczoomplus.css" rel="stylesheet" type="text/css" media="screen"/>
+<script src="./src/css/magiczoomplus-trial/magiczoomplus/magiczoomplus.js" type="text/javascript"></script>
+
     <script src="https://kit.fontawesome.com/f5f3ef5d7f.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
