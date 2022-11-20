@@ -9,7 +9,8 @@ function InsertUser2($name, $email, $password, $phone, $address, $image, $status
     $sql = "INSERT INTO `users`(`name`, `email`, `password`, `phone`, `address`, `image`,`status`, `role`) VALUES ('$name','$email','$password','$phone','$address','$image','$status','$role')";
     return pdo_execute_return_lastInsertId($sql);
 }
-function CheckUser($email,$password){
+function CheckUser($email, $password)
+{
     $sql = "SELECT * FROM users WHERE email='$email' AND `password`='$password';";
     $info =  pdo_query_one($sql);
     return $info;
@@ -20,7 +21,8 @@ function CheckEmail($email)
     $info =  pdo_query_one($sql);
     return $info;
 }
-function convert_vi_to_en($str) {
+function convert_vi_to_en($str)
+{
     $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", "a", $str);
     $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", "e", $str);
     $str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", "i", $str);
@@ -66,5 +68,10 @@ function getUserFollowId($id)
 function UpdatetUser($name, $email, $password, $phone, $address, $image, $status, $role, $id)
 {
     $sql = "UPDATE `users` SET `name`='$name', `email`='$email', `password`='$password', `phone`='$phone', `address`='$address', `image`='$image', `status`='$status', `role`='$role' WHERE `id`='$id';";
+    pdo_execute($sql);
+}
+function UpdatetUserGuest($name, $email, $password, $phone, $address, $image, $status, $role, $ngaytao, $id)
+{
+    $sql = "UPDATE `users` SET `name`='$name', `email`='$email', `password`='$password', `phone`='$phone', `address`='$address', `image`='$image', `status`='$status', `role`='$role',`created_at`='$ngaytao' WHERE `id`='$id';";
     pdo_execute($sql);
 }

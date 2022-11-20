@@ -12,33 +12,32 @@ $pronew = loadall_product_home();
 if (!isset($_SESSION['mycart'])) {
     $_SESSION['mycart'] = [];
 }
-    // Ai làm bên này có giao diện người dùng thì tự động thêm vào
-    // Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
-    // Comment thêm tên chức năng nữa nhé
-    $protop8 =  loadtop8_product_home();
-    // $protop16 = loadtop16_product_home();
-    $protop4 = loadtop4_product_home();
-    $dsdm= loadall_category();
-    $load2dm = load2_category();
-    $load3dm = load3_category();
+// Ai làm bên này có giao diện người dùng thì tự động thêm vào
+// Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
+// Comment thêm tên chức năng nữa nhé
+$protop8 =  loadtop8_product_home();
+// $protop16 = loadtop16_product_home();
+$protop4 = loadtop4_product_home();
+$dsdm = loadall_category();
+$load2dm = load2_category();
+$load3dm = load3_category();
 require_once "view/header.php";
 if (isset($_GET['act'])) {
     $actAdmin = $_GET['act'];
     switch ($actAdmin) {
-          // Hiệp làm showProducts
-          case 'showProducts':  // hiện thị sản phẩm theo danh mục
-            if(isset($_POST['kyw'])&& ($_POST['kyw'] !="")){
+            // Hiệp làm showProducts
+        case 'showProducts':  // hiện thị sản phẩm theo danh mục
+            if (isset($_POST['kyw']) && ($_POST['kyw'] != "")) {
                 $kyw = $_POST['kyw'];
-            }else{
+            } else {
                 $kyw = "";
             }
-            if(isset($_GET['id'])&& ($_GET['id'] > 0)){
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                 $idcategori = $_GET['id'];
-               
-            }else{
+            } else {
                 $idcategori = 0;
             }
-            $prolist = loadall_product($kyw,$idcategori);
+            $prolist = loadall_product($kyw, $idcategori);
             $namecategory = load_name_category($idcategori);
             require_once "view/showProducts.php";
             break;
@@ -54,6 +53,43 @@ if (isset($_GET['act'])) {
 
             break;
             // Đức làm đăng ký đăng nhập quên mật khẩu
+        case 'thongtintaikhoan':
+            if (!isset($_SESSION['user'])) {
+                require_once "view/dangnhap.php";
+            } else {
+                if (isset($_POST['capnhat'])) {
+                    $id = $_SESSION['user']['id'];
+                    $name_update = $_POST['name'];
+                    $email_update = $_POST['email'];
+                    $password_update = $_SESSION['user']['password'];
+                    $phone_update = $_POST['phone'];
+                    $address_update = $_POST['address'];
+                    $ngaytao = $_SESSION['user']['created_at'];
+                    $image = $_FILES['image'];
+                    $image_old['image_old'];
+                    $status_update = $_SESSION['user']['status'];
+                    $role_update = $_SESSION['user']['role'];
+                    if($image['size'] <= 0) {
+                        $NameurlImage = $_SESSION['user']['image'];
+                    }
+                    else{
+                        $NameurlImage = $image['name'];
+                        $pathImage = $image['tmp_name'];
+                        $target_file = "Admin/UserAvt/" . $NameurlImage;
+                        move_uploaded_file($pathImage, $target_file);
+                    } 
+                    UpdatetUserGuest($name_update, $email_update, $password_update, $phone_update, $address_update, $NameurlImage, $status_update, $role_update, $ngaytao, $id);
+                    header('Location: index.php?act=thongtintaikhoan&&msg=Cập nhật thành công !');
+                    ob_end_flush();
+                }
+                $id = $_SESSION['user']['id'];
+                $user = getUserFollowId($id);
+                unset($_SESSION['user']);
+                $_SESSION['user'] = [];
+                $_SESSION['user'] = $user;
+                require_once "view/information_user.php";
+            }
+            break;
         case 'dangnhap':
             if (isset($_POST['dangnhap']) == true) {
                 $email_login = $_POST['email_login'];
@@ -84,7 +120,6 @@ if (isset($_GET['act'])) {
                             $thongbao[0] = "Đăng nhập thành công !";
                             header("Location: index.php");
                             ob_end_flush();
-                           
                         }
                     } else {
                         $thongbao[0] = "Sai email hoặc mật khẩu !";
@@ -298,7 +333,6 @@ if (isset($_GET['act'])) {
                                 alert('Bạn đã mua hàng thành công');
                                 window.location.href = 'index.php?act=dsdonhang';
                             </script>";
-                        
                     }
                 }
                 require_once "./view/cart/pay_detail.php";

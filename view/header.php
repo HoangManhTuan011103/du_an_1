@@ -59,7 +59,7 @@
                     <div class="mid-header__user">
                         <ul class="mid-header__user-menu">
                             <?php
-                            if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
+                            if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
                                 extract($_SESSION['user']);
                                 if ($_SESSION['user']['image'] != "") {
                                     echo
@@ -71,13 +71,13 @@
                                         echo '
                                         <ul class="user__sup-menu user__sup-menu--haveAccount avtUserRole">
                                         <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>
-                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="admin/index.php">Trang quản trị</a></li><li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=capnhattaikhoan">Cập nhật tài khoản</a></li>
+                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="admin/index.php">Trang quản trị</a></li><li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=thongtintaikhoan">Thông tin tài khoản</a></li>
                                         <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat">Đăng xuất</a></li>';
                                     } else {
                                         echo ' 
                                         <ul class="user__sup-menu user__sup-menu--haveAccount avtUser">
                                         <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>
-                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=capnhattaikhoan">Cập nhật tài khoản</a></li>
+                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=thongtintaikhoan">Thông tin tài khoản</a></li>
                                         <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat">Đăng xuất</a></li>
                                     </ul>
                                     </li>';
@@ -100,7 +100,7 @@
                                     if ($_SESSION['user']['role'] == 1) {
                                         echo '<li class="user__sup-menu__sign-in li-sign ccc__334"><a href="admin/index.php">Trang quản trị</a></li>';
                                     }
-                                    echo ' <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=capnhattaikhoan">Cập nhật tài khoản</a></li>
+                                    echo ' <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=thongtintaikhoan">Thông tin tài khoản</a></li>
                                     <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat">Đăng xuất</a></li>
                                 </ul>
                                 </li>';
