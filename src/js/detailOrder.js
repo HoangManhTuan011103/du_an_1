@@ -19,3 +19,6 @@ function toggleModal2() {
 }
 btnOpenWd.addEventListener('click', toggleModal);
 closenWd.addEventListener('click', toggleModal2);
+
+
+// File thừa js

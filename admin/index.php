@@ -95,7 +95,7 @@ if (isset($_GET['actAdmin'])) {
                 // Update total product
                 $notification = "Xóa sản phẩm thành công";
             }
-            $listProduct = getAllProduct();
+            $listProduct = getAllProduct("",$rowsProductAdmin);
             require_once "./products/list.php";
             break;
         case 'addProduct':
@@ -201,7 +201,7 @@ if (isset($_GET['actAdmin'])) {
                 setcookie("notification","Thay đổi sản phẩm thành công", time() + 1);
                 header("location: index.php?actAdmin=showProduct");
             }
-            $listProduct = getAllProduct();
+            $listProduct = getAllProduct("",$rowsProductAdmin);
             $listCategories = getAllCategories();
             require_once "./products/list.php";
             break;
@@ -218,7 +218,13 @@ if (isset($_GET['actAdmin'])) {
             // require_once "./products/list.php";
             break;
         case 'showProduct':
-            $listProduct = getAllProduct();
+            if(isset($_POST['btn-search--Product'])){
+                $keyWord = $_POST['keyWord'];
+            }else{
+                $keyWord = "";
+            }
+            $countPage = get_Page_Product_admin($keyWord,$rowsProductAdmin);
+            $listProduct = getAllProduct($keyWord,$rowsProductAdmin);
             require_once "./products/list.php";
             break;
         case 'showOrder':
@@ -240,6 +246,8 @@ if (isset($_GET['actAdmin'])) {
                 deleteOrderDetailToAdmin($id);
                 deleteOrderToAdmin($id);
                 $notification = "Xóa đơn hàng thành công";
+            }else{
+                require_once "./orders/list.php";
             }
             $listOrderUser = getAllOrderToAdmin();
             require_once "./orders/list.php";

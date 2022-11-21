@@ -12,11 +12,7 @@ function updateProduct($name, $category, $name_image, $description, $quantity, $
     pdo_execute($sql);
 }
 
-function getAllProduct()
-{
-    $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.name from products A INNER JOIN categories B ON A.category_id = B.id order by id desc";
-    return pdo_query($sql);
-}
+
 function productDelete($id)
 {
     $sql = "delete from products where id=$id";
@@ -153,4 +149,35 @@ function getOneProductFlowId($id)
     $sql="select id,name,quantity,avatar,price,	discount from products  where id=$id";
     return pdo_query_one($sql);
 }
+
+// Panigation Product In PHP Admin
+function get_Page_Product_admin($keyWord,$rowsProductAdmin){
+    $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.name from products A INNER JOIN categories B ON A.category_id = B.id where 1 ";
+    if($keyWord != ""){
+        $sql .= " and A.name like '%$keyWord%'";
+    }
+    $sql .= " order by A.id desc";
+    $numberPage = pdo_query($sql);
+    $countPage = sizeof($numberPage) / $rowsProductAdmin;
+    return $countPage;
+}
+function getAllProduct($keyWord,$rowsProductAdmin)
+{
+    $countPage = get_Page_Product_admin($keyWord,$rowsProductAdmin);
+    if(isset($_GET['page']) &&  $_GET['page'] > 0 && $_GET['page'] <= $countPage+1 ){
+        $page = $_GET['page'];
+    }else{
+        $page = 1;
+    }
+    $from = ($page - 1) * $rowsProductAdmin;
+    $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.name from products A INNER JOIN categories B ON A.category_id = B.id where 1";
+    if($keyWord != ""){
+        $sql .= " and A.name like '%$keyWord%'";
+    }
+    $sql .= " order by A.id desc limit $from,$rowsProductAdmin";
+    return pdo_query($sql);
+}
+// Panigation In PHP Admin
+
+
 ?>
