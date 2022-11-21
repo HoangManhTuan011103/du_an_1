@@ -66,27 +66,68 @@ if (isset($_GET['act'])) {
                     $address_update = $_POST['address'];
                     $ngaytao = $_SESSION['user']['created_at'];
                     $image = $_FILES['image'];
-                    $image_old['image_old'];
                     $status_update = $_SESSION['user']['status'];
                     $role_update = $_SESSION['user']['role'];
-                    if($image['size'] <= 0) {
-                        $NameurlImage = $_SESSION['user']['image'];
+                    $check = true;
+                    if ($name_update == "") {
+                        $thongbao[0] = "Tên không được bỏ trống !!!";
+                        $check = false;
+                    } else if (is_numeric($name_update) || (strlen($name_update) < 2)) {
+                        $thongbao[0] = "Tên không phải là số , tối thiểu 2 ký tự !";
+                        $_POST['ten'] = "";
+                        $check = false;
                     }
-                    else{
+                    if ($email_update == "") {
+                        $thongbao[1] = "Email không được bỏ trống !!!";
+                        $check = false;
+                    } else if (!filter_var($email_update, FILTER_VALIDATE_EMAIL)) {
+                        $thongbao[1] = "Email không đúng định dạng";
+                        $_POST['email'] = "";
+                        $check = false;
+                    }
+                    if ($address_update == "") {
+                        $thongbao[2] = "Địa chỉ không được bỏ trống !!!";
+                        $check = false;
+                    } else if (is_numeric($address_update) || (strlen($address_update) < 2)) {
+                        $thongbao[2] = "Tên không phải là số , tối thiểu 2 ký tự !";
+                        $_POST['email'] = "";
+                        $check = false;
+                    }
+                    if ($phone_update == '') {
+                        $thongbao[3] = "Điện thoại không được bỏ trống !!!";
+                        $check = false;
+                    } else if (!is_numeric($phone_update)) {
+                        $thongbao[3] = "Điện thoại phải là số !!!";
+                        $check = false;
+                    } else if (strlen($phone_update) != 10) {
+                        $thongbao[3] = "Điện thoại phải đủ 10 số !!!";
+                        $check = false;
+                    }
+                    if ($image['size'] <= 0) {
+                        $NameurlImage = $_SESSION['user']['image'];
+                    } else {
                         $NameurlImage = $image['name'];
-                        $pathImage = $image['tmp_name'];
-                        $target_file = "Admin/UserAvt/" . $NameurlImage;
-                        move_uploaded_file($pathImage, $target_file);
-                    } 
-                    UpdatetUserGuest($name_update, $email_update, $password_update, $phone_update, $address_update, $NameurlImage, $status_update, $role_update, $ngaytao, $id);
-                    header('Location: index.php?act=thongtintaikhoan&&msg=Cập nhật thành công !');
-                    ob_end_flush();
+                        $ext = pathinfo($NameurlImage, PATHINFO_EXTENSION);
+                        if ($ext != 'gif' && $ext != 'jpeg' && $ext != 'png' && $ext != 'jpg') {
+                            $thongbao[4] = "Sai định dạng ảnh(png,jpg,jpeg,gif)";
+                            $check = false;
+                        } else {
+                            $pathImage = $image['tmp_name'];
+                            $target_file = "Admin/UserAvt/" . $NameurlImage;
+                            move_uploaded_file($pathImage, $target_file);
+                        }
+                    }
+                    if ($check == true) {
+                        UpdatetUserGuest($name_update, $email_update, $password_update, $phone_update, $address_update, $NameurlImage, $status_update, $role_update, $ngaytao, $id);
+                        header('Location: index.php?act=thongtintaikhoan&&msg=Cập nhật thành công !');
+                        ob_end_flush();
+                        $id = $_SESSION['user']['id'];
+                        $user = getUserFollowId($id);
+                        unset($_SESSION['user']);
+                        $_SESSION['user'] = [];
+                        $_SESSION['user'] = $user;
+                    }
                 }
-                $id = $_SESSION['user']['id'];
-                $user = getUserFollowId($id);
-                unset($_SESSION['user']);
-                $_SESSION['user'] = [];
-                $_SESSION['user'] = $user;
                 require_once "view/information_user.php";
             }
             break;

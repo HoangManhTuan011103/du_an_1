@@ -53,17 +53,37 @@
                                     Họ tên:&ensp;</span>
                                 <input type="text" name="name" id="name" value="<?= $_SESSION['user']['name'] ? $_SESSION['user']['name'] : $_SESSION['user']['name'] = ''; ?>" class="update__innfo--user">
                             </div>
+                            <div>
+                                <span class="login__thongbao">
+                                    <?= isset($thongbao[0]) ? $thongbao[0] : $thongbao[0] = ''; ?>
+                                </span>
+                            </div>
                             <div class="cate--eu9998"><span class="both_text">
                                     Email:&ensp;</span>
                                 <input type="text" name="email" id="name" value="<?= $_SESSION['user']['email'] ? $_SESSION['user']['email'] : $_SESSION['user']['email'] = ''; ?>" class="update__innfo--user">
+                            </div>
+                            <div>
+                                <span class="login__thongbao">
+                                    <?= isset($thongbao[1]) ? $thongbao[1] : $thongbao[1] = ''; ?>
+                                </span>
                             </div>
                             <div class="cate--eu9998"><span class="both_text">
                                     Địa chỉ:&ensp;</span>
                                 <input type="text" name="address" id="name" value="<?= $_SESSION['user']['address'] ? $_SESSION['user']['address'] : $_SESSION['user']['address'] = ''; ?>" class="update__innfo--user">
                             </div>
+                            <div>
+                                <span class="login__thongbao">
+                                    <?= isset($thongbao[2]) ? $thongbao[2] : $thongbao[3] = ''; ?>
+                                </span>
+                            </div>
                             <div class="cate--eu9998"><span class="both_text">
                                     Điện thoại:&ensp;</span>
                                 <input type="text" name="phone" id="name" value="<?= $_SESSION['user']['phone'] ? $_SESSION['user']['phone'] : $_SESSION['user']['phone'] = ''; ?>" class="update__innfo--user">
+                            </div>
+                            <div>
+                                <span class="login__thongbao">
+                                    <?= isset($thongbao[3]) ? $thongbao[3] : $thongbao[3] = ''; ?>
+                                </span>
                             </div>
                             <div class="cate--eu9998"><span class="both_text">
                                     Ngày tạo:&ensp;</span><span><?= $_SESSION['user']['created_at'] ?></span>
@@ -72,6 +92,11 @@
                             <div class="cate--eu9998"><span class="both_text">
                                     Ảnh đại diện:&ensp;</span>
                                 <input type="file" name="image" id="image">
+                            </div>
+                            <div>
+                                <span class="login__thongbao">
+                                    <?= isset($thongbao[4]) ? $thongbao[4] : $thongbao[4] = ''; ?>
+                                </span>
                             </div>
                             <div>
                                 <span class="login__thongbao">
