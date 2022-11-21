@@ -3,8 +3,8 @@
         <div class="contentManager--product__header--title">
             <h2 style="color: #ffffff;">Danh sách sản phẩm</h2>
             <form action="" method="post">
-                <input type="text" placeholder="Nhập từ khóa cần tìm kiếm">
-                <button type="submit">
+                <input type="text" placeholder="Nhập từ khóa cần tìm kiếm" name="keyWord" value="<?= $keyWord ?? "" ?>" >
+                <button type="submit" name="btn-search--Product">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
@@ -29,8 +29,8 @@
             </div>
         <?php endif ?>
       
-        <div class="contentManager--product__footer--table">
-            <table border="1">
+        <div id="getData" class="contentManager--product__footer--table" >
+        <table border="1">
                 <thead>
                     <tr>
                         <th><input type="checkbox"></th>
@@ -49,12 +49,12 @@
                 <tbody>
                     <?php foreach ($listProduct as $key => $value) : ?>
                         <?php
-                        $imagePath = "../imageProduct/" . $value['avatar'];
-                        if (is_file($imagePath)) {
-                            $image = "<img src='" . $imagePath . "' alt='' width='120px' height='150px'>";
-                        } else {
-                            $image = "<h4 style='color: #ffffff' >Không có hình ảnh</h4>";
-                        }
+                            $imagePath = "../imageProduct/" . $value['avatar'];
+                            if (is_file($imagePath)) {
+                                $image = "<img src='" . $imagePath . "' alt='' width='120px' height='150px'>";
+                            } else {
+                                $image = "<h4 style='color: #ffffff' >Không có hình ảnh</h4>";
+                            }
                         ?>
                         <tr>
                             <td><input type="checkbox"></td>
@@ -95,28 +95,91 @@
                 </tbody>
             </table>
             <ul>
-                <li>
-                    <a href=""><i class="fa-sharp fa-solid fa-angles-left"></i></a>
-                </li>
-                <li>
-                    <a href=""><i class="fa-solid fa-angle-left"></i></a>
-                </li>
-                <li><a href="" style="background-color: #F39C12; color: #ffffff;">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-                <li><a href="">4</a></li>
-                <li>
-                    <a href=""><i class="fa-solid fa-angle-right"></i></a>
-                </li>
-                <li>
-                    <a href=""><i class="fa-sharp fa-solid fa-angles-right"></i></a>
-                </li>
+                <!-- Start Pagination -->
+                <?php if(ceil($countPage) <= 1){ 
+                    $i = ""; 
+                ?>
+                <?php }else{
+                    $i = 0; 
+                ?>
+                        <?php if(isset($_GET['page']) && $_GET['page'] > 2){ $fisrtPage = 1; ?>
+                            <li><a href="index.php?actAdmin=showProduct&page=<?= $fisrtPage ?>"><i class="fa-sharp fa-solid fa-angles-left"></i></a></li>
+                        <?php } ?>
+
+                        <?php if(isset($_GET['page']) && $_GET['page'] > 1){ $prevPage = $_GET['page'] - 1; ?>
+                            <li><a href="index.php?actAdmin=showProduct&page=<?= $prevPage ?>"><i class="fa-solid fa-angle-left"></i></a></li>
+                        <?php } ?>
+
+                        <?php for($i; $i <= $countPage; $i++): ?>
+                                <?php if(isset($_GET['page'])): ?>
+                                    <?php if($i+1 != $_GET['page']): ?>
+                                        <?php if($i+1 > $_GET['page']-2 && $i+1 < $_GET['page']+2): ?>
+                                            <li><a href="index.php?actAdmin=showProduct&page=<?= $i+1 ?>"><?= $i+1 ?></a></li>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                        <li><a style="background-color: #F39C12; color: #ffffff" href="index.php?actAdmin=showProduct&page=<?= $i+1 ?>"><?= $i+1 ?></a></li>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <?php   
+                                        if($i+1 == 1){
+                                            $backGround = "style=background-color:";
+                                            $color = "#F39C12;";
+                                            $word = "color:";
+                                            $colorWord = "#ffffff";
+                                        }else{
+                                            $backGround = "";
+                                            $color = "";
+                                            $word = "";
+                                            $colorWord = "";
+                                        } 
+                                    ?>
+                                    <?php if($i <= $countPage): ?>
+                                        <li><a <?= $backGround.$color.$word.$colorWord ?> href="index.php?actAdmin=showProduct&page=<?= $i+1 ?>"><?= $i+1 ?></a></li>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                        <?php endfor ?>
+
+                        <?php if(isset($_GET['page']) && $_GET['page'] < ceil($countPage)){ $nextPage = $_GET['page'] + 1; ?>
+                            <li><a href="index.php?actAdmin=showProduct&page=<?= $nextPage ?>"><i class="fa-solid fa-angle-right"></i></a></li>
+                        <?php } ?>
+
+                        <?php if(isset($_GET['page']) && $_GET['page'] < ceil($countPage)-1){ $endPage = ceil($countPage); ?>
+                            <li><a href="index.php?actAdmin=showProduct&page=<?= $endPage ?>"><i class="fa-sharp fa-solid fa-angles-right"></i></a></li>
+                        <?php } ?>
+
+                    <?php } ?>
+                    <!-- End Pagination -->
             </ul>
+            
         </div>
     </div>
 </div>
 </div>
 <script src="../src/js/animation.js"></script>
+<!-- <script src="../src/js/jquery.js"></script> -->
+<!-- <script type="text/javascript">
+    $(document).ready(function() {
+        function loadTable(page){
+            $.ajax({
+                url: "./products/navigation.php",
+                method: "POST",
+                data: {
+                    page: page
+                },
+                success: function(data) {
+                    $("#getData").html(data);
+                }
+            });
+        }
+        loadTable();
+        //Pagination Code
+        $(document).on("click","#pagination li a",function(e) {
+            e.preventDefault();
+            const page_id = $(this).attr("id");
+            loadTable(page_id);
+        });
+    });
+</script> -->
 </body>
 
 </html>

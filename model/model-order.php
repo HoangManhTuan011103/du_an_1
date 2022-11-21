@@ -1,6 +1,6 @@
 <?php
-    function insertToOrder($id,$delivery,$totalPricePay,$note,$address){
-        $sql = "INSERT INTO `orders`(`user_id`, `payment`, `total_price`, `note`,`address`) VALUES ('$id','$delivery','$totalPricePay','$note','$address')";
+    function insertToOrder($id,$delivery,$totalPricePay,$note,$address,$dateToInt){
+        $sql = "INSERT INTO `orders`(`user_id`, `payment`, `total_price`, `note`,`address`,`created_at`) VALUES ('$id','$delivery','$totalPricePay','$note','$address','$dateToInt')";
         return pdo_execute_return_lastInsertId($sql);
     }
     function insertToOrderDetail($order_id,$product_id,$quantity,$price_product){
@@ -35,6 +35,10 @@
     function getOrderAdmin($id){
         $sql = "SELECT A.`id`, A.`user_id`,`B`.`name`,  A.`payment`, A.`status`, A.`total_price`, A.`note`, A.`address`, A.`created_at` FROM `orders` A INNER JOIN `users` B ON A.user_id=B.id WHERE A.id=$id";
         return pdo_query_one($sql);
+    }
+    function tickOrderAdmin($id,$status){
+        $sql = "UPDATE `orders` SET `status`='$status' WHERE `id`=$id";
+        pdo_execute($sql);
     }
     // Lấy đơn hàng bên phía Admin
 
