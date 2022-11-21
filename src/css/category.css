@@ -2,7 +2,7 @@
     display: flex;
 }
 .grid .category--grid--review{
-    display: flex;
+    /* display: flex; */
    
 }
 
@@ -26,5 +26,6 @@
     height: 198px;
 }
 .grid .review--category__p--more{
-    margin-top: 10px;
+    margin-top: 20px;
+    text-align: center;
 }

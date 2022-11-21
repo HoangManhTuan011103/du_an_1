@@ -28,11 +28,11 @@
 
                 <div class="col l-6 image_hover_detail_scole">
                     <!-- <img src="./imageProduct/<?php
-                    //  $avatar 
-                     ?>" alt=""> -->
-                    <a href="./imageProduct/<?= $avatar ?>" class="MagicZoom" id="jeans" data-options="cssClass: thumbnails-style-shaded;">
-                    <img src="./imageProduct/<?= $avatar ?>" />
-                </a>
+                                                    //  $avatar 
+                                                    ?>" alt=""> -->
+                    <a href="./imageProduct/<?= $avatar ?>" class="MagicZoom" id="product_change_images" data-options="cssClass: thumbnails-style-shaded;">
+                        <img src="./imageProduct/<?= $avatar ?>" />
+                    </a>
                 </div>
                 <div class="col l-6">
                     <!-- list ảnh -->
@@ -44,8 +44,9 @@
 
                             <div class="col l-3 product__list_img-onec">
                                 <!-- <img src="./imageProduct/<?php
-                                //  $images ?>" alt=""> -->
-                                <a data-zoom-id="jeans" href="./imageProduct/<?= $images ?>" data-image="./imageProduct/<?= $images ?>">
+                                                                //  $images 
+                                                                ?>" alt=""> -->
+                                <a data-zoom-id="product_change_images" href="./imageProduct/<?= $images ?>" data-image="./imageProduct/<?= $images ?>">
                                     <img src="./imageProduct/<?= $images ?>" />
                                 </a>
                             </div>
@@ -293,75 +294,56 @@
     </div>
 </div>
 <script>
-    let btn_decre = document.querySelector(".btn_decre");
-    let btn_incre = document.querySelector(".btn_incre");
+    document.addEventListener("DOMContentLoaded", () => {
+        let btn_decre = document.querySelector(".btn_decre");
+        let btn_incre = document.querySelector(".btn_incre");
 
-    let btn_product_quantity_input = document.querySelector("#btn_product_quantity_input")
+        let btn_product_quantity_input = document.querySelector("#btn_product_quantity_input")
 
-    btn_incre.addEventListener("click", () => {
+        btn_incre.addEventListener("click", () => {
 
-        btn_product_quantity_input.value++;
-    });
-    btn_decre.addEventListener("click", () => {
-        if (btn_product_quantity_input.value == 1) {
+            btn_product_quantity_input.value++;
+        });
+        btn_decre.addEventListener("click", () => {
+            if (btn_product_quantity_input.value == 1) {
 
-            btn_decre.style.cursor = 'no-drop';
-        } else {
-            btn_decre.style.cursor = 'pointer';
-            console.log(btn_product_quantity_input.value);
-            --btn_product_quantity_input.value;
-        }
-    });
-    // chuyển tab
-    let tab_iteam = document.querySelectorAll('.tab-item');
-    let tab_pane = document.querySelectorAll('.tab-pane');
-
-
-    tab_iteam.forEach((tab, index) => {
-        tab.onclick = function() {
-            const panes = tab_pane[index];
-
-            document.querySelector(".tab-item.active").classList.remove("active");
+                btn_decre.style.cursor = 'no-drop';
+            } else {
+                btn_decre.style.cursor = 'pointer';
+                console.log(btn_product_quantity_input.value);
+                --btn_product_quantity_input.value;
+            }
+        });
+        // chuyển tab
+        let tab_iteam = document.querySelectorAll('.tab-item');
+        let tab_pane = document.querySelectorAll('.tab-pane');
 
 
-            document.querySelector(".tab-pane.active").classList.remove("active");
+        tab_iteam.forEach((tab, index) => {
+            tab.onclick = function() {
+                const panes = tab_pane[index];
+
+                document.querySelector(".tab-item.active").classList.remove("active");
 
 
-            this.classList.add("active");
-            panes.classList.add("active");
-        }
-    });
+                document.querySelector(".tab-pane.active").classList.remove("active");
 
-    // let image_hover = document.querySelector(".image_hover_detail_scole img");
-    // // hover ảnh 
-    // image_hover
-    //     .addEventListener("mouseover", function(e) {
-    //         e.target.style.transform = "scale(2)";
 
-    //         console.log((e.pageX - this.offsetLeft) / this.width * 100 + '%' + (e.pageY - this.offsetTop) / this.height * 100 + '%');
-    //         // console.log(e.pageX - this.offsetLeft)
+                this.classList.add("active");
+                panes.classList.add("active");
+            }
+        });
+        // document.on("blur", function() {
+        //     console.log("a")
+        // })
+        // document.querySelectorAll("a").forEach(item => {
+        //     if (item.hasAttribute("href")) {
+        //         // href="http://www.magictoolbox.com/magiczoomplus/"
+        //         console.log(item.getAttribute("href"));
+        //         // item.setAttribute("href","");
 
-    //         // console.log("with style ",this.style.width)
-    //         // console.log("with ",this.width)
-    //     })
-    // image_hover
-    //     .addEventListener("mouseout", function(e) {
-    //         e.target.style.transform = "scale(1)";
-    //     })
-    // image_hover
-    //     .addEventListener("mouseover", function(e) {
-    //         e.target.style.transform_origin = (e.pageX - this.offsetLeft) / this.width * 100 + '%' + (e.pageY - this.offsetTop) / this.height * 100 + '%';
-    //     })
-    // .on('mouseover', function() {
-    //         $(this).children('.img').css({'transform': 'scale(2)'});
-    //       })
-    //       .on('mouseout', function() {
-    //         $(this).children('.img').css({'transform': 'scale(1)'});
-    //       })
-    //       .on('mousemove', function(e) {
-    //     $(this).children('.img').css({'transform-origin': ((e.pageX - $(this).offset().left) / $(this).width()) * 100 + '% ' + ((e.pageY - $(this).offset().top) / $(this).height()) * 100 +'%'});
-    //   })
-    //   }
-    //  $(this).children('.img').css({'transform-origin': ((e.pageX - $(this).offset().left) / $(this).width()) * 100 + '% ' + ((e.pageY - $(this).offset().top) / $(this).height()) * 100 +'%'});
-   
+        //     } // console.log(item.hasAttribute("http://www.magictoolbox.com/magiczoomplus/")) 
+        //     // item.href=='http://www.magictoolbox.com/magiczoomplus/'?"":console.log("long")
+        // })
+    })
 </script>

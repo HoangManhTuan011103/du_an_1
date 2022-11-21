@@ -141,10 +141,13 @@
 } */
 .product__banner__btn--detail a{
     border:none;
+    display: flex;
+align-items: center;
+margin-left: 5px;
     background-color: #ff2d37;
     color: #ffffff;
     margin-right: 10px;
-    width: 70px;
+    min-width: 65px;
     height: 25px;
     border-radius: 5px;
     padding: 5px 8px 5px 8px;

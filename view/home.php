@@ -228,14 +228,15 @@
             <p class="p--category--product--menu">Tin tức</p>
 
         </div>
-        <div class="category--grid--review grid wide l-9">
+        <div class="category--grid--review  l-9">
+            <div class="row">
             <?php
             foreach ($protop8 as $pr) {
                 extract($pr);
                 $linkpro = "index.php?act=detail_product&id=" . $id;
                 $hinh = $image_path . $avatar;
                 $giagiam = ($price * $discount) / 100;
-                echo ' <div class="grid wide col l-3 m-6 c-6">
+                echo ' <div class="col l-3 m-6 c-6">
                         <div class="product__banner">
                             <div class="product--hot__img">
                             <a href="' . $linkpro . '">   <img src="' . $hinh . '" alt="">  </a>
@@ -260,7 +261,7 @@
                     </div>';
             }
             ?>
-
+</div>
             <div class="grid wide review--category__p--more">
                 <a href="index.php?act=showProducts">Xem tất cả<i class="fa-solid fa-angle-right"></i></a>
             </div>

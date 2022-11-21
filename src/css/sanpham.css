@@ -9,7 +9,7 @@
 
 .products_alllllll li {
     list-style: none;
-    /* display: flex; */
+   margin-right: 15px;
 }
 
 .products_alllllll a {
@@ -32,7 +32,7 @@
     text-align: left;
 }
 
-.product_fillter_flow_content li a {
+.product_fillter_flow_content li  {
     display: block;
     padding: 10px;
     color: #282828;
@@ -49,45 +49,51 @@
     justify-content: center;
 }
 
-.fillter_product_color li {
-    margin-right: 10px;
+.product_fillter_flow_content .fillter_product_color li {
+    display: flex;
+    padding: 5px;
+    margin: 0px;
+    /* margin-right: 10px; */
 }
 
-.fillter_product_color li a {
+.fillter_product_color li button {
     width: 24px;
     height: 24px;
     border-radius: 50%;
+    border:none;
+    outline: none;
+    cursor: pointer;
 }
 
-.fillter_product_color>li:first-child a {
+.fillter_product_color>li:first-child button {
     background-color: #ff2d37;
 }
 
-.fillter_product_color>li:nth-child(2) a {
+.fillter_product_color>li:nth-child(2) button {
     background-color: yellow;
 }
 
-.fillter_product_color>li:nth-child(3) a {
+.fillter_product_color>li:nth-child(3) button {
     background-color: black;
 }
 
-.fillter_product_color>li:nth-child(4) a {
+.fillter_product_color>li:nth-child(4) button {
     background-color: #FF00CC;
 }
 
-.fillter_product_color>li:nth-child(5) a {
+.fillter_product_color>li:nth-child(5) button {
     background-color: #E74C3C;
 }
 
-.fillter_product_color>li:nth-child(6) a {
+.fillter_product_color>li:nth-child(6) button {
     background-color: #2ECC71;
 }
 
-.fillter_product_color>li:nth-child(7) a {
+.fillter_product_color>li:nth-child(7) button {
     background-color: #9B59B6;
 }
 
-.fillter_product_color>li:nth-child(8) a {
+.fillter_product_color>li:nth-child(8) button {
     background-color: #E67E22;
 }
 
@@ -108,14 +114,12 @@
     align-items: center;
 }
 
-.fillter_products_time a {
+.fillter_products_time input {
     margin-right: 10px;
     color: black;
-}
-
-.fillter_products_time input {
     margin-right: 5px;
 }
+
 
 .products_alllllll .product--hot__img {
     width: 204px;
