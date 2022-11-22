@@ -1,27 +1,3 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: "Roboto", sans-serif;
-}
-
-.col {
-    text-align: center;
-    /* background-color: #ccc; */
-    background-clip: content-box;
-    margin-top: 8px;
-    margin-bottom: 8px;
-}
-
-
-/* .container {
-    width: 1200px;
-    margin: auto;
-} */
-
-body {
-    margin: 0;
-}
 
 .topbar__img {
     width: 100%;

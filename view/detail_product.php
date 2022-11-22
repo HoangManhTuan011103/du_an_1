@@ -28,23 +28,28 @@
 
                 <div class="col l-6 image_hover_detail_scole">
                     <!-- <img src="./imageProduct/<?php
-                    //  $avatar 
-                     ?>" alt=""> -->
-                    <a href="./imageProduct/<?= $avatar ?>" class="MagicZoom" id="jeans" data-options="cssClass: thumbnails-style-shaded;">
-                    <img src="./imageProduct/<?= $avatar ?>" />
-                </a>
+                                                    //  $avatar 
+                                                    ?>" alt=""> -->
+                    <a href="./imageProduct/<?= $avatar ?>" class="MagicZoom" id="product_change_images" data-options="cssClass: thumbnails-style-shaded;">
+                        <img src="./imageProduct/<?= $avatar ?>" />
+                    </a>
                 </div>
                 <div class="col l-6">
                     <!-- list ảnh -->
                     <div class="row product_list_img">
                         <?php foreach ($list_image_product as $value) {
                             extract($value);
-                            
-                         ?>
-                       
-                        <div class="col l-3 product__list_img-onec">
-                            <img src="./imageProduct/<?=$images?>" alt="">
-                        </div>
+
+                        ?>
+
+                            <div class="col l-3 product__list_img-onec">
+                                <!-- <img src="./imageProduct/<?php
+                                                                //  $images 
+                                                                ?>" alt=""> -->
+                                <a data-zoom-id="product_change_images" href="./imageProduct/<?= $images ?>" data-image="./imageProduct/<?= $images ?>">
+                                    <img src="./imageProduct/<?= $images ?>" />
+                                </a>
+                            </div>
                         <?php } ?>
                         <?php
                         $giagiam = $price * ($discount / 100);
@@ -293,47 +298,56 @@
     </div>
 </div>
 <script>
-let btn_decre = document.querySelector(".btn_decre");
-let btn_incre = document.querySelector(".btn_incre");
+    document.addEventListener("DOMContentLoaded", () => {
+        let btn_decre = document.querySelector(".btn_decre");
+        let btn_incre = document.querySelector(".btn_incre");
 
-    let btn_product_quantity_input = document.querySelector("#btn_product_quantity_input")
+        let btn_product_quantity_input = document.querySelector("#btn_product_quantity_input")
 
-    btn_incre.addEventListener("click", () => {
+        btn_incre.addEventListener("click", () => {
 
-        btn_product_quantity_input.value++;
-    });
-    btn_product_quantity_input.addEventListener('input', () => {
-        if (btn_product_quantity_input.value <= 0 || btn_product_quantity_input.value != Number(btn_product_quantity_input.value)) {
-            btn_product_quantity_input.value = 1;
-        }
-    });
-    btn_decre.addEventListener("click", () => {
-        if (btn_product_quantity_input.value == 1) {
+            btn_product_quantity_input.value++;
+        });
+        btn_decre.addEventListener("click", () => {
+            if (btn_product_quantity_input.value == 1) {
 
-        btn_decre.style.cursor = 'no-drop';
-    } else {
-        btn_decre.style.cursor = 'pointer';
-        console.log(btn_product_quantity_input.value);
-        --btn_product_quantity_input.value;
-    }
-});
-// chuyển tab
-let tab_iteam = document.querySelectorAll('.tab-item');
-let tab_pane = document.querySelectorAll('.tab-pane');
+                btn_decre.style.cursor = 'no-drop';
+            } else {
+                btn_decre.style.cursor = 'pointer';
+                console.log(btn_product_quantity_input.value);
+                --btn_product_quantity_input.value;
+            }
+        });
+        // chuyển tab
+        let tab_iteam = document.querySelectorAll('.tab-item');
+        let tab_pane = document.querySelectorAll('.tab-pane');
 
 
-tab_iteam.forEach((tab, index) => {
-    tab.onclick = function() {
-        const panes = tab_pane[index];
+        tab_iteam.forEach((tab, index) => {
+            tab.onclick = function() {
+                const panes = tab_pane[index];
 
-        document.querySelector(".tab-item.active").classList.remove("active");
-
-
-        document.querySelector(".tab-pane.active").classList.remove("active");
+                document.querySelector(".tab-item.active").classList.remove("active");
 
 
-            this.classList.add("active");
-            panes.classList.add("active");
-        }
-    });
-    </script>
+                document.querySelector(".tab-pane.active").classList.remove("active");
+
+
+                this.classList.add("active");
+                panes.classList.add("active");
+            }
+        });
+        // document.on("blur", function() {
+        //     console.log("a")
+        // })
+        // document.querySelectorAll("a").forEach(item => {
+        //     if (item.hasAttribute("href")) {
+        //         // href="http://www.magictoolbox.com/magiczoomplus/"
+        //         console.log(item.getAttribute("href"));
+        //         // item.setAttribute("href","");
+
+        //     } // console.log(item.hasAttribute("http://www.magictoolbox.com/magiczoomplus/")) 
+        //     // item.href=='http://www.magictoolbox.com/magiczoomplus/'?"":console.log("long")
+        // })
+    })
+</script>
