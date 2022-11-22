@@ -48,9 +48,9 @@
                 <tbody>
                     <?php foreach ($listUser as $key => $value) : ?>
                         <?php
-                        $imagePath = "../imageProduct/" . $value['image'];
+                        $imagePath = "./UserAvt/" . $value['image'];
                         if (is_file($imagePath)) {
-                            $image = "<img src='" . $imagePath . "' alt='' width='120px' height='150px'>";
+                            $image = "<img src='" . $imagePath . "' alt='' width='120px' height='120px'>";
                         } else {
                             $image = "<h4 style='color: #ffffff' >Không có hình ảnh</h4>";
                         }

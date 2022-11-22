@@ -40,10 +40,10 @@
                     </div>
                     <div class="accountAdmin row">
                         <div class="avatarAdmin row">
-                            <img src="../src/imageAdmin/avatar.jpg" alt="">
+                        <img src="./UserAvt/<?=$_SESSION['user']['image']?>" alt="">
                         </div>
                         <div class="nameAdmin row">
-                            Hoàng Mạnh Tuấn
+                        <?=$_SESSION['user']['name']?>
                         </div>
                     </div>
                 </div>
@@ -54,10 +54,10 @@
             <div class="listMainFirst">
                 <div class="accountAdmin accountAdmin--canHidden">
                     <div class="avatarAdmin">
-                        <img src="../src/imageAdmin/avatar.jpg" alt="">
+                        <img src="./UserAvt/<?=$_SESSION['user']['image']?>" alt="">
                     </div>
                     <div class="nameAdmin nameAdmin--navLeft">
-                        Hoàng Mạnh Tuấn
+                        <?=$_SESSION['user']['name']?>
                         <div class="statusAdmin">
                             <div></div>
                             <p>Online</p>
