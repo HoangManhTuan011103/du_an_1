@@ -74,7 +74,6 @@ if (isset($_GET['act'])) {
                         $check = false;
                     } else if (is_numeric($name_update) || (strlen($name_update) < 2)) {
                         $thongbao[0] = "Tên không phải là số , tối thiểu 2 ký tự !";
-                        $_POST['ten'] = "";
                         $check = false;
                     }
                     if ($email_update == "") {
@@ -82,15 +81,13 @@ if (isset($_GET['act'])) {
                         $check = false;
                     } else if (!filter_var($email_update, FILTER_VALIDATE_EMAIL)) {
                         $thongbao[1] = "Email không đúng định dạng";
-                        $_POST['email'] = "";
                         $check = false;
                     }
                     if ($address_update == "") {
                         $thongbao[2] = "Địa chỉ không được bỏ trống !!!";
                         $check = false;
                     } else if (is_numeric($address_update) || (strlen($address_update) < 2)) {
-                        $thongbao[2] = "Tên không phải là số , tối thiểu 2 ký tự !";
-                        $_POST['email'] = "";
+                        $thongbao[2] = "Địa chỉ không phải là số , tối thiểu 6 ký tự !";
                         $check = false;
                     }
                     if ($phone_update == '') {
@@ -139,14 +136,14 @@ if (isset($_GET['act'])) {
                 $id = $_SESSION['user']['id'];
                 $check = true;
                 $password_old_md5 = md5($password_old);
-                if($password_old_md5 != $_SESSION['user']['password']) {
+                if ($password_old_md5 != $_SESSION['user']['password']) {
                     $thongbao[1] = "Mật khẩu cũ không chính xác  !!!";
                     $check = false;
                 }
                 if ($password_old == '') {
                     $thongbao[1] = "Trường này không được bỏ trống  !!!";
                     $check = false;
-                } 
+                }
                 if ($password_new == '') {
                     $thongbao[2] = "Trường này không được bỏ trống  !!!";
                     $check = false;

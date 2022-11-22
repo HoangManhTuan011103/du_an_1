@@ -262,14 +262,71 @@ if (isset($_GET['actAdmin'])) {
                 $address = $_POST['address'];
                 $status = $_POST['status'];
                 $role = $_POST['role'];
-                $password = md5($password);
                 $NameurlImage = $image['name'];
                 $pathImage = $image['tmp_name'];
                 $target_file = "UserAvt/" . $NameurlImage;
                 move_uploaded_file($pathImage, $target_file);
-                InsertUser2($name, $email, $password, $phone, $address, $NameurlImage, $status, $role);
-                header('Location: index.php?actAdmin=showUsers&&msg=Thêm người thành công !');
-                ob_end_flush();
+
+                $check = true;
+                if ($name == "") {
+                    $thongbao[0] = "Tên không được bỏ trống !!!";
+                    $check = false;
+                } else if (is_numeric($name) || (strlen($name) < 2)) {
+                    $thongbao[0] = "Tên không phải là số , tối thiểu 2 ký tự !";
+                    $check = false;
+                }
+                if ($image['size'] <= 0) {
+                    $thongbao[1] = "Vui lòng chọn hình ảnh cho người dùng !!!";
+                    $check = false;
+                } else {
+                    $NameurlImage = $image['name'];
+                    $ext = pathinfo($NameurlImage, PATHINFO_EXTENSION);
+                    if ($ext != 'gif' && $ext != 'jpeg' && $ext != 'png' && $ext != 'jpg') {
+                        $thongbao[1] = "Sai định dạng ảnh(png,jpg,jpeg,gif)";
+                        $check = false;
+                    } else {
+                        $pathImage = $image['tmp_name'];
+                        $target_file = "UserAvt/" . $NameurlImage;
+                        move_uploaded_file($pathImage, $target_file);
+                    }
+                }
+                if ($email == "") {
+                    $thongbao[2] = "Email không được bỏ trống !!!";
+                    $check = false;
+                } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $thongbao[2] = "Email không đúng định dạng";
+                    $check = false;
+                }
+                if ($password == "") {
+                    $thongbao[3] = "Mật khẩu không được bỏ trống !!!";
+                    $check = false;
+                } else if ((strlen($password) < 8)) {
+                    $thongbao[3] = "Mật khẩu tối thiểu 8 ký tự !";
+                    $check = false;
+                }
+                $password = md5($password);
+                if ($phone == '') {
+                    $thongbao[4] = "Điện thoại không được bỏ trống !!!";
+                    $check = false;
+                } else if (!is_numeric($phone)) {
+                    $thongbao[4] = "Điện thoại phải là số !!!";
+                    $check = false;
+                } else if (strlen($phone) != 10) {
+                    $thongbao[4] = "Điện thoại phải đủ 10 số !!!";
+                    $check = false;
+                }
+                if ($address == "") {
+                    $thongbao[5] = "Địa chỉ không được bỏ trống !!!";
+                    $check = false;
+                } else if (is_numeric($address) || (strlen($address) < 6)) {
+                    $thongbao[5] = "Địa chỉ không phải là số , tối thiểu 6 ký tự !";
+                    $check = false;
+                }
+                if ($check == true) {
+                    InsertUser2($name, $email, $password, $phone, $address, $NameurlImage, $status, $role);
+                    header('Location: index.php?actAdmin=showUsers&&msg=Thêm người thành công !');
+                    ob_end_flush();
+                }
             }
             require_once "./users/add.php";
             break;
