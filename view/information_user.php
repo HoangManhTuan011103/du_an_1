@@ -37,8 +37,7 @@
                                 }
                             } ?>
                             <li><a href="">Đơn hàng của bạn</a></li>
-                            <li><a href="">Đổi mật khẩu</a></li>
-                            <li><a href="">Địa chỉ</a></li>
+                            <li><a href="index.php?act=doimatkhau">Đổi mật khẩu</a></li>
                         </ul>
                     </div>
                 </div>
@@ -92,6 +91,9 @@
                             <div class="cate--eu9998"><span class="both_text">
                                     Ảnh đại diện:&ensp;</span>
                                 <input type="file" name="image" id="image">
+                            </div>
+                            <div>
+                                <img class="edit_img_user" src="Admin/UserAvt/<?= $_SESSION['user']['image'] ?>" alt="" srcset="" width="150px" height="150px">
                             </div>
                             <div>
                                 <span class="login__thongbao">

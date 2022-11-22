@@ -131,6 +131,45 @@ if (isset($_GET['act'])) {
                 require_once "view/information_user.php";
             }
             break;
+        case 'doimatkhau':
+            if (isset($_POST['doimatkhau'])) {
+                $password_old = $_POST['password_Old'];
+                $password_new = $_POST['password_new'];
+                $verypassword_new = $_POST['verypassword_new'];
+                $id = $_SESSION['user']['id'];
+                $check = true;
+                $password_old_md5 = md5($password_old);
+                if($password_old_md5 != $_SESSION['user']['password']) {
+                    $thongbao[1] = "Mật khẩu cũ không chính xác  !!!";
+                    $check = false;
+                }
+                if ($password_old == '') {
+                    $thongbao[1] = "Trường này không được bỏ trống  !!!";
+                    $check = false;
+                } 
+                if ($password_new == '') {
+                    $thongbao[2] = "Trường này không được bỏ trống  !!!";
+                    $check = false;
+                } else if (strlen($password_new) < 8) {
+                    $thongbao[2] = "Mật khẩu tối thiểu 8 ký tự  !!!";
+                    $check = false;
+                }
+                if ($verypassword_new == '') {
+                    $thongbao[3] = "Trường này không được bỏ trống  !!!";
+                    $check = false;
+                } else if ($verypassword_new != $password_new) {
+                    $thongbao[3] = "Mật khẩu xác nhận không chính xác !!!";
+                    $check = false;
+                }
+                if ($check == true) {
+                    $password_new_insert = md5($password_new);
+                    UpdatePasstUser($password_new_insert, $id);
+                    header('Location: index.php?act=doimatkhau&&msg=Cập nhật mật khẩu thành công !');
+                    ob_end_flush();
+                }
+            }
+            require_once "view/doimatkhau.php";
+            break;
         case 'dangnhap':
             if (isset($_POST['dangnhap']) == true) {
                 $email_login = $_POST['email_login'];

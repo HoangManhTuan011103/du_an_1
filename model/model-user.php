@@ -75,3 +75,8 @@ function UpdatetUserGuest($name, $email, $password, $phone, $address, $image, $s
     $sql = "UPDATE `users` SET `name`='$name', `email`='$email', `password`='$password', `phone`='$phone', `address`='$address', `image`='$image', `status`='$status', `role`='$role',`created_at`='$ngaytao' WHERE `id`='$id';";
     pdo_execute($sql);
 }
+function UpdatePasstUser($password, $id)
+{
+    $sql = "UPDATE `users` SET  `password`='$password' WHERE `id`='$id';";
+    pdo_execute($sql);
+}
