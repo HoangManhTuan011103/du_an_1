@@ -37,10 +37,10 @@
                     </div>
                     <div class="accountAdmin row">
                         <div class="avatarAdmin row">
-                        <img src="./UserAvt/<?=$_SESSION['user']['image']?>" alt="">
+                            <img src="./UserAvt/<?= $_SESSION['user']['image'] ?>" alt="">
                         </div>
                         <div class="nameAdmin row">
-                        <?=$_SESSION['user']['name']?>
+                            <?= $_SESSION['user']['name'] ?>
                         </div>
                     </div>
                 </div>
@@ -51,10 +51,10 @@
             <div class="listMainFirst">
                 <div class="accountAdmin accountAdmin--canHidden">
                     <div class="avatarAdmin">
-                        <img src="./UserAvt/<?=$_SESSION['user']['image']?>" alt="">
+                        <img src="./UserAvt/<?= $_SESSION['user']['image'] ?>" alt="">
                     </div>
                     <div class="nameAdmin nameAdmin--navLeft">
-                        <?=$_SESSION['user']['name']?>
+                        <?= $_SESSION['user']['name'] ?>
                         <div class="statusAdmin">
                             <div></div>
                             <p>Online</p>
@@ -95,8 +95,8 @@
                             <a href="statistical.html" class="canHidden">Thống kê báo cáo</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-                            <a href="" class="canHidden">Đăng xuất</a>
+                            <a href="index.php?actAdmin=dangxuat"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                            <a href="index.php?actAdmin=dangxuat" class="canHidden">Đăng xuất</a>
                         </li>
                     </ul>
                 </nav>
