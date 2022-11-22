@@ -4,7 +4,6 @@
 session_start();
 if (isset($_SESSION['user'])  && ($_SESSION['user']['role'] == 1)) {
     ob_start();
-    session_start();
     require_once "../global.php";
     require_once "../model/pdo.php";
     require_once "../model/model-user.php";
