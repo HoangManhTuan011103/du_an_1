@@ -1,6 +1,6 @@
 <div class="grid wide content">
     <form action="" method="post">
-        <div class="row">
+        <div class="row all_detail_products">
             <!-- layout 2 chia   8-4-->
             <div class="col l-8 pay_detai_left">
                 <!-- tiêu đề -->

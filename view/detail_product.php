@@ -21,7 +21,7 @@
     // } 
     ?>
     <p class="product_title_name"><?= $name ?></p>
-    <div class="row">
+    <div class="row all_detail_products">
         <div class="col l-9">
             <div class="row">
                 <!-- ảnh -->
