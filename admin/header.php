@@ -98,8 +98,8 @@
                             <a href="index.php?actAdmin=statisticals" class="canHidden">Thống kê báo cáo</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-                            <a href="" class="canHidden">Đăng xuất</a>
+                            <a href="index.php?actAdmin=dangxuat"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                            <a href="index.php?actAdmin=dangxuat" class="canHidden">Đăng xuất</a>
                         </li>
                     </ul>
                 </nav>

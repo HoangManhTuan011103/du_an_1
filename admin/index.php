@@ -1,8 +1,9 @@
 <!-- Conttroller Quản trị -->
 
 <?php
-ob_start();
 session_start();
+if (isset($_SESSION['user'])  && ($_SESSION['user']['role'] == 1)) {
+    ob_start();
 require_once "../global.php";
 require_once "../model/pdo.php";
 require_once "../model/model-user.php";
@@ -20,16 +21,6 @@ $listBuyOnDay = buyProductWithDay();
 $bestSale = bestProductSales();
 $totalOrderWeek = totalOrderWithWeek();
 $sumMoneyMonthCurrently = sumMoneyMonthCurrently();
-
-
-
-// Đang nối file như này để nó hiện ra giao diện 
-// Phần này do tôi thiết kế giao diện admin không có footer nên để như này là chuẩn rồi nhé
-// Giờ chỉ việc chỉnh code vào thôi nhé
-// Có gì các chức năng khác làm sau
-// Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
-// Comment thêm tên chức năng nữa nhé
-// Các trang khác làm tương tự vì nó có file html ở đó rồi
 require_once "./header.php";
 if (isset($_GET['actAdmin'])) {
     $actAdmin = $_GET['actAdmin'];
@@ -536,12 +527,15 @@ if (isset($_GET['actAdmin'])) {
             $getToTalProductChart = getToTalProductChartJs();
             require_once "./statisticals/list.php";
             break;
+        case 'dangxuat':
+            session_destroy();
+            header("Location: ../index.php?act=dangnhap");
+            break;
         default:
             $listBuyOnDay = buyProductWithDay();
             $bestSale = bestProductSales();
             $totalOrderWeek = totalOrderWithWeek();
             $sumMoneyMonthCurrently = sumMoneyMonthCurrently();
-           
 
             require_once "./home.php";
             break;
@@ -553,6 +547,10 @@ if (isset($_GET['actAdmin'])) {
     $sumMoneyMonthCurrently = sumMoneyMonthCurrently();
   
     require_once "./home.php";
+}
+}else{
+    header('Location: ../index.php?act=dangnhap');
+    ob_end_flush();
 }
 
 ?>
