@@ -340,10 +340,9 @@
 </div>
 
 
-<script>
-    console.log(JSON.parse('<?php echo json_encode($protop4); ?>'));
-    let array_product = JSON.parse('<?php echo json_encode($prolist); ?>');
-    let array_product_2 = JSON.parse('<?php echo json_encode($protop4); ?>');
+<script type="text/javascript">
+    let arr_prodcut1 = <?php echo json_encode($prolist); ?>;
+    let array_product_2 = <?php echo json_encode($protop4); ?>;
     let category_grid_review = document.querySelector(".category--grid--review");
     let category_grid_review_ = document.querySelector(".category--grid--review.helo");
     let fillter_categories_list = document.querySelectorAll(".fillter_categories_list li")
@@ -353,13 +352,13 @@
     let product_fillter_size = document.querySelectorAll(".product_fillter_size input")
     let fillter_products_time = document.querySelectorAll(".fillter_products_time input")
 
+ 
+    show_products(array_product_2, category_grid_review_);
 
-
-    show_products(array_product_2,category_grid_review_);
-    function show_products(list_product = array_product, show_position = category_grid_review) {
+    function show_products(list_product = arr_prodcut1, show_position = category_grid_review) {
         show_position.innerHTML = "";
         list_product.forEach(item => {
-
+          
             show_position.innerHTML += `
                     <div class=" col l-3 m-4 c-6">
                        <div class="product__banner">
@@ -384,40 +383,48 @@
         })
     }
     show_products();
-    fillter_categories_list.forEach(item => {
-        item.addEventListener("click", e => {
+    fillter_categories_list.forEach(elemt => {
+        elemt.addEventListener("click", (e) => {
             let id_categor = e.target.getAttribute("data-id");
-
-            let list = array_product.filter(item => {
-
-                return id_categor == item.category_id
+            const array = [];
+            arr_prodcut1.forEach(iteam => {
+                if (iteam.category_id == id_categor) {
+                    array.push(iteam)
+                }
+                // console.log("id cate ", id_categor);
+                console.log("iteam list", array);
+                // return id_categor == iteam.category_id
             })
 
-            show_product123(listArrayPrice, listArrayDesc, list);
+            show_products(array);
         })
     })
 
-    function show_product123(arr_price = [], arrDesc = [], listArrayTime = [], list = array_product) {
 
-        const arrlist = list.map((iteam, index) => {
+
+    function show_product123(arr_price = [], arrDesc = [], listArrayTime = []) {
+        //    console.log(typeof arr_prodcut);
+        const arrlist = arr_prodcut1.map((iteam, index) => {
+                console.log("1 ", iteam);
+                let prices_price = Number(iteam.price);
 
                 if (arr_price.length > 0) {
 
 
-                    if (iteam.price < 100000 && arr_price.includes("1") == false) {
-                        return console.log(arr_price)
+                    if (prices_price < 100000 && arr_price.includes("1") == false) {
+                        return
                     }
-                    if (iteam.price >= 100000 && iteam.price < 200000 && arr_price.includes("2") == false) {
+                    if (prices_price >= 100000 && prices_price < 200000 && arr_price.includes("2") == false) {
                         // console.log();
                         return
                     }
-                    if (iteam.price >= 200000 && iteam.price < 300000 && arr_price.includes("3") == false) {
+                    if (prices_price >= 200000 && prices_price < 300000 && arr_price.includes("3") == false) {
                         return
                     }
-                    if (iteam.price >= 300000 && iteam.price < 500000 && arr_price.includes("4") == false) {
+                    if (prices_price >= 300000 && prices_price < 500000 && arr_price.includes("4") == false) {
                         return
                     }
-                    if (iteam.price >= 500000 && iteam.price < 1000000 && arr_price.includes("5") == false) {
+                    if (prices_price >= 500000 && prices_price < 1000000 && arr_price.includes("5") == false) {
                         return
                     }
                 }
@@ -426,7 +433,7 @@
                         return
                     }
                 }
-              
+
 
                 // console.log("check item ", index, iteam);
                 return ` 
@@ -487,7 +494,7 @@
                 } else {
                     listArrayDesc = listArrayDesc.filter(e => e !== this.value);
                     show_product123(listArrayPrice, listArrayDesc)
-                    // console.log("check array curent", listArrayDesc)
+                    console.log("check array curent", listArrayDesc)
                 }
             })
         })
