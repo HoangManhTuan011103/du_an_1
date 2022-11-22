@@ -87,39 +87,34 @@
                     <ul class="fillter_list_flow_price">
                         <li>
                             <label for="">
-                                <input value='1' name="price[]" type="checkbox">
+                                <input value='1' type="checkbox">
                                 Giá dưới 100.000đ</label>
                         </li>
                         <li>
                             <label for="">
-                                <input value='2' name="price[]" type="checkbox">
+                                <input value='2' type="checkbox">
                                 100.000đ - 200.000đ</label>
 
                         </li>
                         <li>
                             <label for="">
-                                <input value='3' name="price[]" type="checkbox">
+                                <input value='3' type="checkbox">
                                 200.000đ - 300.000đ</label>
 
                         </li>
                         <li>
                             <label for="">
-                                <input value='4' name="price[]" type="checkbox">
+                                <input value='4' type="checkbox">
                                 300.000đ - 500.000đ</label>
 
                         </li>
                         <li>
                             <label for="">
-                                <input value='5' name="price[]" type="checkbox">
+                                <input value='5' type="checkbox">
                                 500.000đ - 1.000.000đ</label>
 
                         </li>
-                        <li>
-                            <label for="">
-                                <input type="chename=" price[]"ckbox" value="6">
-                                Giá trên 1.000.000đ</label>
 
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -133,7 +128,7 @@
                     <ul class="product_fillter_flow_desc">
                         <li>
                             <label for="">
-                                <input type="checkbox">
+                                <input value='Giày cổ cao' type="checkbox">
                                 Giày cổ cao</label>
                         </li>
                         <li>
@@ -143,7 +138,7 @@
                         </li>
                         <li>
                             <label for="">
-                                <input type="checkbox">
+                                <input value='Giày đá bóng' type="checkbox">
                                 Giày đá bóng</label>
                         </li>
                         <li>
@@ -171,14 +166,14 @@
                 </p>
                 <div class="product_fillter_flow_content">
                     <ul class="fillter_product_color">
-                        <li><button></button></li>
-                        <li><button></button></li>
-                        <li><button></button></li>
-                        <li><button></button></li>
-                        <li><button></button></li>
-                        <li><button></button></li>
-                        <li><button></button></li>
-                        <li><button></button></li>
+                        <li><button><input type="checkbox"></button></li>
+                        <li><button><input type="checkbox"></button></li>
+                        <li><button><input type="checkbox"></button></li>
+                        <li><button><input type="checkbox"></button></li>
+                        <li><button><input type="checkbox"></button></li>
+                        <li><button><input type="checkbox"></button></li>
+                        <li><button><input type="checkbox"></button></li>
+                        <li><button><input type="checkbox"></button></li>
 
                     </ul>
                 </div>
@@ -304,7 +299,7 @@
             </div> -->
             <!-- bạn thích -->
             <h2 class="products_all">Có thể bạn thích</h2>
-            <div class="row category--grid--review">
+            <div class="row category--grid--review 1">
 
                 <?php
                 foreach ($protop4 as $pro) {
@@ -352,7 +347,7 @@
     let fillter_categories_list = document.querySelectorAll(".fillter_categories_list li")
     let fillter_list_flow_price = document.querySelectorAll(".fillter_list_flow_price input")
     let product_fillter_flow_desc = document.querySelectorAll(".product_fillter_flow_desc input")
-    let fillter_product_color = document.querySelectorAll(".fillter_product_color button")
+    let fillter_product_color = document.querySelectorAll(".fillter_product_color input")
     let product_fillter_size = document.querySelectorAll(".product_fillter_size input")
     let fillter_products_time = document.querySelectorAll(".fillter_products_time input")
 
@@ -386,41 +381,52 @@
                    </div>`
         })
     }
-    // show_products();
+    show_products();
     fillter_categories_list.forEach(item => {
         item.addEventListener("click", e => {
-            console.log(e.target)
             let id_categor = e.target.getAttribute("data-id");
 
-            let data_array = array_product.filter(item => {
+            let list = array_product.filter(item => {
 
                 return id_categor == item.category_id
             })
 
-            // show_products(data_array);
+            show_product123(listArrayPrice, listArrayDesc, list);
         })
     })
 
-    function show_product123(arr_price = []) {
-        console.log(arr_price)
-        const arrlist = array_product.map((iteam, index) => {
+    function show_product123(arr_price = [], arrDesc = [], list = array_product) {
+
+        const arrlist = list.map((iteam, index) => {
+
                 if (arr_price.length > 0) {
-                    if (iteam.price < 1000 && arr_price.includes("1") == false) {
+
+
+                    if (iteam.price < 100000 && arr_price.includes("1") == false) {
                         return console.log(arr_price)
                     }
-                    if (iteam.price > 1000 && iteam.price < 1000000 && arr_price.includes("2") == false) {
+                    if (iteam.price >= 100000 && iteam.price < 200000 && arr_price.includes("2") == false) {
                         // console.log();
                         return
                     }
-                    if (iteam.price >= 10000000 && iteam.price < 15000000 && arr_price.includes("3") == false) {
+                    if (iteam.price >= 200000 && iteam.price < 300000 && arr_price.includes("3") == false) {
                         return
                     }
-                    if (iteam.price >= 15000000 && arr_price.includes("4") == false) {
+                    if (iteam.price >= 300000 && iteam.price < 500000 && arr_price.includes("4") == false) {
+                        return
+                    }
+                    if (iteam.price >= 500000 && iteam.price < 1000000 && arr_price.includes("5") == false) {
+                        return
+                    }
+                }
+                if (arrDesc.length > 0) {
+                    if (arrDesc.includes(iteam.name) == false) {
                         return
                     }
                 }
 
-                console.log("check item ", index, iteam);
+
+                // console.log("check item ", index, iteam);
                 return ` 
                 <div class=" col l-3 m-4 c-6">
                        <div class="product__banner">
@@ -447,89 +453,42 @@
         category_grid_review.innerHTML = arrlist;
 
     }
+    let listArrayPrice = [];
+    let listArrayDesc = [];
 
-    function thuonghieudt() {
+    function loop_list() {
+        fillter_list_flow_price.forEach((product_item, inden) => {
+            product_item.addEventListener("click", function() {
+                if (this.checked) {
+                    listArrayPrice.push(this.value);
+                    // console.log("check product :", listArrayPrice)
+                    show_product123(listArrayPrice, listArrayDesc)
 
-        const thuonghieu_list = [];
-        const arr_price = [];
-        // for (let i = 0; i < thuonghieuchon.length; i++) {
-        //     if (thuonghieuchon[i].checked == true) {
-        //         thuonghieu_list.push(thuonghieuchon[i].value);
-        //     }
+                } else {
+                    listArrayPrice = listArrayPrice.filter(e => e !== this.value);
+                    show_product123(listArrayPrice, listArrayDesc)
 
-        // }
-        fillter_list_flow_price.forEach(item => {
-            item.addEventListener("change", (e) => {
-                if (e.target.checked) {
-                    arr_price.push(e.target.value);
-                    // console.log(arr_price);
-                    show_product123(arr_price);
+
+                }
+
+            })
+        })
+
+        product_fillter_flow_desc.forEach((product_item, inden) => {
+            product_item.addEventListener("click", function(e) {
+                if (this.checked) {
+
+                    listArrayDesc.push(this.value);
+                    // console.log("check product :", listArrayDesc)
+                    show_product123(listArrayPrice, listArrayDesc)
+                } else {
+                    listArrayDesc = listArrayDesc.filter(e => e !== this.value);
+                    show_product123(listArrayPrice, listArrayDesc)
+                    // console.log("check array curent", listArrayDesc)
                 }
             })
         })
 
-
     }
-    // thuonghieudt();
-
-
-    const searchProductsByPrice = (products, minPrice, maxPrice) => {
-        let arr = products.map((product) => {
-            if (product.price > minPrice && product.price < maxPrice) {
-                console.log("check product price 1", product)
-
-
-                return ` 
-                <div class=" col l-3 m-4 c-6">
-                       <div class="product__banner">
-                           <div class="product--hot__img">
-                           <a href="index.php?act=detail_product&id=${product.id}">    <img src="imageProduct/${product.avatar}" alt="">
-                           </a> </div>
-                           <div class="product__banner__name">
-                           <a href="index.php?act=detail_product&id=${product.id}">    <p>${product.name}</p></a>
-                           </div>
-                       </div>
-                       <div class="product__banner__price">
-                           <div>
-                               <p class="product__banner__price--cost"> ${Math.floor(product.price - ((product.price * product.discount) / 100))} <u>đ</u></p>
-
-                               <p class="product__banner__price--sale   product_one_price_old">${Math.floor(product.price)}<u>đ</u></p>
-                           </div>
-                           <div class="product__banner__btn--detail">
-                               <a href="index.php?act=detail_product&id=${product.id}">chi tiết</a>
-                           </div>
-                       </div>
-                   </div>`
-            }
-            // return
-        })
-
-        category_grid_review.innerHTML = arr;
-    }
-    let price_checked = document.querySelectorAll('input[name="price[]"]:checked');
-    price_checked.forEach(function(item,index){
-
-        item.onchange = (e) => {
-            if (index == 0 && e.target.value == 1 && e.target.checked) {
-                searchProductsByPrice(array_product, 100, 400000)
-    
-            } else if (index == 1 && e.target.value == 2 && e.target.checked) {
-                searchProductsByPrice(array_product, 1000, 800000)
-            }
-        }
-    })
-    fillter_list_flow_price.forEach((item, index) => {
-        item.addEventListener("change", (e) => {
-            if (e.target.checked == true) {
-                console.log(index, e.target)
-                if (index == 0 && e.target.value == 1 && e.target.checked) {
-                    searchProductsByPrice(array_product, 100, 400000)
-
-                } else if (index == 1 && e.target.value == 2 && e.target.checked) {
-                    searchProductsByPrice(array_product, 1000, 800000)
-                }
-            }
-
-        })
-    })
+    loop_list();
 </script>
