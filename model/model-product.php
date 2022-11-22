@@ -177,6 +177,39 @@ function getAllProduct($keyWord,$rowsProductAdmin)
     $sql .= " order by A.id desc limit $from,$rowsProductAdmin";
     return pdo_query($sql);
 }
+
+// Bên bảng Thêm mới đơn
+// function getProductOrderAdmin(){
+//     $sql = "SELECT `name`, `category_id`, `avatar`, `quantity`, `price`, `discount`, `status`, `hot_product`, `comment_total`, `rating_total`, `amount_views`, `created_at`, `updated_at` FROM `products` WHERE 1"
+// }
+function get_Page_Product_admin_order($keyWord,$rowsProductAdmin){
+    $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.name from products A INNER JOIN categories B ON A.category_id = B.id where A.status = 0 and A.quantity > 0 ";
+    if($keyWord != ""){
+        $sql .= " and A.name like '%$keyWord%'";
+    }
+    $sql .= " order by A.id desc";
+    $numberPage = pdo_query($sql);
+    $countPage = sizeof($numberPage) / $rowsProductAdmin;
+    return $countPage;
+}
+function getAllProduct_order($keyWord,$rowsProductAdmin)
+{
+    $countPage = get_Page_Product_admin_order($keyWord,$rowsProductAdmin);
+    if(isset($_GET['page']) &&  $_GET['page'] > 0 && $_GET['page'] <= $countPage+1 ){
+        $page = $_GET['page'];
+    }else{
+        $page = 1;
+    }
+    $from = ($page - 1) * $rowsProductAdmin;
+    $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.name from products A INNER JOIN categories B ON A.category_id = B.id where A.status = 0 and A.quantity > 0 ";
+    if($keyWord != ""){
+        $sql .= " and A.name like '%$keyWord%'";
+    }
+    $sql .= " order by A.id desc limit $from,$rowsProductAdmin";
+    return pdo_query($sql);
+}
+// Bên bảng Thêm mới đơn
+
 // Panigation In PHP Admin
 
 

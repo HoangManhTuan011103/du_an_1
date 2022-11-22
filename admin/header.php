@@ -94,8 +94,8 @@
                             <a href="comment.html" class="canHidden">Quản lý bình luận</a>
                         </li>
                         <li>
-                            <a href="statistical.html"><i class="fa-solid fa-database"></i></a>
-                            <a href="statistical.html" class="canHidden">Thống kê báo cáo</a>
+                            <a href="index.php?actAdmin=statisticals"><i class="fa-solid fa-database"></i></a>
+                            <a href="index.php?actAdmin=statisticals" class="canHidden">Thống kê báo cáo</a>
                         </li>
                         <li>
                             <a href=""><i class="fa-solid fa-arrow-right-from-bracket"></i></a>

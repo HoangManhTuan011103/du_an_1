@@ -14,11 +14,19 @@
                 </div>
             </div>
             <div class="contentManager--product__footer">
+                <div class="contentManager--product__footer--addProduct">
+                    <a href="index.php?actAdmin=addOrderAdmin"><button><i class="fa-solid fa-plus"></i> Thêm đơn hàng mới</button></a>
+                </div>
                 <?php if(isset($notification)): ?>
                     <div class="alert alert-success">
                         <?= $notification ?>
                     </div>
                 <?php endif; ?>
+                <?php if (isset($_COOKIE['successOrder'])) : ?>
+                    <div class="alert alert-success">
+                        <?= $_COOKIE['successOrder'] ?>
+                    </div>
+                <?php endif ?>
                 <div class="contentManager--product__footer--table">
                     <table border="1" class="orderAdminTable">
                         <thead>
@@ -49,8 +57,10 @@
                                             <button class="status-isset">Đơn hàng mới</button>
                                         <?php elseif($value['status'] == 1): ?>
                                             <button class="status-isset" style="background-color: #24448f;">Đơn đã duyệt</button>
-                                            
+                                        <?php elseif($value['status'] == 6): ?>
+                                            <button class="status-isset" style="background-color: #DD4B39;">Đã thanh toán</button>
                                         <?php endif; ?>
+                                        
                                         <?php if($value['status'] == 0): ?>
                                             <div class="tick--Order">
                                                 <p style="color: #ffffff;">Duyệt đơn mới</p>
@@ -76,6 +86,10 @@
                                         <a href="index.php?actAdmin=detailOrder&&id=<?= $value['id'] ?>"><button class="detailBill--see"><i class="fa-solid fa-eye" style="padding-right: 5px;" ></i>Xem chi tiết</button></a>
                                     </td>
                                     <td class="btn-action">
+                                        <?php if($value['statusUser'] == 3): ?>
+                                            <a href="index.php?actAdmin=editOrderAdmin-WithUser&&id=<?= $value['id'] ?>" class="update"><button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button></a>
+                                        <?php endif; ?>
+
                                         <a onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng DH00<?= $value['id'] ?> không')" href="index.php?actAdmin=deleteOrder&id=<?= $value['id'] ?>"><button><i class="fa-sharp fa-solid fa-trash"></i></button></a>
                                     </td>
                                 </tr>

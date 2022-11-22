@@ -302,6 +302,11 @@
 
         btn_product_quantity_input.value++;
     });
+    btn_product_quantity_input.addEventListener('input', () => {
+        if (btn_product_quantity_input.value <= 0 || btn_product_quantity_input.value != Number(btn_product_quantity_input.value)) {
+            btn_product_quantity_input.value = 1;
+        }
+    });
     btn_decre.addEventListener("click", () => {
         if (btn_product_quantity_input.value == 1) {
 

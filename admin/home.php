@@ -2,13 +2,19 @@
             <div class="contentManager--header">
                 <div class="smallStatistics">
                     <h2 class="numberStatistics">
-                        2
+                        <?php
+                            $totalOrder = 0;
+                            foreach($listBuyOnDay as $value){
+                                $totalOrder += $value['kh_mua'];
+                            }
+                        ?>
+                        <?= $totalOrder ?>
                     </h2>
                     <p class="nameStatistics">
                         Đơn hàng giao dịch trong ngày
                     </p>
                     <div class="viewDetailStatistics">
-                        Xem chi tiết<i class="fa-sharp fa-solid fa-gear"></i>
+                      <a href="index.php?actAdmin=statisticals" style="color: #ffffff;"> Xem chi tiết<i class="fa-sharp fa-solid fa-gear"></i></a>
                     </div>
                 </div>
                 <div class="smallStatistics smallStatisticsGreen">
@@ -54,52 +60,33 @@
                 </div>
                 <div class="contentManager--footer__right ">
                     <div class="title ">
-                        <h2>Sản phẩm nổi bật</h2>
-                        <div class="iconAction ">
-                            <i class="fa-solid fa-minus " style="margin-right: 15px; "></i>
-                            <i class="fa-solid fa-xmark "></i>
-                        </div>
+                        <h2>Sản phẩm bán chạy nhất: SP00<?= $bestSale['id'] ?></h2>
+                        <h2 style="padding-top: 10px;">Số lượng bán được: <?= $bestSale['quantity'] ?></h2>
                     </div>
                     <div class="tableProduct ">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Mã SP</th>
-                                    <th>Tên sản phẩm</th>
-                                    <th>Số lượng</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>SP001</td>
-                                    <td>Áo thun co dãn thể thao Adidas</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>SP002</td>
-                                    <td>Áo thun co dãn thể thao Nike</td>
-                                    <td>13</td>
-                                </tr>
-                                <tr>
-                                    <td>SP003</td>
-                                    <td>Áo thun co dãn thể thao Puma</td>
-                                    <td>14</td>
-                                </tr>
-                                <tr>
-                                    <td>SP004</td>
-                                    <td>Áo thun co dãn thể thao </td>
-                                    <td>15</td>
-                                </tr>
-                                <tr>
-                                    <td>SP005</td>
-                                    <td>Áo thun co dãn thể thao </td>
-                                    <td>15</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <?php
+                            $imagePath = "../imageProduct/" . $bestSale['avatar'];
+                            $image = "<img src='" . $imagePath . "' alt='' width='200px' >";
+                        ?>
+                        <div class="image">
+                            <?= $image  ?>
+                        </div>
+                        <div class="infor">
+                            <div class="title--inforProduct">
+                                <h2 style="color: #ffffff;"><?= $bestSale['name'] ?></h2>
+                            </div>
+                            <div class="price--inforProduct">
+                                <div class="price--inforProduct__discount">
+                                    <p style="color: #ffffff;"><?= number_format($bestSale['price_product'])."đ" ?></p>
+                                </div>
+                                <div class="price--inforProduct__root">
+                                    <p style="color: #ffffff;"><?= number_format($bestSale['price'])."đ"  ?></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="btn--seeProduct ">
-                        <a href=" "><button>Xem tất cả sản phẩm nổi bật</button></a>
+                        <a href=" "><button>Xem chi tiết sản phẩm</button></a>
                     </div>
                 </div>
             </div>

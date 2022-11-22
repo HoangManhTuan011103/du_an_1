@@ -293,7 +293,7 @@ if (isset($_GET['act'])) {
                         $errors['address'] = "Bạn phải nhập địa chỉ";
                     }
                     if (!$errors) {
-                        $idOrder = insertToOrder($id, $payWhen, $totalPricePay, $note, $address,$dateToInt);
+                        $idOrder = insertToOrderClient($id, $payWhen, $totalPricePay, $note, $address,$dateToInt);
                         foreach ($_SESSION['mycart'] as $value) {
                             insertToOrderDetail($idOrder, $value['id'], $value['use_quantity_buy'], $value['giagiam']);
                         }
