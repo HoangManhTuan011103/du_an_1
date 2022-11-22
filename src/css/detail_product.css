@@ -309,7 +309,7 @@ a {
 
 .one_product_list--item-detail-img {
     width: 85px;
-    height: 85px;
+    min-height: 75px;
 }
 
 .one_product_list--item-detail-nameproduct {

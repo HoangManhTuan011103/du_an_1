@@ -39,6 +39,7 @@ if (isset($_GET['act'])) {
             }
             $prolist = loadall_product($kyw, $idcategori);
             $namecategory = load_name_category($idcategori);
+            
             require_once "view/showProducts.php";
             break;
         case 'detail_product':

@@ -219,16 +219,16 @@
                 </h3>
                 <ul class="fillter_products_time">
                     <li>
-                        <input type="checkbox" name="" id="">Hàng mới về
+                        <input type="checkbox" value="new" id="">Hàng mới về
                     </li>
                     <li>
-                        <input type="checkbox" name="" id="">Hàng cũ nhất
+                        <input type="checkbox" value="old" id="">Hàng cũ nhất
                     </li>
                     <li>
-                        <input type="checkbox" name="" id="">Giá tăng dần
+                        <input type="checkbox" value="price_desc" id="">Giá tăng dần
                     </li>
                     <li>
-                        <input type="checkbox" name="" id="">Giá giảm dần
+                        <input type="checkbox" value="price_asc" id="">Giá giảm dần
                     </li>
 
                 </ul>
@@ -299,36 +299,36 @@
             </div> -->
             <!-- bạn thích -->
             <h2 class="products_all">Có thể bạn thích</h2>
-            <div class="row category--grid--review 1">
+            <div class="row category--grid--review helo">
 
                 <?php
-                foreach ($protop4 as $pro) {
-                    extract($pro);
-                    $hinh = $image_path . $avatar;
-                    $linkpro = "index.php?act=detail_product&id=" . $id;
-                    $pricepricem = ($price * $discount) / 100;
-                    // $pricesale = $price - $pricepricem;
-                    echo '<div class=" col l-3 m-4 c-6">
-                        <div class="product__banner">
-                            <div class="product--hot__img">
-                            <a href="' . $linkpro . '"> <img src="' . $hinh . '" alt=""></a>
-                            </div>
-                            <div class="product__banner__name">
-                            <a href="' . $linkpro . '">   <p>' . $name . '</p></a>
-                            </div>
-                        </div>
-                        <div class="product__banner__price">
-                            <div>
-                                <p class="product__banner__price--cost">' . number_format($price - $pricepricem) . '<u>đ</u></p>
+                // foreach ($protop4 as $pro) {
+                //     extract($pro);
+                //     $hinh = $image_path . $avatar;
+                //     $linkpro = "index.php?act=detail_product&id=" . $id;
+                //     $pricepricem = ($price * $discount) / 100;
+                //     // $pricesale = $price - $pricepricem;
+                //     echo '<div class=" col l-3 m-4 c-6">
+                //         <div class="product__banner">
+                //             <div class="product--hot__img">
+                //             <a href="' . $linkpro . '"> <img src="' . $hinh . '" alt=""></a>
+                //             </div>
+                //             <div class="product__banner__name">
+                //             <a href="' . $linkpro . '">   <p>' . $name . '</p></a>
+                //             </div>
+                //         </div>
+                //         <div class="product__banner__price">
+                //             <div>
+                //                 <p class="product__banner__price--cost">' . number_format($price - $pricepricem) . '<u>đ</u></p>
 
-                                <p class="product__banner__price--sale product_one_price_old">' . number_format($price) . '<u>đ</u></p>
-                            </div>
-                            <div class="product__banner__btn--detail">
-                                <a href="' . $linkpro . '">chi tiết</a>
-                            </div>
-                        </div>
-                    </div>';
-                }
+                //                 <p class="product__banner__price--sale product_one_price_old">' . number_format($price) . '<u>đ</u></p>
+                //             </div>
+                //             <div class="product__banner__btn--detail">
+                //                 <a href="' . $linkpro . '">chi tiết</a>
+                //             </div>
+                //         </div>
+                //     </div>';
+                // }
                 ?>
 
 
@@ -341,9 +341,11 @@
 
 
 <script>
-    console.log(JSON.parse('<?php echo json_encode($prolist); ?>'));
+    console.log(JSON.parse('<?php echo json_encode($protop4); ?>'));
     let array_product = JSON.parse('<?php echo json_encode($prolist); ?>');
+    let array_product_2 = JSON.parse('<?php echo json_encode($protop4); ?>');
     let category_grid_review = document.querySelector(".category--grid--review");
+    let category_grid_review_ = document.querySelector(".category--grid--review.helo");
     let fillter_categories_list = document.querySelectorAll(".fillter_categories_list li")
     let fillter_list_flow_price = document.querySelectorAll(".fillter_list_flow_price input")
     let product_fillter_flow_desc = document.querySelectorAll(".product_fillter_flow_desc input")
@@ -353,7 +355,7 @@
 
 
 
-
+    show_products(array_product_2,category_grid_review_);
     function show_products(list_product = array_product, show_position = category_grid_review) {
         show_position.innerHTML = "";
         list_product.forEach(item => {
@@ -395,7 +397,7 @@
         })
     })
 
-    function show_product123(arr_price = [], arrDesc = [], list = array_product) {
+    function show_product123(arr_price = [], arrDesc = [], listArrayTime = [], list = array_product) {
 
         const arrlist = list.map((iteam, index) => {
 
@@ -424,7 +426,7 @@
                         return
                     }
                 }
-
+              
 
                 // console.log("check item ", index, iteam);
                 return ` 
@@ -455,13 +457,14 @@
     }
     let listArrayPrice = [];
     let listArrayDesc = [];
+    let listArrayTime = [];
 
     function loop_list() {
         fillter_list_flow_price.forEach((product_item, inden) => {
             product_item.addEventListener("click", function() {
                 if (this.checked) {
                     listArrayPrice.push(this.value);
-                    // console.log("check product :", listArrayPrice)
+
                     show_product123(listArrayPrice, listArrayDesc)
 
                 } else {
@@ -479,12 +482,26 @@
                 if (this.checked) {
 
                     listArrayDesc.push(this.value);
-                    // console.log("check product :", listArrayDesc)
+
                     show_product123(listArrayPrice, listArrayDesc)
                 } else {
                     listArrayDesc = listArrayDesc.filter(e => e !== this.value);
                     show_product123(listArrayPrice, listArrayDesc)
                     // console.log("check array curent", listArrayDesc)
+                }
+            })
+        })
+        fillter_products_time.forEach((product_item, inden) => {
+            product_item.addEventListener("click", function(e) {
+                if (this.checked) {
+
+                    listArrayTime.push(this.value);
+
+                    show_product123(listArrayPrice, listArrayDesc, listArrayTime)
+                } else {
+                    listArrayTime = listArrayTime.filter(e => e !== this.value);
+                    show_product123(listArrayPrice, listArrayDesc, listArrayTime)
+                    console.log("check array curent", listArrayTime)
                 }
             })
         })

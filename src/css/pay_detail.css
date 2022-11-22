@@ -5,12 +5,12 @@
     font-family: 'Roboto', sans-serif;
 }
 
-img {
-    width: 100%;
-}
-
 a {
     text-decoration: none;
+}
+
+.all_detail_products img {
+    width: 100%;
 }
 
 .pay_detai_left {
