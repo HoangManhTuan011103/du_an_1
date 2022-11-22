@@ -24,7 +24,6 @@
                     </div>
                     <div class="nav_editInfo-user">
                         <ul>
-
                             <?php if (isset($_GET['act'])) {
                                 $actc = $_GET['act'];
                                 switch ($actc) {

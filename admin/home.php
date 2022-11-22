@@ -77,10 +77,11 @@
                             </div>
                             <div class="price--inforProduct">
                                 <div class="price--inforProduct__discount">
-                                    <p style="color: #ffffff;"><?= number_format($bestSale['price_product'])."đ" ?></p>
+                                    <p style="color: #ffffff;"><?= number_format($bestSale['price'])."đ"  ?></p>
                                 </div>
                                 <div class="price--inforProduct__root">
-                                    <p style="color: #ffffff;"><?= number_format($bestSale['price'])."đ"  ?></p>
+                                  
+                                    <p style="color: #ffffff;"><?= number_format($bestSale['price'] - ($bestSale['price'] * $bestSale['discount'])/100 )."đ" ?></p>
                                 </div>
                             </div>
                         </div>

@@ -16,7 +16,10 @@
     };
     // Sản phẩm bán chạy nhất
     function bestProductSales(){
-        $sql = "select COUNT(B.product_id) as 'quantity', A.id, A.name, B.price_product, A.price, A.avatar FROM `products` A INNER JOIN `orders_detail` B ON A.id = B.product_id GROUP BY B.product_id ORDER BY COUNT(B.product_id) DESC LIMIT 0,1";
+        $sql = "select COUNT(B.product_id) as 'quantity', A.id, A.name, A.discount, A.price, A.avatar 
+        FROM `products` A INNER JOIN `orders_detail` B ON A.id = B.product_id 
+        GROUP BY B.product_id 
+        ORDER BY COUNT(B.product_id) DESC LIMIT 0,1";
         return pdo_query_one($sql);
     }
     // Số lượng đơn theo tuần
