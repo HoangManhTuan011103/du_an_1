@@ -41,7 +41,10 @@ if (isset($_GET['act'])) {
             } else {
                 $idcategori = 0;
             }
-            $prolist = loadall_product($kyw, $idcategori);
+
+            $prolist = loadall_product($kyw,$idcategori);
+            $prolist1 = loadall_product_fromproducs();
+
             $namecategory = load_name_category($idcategori);
            
             require_once "view/showProducts.php";
