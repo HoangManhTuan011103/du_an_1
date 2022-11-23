@@ -29,7 +29,7 @@
                 <div class="col l-6 image_hover_detail_scole">
                   
                     <a href="./imageProduct/<?= $avatar ?>" class="MagicZoom" id="product_change_images" data-options="cssClass: thumbnails-style-shaded;">
-                        <img src="./imageProduct/<?= $avatar ?>" style="max-width: 100% !important; max-height: 100% !important;"/>
+                        <img src="./imageProduct/<?= $avatar ?>"/>
                     </a>
                 </div>
                 <div class="col l-6">
@@ -332,17 +332,6 @@
                 panes.classList.add("active");
             }
         });
-        // document.on("blur", function() {
-        //     console.log("a")
-        // })
-        // document.querySelectorAll("a").forEach(item => {
-        //     if (item.hasAttribute("href")) {
-        //         // href="http://www.magictoolbox.com/magiczoomplus/"
-        //         console.log(item.getAttribute("href"));
-        //         // item.setAttribute("href","");
-
-        //     } // console.log(item.hasAttribute("http://www.magictoolbox.com/magiczoomplus/")) 
-        //     // item.href=='http://www.magictoolbox.com/magiczoomplus/'?"":console.log("long")
-        // })
+        
     })
 </script>
