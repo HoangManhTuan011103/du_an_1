@@ -1,0 +1,26 @@
+
+.form-comment ul{ 
+    list-style: none;
+}
+
+.form-comment__avatar{
+    display: inline-flex;
+   
+}
+.form-comment__avatar p{
+    padding-left: 20px;
+}
+.form-comment__content {
+    padding-left: 50px;
+    margin: 0px;
+}
+.form-comment__avatar img{
+    border: 1px solid black;
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    width: 50px;
+}
+.form-comment__content .id_comment{
+    color: brown;
+}
