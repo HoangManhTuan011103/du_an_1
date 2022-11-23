@@ -212,9 +212,11 @@
                             <p>Địa chỉ:</p>
                             <input type="text" name="addressDirect">
                         </div>
-                        <div class="btn__action btn__action--addProduct">
-                            <button type="submit" class="btn--addProduct" name="btn--addProduct">Thêm đơn hàng</button>
-                        </div>
+                        <?php if(!empty($_SESSION['orderAdmin'])): ?>
+                            <div class="btn__action btn__action--addProduct">
+                                <button type="submit" class="btn--addProduct" name="btn--addProduct">Thêm đơn hàng</button>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </form>
             </div>

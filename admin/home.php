@@ -56,7 +56,7 @@
                     <div class="title">
                         <h2 style="color: #ffffff; padding-bottom: 20px; text-align: center; font-size: 28px;">Biểu đồ thống kê tổng quan</h2>
                     </div>
-                    <canvas id="canvas"></canvas>
+                    <canvas id="canvas5"></canvas>
                 </div>
                 <div class="contentManager--footer__right ">
                     <div class="title ">
@@ -93,8 +93,8 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js "></script>
-    <script src="../src/js/script.js"></script>
+    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.umd.min.js"></script>
+    <script type="module" src="../src/js/script.js"></script>
     <script src="../src/js/animation.js"></script>
 </body>
 

@@ -147,7 +147,7 @@
                             <th>Thao tác</th>
                         </tr>
 
-                        <?php foreach ($_SESSION['updateOrdersAdmin'] as $id => $value) : ?>
+                        <?php foreach ($listOrderedAdmin as $id => $value) : ?>
                             <?php
                                 $avatar = isset($value['avatar']) ? $value['avatar'] : $value[2];
                                 $imagePath = "../imageProduct/" .  $avatar;

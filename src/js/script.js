@@ -29,5 +29,5 @@ const config = {
     type: 'bar',
     data: data,
 };
-const canvas = document.getElementById('canvas');
+const canvas = document.getElementById('canvas5');
 const chart = new Chart(canvas, config);

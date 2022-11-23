@@ -324,8 +324,7 @@ if (isset($_GET['actAdmin'])) {
             if ($id > 0 && is_numeric($id)) {
                 $inforUserDirect = getInforOrderDirect($id);
                 
-                $_SESSION['updateOrdersAdmin'] = getOrderDirectU($id);
-                
+                $listOrderedAdmin = getOrderDirectU($id);
                 if (isset($_POST['btn-search--Product'])) {
                     $keyWord = $_POST['keyWord'];
                 } else {
@@ -340,22 +339,22 @@ if (isset($_GET['actAdmin'])) {
                     $imageProductOrder = $_POST['imageProductOrder'];
 
                     $orderEmty = [$idProductOrder, $nameProductOrder, $imageProductOrder, $priceProductOrder, $quantityProductOrder];
-                    var_dump($_SESSION['updateOrdersAdmin']);
-                    foreach ($_SESSION['updateOrdersAdmin'] as $key => $item) {
+                    var_dump($listOrderedAdmin);
+                    foreach ($listOrderedAdmin as $key => $item) {
                         if ($idProductOrder == $item['product_id'] || $idProductOrder == $item[0] ) {
                             $temp = $key;
                             break;
                         }
                     }
                     if ($temp == -1) {
-                        array_push($_SESSION['updateOrdersAdmin'], $orderEmty);
+                        array_push($listOrderedAdmin, $orderEmty);
                     } else {
                         if(isset($value[4])){
                             $quantity = [4];
                         }else{
                             $quantity = ['quantity'];
                         }
-                        $_SESSION['updateOrdersAdmin'][$temp].$quantity += $quantityProductOrder;
+                        $listOrderedAdmin[$temp].$quantity += $quantityProductOrder;
                     }
                 }
                 if (isset($_GET['idRemoveOrder'])) {

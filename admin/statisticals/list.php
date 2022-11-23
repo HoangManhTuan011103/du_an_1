@@ -110,7 +110,7 @@
     </div>
 </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.umd.min.js"></script>
 <script>
     
     const data3 = {
@@ -132,7 +132,7 @@
             ?>
         ],
         datasets: [{
-            label: 'My First Dataset',
+            label: 'Số lượng',
             data: <?php 
                 $total = count($getToTalProductChart);
                 $i = 1;

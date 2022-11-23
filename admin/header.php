@@ -28,8 +28,8 @@
                 <div class="titlePageAdmin">
                     <div class="logoBrand">
                         <!-- <a href=""><img src="src/image/FSport.png" alt=""></a> -->
-                        <a href=""><img src="../src/imageAdmin/FSport1.png" alt=""></a>
-                        <a href="" class="hiddenImage"><img src="../src/imageAdmin/FSport2.png" alt=""></a>
+                        <a href="../index.php"><img src="../src/imageAdmin/FSport1.png" alt=""></a>
+                        <a href="../index.php" class="hiddenImage"><img src="../src/imageAdmin/FSport2.png" alt=""></a>
                     </div>
                 </div>
                 <div class="spaceLogoBrand">
