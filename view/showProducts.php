@@ -11,7 +11,9 @@
 
 
     <h2 class="products_all red_word">
-        <?= $namecategory ?>
+        <?php
+        //  $namecategory 
+        ?>
     </h2>
     <div class="row">
         <div class="col l-3">
@@ -34,7 +36,7 @@
                 </div>
             </div>
 
-          
+
 
             <div class="fillter_product_flow_category">
                 <p class="product_categories_name">
@@ -298,31 +300,39 @@
 
 
 <script type="text/javascript">
-    let arr_prodcut1 = <?php echo json_encode($prolist); ?>;
-    let array_product_2 = <?php echo json_encode($protop4); ?>;
-    let fillter_price_asc = <?php echo json_encode($fillter_price_asc); ?>;
-    let fillter_create_at_asc = <?php echo json_encode($fillter_create_at_asc); ?>;
-    let fillter_created_at_desc = <?php echo json_encode($fillter_created_at_desc); ?>;
-    let fillter_price_desc = <?php echo json_encode($fillter_price_desc); ?>;
+    document.addEventListener('DOMContentLoaded', function() {
 
 
-    let category_grid_review = document.querySelector(".category--grid--review");
-    let category_grid_review_ = document.querySelector(".category--grid--review.helo");
-    let fillter_categories_list = document.querySelectorAll(".fillter_categories_list li")
-    let fillter_list_flow_price = document.querySelectorAll(".fillter_list_flow_price input")
-    let product_fillter_flow_desc = document.querySelectorAll(".product_fillter_flow_desc input")
-    let fillter_product_color = document.querySelectorAll(".fillter_product_color input")
-    let product_fillter_size = document.querySelectorAll(".product_fillter_size input")
-    let fillter_products_time = document.querySelectorAll(".fillter_products_time input")
+        let arr_prodcut1 = <?php echo json_encode($prolist); ?>;
+        let array_product_2 = <?php echo json_encode($protop4); ?>;
+        let fillter_price_asc = <?php echo json_encode($fillter_price_asc); ?>;
+        let fillter_create_at_asc = <?php echo json_encode($fillter_create_at_asc); ?>;
+        let fillter_created_at_desc = <?php echo json_encode($fillter_created_at_desc); ?>;
+        let fillter_price_desc = <?php echo json_encode($fillter_price_desc); ?>;
 
 
-    show_products(array_product_2, category_grid_review_);
+        let category_grid_review = document.querySelector(".category--grid--review");
+        let category_grid_review_ = document.querySelector(".category--grid--review.helo");
+        let fillter_categories_list = document.querySelectorAll(".fillter_categories_list li")
+        let li_first_one = document.querySelector(".fillter_categories_list>li")
+        li_first_one.classList.add('active')
+        let fillter_list_flow_price = document.querySelectorAll(".fillter_list_flow_price input")
+        let product_fillter_flow_desc = document.querySelectorAll(".product_fillter_flow_desc input")
+        let fillter_product_color = document.querySelectorAll(".fillter_product_color input")
+        let product_fillter_size = document.querySelectorAll(".product_fillter_size input")
+        let fillter_products_time = document.querySelectorAll(".fillter_products_time input")
+        let show_title_cate = document.querySelector(".products_all red_word");
 
-    function show_products(list_product = arr_prodcut1, show_position = category_grid_review) {
-        show_position.innerHTML = "";
-        list_product.forEach(item => {
-            // console.log("arra item ", item)
-            show_position.innerHTML += `
+        const params = new URL(location.href).searchParams;
+        let id_cate_url = params.get('id');
+        // console.log(params.get('id'));
+        show_products(array_product_2, category_grid_review_);
+
+        function show_products(list_product = arr_prodcut1, show_position = category_grid_review) {
+            show_position.innerHTML = "";
+            list_product.forEach(item => {
+                // console.log("arra item ", item)
+                show_position.innerHTML += `
                     <div class=" col l-3 m-4 c-6">
                        <div class="product__banner">
                            <div class="product--hot__img">
@@ -343,61 +353,90 @@
                            </div>
                        </div>
                    </div>`
-        })
-    }
-    show_products();
-    fillter_categories_list.forEach(elemt => {
-        elemt.style.cursor = "pointer"
+            })
+        }
+        show_products();
+        fillter_categories_list.forEach(elemt => {
+            elemt.style.cursor = "pointer"
+            let id_categor1 = document.querySelectorAll(".fillter_categories_list li");
 
-        elemt.addEventListener("click", (e) => {
-            let id_categor = e.target.getAttribute("data-id");
-            const array = [];
-            arr_prodcut1.forEach(iteam => {
-                if (iteam.category_id == id_categor) {
-                    array.push(iteam)
+            id_categor1.forEach((item, index) => {
+                if (id_cate_url > 0) {
+
+                    if (item.getAttribute("data-id") == id_cate_url) {
+                        document.querySelector(".fillter_categories_list>li.active").classList.remove("active");
+                        item.classList.add('active');
+                    }
+                    elemt.addEventListener("click", (e) => {
+                        document.querySelector(".fillter_categories_list>li.active").classList.remove("active");
+
+                        e.target.classList.add("active");
+                        let id_categor = e.target.getAttribute("data-id");
+                        const array = [];
+
+                        arr_prodcut1.forEach(iteam => {
+                            if (iteam.category_id == id_categor) {
+                                array.push(iteam)
+                            }
+                            // return id_categor == iteam.category_id
+                        })
+
+                        show_product123(listArrayPrice, listArrayDesc, array)
+                    })
                 }
-                // return id_categor == iteam.category_id
             })
 
-            show_product123(listArrayPrice, listArrayDesc, array)
+            elemt.addEventListener("click", (e) => {
+                e.target.classList.add("active");
+                let id_categor = e.target.getAttribute("data-id");
+                const array = [];
+
+                arr_prodcut1.forEach(iteam => {
+                    if (iteam.category_id == id_categor) {
+                        array.push(iteam)
+                    }
+                    // return id_categor == iteam.category_id
+                })
+
+                show_product123(listArrayPrice, listArrayDesc, array)
+            })
         })
-    })
 
 
 
-    function show_product123(arr_price = [], arrDesc = [], list_arr = arr_prodcut1) {
+        function show_product123(arr_price = [], arrDesc = [], list_arr = arr_prodcut1) {
 
-        const arrlist = list_arr.map((iteam, index) => {
+            const arrlist = list_arr.map((iteam, index) => {
 
-                let prices_price = Number(iteam.price);
+                    let prices_price = Number(iteam.price);
 
-                if (arr_price.length > 0) {
+                    if (arr_price.length > 0) {
 
 
-                    if (prices_price < 100000 && arr_price.includes("1") == false) {
-                        return
+                        if (prices_price < 100000 && arr_price.includes("1") == false) {
+                            return
+                        }
+                        if (prices_price >= 100000 && prices_price < 200000 && arr_price.includes("2") == false) {
+                            return
+                        }
+                        if (prices_price >= 200000 && prices_price < 300000 && arr_price.includes("3") == false) {
+                            return
+                        }
+                        if (prices_price >= 300000 && prices_price < 500000 && arr_price.includes("4") == false) {
+                            return
+                        }
+                        if (prices_price >= 500000 && prices_price < 1000000 && arr_price.includes("5") == false) {
+                            return
+                        }
                     }
-                    if (prices_price >= 100000 && prices_price < 200000 && arr_price.includes("2") == false) {
-                        return
+                    if (arrDesc.length > 0) {
+                        if (arrDesc.includes(iteam.name) == false) {
+                            return
+                        }
                     }
-                    if (prices_price >= 200000 && prices_price < 300000 && arr_price.includes("3") == false) {
-                        return
-                    }
-                    if (prices_price >= 300000 && prices_price < 500000 && arr_price.includes("4") == false) {
-                        return
-                    }
-                    if (prices_price >= 500000 && prices_price < 1000000 && arr_price.includes("5") == false) {
-                        return
-                    }
-                }
-                if (arrDesc.length > 0) {
-                    if (arrDesc.includes(iteam.name) == false) {
-                        return
-                    }
-                }
 
 
-                return ` 
+                    return ` 
                 <div class=" col l-3 m-4 c-6">
                        <div class="product__banner">
                            <div class="product--hot__img">
@@ -418,56 +457,58 @@
                            </div>
                        </div>
                    </div>`
+                })
+                .join("");
+            category_grid_review.innerHTML = arrlist;
+
+        }
+        let listArrayPrice = [];
+        let listArrayDesc = [];
+
+        function loop_list() {
+            fillter_list_flow_price.forEach((product_item, inden) => {
+                product_item.addEventListener("click", function() {
+                    if (this.checked) {
+                        listArrayPrice.push(this.value);
+                    } else {
+                        listArrayPrice = listArrayPrice.filter(e => e !== this.value);
+                    }
+                    show_product123(listArrayPrice, listArrayDesc)
+                })
             })
-            .join("");
-        category_grid_review.innerHTML = arrlist;
 
-    }
-    let listArrayPrice = [];
-    let listArrayDesc = [];
-
-    function loop_list() {
-        fillter_list_flow_price.forEach((product_item, inden) => {
-            product_item.addEventListener("click", function() {
-                if (this.checked) {
-                    listArrayPrice.push(this.value);
-                } else {
-                    listArrayPrice = listArrayPrice.filter(e => e !== this.value);
-                }
-                show_product123(listArrayPrice, listArrayDesc)
+            product_fillter_flow_desc.forEach((product_item, inden) => {
+                product_item.addEventListener("click", function(e) {
+                    if (this.checked) {
+                        listArrayDesc.push(this.value);
+                    } else {
+                        listArrayDesc = listArrayDesc.filter(e => e !== this.value);
+                        console.log("check array curent", listArrayDesc)
+                    }
+                    show_product123(listArrayPrice, listArrayDesc)
+                })
             })
-        })
 
-        product_fillter_flow_desc.forEach((product_item, inden) => {
+        }
+        fillter_products_time.forEach((product_item, inden) => {
             product_item.addEventListener("click", function(e) {
+
                 if (this.checked) {
-                    listArrayDesc.push(this.value);
-                } else {
-                    listArrayDesc = listArrayDesc.filter(e => e !== this.value);
-                    console.log("check array curent", listArrayDesc)
+                    if (this.value == "price_desc") {
+                        show_product123(listArrayPrice, listArrayDesc, fillter_price_asc)
+                    }
+                    if (this.value == "price_asc") {
+                        show_product123(listArrayPrice, listArrayDesc, fillter_price_desc)
+                    }
+                    if (this.value == "old") {
+                        show_product123(listArrayPrice, listArrayDesc, fillter_create_at_asc)
+                    }
+                    if (this.value == "new") {
+                        show_product123(listArrayPrice, listArrayDesc, fillter_created_at_desc)
+                    }
                 }
-                show_product123(listArrayPrice, listArrayDesc)
             })
         })
-
-    }
-    fillter_products_time.forEach((product_item, inden) => {
-        product_item.addEventListener("click", function(e) {
-            if (this.checked) {
-                if (this.value == "price_desc") {
-                    show_product123(listArrayPrice, listArrayDesc, fillter_price_asc)
-                }
-                if (this.value == "price_asc") {
-                    show_product123(listArrayPrice, listArrayDesc, fillter_price_desc)
-                }
-                if (this.value == "old") {
-                    show_product123(listArrayPrice, listArrayDesc, fillter_create_at_asc)
-                }
-                if (this.value == "new") {
-                    show_product123(listArrayPrice, listArrayDesc, fillter_created_at_desc)
-                }
-            }
-        })
+        loop_list();
     })
-    loop_list();
 </script>

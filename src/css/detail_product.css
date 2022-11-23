@@ -2,8 +2,13 @@ a {
     text-decoration: none;
     color: #282828;
 }
-
-
+.fillter_categories_list li.active{
+    color: #ff2d37;
+}
+.image_hover_detail_scole img{
+    width: 100% !important;
+    height: 100% !important;
+}
 /* path router */
 
 .product_title_path {
