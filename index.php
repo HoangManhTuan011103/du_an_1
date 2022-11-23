@@ -21,6 +21,10 @@ if (!isset($_SESSION['mycart'])) {
     $dsdm= loadall_category();
     $load2dm = load2_category();
     $load3dm = load3_category();
+    $fillter_price_desc=fillter_price_desc();
+    $fillter_created_at_desc=fillter_created_at_desc();
+    $fillter_create_at_asc=fillter_create_at_asc();
+    $fillter_price_asc=fillter_price_asc();
 require_once "view/header.php";
 if (isset($_GET['act'])) {
     $actAdmin = $_GET['act'];
@@ -40,7 +44,7 @@ if (isset($_GET['act'])) {
             }
             $prolist = loadall_product($kyw,$idcategori);
             $namecategory = load_name_category($idcategori);
-            
+           
             require_once "view/showProducts.php";
             break;
         case 'detail_product':

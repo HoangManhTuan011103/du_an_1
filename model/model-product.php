@@ -53,7 +53,7 @@ function selectAllImageProductFlowCategory($id_cagtegory)
 function deleteAllImageProductFlowCategory($id_cagtegory)
 {
 
-    $convert_int= (int)$id_cagtegory;
+    $convert_int = (int)$id_cagtegory;
     $id =  selectAllImageProductFlowCategory($convert_int);
     foreach ($id as $value) {
         extract($value);
@@ -62,81 +62,92 @@ function deleteAllImageProductFlowCategory($id_cagtegory)
     }
 }
 // Update product total in category
-function getIdCategoryUpdateCount($id){
+function getIdCategoryUpdateCount($id)
+{
     $sql = "SELECT B.`id` FROM products A INNER JOIN categories B ON A.category_id=B.id WHERE A.id=$id";
     return pdo_query_value($sql);
 }
-function countProductFollowCat($id){
+function countProductFollowCat($id)
+{
     $sql = "UPDATE `categories` SET `total_product`=`total_product`+1 WHERE id=$id";
     pdo_execute($sql);
 }
-function reduceProductFollowCat($id){
+function reduceProductFollowCat($id)
+{
     $sql = "UPDATE `categories` SET `total_product`=`total_product`-1 WHERE id=$id";
     pdo_execute($sql);
 }
-function getTotalProductCat($idCategory){
+function getTotalProductCat($idCategory)
+{
     $sql = "SELECT COUNT(B.id) as 'countProduct' FROM `categories` A INNER JOIN `products` B ON A.id=B.category_id WHERE A.id = $idCategory";
     return pdo_query_one($sql);
 }
-function getTotalProductCat2($idCategory){
+function getTotalProductCat2($idCategory)
+{
     $sql = "SELECT total_product FROM `categories` WHERE id = $idCategory";
     return pdo_query_one($sql);
 }
 
 // Update product total in category
-  // Hiệp hiện thị top 5 sản phẩm mới nhất
-  function loadall_product_home(){
+// Hiệp hiện thị top 5 sản phẩm mới nhất
+function loadall_product_home()
+{
     $sql = "select * from products where status = 0 order by id desc limit 0,5 ";
     $listproduct = pdo_query($sql);
     return $listproduct;
 }
 // hiện thị top 8 sản phẩm mới nhất
-function loadtop8_product_home(){
+function loadtop8_product_home()
+{
     $sql = "select * from products where status = 0 order by id desc limit 0,8 ";
     $listproduct = pdo_query($sql);
     return $listproduct;
 }
 // hiện thị top 4 sản phẩm cu nhat
-function loadtop4_product_home(){
+function loadtop4_product_home()
+{
     $sql = "select * from products where status = 0 order by id asc limit 0,4";
     $listproduct = pdo_query($sql);
     return $listproduct;
 }
- // hiện thị top 16 sản phẩm mới nhất
+// hiện thị top 16 sản phẩm mới nhất
 //  load all sản phẩm theo danh mục
-  function loadall_product($kyw="",$cagtegory_id=0){
-      $sql = "select * from products where status = 0";
+function loadall_product($kyw = "", $cagtegory_id = 0)
+{
+    $sql = "select * from products where status = 0";
 
-      if($kyw != ""){
-          $sql.=" and name like '%".$kyw."%'"; 
-      }
-      if($cagtegory_id > 0){
-          $sql.=" and category_id ='".$cagtegory_id."'";
-      }
-      $sql.=" order by id desc";
-      $listproduct = pdo_query($sql);
-      return $listproduct;
-  }
-  // load tên danh mục
-  function load_name_category($id){
-      if($id > 0 ){
-        $sql = "select * from categories where id=".$id;
+    if ($kyw != "") {
+        $sql .= " and name like '%" . $kyw . "%'";
+    }
+    if ($cagtegory_id > 0) {
+        $sql .= " and category_id ='" . $cagtegory_id . "'";
+    }
+    $sql .= " order by id desc";
+    $listproduct = pdo_query($sql);
+    return $listproduct;
+}
+// load tên danh mục
+function load_name_category($id)
+{
+    if ($id > 0) {
+        $sql = "select * from categories where id=" . $id;
         $category = pdo_query_one($sql);
         extract($category);
         return $name;
-      }else{
-          return "";
-      }
-      
-  }
-   
+    } else {
+        return "";
+    }
+}
+
 // hiện thị 1 sản phẩm
-function loadone_detail_product_flow_categories($id){
+function loadone_detail_product_flow_categories($id)
+{
     $sql = "SELECT A.*,b.name as name_category FROM products A JOIN categories b on A.category_id=b.id where A.id=$id";
     $pro = pdo_query_one($sql);
     return $pro;
 }
-function loadone_detail_product_flow_product_images($id){
+function loadone_detail_product_flow_product_images($id)
+{
     $sql = "SELECT c.images FROM products B JOIN product_images c on B.id=c.product_id where B.id=$id";
     $pro = pdo_query($sql);
     return $pro;
@@ -146,14 +157,15 @@ function loadone_detail_product_flow_product_images($id){
 // lấy 1 sản phẩm theo id 
 function getOneProductFlowId($id)
 {
-    $sql="select id,name,quantity,avatar,price,	discount from products  where id=$id";
+    $sql = "select id,name,quantity,avatar,price,	discount from products  where id=$id";
     return pdo_query_one($sql);
 }
 
 // Panigation Product In PHP Admin
-function get_Page_Product_admin($keyWord,$rowsProductAdmin){
+function get_Page_Product_admin($keyWord, $rowsProductAdmin)
+{
     $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.name from products A INNER JOIN categories B ON A.category_id = B.id where 1 ";
-    if($keyWord != ""){
+    if ($keyWord != "") {
         $sql .= " and A.name like '%$keyWord%'";
     }
     $sql .= " order by A.id desc";
@@ -161,17 +173,17 @@ function get_Page_Product_admin($keyWord,$rowsProductAdmin){
     $countPage = sizeof($numberPage) / $rowsProductAdmin;
     return $countPage;
 }
-function getAllProduct($keyWord,$rowsProductAdmin)
+function getAllProduct($keyWord, $rowsProductAdmin)
 {
-    $countPage = get_Page_Product_admin($keyWord,$rowsProductAdmin);
-    if(isset($_GET['page']) &&  $_GET['page'] > 0 && $_GET['page'] <= $countPage+1 ){
+    $countPage = get_Page_Product_admin($keyWord, $rowsProductAdmin);
+    if (isset($_GET['page']) &&  $_GET['page'] > 0 && $_GET['page'] <= $countPage + 1) {
         $page = $_GET['page'];
-    }else{
+    } else {
         $page = 1;
     }
     $from = ($page - 1) * $rowsProductAdmin;
     $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.name from products A INNER JOIN categories B ON A.category_id = B.id where 1";
-    if($keyWord != ""){
+    if ($keyWord != "") {
         $sql .= " and A.name like '%$keyWord%'";
     }
     $sql .= " order by A.id desc limit $from,$rowsProductAdmin";
@@ -179,5 +191,23 @@ function getAllProduct($keyWord,$rowsProductAdmin)
 }
 // Panigation In PHP Admin
 
-
-?>
+function fillter_price_desc()
+{
+    $sql = " SELECT * FROM `products` ORDER BY price DESC";
+    return pdo_query($sql);
+}
+function fillter_created_at_desc()
+{
+    $sql = " SELECT * FROM `products` ORDER BY created_at DESC";
+    return pdo_query($sql);
+}
+function fillter_create_at_asc()
+{
+    $sql = " SELECT * FROM `products` ORDER BY created_at ";
+    return pdo_query($sql);
+}
+function fillter_price_asc()
+{
+    $sql = " SELECT * FROM `products` ORDER BY price ";
+    return pdo_query($sql);
+}
