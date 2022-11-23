@@ -4,6 +4,8 @@ a {
 }
 .fillter_categories_list li.active{
     color: #ff2d37;
+    font-weight: 500;
+    cursor: pointer;
 }
 .image_hover_detail_scole img{
     width: 100% !important;
