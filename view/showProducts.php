@@ -34,50 +34,7 @@
                 </div>
             </div>
 
-            <!-- 
-            <div class="fillter_product_flow_category">
-                <p class="product_categories_name">
-                    Thương hiệu
-                </p>
-                <div class="product_fillter_flow_content">
-                    <ul>
-                        <li>
-
-                            <label for="">
-                                <input type="checkbox">
-                                Adidas</label>
-
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox">
-                                Hapu</label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox">
-                                Hura</label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox">
-                                Korean</label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox">
-                                Mira</label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox">
-                                Nike</label>
-                        </li>
-                    </ul>
-                </div>
-            </div> -->
-
-
+          
 
             <div class="fillter_product_flow_category">
                 <p class="product_categories_name">
@@ -166,14 +123,14 @@
                 </p>
                 <div class="product_fillter_flow_content">
                     <ul class="fillter_product_color">
-                        <li><button><input type="checkbox"></button></li>
-                        <li><button><input type="checkbox"></button></li>
-                        <li><button><input type="checkbox"></button></li>
-                        <li><button><input type="checkbox"></button></li>
-                        <li><button><input type="checkbox"></button></li>
-                        <li><button><input type="checkbox"></button></li>
-                        <li><button><input type="checkbox"></button></li>
-                        <li><button><input type="checkbox"></button></li>
+                        <li><button></button></li>
+                        <li><button></button></li>
+                        <li><button></button></li>
+                        <li><button></button></li>
+                        <li><button></button></li>
+                        <li><button></button></li>
+                        <li><button></button></li>
+                        <li><button></button></li>
 
                     </ul>
                 </div>
@@ -219,16 +176,16 @@
                 </h3>
                 <ul class="fillter_products_time">
                     <li>
-                        <input type="checkbox" value="new" id="">Hàng mới về
+                        <input type="radio" name="check_flow_time" value="new" id="">Hàng mới về
                     </li>
                     <li>
-                        <input type="checkbox" value="old" id="">Hàng cũ nhất
+                        <input type="radio" name="check_flow_time" value="old" id="">Hàng cũ nhất
                     </li>
                     <li>
-                        <input type="checkbox" value="price_desc" id="">Giá tăng dần
+                        <input type="radio" name="check_flow_time" value="price_desc" id="">Giá tăng dần
                     </li>
                     <li>
-                        <input type="checkbox" value="price_asc" id="">Giá giảm dần
+                        <input type="radio" name="check_flow_time" value="price_asc" id="">Giá giảm dần
                     </li>
 
                 </ul>
@@ -343,6 +300,12 @@
 <script type="text/javascript">
     let arr_prodcut1 = <?php echo json_encode($prolist); ?>;
     let array_product_2 = <?php echo json_encode($protop4); ?>;
+    let fillter_price_asc = <?php echo json_encode($fillter_price_asc); ?>;
+    let fillter_create_at_asc = <?php echo json_encode($fillter_create_at_asc); ?>;
+    let fillter_created_at_desc = <?php echo json_encode($fillter_created_at_desc); ?>;
+    let fillter_price_desc = <?php echo json_encode($fillter_price_desc); ?>;
+
+
     let category_grid_review = document.querySelector(".category--grid--review");
     let category_grid_review_ = document.querySelector(".category--grid--review.helo");
     let fillter_categories_list = document.querySelectorAll(".fillter_categories_list li")
@@ -352,13 +315,13 @@
     let product_fillter_size = document.querySelectorAll(".product_fillter_size input")
     let fillter_products_time = document.querySelectorAll(".fillter_products_time input")
 
- 
+
     show_products(array_product_2, category_grid_review_);
 
     function show_products(list_product = arr_prodcut1, show_position = category_grid_review) {
         show_position.innerHTML = "";
         list_product.forEach(item => {
-          
+            // console.log("arra item ", item)
             show_position.innerHTML += `
                     <div class=" col l-3 m-4 c-6">
                        <div class="product__banner">
@@ -384,6 +347,8 @@
     }
     show_products();
     fillter_categories_list.forEach(elemt => {
+        elemt.style.cursor = "pointer"
+
         elemt.addEventListener("click", (e) => {
             let id_categor = e.target.getAttribute("data-id");
             const array = [];
@@ -391,21 +356,19 @@
                 if (iteam.category_id == id_categor) {
                     array.push(iteam)
                 }
-                // console.log("id cate ", id_categor);
-                console.log("iteam list", array);
                 // return id_categor == iteam.category_id
             })
 
-            show_products(array);
+            show_product123(listArrayPrice, listArrayDesc, array)
         })
     })
 
 
 
-    function show_product123(arr_price = [], arrDesc = [], listArrayTime = []) {
-        //    console.log(typeof arr_prodcut);
-        const arrlist = arr_prodcut1.map((iteam, index) => {
-                console.log("1 ", iteam);
+    function show_product123(arr_price = [], arrDesc = [], list_arr = arr_prodcut1) {
+
+        const arrlist = list_arr.map((iteam, index) => {
+
                 let prices_price = Number(iteam.price);
 
                 if (arr_price.length > 0) {
@@ -415,7 +378,6 @@
                         return
                     }
                     if (prices_price >= 100000 && prices_price < 200000 && arr_price.includes("2") == false) {
-                        // console.log();
                         return
                     }
                     if (prices_price >= 200000 && prices_price < 300000 && arr_price.includes("3") == false) {
@@ -435,7 +397,6 @@
                 }
 
 
-                // console.log("check item ", index, iteam);
                 return ` 
                 <div class=" col l-3 m-4 c-6">
                        <div class="product__banner">
@@ -464,55 +425,49 @@
     }
     let listArrayPrice = [];
     let listArrayDesc = [];
-    let listArrayTime = [];
 
     function loop_list() {
         fillter_list_flow_price.forEach((product_item, inden) => {
             product_item.addEventListener("click", function() {
                 if (this.checked) {
                     listArrayPrice.push(this.value);
-
-                    show_product123(listArrayPrice, listArrayDesc)
-
                 } else {
                     listArrayPrice = listArrayPrice.filter(e => e !== this.value);
-                    show_product123(listArrayPrice, listArrayDesc)
-
-
                 }
-
+                show_product123(listArrayPrice, listArrayDesc)
             })
         })
 
         product_fillter_flow_desc.forEach((product_item, inden) => {
             product_item.addEventListener("click", function(e) {
                 if (this.checked) {
-
                     listArrayDesc.push(this.value);
-
-                    show_product123(listArrayPrice, listArrayDesc)
                 } else {
                     listArrayDesc = listArrayDesc.filter(e => e !== this.value);
-                    show_product123(listArrayPrice, listArrayDesc)
                     console.log("check array curent", listArrayDesc)
                 }
-            })
-        })
-        fillter_products_time.forEach((product_item, inden) => {
-            product_item.addEventListener("click", function(e) {
-                if (this.checked) {
-
-                    listArrayTime.push(this.value);
-
-                    show_product123(listArrayPrice, listArrayDesc, listArrayTime)
-                } else {
-                    listArrayTime = listArrayTime.filter(e => e !== this.value);
-                    show_product123(listArrayPrice, listArrayDesc, listArrayTime)
-                    console.log("check array curent", listArrayTime)
-                }
+                show_product123(listArrayPrice, listArrayDesc)
             })
         })
 
     }
+    fillter_products_time.forEach((product_item, inden) => {
+        product_item.addEventListener("click", function(e) {
+            if (this.checked) {
+                if (this.value == "price_desc") {
+                    show_product123(listArrayPrice, listArrayDesc, fillter_price_asc)
+                }
+                if (this.value == "price_asc") {
+                    show_product123(listArrayPrice, listArrayDesc, fillter_price_desc)
+                }
+                if (this.value == "old") {
+                    show_product123(listArrayPrice, listArrayDesc, fillter_create_at_asc)
+                }
+                if (this.value == "new") {
+                    show_product123(listArrayPrice, listArrayDesc, fillter_created_at_desc)
+                }
+            }
+        })
+    })
     loop_list();
 </script>

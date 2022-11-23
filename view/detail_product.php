@@ -27,11 +27,9 @@
                 <!-- ảnh -->
 
                 <div class="col l-6 image_hover_detail_scole">
-                    <!-- <img src="./imageProduct/<?php
-                                                    //  $avatar 
-                                                    ?>" alt=""> -->
+                  
                     <a href="./imageProduct/<?= $avatar ?>" class="MagicZoom" id="product_change_images" data-options="cssClass: thumbnails-style-shaded;">
-                        <img src="./imageProduct/<?= $avatar ?>" />
+                        <img src="./imageProduct/<?= $avatar ?>" style="max-width: 100% !important; max-height: 100% !important;"/>
                     </a>
                 </div>
                 <div class="col l-6">
@@ -43,9 +41,6 @@
                         ?>
 
                             <div class="col l-3 product__list_img-onec">
-                                <!-- <img src="./imageProduct/<?php
-                                                                //  $images 
-                                                                ?>" alt=""> -->
                                 <a data-zoom-id="product_change_images" href="./imageProduct/<?= $images ?>" data-image="./imageProduct/<?= $images ?>">
                                     <img src="./imageProduct/<?= $images ?>" />
                                 </a>
@@ -133,7 +128,7 @@
 
             </div>
             <!-- tab chọn bình luận -->
-            <div class="row">
+            <div class="row mt_chung">
                 <ul class="product_change_tab">
                     <li class='tab-item active'>Mô tả sản phẩm</li>
                     <li class="tab-item">Tab tùy chỉnh</li>
@@ -263,7 +258,7 @@
     <div class="row">
         <section class="grid wide section__product--hot">
             <h2 class="product_list_with_categories_title">SẢN PHẨM cùng loại</h2>
-            <div class="section__product--hot__banner review__product--hot">
+            <div class="section__product--hot__banner review__product--hot row">
 
                 <?php
                 foreach ($protop4 as $value) {
@@ -271,7 +266,7 @@
                     $pricesale = $price * ($discount / 100);
                     $img =  $image_path . $avatar;
                     $linkpro = "index.php?act=detail_product&id=" . $id;
-                    echo '<div class="grid wide l-2-4 m-6 c-6">
+                    echo '<div class="col l-2-4 m-6 c-6">
                       <div class="product__banner">
                           <div class="product--hot__img">
                           <a href="' . $linkpro . '"> <img src="' . $img . '"

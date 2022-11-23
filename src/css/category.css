@@ -1,5 +1,9 @@
-.grid .category--review--flex {
-    display: flex;
+.category--review--flex {
+    margin-top: 20px;
+}
+
+.mt_chung {
+    margin-top: 10px;
 }
 
 

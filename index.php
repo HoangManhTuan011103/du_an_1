@@ -12,15 +12,19 @@ $pronew = loadall_product_home();
 if (!isset($_SESSION['mycart'])) {
     $_SESSION['mycart'] = [];
 }
-// Ai làm bên này có giao diện người dùng thì tự động thêm vào
-// Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
-// Comment thêm tên chức năng nữa nhé
-$protop8 =  loadtop8_product_home();
-// $protop16 = loadtop16_product_home();
-$protop4 = loadtop4_product_home();
-$dsdm = loadall_category();
-$load2dm = load2_category();
-$load3dm = load3_category();
+    // Ai làm bên này có giao diện người dùng thì tự động thêm vào
+    // Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
+    // Comment thêm tên chức năng nữa nhé
+    $protop8 =  loadtop8_product_home();
+    // $protop16 = loadtop16_product_home();
+    $protop4 = loadtop4_product_home();
+    $dsdm= loadall_category();
+    $load2dm = load2_category();
+    $load3dm = load3_category();
+    $fillter_price_desc=fillter_price_desc();
+    $fillter_created_at_desc=fillter_created_at_desc();
+    $fillter_create_at_asc=fillter_create_at_asc();
+    $fillter_price_asc=fillter_price_asc();
 require_once "view/header.php";
 if (isset($_GET['act'])) {
     $actAdmin = $_GET['act'];
@@ -39,7 +43,7 @@ if (isset($_GET['act'])) {
             }
             $prolist = loadall_product($kyw, $idcategori);
             $namecategory = load_name_category($idcategori);
-            
+           
             require_once "view/showProducts.php";
             break;
         case 'detail_product':
