@@ -126,6 +126,12 @@ function loadall_product($kyw = "", $cagtegory_id = 0)
     $listproduct = pdo_query($sql);
     return $listproduct;
 }
+function loadall_product_fromproducs()
+{
+    $sql = "select * from products where status = 0";
+    $listproduct = pdo_query($sql);
+    return $listproduct;
+}
 // load tên danh mục
 function load_name_category($id)
 {

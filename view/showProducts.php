@@ -304,8 +304,10 @@
 
 
         let arr_prodcut1 = <?php echo json_encode($prolist); ?>;
+        let arr_prodcut3 = <?php echo json_encode($prolist1); ?>;
         let array_product_2 = <?php echo json_encode($protop4); ?>;
         let fillter_price_asc = <?php echo json_encode($fillter_price_asc); ?>;
+        console.log(arr_prodcut1, arr_prodcut3);
         let fillter_create_at_asc = <?php echo json_encode($fillter_create_at_asc); ?>;
         let fillter_created_at_desc = <?php echo json_encode($fillter_created_at_desc); ?>;
         let fillter_price_desc = <?php echo json_encode($fillter_price_desc); ?>;
@@ -322,10 +324,13 @@
         let product_fillter_size = document.querySelectorAll(".product_fillter_size input")
         let fillter_products_time = document.querySelectorAll(".fillter_products_time input")
         let show_title_cate = document.querySelector(".products_all red_word");
-
+        let format_number_price = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND'
+        })
         const params = new URL(location.href).searchParams;
         let id_cate_url = params.get('id');
-        // console.log(params.get('id'));
+
         show_products(array_product_2, category_grid_review_);
 
         function show_products(list_product = arr_prodcut1, show_position = category_grid_review) {
@@ -344,9 +349,9 @@
                        </div>
                        <div class="product__banner__price">
                            <div>
-                               <p class="product__banner__price--cost"> ${Math.floor(item.price - ((item.price * item.discount) / 100))} <u>đ</u></p>
+                               <p class="product__banner__price--cost"> ${format_number_price.format(Math.floor(item.price - ((item.price * item.discount) / 100)))} </p>
 
-                               <p class="product__banner__price--sale   product_one_price_old">${Math.floor(item.price)}<u>đ</u></p>
+                               <p class="product__banner__price--sale   product_one_price_old">${format_number_price.format(Math.floor(item.price))}</p>
                            </div>
                            <div class="product__banner__btn--detail">
                                <a href="index.php?act=detail_product&id=${item.id}">chi tiết</a>
@@ -359,39 +364,38 @@
         fillter_categories_list.forEach(elemt => {
             elemt.style.cursor = "pointer"
             let id_categor1 = document.querySelectorAll(".fillter_categories_list li");
+            const array = [];
 
-            id_categor1.forEach((item, index) => {
-                if (id_cate_url > 0) {
+            // id_categor1.forEach((item, index) => {
+            if (id_cate_url > 0) {
+                if (elemt.getAttribute("data-id") == id_cate_url) {
+                    document.querySelector(".fillter_categories_list>li.active").classList.remove("active");
+                    elemt.classList.add('active');
 
-                    if (item.getAttribute("data-id") == id_cate_url) {
-                        document.querySelector(".fillter_categories_list>li.active").classList.remove("active");
-                        item.classList.add('active');
-                    }
-                    elemt.addEventListener("click", (e) => {
-                        document.querySelector(".fillter_categories_list>li.active").classList.remove("active");
-
-                        e.target.classList.add("active");
-                        let id_categor = e.target.getAttribute("data-id");
-                        const array = [];
-
-                        arr_prodcut1.forEach(iteam => {
-                            if (iteam.category_id == id_categor) {
-                                array.push(iteam)
-                            }
-                            // return id_categor == iteam.category_id
-                        })
-
-                        show_product123(listArrayPrice, listArrayDesc, array)
-                    })
                 }
-            })
+                elemt.addEventListener("click", (e) => {
+                    document.querySelector("li.active").classList.remove("active");
+                    e.target.classList.add("active");
+                    let id_categor = e.target.getAttribute("data-id");
+
+                    arr_prodcut1.forEach(iteam => {
+                        if (iteam.category_id == id_categor) {
+                            array.push(iteam)
+                        }
+                        // return id_categor == iteam.category_id
+                    })
+
+                    show_product123(listArrayPrice, listArrayDesc, array)
+                })
+            }
+
 
             elemt.addEventListener("click", (e) => {
+                document.querySelector("li.active").classList.remove("active");
                 e.target.classList.add("active");
                 let id_categor = e.target.getAttribute("data-id");
-                const array = [];
 
-                arr_prodcut1.forEach(iteam => {
+                arr_prodcut3.forEach(iteam => {
                     if (iteam.category_id == id_categor) {
                         array.push(iteam)
                     }
@@ -400,6 +404,8 @@
 
                 show_product123(listArrayPrice, listArrayDesc, array)
             })
+            // }
+
         })
 
 
@@ -448,9 +454,9 @@
                        </div>
                        <div class="product__banner__price">
                            <div>
-                               <p class="product__banner__price--cost"> ${Math.floor(iteam.price - ((iteam.price * iteam.discount) / 100))} <u>đ</u></p>
+                               <p class="product__banner__price--cost"> ${format_number_price.format(Math.floor(iteam.price - ((iteam.price * iteam.discount) / 100)))} </p>
 
-                               <p class="product__banner__price--sale   product_one_price_old">${Math.floor(iteam.price)}<u>đ</u></p>
+                               <p class="product__banner__price--sale   product_one_price_old">${format_number_price.format(Math.floor(iteam.price))}</p>
                            </div>
                            <div class="product__banner__btn--detail">
                                <a href="index.php?act=detail_product&id=${iteam.id}">chi tiết</a>
