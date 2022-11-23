@@ -112,9 +112,7 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.umd.min.js"></script>
 <script>
-    
-    const data3 = {
-        
+    const data3 = {  
         labels: [
             <?php 
                 $total = count($getToTalProductChart);
