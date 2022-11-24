@@ -3,7 +3,7 @@
     <div class="login__top--title-menu">
       <ul class="menu__children_header--bottom">
         <li>
-          <a href="">Trang chủ</a> <i class="fa-solid fa-angle-right"></i>
+          <a href="index.php">Trang chủ</a> <i class="fa-solid fa-angle-right"></i>
         </li>
         <li>
           <a href="">Đăng nhập tài khoản</a>
