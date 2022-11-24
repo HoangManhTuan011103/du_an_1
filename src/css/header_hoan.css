@@ -148,10 +148,6 @@
     margin-top: -2px;
 }
 
-.user__sup-menu.user__sup-menu--haveAccount.user__sup-menu--haveAccount--Admin {
-    margin-top: -63px;
-}
-
 .user__sup-menu {
     position: absolute;
     min-width: 200px;
@@ -220,6 +216,14 @@
 
 .mid-header__user:hover .user__sup-menu {
     display: block;
+}
+
+.mid-header__user:hover .user__sup-menu.avtUser {
+    margin-top: -45px;
+}
+
+.mid-header__user:hover .user__sup-menu.avtUserRole {
+    margin-top: -57px;
 }
 
 .mid-header__user__icon {

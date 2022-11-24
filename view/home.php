@@ -246,7 +246,10 @@
                         <div class="product__banner__price">
                             <div>
 
-                                <p class="product__banner__price--cost">' . number_format($price - $giagiam) . '<u>đ</u></p>
+
+                                <p class="product__banner__price--cost">' . number_format($price - $giagiam) .'<u>đ</u></p>
+
+
 
 
                                 <p class="product__banner__price--sale product_one_price_old">
@@ -261,7 +264,7 @@
             ?>
 </div>
             <div class="grid wide review--category__p--more">
-                <a href="index.php?act=showProducts">Xem tất cả<i class="fa-solid fa-angle-right"></i></a>
+                <p>Xem tất cả<i class="fa-solid fa-angle-right"></i></p>
             </div>
         </div>
 

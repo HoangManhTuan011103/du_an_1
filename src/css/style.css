@@ -317,9 +317,7 @@
 }
 
 .contentManager--footer__right .title {
-    display: flex;
     align-items: center;
-    justify-content: space-between;
     margin: 0 -30px;
     padding: 0 30px 20px 30px;
     border-bottom: 0.5px solid #ffffff;
@@ -335,29 +333,36 @@
     cursor: pointer;
 }
 
-.contentManager--footer__right .tableProduct table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.contentManager--footer__right .tableProduct table tr {
-    border-bottom: 1px solid #ffffff;
-}
-
-.contentManager--footer__right .tableProduct table tr:hover {
-    background-color: #0e7d99;
-    cursor: pointer;
-}
-
-.contentManager--footer__right .tableProduct table thead th {
-    color: #ffffff;
-    padding: 15px 10px;
-}
-
-.contentManager--footer__right .tableProduct table tbody td {
-    color: #ffffff;
-    padding: 20px 10px;
+.contentManager--footer__right .tableProduct {
     text-align: center;
+}
+
+.contentManager--footer__right .tableProduct .image {
+    padding-top: 10px;
+}
+
+.contentManager--footer__right .tableProduct .infor {
+    padding-top: 10px;
+}
+
+.contentManager--footer__right .tableProduct .price--inforProduct {
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentManager--footer__right .tableProduct .price--inforProduct p {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.contentManager--footer__right .tableProduct .price--inforProduct .price--inforProduct__discount p {
+    margin-top: 2px;
+    font-size: 16px !important;
+    color: #BFCBD9 !important;
+    margin-right: 30px;
+    text-decoration: line-through #ffffff;
 }
 
 .contentManager--footer .btn--seeProduct {
@@ -443,9 +448,18 @@
 
 .statistical--second {
     margin-top: 30px;
-    display: grid;
-    grid-template-columns: 65% 33%;
-    gap: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.statistical--second .statistical--orderRecent {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.statistical--second .statistical--orderRecent.chart {
+    width: 80% ;
+    margin-bottom: 30px;
 }
 
 .statistical--second .statistical--orderRecent {

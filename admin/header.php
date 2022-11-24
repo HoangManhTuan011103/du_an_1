@@ -28,8 +28,8 @@
                 <div class="titlePageAdmin">
                     <div class="logoBrand">
                         <!-- <a href=""><img src="src/image/FSport.png" alt=""></a> -->
-                        <a href=""><img src="../src/imageAdmin/FSport1.png" alt=""></a>
-                        <a href="" class="hiddenImage"><img src="../src/imageAdmin/FSport2.png" alt=""></a>
+                        <a href="../index.php"><img src="../src/imageAdmin/FSport1.png" alt=""></a>
+                        <a href="../index.php" class="hiddenImage"><img src="../src/imageAdmin/FSport2.png" alt=""></a>
                     </div>
                 </div>
                 <div class="spaceLogoBrand">
@@ -40,10 +40,10 @@
                     </div>
                     <div class="accountAdmin row">
                         <div class="avatarAdmin row">
-                            <img src="../src/imageAdmin/avatar.jpg" alt="">
+                        <img src="./UserAvt/<?=$_SESSION['user']['image']?>" alt="">
                         </div>
                         <div class="nameAdmin row">
-                            Hoàng Mạnh Tuấn
+                        <?=$_SESSION['user']['name']?>
                         </div>
                     </div>
                 </div>
@@ -54,10 +54,10 @@
             <div class="listMainFirst">
                 <div class="accountAdmin accountAdmin--canHidden">
                     <div class="avatarAdmin">
-                        <img src="../src/imageAdmin/avatar.jpg" alt="">
+                        <img src="./UserAvt/<?=$_SESSION['user']['image']?>" alt="">
                     </div>
                     <div class="nameAdmin nameAdmin--navLeft">
-                        Hoàng Mạnh Tuấn
+                        <?=$_SESSION['user']['name']?>
                         <div class="statusAdmin">
                             <div></div>
                             <p>Online</p>
@@ -94,12 +94,12 @@
                             <a href="comment.html" class="canHidden">Quản lý bình luận</a>
                         </li>
                         <li>
-                            <a href="statistical.html"><i class="fa-solid fa-database"></i></a>
-                            <a href="statistical.html" class="canHidden">Thống kê báo cáo</a>
+                            <a href="index.php?actAdmin=statisticals"><i class="fa-solid fa-database"></i></a>
+                            <a href="index.php?actAdmin=statisticals" class="canHidden">Thống kê báo cáo</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-                            <a href="" class="canHidden">Đăng xuất</a>
+                            <a href="index.php?actAdmin=dangxuat"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                            <a href="index.php?actAdmin=dangxuat" class="canHidden">Đăng xuất</a>
                         </li>
                     </ul>
                 </nav>

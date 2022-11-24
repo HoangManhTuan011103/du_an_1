@@ -1,30 +1,33 @@
-.category--review--flex{
+.category--review--flex {
     margin-top: 20px;
 }
-.mt_chung{
+
+.mt_chung {
     margin-top: 10px;
 }
 
-.grid.review--category__p--more a{
+
+/* .grid.review--category__p--more{
+    
+} */
+
+.grid.review--category__p--more p {
     text-align: center;
     border: 1px solid #ff2d37;
     color: #ffffff;
     background-color: #ff2d37;
     cursor: pointer;
     height: 30px;
-    padding: 5px;
+    padding-top: 5px;
     width: 50%;
     border-radius: 5px;
-}
-.grid.review--category__p--more a:hover{
-    color: #ff2d37;
-    background-color: #ffffff;
 }
 
 .product--hot__img {
     height: 198px;
 }
-.grid .review--category__p--more{
+
+.grid .review--category__p--more {
     margin-top: 20px;
     text-align: center;
 }

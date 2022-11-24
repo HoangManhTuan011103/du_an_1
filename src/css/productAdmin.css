@@ -111,6 +111,148 @@
     width: 100%;
 }
 
+
+/* Add order new */
+
+td.addOrderNew button {
+    padding: 5px;
+    background-color: #00A85A;
+    border: 1px solid #00A85A;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all linear 0.3s;
+}
+
+td.addOrderNew button:hover {
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    color: #00A85A;
+}
+
+td.addOrderNew button:hover .fa-solid {
+    color: #00A85A;
+}
+
+td.addOrderNew button .fa-solid {
+    color: #ffffff;
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+.form--Order-direct {
+    padding: 30px 20px;
+}
+
+.form--Order-direct table {
+    border-top: 2px solid #ffffff;
+}
+
+.form--Order-direct {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 50px;
+}
+
+.form--Order-direct form .form--right--inforUser p {
+    color: #ffffff;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.form--Order-direct form .form--right--inforUser input {
+    width: 100%;
+    padding: 15px 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #000000;
+}
+
+.form--Order-direct form .form--right--inforUser button {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #00A85A;
+    border: 1px solid #00A85A;
+    cursor: pointer;
+    transition: all linear 0.3s;
+    color: #ffffff;
+}
+
+.form--Order-direct form .form--right--inforUser button:hover {
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    color: #00A85A;
+}
+
+td.btn-removeOrderAdmin button {
+    padding: 5px;
+    background-color: #00A85A;
+    border: 1px solid #00A85A;
+    cursor: pointer;
+    transition: all linear 0.3s;
+}
+
+td.btn-removeOrderAdmin button:hover {
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+td.quantityOrderAdmin div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+td.quantityOrderAdmin {
+    width: 15%;
+}
+
+td.quantityOrderAdmin input {
+    border: none;
+    outline: none;
+    background-color: #0F172A;
+    color: #ffffff;
+    font-size: 16px;
+    max-width: 15%;
+    padding: 5px 12px;
+}
+
+td.quantityOrderAdmin span a {
+    padding: 7px 14px;
+    display: block;
+    background-color: #ffffff;
+}
+
+td.quantityOrderAdmin span {
+    text-align: center;
+}
+
+td.priceDefault span {
+    color: #ffffff;
+}
+
+td.priceOrderAdmin span {
+    color: #ffffff;
+}
+
+span.minus,
+span.pluss {
+    cursor: pointer;
+    padding: 2px 5px;
+    background-color: #00A85A;
+}
+
+
+/* Add order new */
+
 .contentManager--product__footer .contentManager--product__footer--table table th {
     color: #ffffff;
     padding: 10px;

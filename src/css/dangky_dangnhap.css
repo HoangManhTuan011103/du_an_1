@@ -690,3 +690,76 @@
   border: 1px solid #ff2d37;
   cursor: pointer;
 }
+
+/* USER ACCOUT */
+.info__user--guest {
+  display: flex;
+  padding-top: 20px;
+}
+.nav__info_user-left {
+  width: 25%;
+  /* background-color: #28a745; */
+}
+.nav_editInfo-user {
+  padding: 10px 0px 30px 0px;
+}
+.nav_editInfo-user ul li {
+  list-style: none;
+  padding: 10px 0px;
+}
+.nav_editInfo-user ul li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+}
+.nav_editInfo-user ul li a:hover {
+  color: #ff2d37;
+  cursor: pointer;
+}
+.title_login--children-2.pageacc {
+  margin-bottom: 10px;
+}
+.info_user--tilte-hello {
+  margin-bottom: 20px;
+}
+.nav__detail_user-right {
+  padding-left: 30px;
+  width: 75%;
+}
+.list_title--inr222 .both_text {
+  font-weight: 600;
+}
+.cate--eu9998 {
+  margin: 19px 0px;
+  margin-left: 5px;
+}
+.title_login--children-2.dij998 {
+  margin-top: -15px;
+  margin-bottom: 10px;
+}
+.update__innfo--user {
+  border: none;
+  border-bottom: 1px solid rgb(221, 220, 220);
+  padding: 6px 10px;
+  font-weight: 500;
+  font-size: 16px;
+}
+.update__innfo--user:focus {
+  outline: none;
+}
+.capnhat__thongtin-guest {
+  margin: 20px 0px;
+  padding: 0 25px !important;
+  background: #ff2d37;
+  color: #fff;
+  border-radius: 40px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  height: 40px;
+}
+.capnhat__thongtin-guest:hover {
+  background: #fff;
+  color: #ff2d37;
+  border: 1px solid #ff2d37;
+  cursor: pointer;
+}

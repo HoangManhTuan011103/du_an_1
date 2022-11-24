@@ -22,27 +22,69 @@
             <div class="form--left">
                 <div class="name">
                     <p>Tên người dùng:</p>
-                    <input class="name" name="name" style=" background-color: #000000;" type="text" placeholder="Nhập tên người dùng...">
+                    <input class="name" value="<?= isset($_POST['name']) ? $_POST['name'] : $_POST['name']='';?>" name="name" style=" background-color: #000000;" type="text" placeholder="Nhập tên người dùng...">
+                    <?php
+                        if(isset($thongbao[0])){
+                         echo'<p style="padding-top: 5px">
+                                <span style="color: #d53e3e;">&nbsp; '.$thongbao[0].'</span>
+                            </p>';
+                        }
+                    ?>
                 </div>
                 <div class="image">
                     <p>Ảnh người dùng:</p>
                     <input type="file" name="image" style="background-color: #0F172A;">
+                    <?php
+                        if(isset($thongbao[1])){
+                         echo'<p style="padding-top: 5px">
+                                <span style="color: #d53e3e;">&nbsp; '.$thongbao[1].'</span>
+                            </p>';
+                        }
+                    ?>
                 </div>
                 <div class="image">
                     <p>Email:</p>
-                    <input class="name" name="email" style=" background-color: #000000;" type="text" placeholder="Nhập email người dùng...">
+                    <input class="name" value="<?= isset($_POST['email']) ? $_POST['email'] : $_POST['email']='';?>" name="email" style=" background-color: #000000;" type="text" placeholder="Nhập email người dùng...">
+                    <?php
+                        if(isset($thongbao[2])){
+                         echo'<p style="padding-top: 5px">
+                                <span style="color: #d53e3e;">&nbsp; '.$thongbao[2].'</span>
+                            </p>';
+                        }
+                    ?>
                 </div>
                 <div class="image">
                     <p>Mật khẩu:</p>
-                    <input class="name" name="password" style=" background-color: #000000;" type="password" placeholder="Nhập mật khẩu người dùng...">
+                    <input class="name" value="<?= isset($_POST['password']) ? $_POST['password'] : $_POST['password']='';?>" name="password" style=" background-color: #000000;" type="password" placeholder="Nhập mật khẩu người dùng...">
+                      <?php
+                        if(isset($thongbao[3])){
+                         echo'<p style="padding-top: 5px">
+                                <span style="color: #d53e3e;">&nbsp; '.$thongbao[3].'</span>
+                            </p>';
+                        }
+                    ?>
                 </div>
                 <div class="image">
                     <p>Điện thoại:</p>
-                    <input class="name" name="phone" style=" background-color: #000000;" type="number" placeholder="Nhập số điện thoại người dùng...">
+                    <input class="name" value="<?= isset($_POST['phone']) ? $_POST['phone'] : $_POST['phone']='';?>" name="phone" style=" background-color: #000000;" type="number" placeholder="Nhập số điện thoại người dùng...">
+                      <?php
+                        if(isset($thongbao[4])){
+                         echo'<p style="padding-top: 5px">
+                                <span style="color: #d53e3e;">&nbsp; '.$thongbao[4].'</span>
+                            </p>';
+                        }
+                    ?>
                 </div>
                 <div class="image">
                     <p>Địa chỉ:</p>
-                    <input class="name" name="address" style=" background-color: #000000;" type="text" placeholder="Nhập địa chỉ người dùng...">
+                    <input class="name" value="<?= isset($_POST['address']) ? $_POST['address'] : $_POST['address']='';?>" name="address" style=" background-color: #000000;" type="text" placeholder="Nhập địa chỉ người dùng...">
+                      <?php
+                        if(isset($thongbao[5])){
+                         echo'<p style="padding-top: 5px">
+                                <span style="color: #d53e3e;">&nbsp; '.$thongbao[5].'</span>
+                            </p>';
+                        }
+                    ?>
                 </div>
             </div>
             <div class="form--right">

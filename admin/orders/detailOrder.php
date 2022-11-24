@@ -16,14 +16,21 @@
                         <h3>Ghi chú: <span><?= $listOrderAdmin['note'] ?></span></h3>
                         <h3>Địa chỉ: <span><?= $listOrderAdmin['address'] ?></span></h3>
                         <h3>Ngày đặt hàng: <span><?= $listOrderAdmin['created_at'] ?></span></h3>
-                        <h3>PT thanh toán: <span><?= $listOrderAdmin['payment'] == 0 ? "Thanh toán khi nhận hàng" : "" ?></span></h3>
+                        <h3>PT thanh toán: <span>
+                            <?= $listOrderAdmin['payment'] == 0 ? "Thanh toán khi nhận hàng" : "Thanh toán tại cửa hàng" ?></span>
+                        </h3>
                         <h3>Trạng thái đơn: <span>
                             <?php 
                                 if($listOrderAdmin['status'] == 0){
                                     echo "Đơn hàng mới";
-                                }elseif($listOrderAdmin['status'] == 1)
+                                }
+                                elseif($listOrderAdmin['status'] == 1)
                                 {
                                     echo "Đơn đã duyệt";
+                                }
+                                elseif($listOrderAdmin['status'] == 6)
+                                {
+                                    echo "Đơn đã thanh toán";
                                 }
                             ?>
                             </span></h3>

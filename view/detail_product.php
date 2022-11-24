@@ -52,7 +52,7 @@
                     </div>
 
                     <!-- titile production -->
-                    <h3 class="one_product_title_name_" style="text-align: left;"><?= $name ?></h3>
+                    <h3 class="one_product_title_name_" style="text-align: left;" ><?=$name?></h3>
                     <!-- thương hiệu -->
                     <div class="product_name_brand_quantity">
                         <p class="product_brand">
@@ -75,7 +75,8 @@
                     <div class="one_product_price_detail">
 
                         <p class="product_one_price">
-                            <?= number_format($price - $giagiam) ?> <span class="product_currency">đ</span>
+                            <?= number_format($price - $giagiam) ?> <span
+                                class="product_currency">đ</span>
                         <p class="product_one_price_old">
                             <?= number_format($price) ?>
 
@@ -86,14 +87,16 @@
                     <!-- số lượng -->
                     <div class="product__one_quantity">
 
-                        <form action="index.php?act=addToCart" id="form_quantity" method="post" enctype="multipart/form-data">
+                        <form action="index.php?act=addToCart" id="form_quantity" method="post"
+                            enctype="multipart/form-data">
                             <div class="form_product_submit_quatity">
                                 <p class="product_quantity_name">
                                     Số lượng :
                                 </p>
                                 <div class="quantity_change_number">
                                     <div class="btn_decre">-</div>
-                                    <input type="text" id="btn_product_quantity_input" min="1" name="product_quantity_input" value="1">
+                                    <input type="text" id="btn_product_quantity_input" min="1"
+                                        name="product_quantity_input" value="1">
                                     <div class="btn_incre">+</div>
                                 </div>
                             </div>
@@ -104,7 +107,8 @@
                             <!--  -->
                             <div class="one_product_btn_buy">
 
-                                <button type="submit" name="btn-addCart" class="btn_buy_products">Mua
+                                <button type="submit" name="btn-addCart"
+                                    class="btn_buy_products">Mua
                                     ngay</button>
                                 <div class="contact_information">
                                     <p>Mua số lượng lớn

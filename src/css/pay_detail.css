@@ -1,6 +1,18 @@
-.all_detail_products img{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.all_detail_products img {
     width: 100%;
 }
+
 .pay_detai_left {
     padding: 28px;
 }
@@ -66,6 +78,10 @@ a.info_pay_sign_in:hover {
     border-radius: 5px;
 }
 
+img.edit_img_user {
+    width: 150px !important;
+}
+
 
 /* vận chuyển */
 
@@ -82,7 +98,7 @@ a.info_pay_sign_in:hover {
 
 .border_form .ion_payment>i {
     font-size: x-large;
-    color: #2a9dcc
+    color: #2a9dcc;
 }
 
 p.price_shipping {
@@ -129,7 +145,7 @@ table.product_order_info_detail {
 }
 
 table.product_order_info_detail th {
-    background-color: #04AA6D;
+    background-color: #04aa6d;
     color: white;
     padding: 8px;
     font-weight: 500;

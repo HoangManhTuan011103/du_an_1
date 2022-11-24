@@ -24,8 +24,8 @@
     <link rel="stylesheet" href="./src/css/detail_product.css">
     <link rel="stylesheet" href="./src/css/pay_detail.css">
     <link rel="stylesheet" href="./src/css/yourOrder.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
 </head>
@@ -61,24 +61,30 @@
 
                     <div class="mid-header__user">
                         <ul class="mid-header__user-menu">
-                        <?php
-                            if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
+                            <?php
+                            if (isset($_SESSION['user']) && is_array($_SESSION['user'])) {
                                 extract($_SESSION['user']);
                                 if ($_SESSION['user']['image'] != "") {
                                     echo
                                     '   <li class="ctn__user--img-1">
                                 <a href="">
-                                <img class="ctn__user--img-2" src="https://pixinvent.com/demo/vuexy-bootstrap-laravel-admin-template/demo-1/images/profile/user-uploads/user-04.jpg" alt="" srcset="">
-                                </a>
-                                <ul class="user__sup-menu user__sup-menu--haveAccount user__sup-menu--haveAccount--Admin ">
-                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>';
+                                <img class="ctn__user--img-2" src="Admin/UserAvt/' . $_SESSION['user']['image'] . '" alt="" srcset="">
+                                </a>';
                                     if ($_SESSION['user']['role'] == 1) {
-                                        echo '<li class="user__sup-menu__sign-in li-sign ccc__334"><a href="admin/index.php">Trang quản trị</a></li>';
+                                        echo '
+                                        <ul class="user__sup-menu user__sup-menu--haveAccount avtUserRole">
+                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>
+                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="admin/index.php">Trang quản trị</a></li><li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=thongtintaikhoan">Thông tin tài khoản</a></li>
+                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat">Đăng xuất</a></li>';
+                                    } else {
+                                        echo ' 
+                                        <ul class="user__sup-menu user__sup-menu--haveAccount avtUser">
+                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>
+                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=thongtintaikhoan">Thông tin tài khoản</a></li>
+                                        <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat">Đăng xuất</a></li>
+                                    </ul>
+                                    </li>';
                                     }
-                                    echo ' <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=capnhattaikhoan">Cập nhật tài khoản</a></li>
-                                    <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat">Đăng xuất</a></li>
-                                </ul>
-                                </li>';
                                 } else {
                                     $string1 = $_SESSION['user']['name'];
                                     $string = convert_vi_to_en($string1);
@@ -92,12 +98,12 @@
                                     <span class="mid-header__user__icon mid-header__user__icon--color">' . $name_user3 . '
                                     </span>
                                 </a>
-                                <ul class="user__sup-menu user__sup-menu--haveAccount">
+                                <ul class="user__sup-menu user__sup-menu--haveAccount user__sup-menu--haveAccount">
                                     <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dsdonhang">Danh sách đơn hàng</a></li>';
                                     if ($_SESSION['user']['role'] == 1) {
                                         echo '<li class="user__sup-menu__sign-in li-sign ccc__334"><a href="admin/index.php">Trang quản trị</a></li>';
                                     }
-                                    echo ' <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=capnhattaikhoan">Cập nhật tài khoản</a></li>
+                                    echo ' <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=thongtintaikhoan">Thông tin tài khoản</a></li>
                                     <li class="user__sup-menu__sign-in li-sign ccc__334"><a href="index.php?act=dangxuat">Đăng xuất</a></li>
                                 </ul>
                                 </li>';
