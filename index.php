@@ -129,6 +129,7 @@ if (isset($_GET['act'])) {
             }
             break;
         case 'doimatkhau':
+            if(isset($_SESSION['user'])&& is_array($_SESSION['user'])){
             if (isset($_POST['doimatkhau'])) {
                 $password_old = $_POST['password_Old'];
                 $password_new = $_POST['password_new'];
@@ -165,7 +166,10 @@ if (isset($_GET['act'])) {
                     ob_end_flush();
                 }
             }
-            require_once "view/doimatkhau.php";
+                require_once "view/doimatkhau.php";
+            }else{
+                require_once "view/dangnhap.php";
+            }
             break;
         case 'dangnhap':
             if (isset($_POST['dangnhap']) == true) {
