@@ -7,11 +7,9 @@
 }
 
 
-/* .grid.review--category__p--more{
-    
-} */
 
-.grid.review--category__p--more p {
+
+.review--category__p--more p {
     text-align: center;
     border: 1px solid #ff2d37;
     color: #ffffff;
@@ -19,7 +17,7 @@
     cursor: pointer;
     height: 30px;
     padding-top: 5px;
-    width: 50%;
+    width: 130px;
     border-radius: 5px;
 }
 
