@@ -37,7 +37,7 @@
                                 }
                             } ?>
                             <li><a href="">Đơn hàng của bạn</a></li>
-                            <li><a href="index.php?act=doimatkhau">Đổi mật khẩu</a></li>
+                            <li><a href="index.php?act=doimatkhau" style="color:#ff2d37">Đổi mật khẩu</a></li>
                         </ul>
                     </div>
                 </div>
