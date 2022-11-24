@@ -151,7 +151,51 @@
                 </div>
                 <!-- tab tùy chỉnh -->
                 <div class="tab-pane">
-                    <div><?php require "./comment/comment.php" ?></div>
+                    <div class="row">
+                        <div class="form-comment">
+                            <ul>
+                                <li>
+                                    <div class="form-comment--one">
+                                        <div class="form-comment__avatar">
+                                            <img src="./src/image/a1.jpg" alt="">
+                                        </div>
+                                        <div class="form-comment__content">
+                                            <div class="form-comment__content--text">
+                                                <p class="id_comment"> You Name </p>
+                                                <p class="content_comment">Nội dung bình luận</p>
+                                                <p class="review_comment"><i
+                                                        class="fa-solid fa-star"></i>
+                                                </p>
+                                            </div>
+                                            <span class="form-comment__content--button">
+                                                <a href="" class="a">Like</a>
+                                                <a href="" class="a">Delete</a>
+                                                <span>1ngày</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="form_to_seen_cmt ">
+                            <h3>Be the first to review “Sản phẩm”</h3>
+                            <form action="">
+                                <input type="hidden" name="id" value="">
+                                <label for="">Your rating *</label>
+                                <div>
+                                    <a href="star-1"><i class="fa-regular fa-star"></i></a>
+                                    <a href="star-2"><i class="fa-regular fa-star"></i></a>
+                                    <a href="star-3"><i class="fa-regular fa-star"></i></a>
+                                    <a href="star-4"><i class="fa-regular fa-star"></i></a>
+                                    <a href="star-5"><i class="fa-regular fa-star"></i></a>
+                                </div>
+                                <input type="text" placeholder="Viết bình luận" name=""
+                                    class="write_comment">
+                                <input type="submit" class="write_comment_send" value="Send"
+                                    name="">
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- tab tùy chỉnh -->
                 <div class="tab-pane">
