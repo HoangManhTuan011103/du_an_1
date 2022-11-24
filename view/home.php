@@ -1,4 +1,3 @@
-
 <!-- SECTION -->
 <section class="section--banner1">
     <img src="./src/image/img_header_hoan/banner1_balck-skin.png" alt="">
@@ -197,7 +196,7 @@
     <div class="img--banner--category">
         <img src="./src/image/img_header_hoan/banner_product_noibat.webp" alt="">
     </div>
-   
+    
     <div class="category--review--flex row">
         <div class="grid wide category--col-1--name l-2-4 ">
             <h2>Danh mục sản phẩm</h2>
@@ -228,13 +227,13 @@
         </div>
         <div class="category--grid--review  l-9">
             <div class="row">
-            <?php
-            foreach ($protop8 as $pr) {
-                extract($pr);
-                $linkpro = "index.php?act=detail_product&id=" . $id;
-                $hinh = $image_path . $avatar;
-                $giagiam = ($price * $discount) / 100;
-                echo ' <div class="col l-3 m-6 c-6">
+                <?php
+                foreach ($protop8 as $pr) {
+                    extract($pr);
+                    $linkpro = "index.php?act=detail_product&id=" . $id;
+                    $hinh = $image_path . $avatar;
+                    $giagiam = ($price * $discount) / 100;
+                    echo ' <div class="col l-3 m-6 c-6">
                         <div class="product__banner">
                             <div class="product--hot__img">
                             <a href="' . $linkpro . '">   <img src="' . $hinh . '" alt="">  </a>
@@ -247,7 +246,7 @@
                             <div>
 
 
-                                <p class="product__banner__price--cost">' . number_format($price - $giagiam) .'<u>đ</u></p>
+                                <p class="product__banner__price--cost">' . number_format($price - $giagiam) . '<u>đ</u></p>
 
 
 
@@ -260,9 +259,9 @@
                             </div>
                         </div>
                     </div>';
-            }
-            ?>
-</div>
+                }
+                ?>
+            </div>
             <div class="grid wide review--category__p--more">
                 <p>Xem tất cả<i class="fa-solid fa-angle-right"></i></p>
             </div>

@@ -317,7 +317,7 @@
         let category_grid_review_ = document.querySelector(".category--grid--review.helo");
         let fillter_categories_list = document.querySelectorAll(".fillter_categories_list li")
         let li_first_one = document.querySelector(".fillter_categories_list>li")
-        
+
         let fillter_list_flow_price = document.querySelectorAll(".fillter_list_flow_price input")
         let product_fillter_flow_desc = document.querySelectorAll(".product_fillter_flow_desc input")
         let fillter_product_color = document.querySelectorAll(".fillter_product_color input")
@@ -328,6 +328,11 @@
             style: 'currency',
             currency: 'VND'
         })
+
+        let listArrayPrice = [];
+        let listArrayDesc = [];
+        let id_category = 0;
+
         const params = new URL(location.href).searchParams;
 
         function show_products(list_product = arr_prodcut1, show_position = category_grid_review) {
@@ -363,7 +368,11 @@
 
 
         function show_product123(arr_price = [], arrDesc = [], list_arr = arr_prodcut1) {
-
+            if (id_category !== 0) {
+                list_arr = list_arr.filter(function(item) {
+                    return item.category_id == id_category;
+                });
+            }
             const arrlist = list_arr.map((iteam, index) => {
 
                     let prices_price = Number(iteam.price);
@@ -420,8 +429,6 @@
             category_grid_review.innerHTML = arrlist;
 
         }
-        let listArrayPrice = [];
-        let listArrayDesc = [];
 
         function loop_list() {
             fillter_list_flow_price.forEach((product_item, inden) => {
@@ -468,23 +475,18 @@
             })
         })
 
-        function filter_array_cate_by_click(id = 0) {
-            if (id !== 0) {
-                let arr_list_ca = arr_prodcut3.filter(iteam => {
-                    return iteam.category_id == id
+        function filter_array_cate_by_click(id) {
 
-                })
-                show_product123(listArrayPrice, listArrayDesc, arr_list_ca);
-            } else {
-                let arr_list_cate = arr_prodcut3.filter(iteam => {
-                    return iteam.category_id == params.get('id')
-                })
+            let arr_list_cate = arr_prodcut3.filter(iteam => {
+                return iteam.category_id == id
+            })
 
-                show_product123(listArrayPrice, listArrayDesc, arr_list_cate);
-            }
+            show_product123(listArrayPrice, listArrayDesc, arr_list_cate);
+
         }
         if (params.get('id')) {
-            filter_array_cate_by_click()
+            id_category = params.get('id');
+            filter_array_cate_by_click(id_category)
             fillter_categories_list.forEach(value => {
                 if (params.get("id") == value.getAttribute("data-id")) {
                     value.classList.add('active');
@@ -496,20 +498,22 @@
                         li_active.classList.remove('active');
                         this.classList.add('active');
                     }
-                    filter_array_cate_by_click(this.getAttribute("data-id"))
+                    id_category = this.getAttribute("data-id")
+                    filter_array_cate_by_click(id_category);
                 })
             })
 
         } else {
             fillter_categories_list.forEach(value => {
-                value.addEventListener("click", function(e) {
+                value.addEventListener("click", function() {
                     let li_active = document.querySelector("li.active");
                     if (li_active) {
                         li_active.classList.remove('active');
                         this.classList.add('active');
                     }
-                    e.target.classList.add("active");
-                    filter_array_cate_by_click(e.target.getAttribute("data-id"))
+                    id_category = this.getAttribute("data-id")
+                    filter_array_cate_by_click(id_category);
+                    this.classList.add("active");
                 })
             })
         }
