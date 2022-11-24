@@ -307,7 +307,7 @@
         let arr_prodcut3 = <?php echo json_encode($prolist1); ?>;
         let array_product_2 = <?php echo json_encode($protop4); ?>;
         let fillter_price_asc = <?php echo json_encode($fillter_price_asc); ?>;
-        console.log(arr_prodcut1, arr_prodcut3);
+        // console.log(arr_prodcut1, arr_prodcut3);
         let fillter_create_at_asc = <?php echo json_encode($fillter_create_at_asc); ?>;
         let fillter_created_at_desc = <?php echo json_encode($fillter_created_at_desc); ?>;
         let fillter_price_desc = <?php echo json_encode($fillter_price_desc); ?>;
@@ -317,7 +317,7 @@
         let category_grid_review_ = document.querySelector(".category--grid--review.helo");
         let fillter_categories_list = document.querySelectorAll(".fillter_categories_list li")
         let li_first_one = document.querySelector(".fillter_categories_list>li")
-        li_first_one.classList.add('active')
+        
         let fillter_list_flow_price = document.querySelectorAll(".fillter_list_flow_price input")
         let product_fillter_flow_desc = document.querySelectorAll(".product_fillter_flow_desc input")
         let fillter_product_color = document.querySelectorAll(".fillter_product_color input")
@@ -329,9 +329,6 @@
             currency: 'VND'
         })
         const params = new URL(location.href).searchParams;
-        let id_cate_url = params.get('id');
-
-        show_products(array_product_2, category_grid_review_);
 
         function show_products(list_product = arr_prodcut1, show_position = category_grid_review) {
             show_position.innerHTML = "";
@@ -360,54 +357,9 @@
                    </div>`
             })
         }
+        show_products(array_product_2, category_grid_review_);
+
         show_products();
-        fillter_categories_list.forEach(elemt => {
-            elemt.style.cursor = "pointer"
-            let id_categor1 = document.querySelectorAll(".fillter_categories_list li");
-            const array = [];
-
-            // id_categor1.forEach((item, index) => {
-            if (id_cate_url > 0) {
-                if (elemt.getAttribute("data-id") == id_cate_url) {
-                    document.querySelector(".fillter_categories_list>li.active").classList.remove("active");
-                    elemt.classList.add('active');
-
-                }
-                elemt.addEventListener("click", (e) => {
-                    document.querySelector("li.active").classList.remove("active");
-                    e.target.classList.add("active");
-                    let id_categor = e.target.getAttribute("data-id");
-
-                    arr_prodcut1.forEach(iteam => {
-                        if (iteam.category_id == id_categor) {
-                            array.push(iteam)
-                        }
-                        // return id_categor == iteam.category_id
-                    })
-
-                    show_product123(listArrayPrice, listArrayDesc, array)
-                })
-            }
-
-
-            elemt.addEventListener("click", (e) => {
-                document.querySelector("li.active").classList.remove("active");
-                e.target.classList.add("active");
-                let id_categor = e.target.getAttribute("data-id");
-
-                arr_prodcut3.forEach(iteam => {
-                    if (iteam.category_id == id_categor) {
-                        array.push(iteam)
-                    }
-                    // return id_categor == iteam.category_id
-                })
-
-                show_product123(listArrayPrice, listArrayDesc, array)
-            })
-            // }
-
-        })
-
 
 
         function show_product123(arr_price = [], arrDesc = [], list_arr = arr_prodcut1) {
@@ -515,6 +467,53 @@
                 }
             })
         })
+
+        function filter_array_cate_by_click(id = 0) {
+            if (id !== 0) {
+                let arr_list_ca = arr_prodcut3.filter(iteam => {
+                    return iteam.category_id == id
+
+                })
+                show_product123(listArrayPrice, listArrayDesc, arr_list_ca);
+            } else {
+                let arr_list_cate = arr_prodcut3.filter(iteam => {
+                    return iteam.category_id == params.get('id')
+                })
+
+                show_product123(listArrayPrice, listArrayDesc, arr_list_cate);
+            }
+        }
+        if (params.get('id')) {
+            filter_array_cate_by_click()
+            fillter_categories_list.forEach(value => {
+                if (params.get("id") == value.getAttribute("data-id")) {
+                    value.classList.add('active');
+                }
+                value.addEventListener("click", function() {
+
+                    let li_active = document.querySelector("li.active");
+                    if (li_active) {
+                        li_active.classList.remove('active');
+                        this.classList.add('active');
+                    }
+                    filter_array_cate_by_click(this.getAttribute("data-id"))
+                })
+            })
+
+        } else {
+            fillter_categories_list.forEach(value => {
+                value.addEventListener("click", function(e) {
+                    let li_active = document.querySelector("li.active");
+                    if (li_active) {
+                        li_active.classList.remove('active');
+                        this.classList.add('active');
+                    }
+                    e.target.classList.add("active");
+                    filter_array_cate_by_click(e.target.getAttribute("data-id"))
+                })
+            })
+        }
+
         loop_list();
     })
 </script>
