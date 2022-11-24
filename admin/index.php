@@ -14,8 +14,8 @@ require_once "../model/model-statistical.php";
 if (!isset($_SESSION['orderAdmin'])) {
     $_SESSION['orderAdmin'] = [];
 }
-if (!isset($_SESSION['updateOrdersAdmin'])) {
-    $_SESSION['updateOrdersAdmin'] = [];
+if (!isset($_SESSION['orderUpdateAdmin'])) {
+    $_SESSION['orderUpdateAdmin'] = [];
 }
 $listBuyOnDay = buyProductWithDay();
 $bestSale = bestProductSales();
@@ -222,8 +222,10 @@ if (isset($_GET['actAdmin'])) {
             // require_once "./products/list.php";
             break;
         case 'showProduct':
-            if (isset($_POST['btn-search--Product'])) {
+            if (isset($_POST['btn-search--Product'] )) {
                 $keyWord = $_POST['keyWord'];
+            }else if(isset($_GET['keyWord'])) {
+                $keyWord = $_GET['keyWord'];
             } else {
                 $keyWord = "";
             }
@@ -319,54 +321,114 @@ if (isset($_GET['actAdmin'])) {
             }
             break;
         case 'editOrderAdmin-WithUser':
-            // Đang lỗi
             $id = isset($_GET['id']) ? $_GET['id'] : "";
             if ($id > 0 && is_numeric($id)) {
                 $inforUserDirect = getInforOrderDirect($id);
-                
-                $listOrderedAdmin = getOrderDirectU($id);
+                $_SESSION['orderUpdateAdmin'] = getOrderDirectU($id);
                 if (isset($_POST['btn-search--Product'])) {
                     $keyWord = $_POST['keyWord'];
                 } else {
                     $keyWord = "";
                 }
-                $temp = -1;
-                if (isset($_POST['btn__updateOrderAdmin'])) {
-                    $idProductOrder = $_POST['idProductOrder'];
-                    $priceProductOrder = $_POST['priceProductOrder'];
-                    $quantityProductOrder = $_POST['quantityProductOrder'];
-                    $nameProductOrder = $_POST['nameProductOrder'];
-                    $imageProductOrder = $_POST['imageProductOrder'];
-
-                    $orderEmty = [$idProductOrder, $nameProductOrder, $imageProductOrder, $priceProductOrder, $quantityProductOrder];
-                    var_dump($listOrderedAdmin);
-                    foreach ($listOrderedAdmin as $key => $item) {
-                        if ($idProductOrder == $item['product_id'] || $idProductOrder == $item[0] ) {
-                            $temp = $key;
-                            break;
-                        }
-                    }
-                    if ($temp == -1) {
-                        array_push($listOrderedAdmin, $orderEmty);
-                    } else {
-                        if(isset($value[4])){
-                            $quantity = [4];
-                        }else{
-                            $quantity = ['quantity'];
-                        }
-                        $listOrderedAdmin[$temp].$quantity += $quantityProductOrder;
-                    }
-                }
-                if (isset($_GET['idRemoveOrder'])) {
-                    $idRemove = $_GET['idRemoveOrder'];
-                    array_splice($_SESSION['orderAdmin'], $idRemove, 1);
-                }
-
                 $countPage = get_Page_Product_admin_order($keyWord, $rowsProductAdmin);
                 $listProduct = getAllProduct_order($keyWord, $rowsProductAdmin);
             }
             require_once "./orders/editOrderAdmin.php";
-            // Đang lỗi
+            break;
+        case 'updateOrderAdmin-WithUser':
+                $id = isset($_GET['id']) ? $_GET['id'] : "";
+                if ($id > 0 && is_numeric($id)) {
+                    $inforUserDirect = getInforOrderDirect($id);
+                    if (isset($_POST['btn-search--Product'])) {
+                        $keyWord = $_POST['keyWord'];
+                    } else {
+                        $keyWord = "";
+                    }
+                    $temp = -1;
+                    if (isset($_POST['btn__updateOrderAdmin'])) {
+                        $idProductOrder = $_POST['idProductOrder'];
+                        $priceProductOrder = $_POST['priceProductOrder'];
+                        $quantityProductOrder = $_POST['quantityProductOrder'];
+
+                        $product_value = getOneProductFlowIdUx($idProductOrder);
+                        $product_value['quantity'] = $quantityProductOrder;
+                        $product_value['price_product'] = $priceProductOrder;
+
+                        foreach ($_SESSION['orderUpdateAdmin'] as $key => $item) {
+                            if ($idProductOrder == $item['product_id']) {
+                                $temp = $key;
+                                break;
+                            }
+                        }
+                        if ($temp == -1) {
+                            $_SESSION['orderUpdateAdmin'][] = $product_value;
+                        } else {
+                            $_SESSION['orderUpdateAdmin'][$temp]['quantity'] += $quantityProductOrder;
+                        }
+                    }
+                    if (isset($_GET['idRemoveOrderUp'])) {
+                        $idRemoveUp = $_GET['idRemoveOrderUp'];
+                        unset($_SESSION['orderUpdateAdmin'][$idRemoveUp]);
+                    }
+                    if(isset($_GET['idPlussMinus'])){
+                        $idPlussMinus = $_GET['idPlussMinus'];
+                        $type = $_GET['type'];
+                        if ($type == 'decre') {
+                            if ($_SESSION['orderUpdateAdmin'][$idPlussMinus]['quantity'] > 1) {
+            
+                                $_SESSION['orderUpdateAdmin'][$idPlussMinus]['quantity']--;
+                            } else {
+                                unset($_SESSION['orderUpdateAdmin'][$idPlussMinus]);
+                            }
+                        } else {
+                            $_SESSION['orderUpdateAdmin'][$idPlussMinus]['quantity']++;
+                        }
+                    }
+                    $countPage = get_Page_Product_admin_order($keyWord, $rowsProductAdmin);
+                    $listProduct = getAllProduct_order($keyWord, $rowsProductAdmin);
+                }
+                require_once "./orders/editOrderAdmin.php";
+                break;
+        case 'updateOrderUserDirectSuccess':
+            if (isset($_POST['btn--UpdateOrder'])) {
+                // date_default_timezone_set("Asia/Ho_Chi_Minh");
+                $errors = [];
+                $nameDirect = $_POST['nameDirect'];
+                $emailDirect = $_POST['emailDirect'];
+                $phoneDirect = $_POST['phoneDirect'];
+                $addressDirect = $_POST['addressDirect'];
+                $payWhen = 2;
+                $note = "";
+                $totalPricePay = $_POST['totalPricePay'];
+                // $dateCurrent = time();
+                // $dateToInt = date("Y-m-d h:i:s", $dateCurrent);
+                $role = "3";
+                $status = "3";
+                $statusOrder = "6";
+                $idOrder = $_POST['idOrder'];
+                $idUser = $_POST['idUser'];
+                $idOrderDetail = selectIdOrderDetail($idOrder);
+                deleteUpdateOrderAdmin2($idOrder);
+                UpdateToUserDirect($idUser,$nameDirect, $emailDirect, $phoneDirect, $addressDirect, $role, $status);
+                UpdateToOrder($idOrder, $payWhen, $statusOrder, $totalPricePay, $note, $addressDirect);
+                
+                foreach ($_SESSION['orderUpdateAdmin'] as $value) {
+                    // if(count($_SESSION['orderUpdateAdmin']) == 1){
+                    //     updateToOrderDetail($idOrder, $value['product_id'], $value['quantity'], $value['price_product']);
+                    //     $_SESSION['orderUpdateAdmin'] = [];
+                    // }else{
+                        
+                        insertToOrderDetail($idOrder, $value['product_id'], $value['quantity'], $value['price_product']);
+                        $_SESSION['orderUpdateAdmin'] = [];
+                        
+                    // }
+                    
+                }
+               
+                setcookie("successOrder", "Cập nhật đơn thành công", time() + 1);
+                header("location: index.php?actAdmin=showOrder");
+                exit;
+            }
             break;
         case 'updateOrderAdmin':
             $id = isset($_GET['id']) ? $_GET['id'] : "";

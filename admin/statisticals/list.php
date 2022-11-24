@@ -27,7 +27,7 @@
                         <thead>
                             <tr>
                                 <th>Mã khách hàng</th>
-                                <th>Mã đơn hàng</th>
+                                <!-- <th>Mã đơn hàng</th> -->
                                 <th>Tên khách hàng</th>
                                 <th>Số lượng đơn</th>
                                 <th>Tổng tiền</th>
@@ -38,7 +38,7 @@
                             <?php foreach ($listBuyOnDay as $value) : ?>
                                 <tr>
                                     <td>KH00<?= $value['id_kh'] ?></td>
-                                    <td>DH00<?= $value['id_don_hang'] ?></td>
+                                    
                                     <td><?= $value['name'] == "" ? "Khách hàng trực tiếp" : $value['name'] ?></td>
                                     <td><?= $value['kh_mua'] ?></td>
                                     <td><?= number_format($value['total_price']) . "đ" ?></td>
@@ -75,7 +75,7 @@
                         <thead>
                             <tr>
                                 <th>Mã khách hàng</th>
-                                <th>Mã đơn hàng</th>
+                              
                                 <th>Tên khách hàng</th>
                                 <th>Số lượng đơn</th>
                                 <th>Tổng tiền</th>
@@ -86,7 +86,7 @@
                             <?php foreach ($totalOrderWeek as $value) : ?>
                                 <tr>
                                     <td>KH00<?= $value['id_kh'] ?></td>
-                                    <td>DH00<?= $value['id_don_hang'] ?></td>
+                                    
                                     <td><?= $value['name'] == "" ? "Khách hàng trực tiếp" : $value['name'] ?></td>
                                     <td><?= $value['kh_mua'] ?></td>
                                     <td><?= number_format($value['total_price']) . "đ" ?></td>
