@@ -6,15 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fsport</title>
-    <link href="./src/css/magiczoomplus-trial/magiczoomplus/magiczoomplus.css" rel="stylesheet" type="text/css" media="screen"/>
-<script src="./src/css/magiczoomplus-trial/magiczoomplus/magiczoomplus.js" type="text/javascript"></script>
+    <link href="./src/css/magiczoomplus-trial/magiczoomplus/magiczoomplus.css" rel="stylesheet"
+        type="text/css" media="screen" />
+    <script src="./src/css/magiczoomplus-trial/magiczoomplus/magiczoomplus.js"
+        type="text/javascript"></script>
 
     <script src="https://kit.fontawesome.com/f5f3ef5d7f.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./src/css/dangky_dangnhap.css" />
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/sharp-solid.css" />
+    <link rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.2.0/css/sharp-solid.css" />
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css" />
     <link rel="stylesheet" href="./src/css/header_hoan.css">
     <link rel="stylesheet" href="./src/css/gridsystem.css">
@@ -24,6 +27,7 @@
     <link rel="stylesheet" href="./src/css/detail_product.css">
     <link rel="stylesheet" href="./src/css/pay_detail.css">
     <link rel="stylesheet" href="./src/css/yourOrder.css">
+    <link rel="stylesheet" href="./src/css/product_review.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
@@ -43,9 +47,13 @@
                 </div>
 
                 <div class="mid-header__nav">
-                    <form action="index.php?act=showProducts" class="mid-header__form" method="post">
-                        <input type="text" name="kyw" class="mid-header__form__ip__searchTerm mid-header__form__ip--size" placeholder="Tìm kiếm...">
-                        <button type="submit" class="mid-header__form__btn__searchIcon" name="search">
+                    <form action="index.php?act=showProducts" class="mid-header__form"
+                        method="post">
+                        <input type="text" name="kyw"
+                            class="mid-header__form__ip__searchTerm mid-header__form__ip--size"
+                            placeholder="Tìm kiếm...">
+                        <button type="submit" class="mid-header__form__btn__searchIcon"
+                            name="search">
                             <i class="fas fa-search" style="font-size:22px;color:#ff2d37"></i>
                         </button>
                     </form>
@@ -55,7 +63,9 @@
                                 <p>Tư vấn bán hàng</p>
                                 <span>Gọi ngay 19004673</span>
                             </div>
-                            <img class="mid-header__sp__img" src="./src/image/img_header_hoan/circle-phone-removebg-preview.png" alt="">
+                            <img class="mid-header__sp__img"
+                                src="./src/image/img_header_hoan/circle-phone-removebg-preview.png"
+                                alt="">
                         </div>
                     </a>
 
@@ -128,7 +138,8 @@
                         </ul>
                     </div>
                     <div class="mid-header__cart">
-                        <a href="index.php?act=cart"><i class="mid-header__cart__icon mid-header__cart__icon--color fas fa-shopping-cart"></i></a>
+                        <a href="index.php?act=cart"><i
+                                class="mid-header__cart__icon mid-header__cart__icon--color fas fa-shopping-cart"></i></a>
                     </div>
                 </div>
             </div>
@@ -136,10 +147,13 @@
         <div class="nav--bg-color">
             <nav class="nav">
                 <ul class="nav__ul--main-menu">
-                    <li class="nav__ul__li--list nav__ul--home"><a href="index.php">Trang chủ</a></li>
-                    <li class="nav__ul__li--list nav__ul--product"><a href="index.php?act=showProducts">Sản phẩm</a></li>
+                    <li class="nav__ul__li--list nav__ul--home"><a href="index.php">Trang chủ</a>
+                    </li>
+                    <li class="nav__ul__li--list nav__ul--product"><a
+                            href="index.php?act=showProducts">Sản phẩm</a></li>
                     <li class="nav__ul__li--list nav__ul--spt-male"><a href="">Thể thao nam</a></li>
-                    <li class="nav__ul__li--list nav__ul--spt-female"><a href="">Thể thao nữ</a></li>
+                    <li class="nav__ul__li--list nav__ul--spt-female"><a href="">Thể thao nữ</a>
+                    </li>
                     <li class="nav__ul__li--list nav__ul--contact"><a href="">Liên hệ</a></li>
                     <li class="nav__ul__li--list nav__ul--introduce"><a href="">Giới thiệu</a></li>
                     <li class="nav__ul__li--list nav__ul--news"><a href="">Tin tức</a></li>
