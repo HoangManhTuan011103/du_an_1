@@ -80,22 +80,22 @@
                 ?>
                     <?php if (isset($_GET['page']) && $_GET['page'] > 2) {
                         $fisrtPage = 1; ?>
-                        <li><a href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $fisrtPage ?>"><i class="fa-sharp fa-solid fa-angles-left"></i></a></li>
+                        <li><a href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $fisrtPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-sharp fa-solid fa-angles-left"></i></a></li>
                     <?php } ?>
 
                     <?php if (isset($_GET['page']) && $_GET['page'] > 1) {
                         $prevPage = $_GET['page'] - 1; ?>
-                        <li><a href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $prevPage ?>"><i class="fa-solid fa-angle-left"></i></a></li>
+                        <li><a href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $prevPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-solid fa-angle-left"></i></a></li>
                     <?php } ?>
 
                     <?php for ($i; $i <= $countPage; $i++) : ?>
                         <?php if (isset($_GET['page'])) : ?>
                             <?php if ($i + 1 != $_GET['page']) : ?>
                                 <?php if ($i + 1 > $_GET['page'] - 2 && $i + 1 < $_GET['page'] + 2) : ?>
-                                    <li><a href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $i + 1 ?>"><?= $i + 1 ?></a></li>
+                                    <li><a href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $i + 1 ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><?= $i + 1 ?></a></li>
                                 <?php endif; ?>
                             <?php else : ?>
-                                <li><a style="background-color: #F39C12; color: #ffffff" href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $i + 1 ?>"><?= $i + 1 ?></a></li>
+                                <li><a style="background-color: #F39C12; color: #ffffff" href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $i + 1 ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><?= $i + 1 ?></a></li>
                             <?php endif; ?>
                         <?php else : ?>
                             <?php
@@ -112,19 +112,19 @@
                             }
                             ?>
                             <?php if ($i <= $countPage) : ?>
-                                <li><a <?= $backGround . $color . $word . $colorWord ?> href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $i + 1 ?>"><?= $i + 1 ?></a></li>
+                                <li><a <?= $backGround . $color . $word . $colorWord ?> href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $i + 1 ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><?= $i + 1 ?></a></li>
                             <?php endif; ?>
                         <?php endif; ?>
                     <?php endfor ?>
 
                     <?php if (isset($_GET['page']) && $_GET['page'] < ceil($countPage)) {
                         $nextPage = $_GET['page'] + 1; ?>
-                        <li><a href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $nextPage ?>"><i class="fa-solid fa-angle-right"></i></a></li>
+                        <li><a href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $nextPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-solid fa-angle-right"></i></a></li>
                     <?php } ?>
 
                     <?php if (isset($_GET['page']) && $_GET['page'] < ceil($countPage) - 1) {
                         $endPage = ceil($countPage); ?>
-                        <li><a href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $endPage ?>"><i class="fa-sharp fa-solid fa-angles-right"></i></a></li>
+                        <li><a href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $endPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-sharp fa-solid fa-angles-right"></i></a></li>
                     <?php } ?>
 
                 <?php } ?>

@@ -90,8 +90,8 @@
                             <a href="index.php?actAdmin=showUsers" class="canHidden">Quản lý người dùng</a>
                         </li>
                         <li>
-                            <a href="comment.html"><i class="fa-solid fa-comment"></i></a>
-                            <a href="comment.html" class="canHidden">Quản lý bình luận</a>
+                            <a href="index.php?actAdmin=comments"><i class="fa-solid fa-comment"></i></a>
+                            <a href="index.php?actAdmin=comments" class="canHidden">Quản lý bình luận</a>
                         </li>
                         <li>
                             <a href="index.php?actAdmin=statisticals"><i class="fa-solid fa-database"></i></a>

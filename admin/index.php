@@ -241,6 +241,8 @@ if (isset($_GET['actAdmin'])) {
             $temp = -1;
             if (isset($_POST['btn-search--Product'])) {
                 $keyWord = $_POST['keyWord'];
+            }else if(isset($_GET['keyWord'])) {
+                $keyWord = $_GET['keyWord'];
             } else {
                 $keyWord = "";
             }
@@ -327,6 +329,8 @@ if (isset($_GET['actAdmin'])) {
                 $_SESSION['orderUpdateAdmin'] = getOrderDirectU($id);
                 if (isset($_POST['btn-search--Product'])) {
                     $keyWord = $_POST['keyWord'];
+                }else if(isset($_GET['keyWord'])) {
+                    $keyWord = $_GET['keyWord'];
                 } else {
                     $keyWord = "";
                 }
@@ -341,6 +345,8 @@ if (isset($_GET['actAdmin'])) {
                     $inforUserDirect = getInforOrderDirect($id);
                     if (isset($_POST['btn-search--Product'])) {
                         $keyWord = $_POST['keyWord'];
+                    }else if(isset($_GET['keyWord'])) {
+                        $keyWord = $_GET['keyWord'];
                     } else {
                         $keyWord = "";
                     }
@@ -587,6 +593,14 @@ if (isset($_GET['actAdmin'])) {
         case 'statisticals':
             $getToTalProductChart = getToTalProductChartJs();
             require_once "./statisticals/list.php";
+            break;
+        case 'comments':
+            
+            require_once "./comments/list.php";
+            break;
+        case 'detailComment':
+            
+            require_once "./comments/detailComment.php";
             break;
         case 'dangxuat':
             session_destroy();

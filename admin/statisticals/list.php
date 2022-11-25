@@ -131,29 +131,26 @@
         ],
         datasets: [{
             label: 'Số lượng',
-            data: <?php 
-                $total = count($getToTalProductChart);
-                $i = 1;
-                $flag = 1;
-                foreach($getToTalProductChart as $value){
-                    if($i == $total){
-                        $sign = "]";
-                    }else{
-                        $sign = "";
-                    }
-                    if($flag == $total){
-                        $signSecond = "";
-                    }else{
-                        $signSecond = "[";
-                    }
-                    echo $signSecond.$value['total_product'].",".$sign;
-                    $flag++;
-                    $i++;
-                }
-            ?>,
+            data: [
+                    <?php 
+                        $total = count($getToTalProductChart);
+                        $i = 1;
+                        foreach($getToTalProductChart as $value){
+                            extract($value);
+                            if($i == $total){
+                                $sign = "";
+                            }else{
+                                $sign = ",";
+                            }
+                            echo $value['total_product'].$sign;
+                            $i++;
+                        }
+                    ?>
+                ],
             backgroundColor: [
                 'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)'
+                'rgb(54, 162, 235)',
+                '#009900',
             ],
             hoverOffset: 4
         }]
