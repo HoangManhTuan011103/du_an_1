@@ -102,7 +102,22 @@
 .accountAdmin.row {
     border-top: none;
 }
-
+.accountAdmin.row .imgNameUser-right{
+    width: 40px;
+    height: 40px;
+    background-color: #ff2d37;
+    border-radius: 50%;
+    position: relative;
+}
+.imgNameUser-right .nameUser-right{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 500;
+}
 .menuShowIcon .fa-solid {
     color: #ffffff;
     font-size: 34px;
@@ -207,6 +222,23 @@
     padding: 20px 0 20px 20px;
     align-items: center;
 }
+.avatarAdmin .imgNameUser{
+    width: 50px;
+    height: 50px;
+    background-color: #ff2d37;
+    border-radius: 50%;
+    position: relative;
+}
+.imgNameUser .nameUser-small{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% ,-50%);
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: white;
+}
+
 
 .accountAdmin .avatarAdmin>img {
     width: 50px;

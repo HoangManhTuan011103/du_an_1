@@ -37,7 +37,23 @@
                     </div>
                     <div class="accountAdmin row">
                         <div class="avatarAdmin row">
-                            <img src="./UserAvt/<?= $_SESSION['user']['image'] ?>" alt="">
+                            <?php
+                            if ($_SESSION['user']['image'] != "") {
+                                echo
+                                '   <img src="./UserAvt/' . $_SESSION['user']['image'] . '" alt="">';
+                            } else {
+                                $string1 = $_SESSION['user']['name'];
+                                $string = convert_vi_to_en($string1);
+                                $pieces = explode(' ', $string);
+                                $name_user1 = array_pop($pieces);
+                                $name_user2 = ucfirst($name_user1);
+                                $name_user3 = substr($name_user2, 0, 1);
+                                echo
+                                '  <div class="imgNameUser-right">
+                                <span class="nameUser-right">' . $name_user3 . '</span>
+                                </div>';
+                            }
+                            ?>
                         </div>
                         <div class="nameAdmin row">
                             <?= $_SESSION['user']['name'] ?>
@@ -51,7 +67,23 @@
             <div class="listMainFirst">
                 <div class="accountAdmin accountAdmin--canHidden">
                     <div class="avatarAdmin">
-                        <img src="./UserAvt/<?= $_SESSION['user']['image'] ?>" alt="">
+                        <?php
+                        if ($_SESSION['user']['image'] != "") {
+                            echo
+                            '  <img src="./UserAvt/' . $_SESSION['user']['image'] . '" alt="">';
+                        } else {
+                            $string1 = $_SESSION['user']['name'];
+                            $string = convert_vi_to_en($string1);
+                            $pieces = explode(' ', $string);
+                            $name_user1 = array_pop($pieces);
+                            $name_user2 = ucfirst($name_user1);
+                            $name_user3 = substr($name_user2, 0, 1);
+                            echo
+                            '  <div class="imgNameUser">
+                            <span class="nameUser-small">' . $name_user3 . '</span>
+                        </div>';
+                        }
+                        ?>
                     </div>
                     <div class="nameAdmin nameAdmin--navLeft">
                         <?= $_SESSION['user']['name'] ?>
