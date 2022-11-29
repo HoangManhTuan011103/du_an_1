@@ -73,6 +73,12 @@
                                 500.000đ - 1.000.000đ</label>
 
                         </li>
+                        <li>
+                            <label for="">
+                                <input value='6' type="checkbox">
+                                Giá trên 1.000.000đ</label>
+
+                        </li>
 
                     </ul>
                 </div>
@@ -393,6 +399,9 @@
                             return
                         }
                         if (prices_price >= 500000 && prices_price < 1000000 && arr_price.includes("5") == false) {
+                            return
+                        }
+                        if ( prices_price >= 1000000 && arr_price.includes("6") == false) {
                             return
                         }
                     }

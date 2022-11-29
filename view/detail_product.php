@@ -2,14 +2,14 @@
 $check_user_bying_product = check_user_bying_product();
 
 foreach ($check_user_bying_product as $check) {
-
+    // add comment
     if (isset($_POST['send_add_comments'])) {
-        $id = $_SESSION['user']['id'];
-        $content_comment = $_POST['content_comment'];
-        $id_product = $_POST['id_product'];
-        $count_start = $_POST['count_start'];
 
         if (isset($_SESSION['user'])) {
+            $id = $_SESSION['user']['id'];
+            $content_comment = $_POST['content_comment'];
+            $id_product = $_POST['id_product'];
+            $count_start = $_POST['count_start'];
             if ($check['user_id'] == $id && $check['product_id'] == $id_product) {
                 comment_insert($id_product, $id, $content_comment, $count_start);
                 header("location: " . $_SERVER['HTTP_REFERER']);
@@ -25,7 +25,7 @@ foreach ($check_user_bying_product as $check) {
         }
     }
 
-
+    // delete comment
     if (isset($_POST['delete_comment'])) {
         if (isset($_SESSION['user'])) {
 
@@ -49,31 +49,32 @@ foreach ($check_user_bying_product as $check) {
         }
     }
 
+    if (isset($_POST['update_comments'])) {
+        if (isset($_SESSION['user'])) {
 
-    // if (isset($_POST['edit_comment'])) {
-    //     if (isset($_SESSION['user'])) {
+            $id = $_SESSION['user']['id'];
+            $content_comment = $_POST['content_comment'];
+            $id_product = $_POST['id_product'];
+            $id_comment = $_POST['id_comment'];
+            $rating_products = $_POST['count_start'];
+            echo $id, $content_comment, $id_product, $id_comment, $rating_products;
 
-    //         $id = $_SESSION['user']['id'];
-    //         $content_comment = $_POST['content_comment'];
-    //         $id_product = $_POST['id_product'];
-    //         $id_comment = $_POST['id_comment'];
-    //         $rating_products = $_POST['rating_products'];
+            // die;
+            if ($check['user_id'] == $id && $check['product_id'] == $id_product) {
+                comment_update($id_comment, $id_product, $id, $content_comment, $rating_products);
 
-    //         if ($check['user_id'] == $id && $check['product_id'] == $id_product) {
-    //             comment_update($id_comment, $id_product, $id, $content_comment, $rating_products);
-
-    //             header("location: " . $_SERVER['HTTP_REFERER']);
-    //         } else {
-    //             echo "<script>  
-    //              window.location.href = 'index.php?act=detail_product&id=$id_product';
-    //                     alert('Bạn phải mua hàng mới được bình luận');
-    //                     </script>";
-    //         }
-    //     } else {
-    //         require_once "./view/dangnhap.php";
-    //         exit;
-    //     }
-    // }
+                header("location: " . $_SERVER['HTTP_REFERER']);
+            } else {
+                echo "<script>  
+                 window.location.href = 'index.php?act=detail_product&id=$id_product';
+                        alert('Bạn phải mua hàng mới được bình luận');
+                        </script>";
+            }
+        } else {
+            require_once "./view/dangnhap.php";
+            exit;
+        }
+    }
 }
 ?>
 
@@ -93,12 +94,7 @@ foreach ($check_user_bying_product as $check) {
     </div>
     <?php
     extract($onepro_categories)
-    // $imagePath = "../imageProduct/" .$onepro_categories['avatar'];
-    // if(is_file($imagePath)){
-    //     $image = "<img src='" . $imagePath . "' alt=''>";
-    // }else{
-    //     $image = "<h4 style='color: #ffffff' > không có hình ảnh</h4>";
-    // } 
+
     ?>
     <p class="product_title_name"><?= $name ?></p>
     <div class="row all_detail_products">
@@ -236,8 +232,8 @@ foreach ($check_user_bying_product as $check) {
                                                     <img src="./imageProduct/<?= $image ?>" alt="">
                                                 </div>
                                                 <div class="form-comment__content">
-                                                    <div class="form-comment__content--text">
-                                                        <div class="form__toggle_clickedit">
+                                                    <div class="form__toggle_clickedit">
+                                                        <div class="form-comment__content--text">
 
                                                             <p class="id_comment"> <?= $name_person_comment ?> </p>
                                                             <p class="content_comment"><?= $content ?></p>
@@ -249,19 +245,20 @@ foreach ($check_user_bying_product as $check) {
                                                                 <?php } ?>
                                                             </p>
                                                         </div>
-                                                    </div>
-                                                    <span class="form-comment__content--button">
-                                                        <span style="cursor: pointer;" href="" id="" class="a click_like ">Like</span>
+                                                        <span class="form-comment__content--button">
+                                                            <!-- <span style="cursor: pointer;" href="" id="" class="a click_like ">Like</span> -->
 
-                                                        <button name="edit_comment" class="a click_change">Edit</button>
+                                                            <!-- <button name="edit_comment" class="a click_change">Edit</button> -->
 
-                                                        <button name="delete_comment" class="a click_change" onclick="return 
+                                                            <button name="delete_comment" class="a click_change" onclick="return 
                                                         confirm('Bạn có chắc chắn muốn xóa comments <?= $content ?> không?')">
-                                                            Delete
-                                                        </button>
+                                                                Delete
+                                                            </button>
 
-                                                        <span><?= $created_at ?></span>
-                                                    </span>
+                                                            <span><?= $created_at ?></span>
+                                                        </span>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </form>
@@ -473,86 +470,30 @@ foreach ($check_user_bying_product as $check) {
     });
 
 
-    document.addEventListener("DOMContentLoaded", () => {
-
-        const starUl = document.querySelector(".stars");
-        const stars = document.querySelectorAll(".star");
-        const count_start = document.querySelector("#count_start");
-        const show_comments_user = document.querySelector(".show-comments_user");
-        let btn_edit_delete = document.querySelectorAll(".click_change");
-        let form_comment_content_text = document.querySelectorAll(".form-comment__content--text");
-        const array_comments = <?php echo json_encode($data); ?>;
-        let hidden_form_edit = document.querySelectorAll(".form__toggle_clickedit");
-        console.log(array_comments);
-        console.log(btn_edit_delete);
-        // btn_edit_delete.forEach((item, index) => {
-        //     item.addEventListener("click", e => {
-        //         e.preventDefault();
-
-        //         if (e.target.innerHTML == "Edit") {
-        //             hidden_form_edit[index].style.display = "none";
-        //             form_comment_content_text[index].innerHTML = `
-        //             <form ation="<?= $_SERVER['PHP_SELF'] ?>" method="post">
-        //                         <input type="hidden" id="count_start" name="count_start" value="">
-        //                         <input type="hidden" name="id_product" value="<?= $_GET['id'] ?>">
-        //                         <label for="">Your rating *</label>
-        //                         <ul class="stars">
-        //                             <li class="star">&#10029;</li>
-        //                             <li class="star">&#10029;</li>
-        //                             <li class="star">&#10029;</li>
-        //                             <li class="star">&#10029;</li>
-        //                             <li class="star">&#10029;</li>
-        //                         </ul>
-        //                         <input type="text" placeholder="Viết bình luận" name="content_comment" class="write_comment">
-        //                         <input type="submit" class="write_comment_send" value="Update" name="send_edi_comments">
-        //                     </form>
-        //             `
-        //         }
-        //     })
-        // })
-
-        const click_like = document.querySelectorAll(".click_like");
-        let edit_comment = document.querySelectorAll("button.a");
-        array_comments.filter(function(item) {
-
-            let time_curent = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
-
-        })
-        setTimeout(function() {
-            edit_comment.forEach(item => {
-                item.style.cursor = "no-drop";
-                item.addEventListener("click", e => {
-                    e.preventDefault();
-                })
-            })
-        }, 1 * 3600 * 1000)
-
-        click_like.forEach(item => {
-
-            item.addEventListener("click", function(e) {
-                e.preventDefault();
-                e.target.classList.toggle("orange");
-            })
-        })
-        // })
-        stars.forEach((star, index) => {
-            star.starValue = (index + 1);
-
-            star.addEventListener("click", starRate);
-
-        })
+    const array_comments = <?php echo json_encode($data); ?>;
 
 
-        function starRate(e) {
-            count_start.value = e.target.starValue;
-            stars.forEach((star, index) => {
-                if (index < e.target.starValue) {
-                    star.classList.add("orange")
-                } else {
-                    star.classList.remove("orange")
-                }
-            })
-        }
+    const starUl = document.querySelector(".stars");
+    const stars = document.querySelectorAll(".star");
+    const count_start = document.querySelector("#count_start");
+    stars.forEach((star, index) => {
+        star.starValue = (index + 1);
+
+        star.addEventListener("click", starRate);
 
     })
+
+
+    function starRate(e) {
+        count_start.value = e.target.starValue;
+        stars.forEach((star, index) => {
+            if (index < e.target.starValue) {
+                star.classList.add("orange")
+            } else {
+                star.classList.remove("orange")
+            }
+        })
+    }
+
+  
 </script>

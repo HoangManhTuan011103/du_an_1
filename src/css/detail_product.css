@@ -354,3 +354,11 @@ h2.product_list_with_categories_title {
 .product__banner__price--sale.product_one_price_old {
     padding-left: 10px;
 }
+.active1{
+    
+    display: block;
+}
+.hidden1{
+    
+    display:none;
+}
