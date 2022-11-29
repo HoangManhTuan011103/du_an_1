@@ -233,7 +233,7 @@
                     $linkpro = "index.php?act=detail_product&id=" . $id;
                     $hinh = $image_path . $avatar;
                     $giagiam = ($price * $discount) / 100;
-                    echo ' <div class="col l-3 m-6 c-6">
+                    echo ' <div class="col l-3 m-4 c-6 prodcut_mg_bottom">
                         <div class="product__banner">
                             <div class="product--hot__img">
                             <a href="' . $linkpro . '">   <img src="' . $hinh . '" alt="">  </a>
