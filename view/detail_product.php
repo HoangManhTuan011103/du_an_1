@@ -12,6 +12,12 @@ foreach ($check_user_bying_product as $check) {
             $count_start = $_POST['count_start'];
             if ($check['user_id'] == $id && $check['product_id'] == $id_product) {
                 comment_insert($id_product, $id, $content_comment, $count_start);
+               
+                $total_comment_by_product= total_comment_id_product($id_product);
+                extract($total_comment_by_product);
+                // die;
+
+                update_total_comment_id($total_comment_id_product,$total,$id_product);
                 header("location: " . $_SERVER['HTTP_REFERER']);
             } else {
                 echo "<script>  
@@ -220,7 +226,8 @@ foreach ($check_user_bying_product as $check) {
                     <div class="row">
                         <div class="form-comment">
                             <ul class='show-comments_user'>
-                                <?php foreach ($data as $value) : extract($value) ?>
+                                <?php foreach ($data as $value) : extract($value); ?>
+
                                     <li>
                                         <form ation="<?= $_SERVER['PHP_SELF'] ?>" method="post" class="form_edit_delete">
                                             <input type="hidden" name="id_comment" value="<?= $id ?>">
@@ -246,16 +253,45 @@ foreach ($check_user_bying_product as $check) {
                                                             </p>
                                                         </div>
                                                         <span class="form-comment__content--button">
-                                                            <!-- <span style="cursor: pointer;" href="" id="" class="a click_like ">Like</span> -->
 
-                                                            <!-- <button name="edit_comment" class="a click_change">Edit</button> -->
+                                                            <?php
+                                                            if (isset($_SESSION['user'])) {
+                                                                if ($_SESSION['user']['id'] == $user_id) {  ?>
+                                                                    <button name="delete_comment" class="a click_change" onclick="return 
+                                                             confirm('Bạn có chắc chắn muốn xóa comments <?= $content ?> không?')">
+                                                                        Delete
+                                                                    </button> <?php
+                                                                            }
+                                                                        } ?>
+                                                            <?php
 
-                                                            <button name="delete_comment" class="a click_change" onclick="return 
-                                                        confirm('Bạn có chắc chắn muốn xóa comments <?= $content ?> không?')">
-                                                                Delete
-                                                            </button>
+                                                            date_default_timezone_set("Asia/Ho_Chi_Minh");
+                                                            $timeCurrent = time();
+                                                            $timeCommentDate = $created_at;
+                                                            $timeCommentString = strtotime($timeCommentDate);
 
-                                                            <span><?= $created_at ?></span>
+                                                            $timeCommentCalculate = $timeCurrent - $timeCommentString;
+
+
+                                                            // $timeCommentShow = date("s", $timeCommentCalculate)." giây";
+                                                            $timeCommentShow = "Vừa xong";
+                                                            if ($timeCommentCalculate > 0 && $timeCommentCalculate < 60) {
+                                                                $timeCommentShow = date("s", $timeCommentCalculate) . "<span style='margin-left:5px;'>giây</span>";
+                                                            } else if ($timeCommentCalculate >= 60 && $timeCommentCalculate < 60 * 60) {
+                                                                $timeCommentShow = date("i", $timeCommentCalculate) . "<span style='margin-left:5px;'>phút</span>";
+                                                            } else if ($timeCommentCalculate >= 60 * 60 && $timeCommentCalculate < 60 * 60 * 24) {
+                                                                $timeCommentShow = date("G", $timeCommentCalculate - 8 * 60 * 60) . "<span style='margin-left:5px;'>giờ</span>";
+                                                            } else if ($timeCommentCalculate >= 60 * 60 * 24 && $timeCommentCalculate < 60 * 60 * 24 * 7) {
+                                                                $timeCommentShow = floor($timeCommentCalculate / (60 * 60 * 24)) . "<span style='margin-left:5px;'>ngày</span>";
+                                                            } else if ($timeCommentCalculate >= 60 * 60 * 24 * 7) {
+                                                                $timeCommentShow = floor($timeCommentCalculate / (60 * 60 * 24 * 7)) . "<span style='margin-left:5px;'>tuần</span>";
+                                                            }
+
+                                                            ?>
+                                                            <span>
+                                                                <?= $timeCommentShow;
+                                                                ?>
+                                                            </span>
                                                         </span>
                                                     </div>
 
@@ -469,10 +505,6 @@ foreach ($check_user_bying_product as $check) {
         }
     });
 
-
-    const array_comments = <?php echo json_encode($data); ?>;
-
-
     const starUl = document.querySelector(".stars");
     const stars = document.querySelectorAll(".star");
     const count_start = document.querySelector("#count_start");
@@ -494,6 +526,4 @@ foreach ($check_user_bying_product as $check) {
             }
         })
     }
-
-  
 </script>
