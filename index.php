@@ -54,6 +54,11 @@ if (isset($_GET['act'])) {
                 $id = $_GET['id'];
                 $onepro_categories =  loadone_detail_product_flow_categories($id);
                 $list_image_product = loadone_detail_product_flow_product_images($id);
+                // extract($onepro_categories);
+                // var_dump($onepro_categories);
+                // die();
+                $protop4 = loadtop4_product_home();
+
                 require_once "view/detail_product.php";
             } else {
                 require_once "view/home.php";

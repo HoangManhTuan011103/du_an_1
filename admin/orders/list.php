@@ -90,7 +90,6 @@
                                             <a href="index.php?actAdmin=editOrderAdmin-WithUser&&id=<?= $value['id'] ?>" class="update"><button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button></a>
                                         <?php endif; ?>
 
-                                        <a onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng DH00<?= $value['id'] ?> không')" href="index.php?actAdmin=deleteOrder&id=<?= $value['id'] ?>"><button><i class="fa-sharp fa-solid fa-trash"></i></button></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
