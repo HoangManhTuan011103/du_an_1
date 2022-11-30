@@ -139,7 +139,7 @@
 .product_fillter_page {
     display: flex;
     justify-content: flex-end;
-    /* margin: 10px 0; */
+    margin: 10px 0;
     align-items: flex-end;
 }
 
@@ -149,4 +149,20 @@
 
 .product_fillter_page li a {
     padding: 5px;
+}
+.product_page-item{
+    padding: 8px 10px 10px 10px;
+    height: 34px;
+    border: 1px solid #ccc;
+    text-align: center;
+    cursor: pointer;
+}
+.product_page-item.activ{
+    background-color: #f06a35;
+}
+
+ .col.l-3.m-4.c-6.prodcut_mg_bottom +
+.col.l-3.m-4.c-6.prodcut_mg_bottom
+{  
+    margin-bottom: 20px;
 }

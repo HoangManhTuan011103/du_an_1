@@ -1,3 +1,84 @@
+<?php
+$check_user_bying_product = check_user_bying_product();
+
+foreach ($check_user_bying_product as $check) {
+    // add comment
+    if (isset($_POST['send_add_comments'])) {
+
+        if (isset($_SESSION['user'])) {
+            $id = $_SESSION['user']['id'];
+            $content_comment = $_POST['content_comment'];
+            $id_product = $_POST['id_product'];
+            $count_start = $_POST['count_start'];
+            if ($check['user_id'] == $id && $check['product_id'] == $id_product) {
+                comment_insert($id_product, $id, $content_comment, $count_start);
+                header("location: " . $_SERVER['HTTP_REFERER']);
+            } else {
+                echo "<script>  
+                 window.location.href = 'index.php?act=detail_product&id=$id_product';
+                        alert('Bạn phải mua hàng mới được bình luận');
+                        </script>";
+            }
+        } else {
+            require_once "./view/dangnhap.php";
+            exit;
+        }
+    }
+
+    // delete comment
+    if (isset($_POST['delete_comment'])) {
+        if (isset($_SESSION['user'])) {
+
+            $id = $_SESSION['user']['id'];
+            $id_comment = $_POST['id_comment'];
+            $id_product = $_POST['id_product'];
+
+
+            if ($check['user_id'] == $id && $check['product_id'] == $id_product) {
+                comment_delete($id_comment);
+                header("location: " . $_SERVER['HTTP_REFERER']);
+            } else {
+                echo "<script>  
+                 window.location.href = 'index.php?act=detail_product&id=$id_product';
+                        alert('Bạn phải mua hàng mới được bình luận');
+                        </script>";
+            }
+        } else {
+            require_once "./view/dangnhap.php";
+            exit;
+        }
+    }
+
+    if (isset($_POST['update_comments'])) {
+        if (isset($_SESSION['user'])) {
+
+            $id = $_SESSION['user']['id'];
+            $content_comment = $_POST['content_comment'];
+            $id_product = $_POST['id_product'];
+            $id_comment = $_POST['id_comment'];
+            $rating_products = $_POST['count_start'];
+            echo $id, $content_comment, $id_product, $id_comment, $rating_products;
+
+            // die;
+            if ($check['user_id'] == $id && $check['product_id'] == $id_product) {
+                comment_update($id_comment, $id_product, $id, $content_comment, $rating_products);
+
+                header("location: " . $_SERVER['HTTP_REFERER']);
+            } else {
+                echo "<script>  
+                 window.location.href = 'index.php?act=detail_product&id=$id_product';
+                        alert('Bạn phải mua hàng mới được bình luận');
+                        </script>";
+            }
+        } else {
+            require_once "./view/dangnhap.php";
+            exit;
+        }
+    }
+}
+?>
+
+
 <div class="grid wide">
     <!-- điều hương -->
     <div class="row product_title_path">
@@ -13,12 +94,7 @@
     </div>
     <?php
     extract($onepro_categories)
-    // $imagePath = "../imageProduct/" .$onepro_categories['avatar'];
-    // if(is_file($imagePath)){
-    //     $image = "<img src='" . $imagePath . "' alt=''>";
-    // }else{
-    //     $image = "<h4 style='color: #ffffff' > không có hình ảnh</h4>";
-    // } 
+
     ?>
     <p class="product_title_name"><?= $name ?></p>
     <div class="row all_detail_products">
@@ -27,9 +103,9 @@
                 <!-- ảnh -->
 
                 <div class="col l-6 image_hover_detail_scole">
-                  
+
                     <a href="./imageProduct/<?= $avatar ?>" class="MagicZoom" id="product_change_images" data-options="cssClass: thumbnails-style-shaded;">
-                        <img src="./imageProduct/<?= $avatar ?>"/>
+                        <img src="./imageProduct/<?= $avatar ?>" />
                     </a>
                 </div>
                 <div class="col l-6">
@@ -52,7 +128,7 @@
                     </div>
 
                     <!-- titile production -->
-                    <h3 class="one_product_title_name_" style="text-align: left;" ><?=$name?></h3>
+                    <h3 class="one_product_title_name_" style="text-align: left;"><?= $name ?></h3>
                     <!-- thương hiệu -->
                     <div class="product_name_brand_quantity">
                         <p class="product_brand">
@@ -75,8 +151,7 @@
                     <div class="one_product_price_detail">
 
                         <p class="product_one_price">
-                            <?= number_format($price - $giagiam) ?> <span
-                                class="product_currency">đ</span>
+                            <?= number_format($price - $giagiam) ?> <span class="product_currency">đ</span>
                         <p class="product_one_price_old">
                             <?= number_format($price) ?>
 
@@ -87,16 +162,14 @@
                     <!-- số lượng -->
                     <div class="product__one_quantity">
 
-                        <form action="index.php?act=addToCart" id="form_quantity" method="post"
-                            enctype="multipart/form-data">
+                        <form action="index.php?act=addToCart" id="form_quantity" method="post" enctype="multipart/form-data">
                             <div class="form_product_submit_quatity">
                                 <p class="product_quantity_name">
                                     Số lượng :
                                 </p>
                                 <div class="quantity_change_number">
                                     <div class="btn_decre">-</div>
-                                    <input type="text" id="btn_product_quantity_input" min="1"
-                                        name="product_quantity_input" value="1">
+                                    <input type="text" id="btn_product_quantity_input" min="1" name="product_quantity_input" value="1">
                                     <div class="btn_incre">+</div>
                                 </div>
                             </div>
@@ -107,8 +180,7 @@
                             <!--  -->
                             <div class="one_product_btn_buy">
 
-                                <button type="submit" name="btn-addCart"
-                                    class="btn_buy_products">Mua
+                                <button type="submit" name="btn-addCart" class="btn_buy_products">Mua
                                     ngay</button>
                                 <div class="contact_information">
                                     <p>Mua số lượng lớn
@@ -145,9 +217,74 @@
                 </div>
                 <!-- tab tùy chỉnh -->
                 <div class="tab-pane">
-                    <p>
-                        Viết gì ở đây
-                    </p>
+                    <div class="row">
+                        <div class="form-comment">
+                            <ul class='show-comments_user'>
+                                <?php foreach ($data as $value) : extract($value) ?>
+                                    <li>
+                                        <form ation="<?= $_SERVER['PHP_SELF'] ?>" method="post" class="form_edit_delete">
+                                            <input type="hidden" name="id_comment" value="<?= $id ?>">
+                                            <input type="hidden" name="id_product" value="<?= $_GET['id'] ?>">
+                                            <input type="hidden" name="content_comment" value="<?= $content ?>">
+
+                                            <div class="form-comment--one">
+                                                <div class="form-comment__avatar">
+                                                    <img src="./imageProduct/<?= $image ?>" alt="">
+                                                </div>
+                                                <div class="form-comment__content">
+                                                    <div class="form__toggle_clickedit">
+                                                        <div class="form-comment__content--text">
+
+                                                            <p class="id_comment"> <?= $name_person_comment ?> </p>
+                                                            <p class="content_comment"><?= $content ?></p>
+                                                            <p class="review_comment">
+                                                                <input type="hidden" value="<?= $rating_products ?>" name="rating_products">
+                                                                <?php for ($i = 0; $i < $rating_products; $i++) { ?>
+                                                                    <i class="fa-solid fa-star orange"></i>
+
+                                                                <?php } ?>
+                                                            </p>
+                                                        </div>
+                                                        <span class="form-comment__content--button">
+                                                            <!-- <span style="cursor: pointer;" href="" id="" class="a click_like ">Like</span> -->
+
+                                                            <!-- <button name="edit_comment" class="a click_change">Edit</button> -->
+
+                                                            <button name="delete_comment" class="a click_change" onclick="return 
+                                                        confirm('Bạn có chắc chắn muốn xóa comments <?= $content ?> không?')">
+                                                                Delete
+                                                            </button>
+
+                                                            <span><?= $created_at ?></span>
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                        <div class="form_to_seen_cmt ">
+                            <h3>Be the first to review “Sản phẩm”</h3>
+                            <form ation="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+                                <input type="hidden" id="count_start" name="count_start" value="">
+                                <input type="hidden" name="id_product" value="<?= $_GET['id'] ?>">
+                                <label for="">Your rating *</label>
+                                <ul class="stars">
+                                    <li class="star">&#10029;</li>
+                                    <li class="star">&#10029;</li>
+                                    <li class="star">&#10029;</li>
+                                    <li class="star">&#10029;</li>
+                                    <li class="star">&#10029;</li>
+                                </ul>
+                                <input type="text" placeholder="Viết bình luận" name="content_comment" class="write_comment">
+                                <input type="submit" class="write_comment_send" value="Send" name="send_add_comments">
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- tab tùy chỉnh -->
                 <div class="tab-pane">
@@ -292,46 +429,71 @@
         </section>
     </div>
 </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        let btn_decre = document.querySelector(".btn_decre");
-        let btn_incre = document.querySelector(".btn_incre");
+    let btn_decre = document.querySelector(".btn_decre");
+    let btn_incre = document.querySelector(".btn_incre");
 
-        let btn_product_quantity_input = document.querySelector("#btn_product_quantity_input")
+    let btn_product_quantity_input = document.querySelector("#btn_product_quantity_input")
 
-        btn_incre.addEventListener("click", () => {
+    btn_incre.addEventListener("click", () => {
 
-            btn_product_quantity_input.value++;
-        });
-        btn_decre.addEventListener("click", () => {
-            if (btn_product_quantity_input.value == 1) {
+        btn_product_quantity_input.value++;
+    });
+    btn_decre.addEventListener("click", () => {
+        if (btn_product_quantity_input.value == 1) {
 
-                btn_decre.style.cursor = 'no-drop';
-            } else {
-                btn_decre.style.cursor = 'pointer';
-                console.log(btn_product_quantity_input.value);
-                --btn_product_quantity_input.value;
-            }
-        });
-        // chuyển tab
-        let tab_iteam = document.querySelectorAll('.tab-item');
-        let tab_pane = document.querySelectorAll('.tab-pane');
-
-
-        tab_iteam.forEach((tab, index) => {
-            tab.onclick = function() {
-                const panes = tab_pane[index];
-
-                document.querySelector(".tab-item.active").classList.remove("active");
+            btn_decre.style.cursor = 'no-drop';
+        } else {
+            btn_decre.style.cursor = 'pointer';
+            console.log(btn_product_quantity_input.value);
+            --btn_product_quantity_input.value;
+        }
+    });
+    // chuyển tab
+    let tab_iteam = document.querySelectorAll('.tab-item');
+    let tab_pane = document.querySelectorAll('.tab-pane');
 
 
-                document.querySelector(".tab-pane.active").classList.remove("active");
+    tab_iteam.forEach((tab, index) => {
+        tab.onclick = function() {
+            const panes = tab_pane[index];
+
+            document.querySelector(".tab-item.active").classList.remove("active");
+
+            document.querySelector(".tab-pane.active").classList.remove("active");
+            this.classList.add("active");
+            panes.classList.add("active");
+        }
+    });
 
 
-                this.classList.add("active");
-                panes.classList.add("active");
-            }
-        });
-        
+    const array_comments = <?php echo json_encode($data); ?>;
+
+
+    const starUl = document.querySelector(".stars");
+    const stars = document.querySelectorAll(".star");
+    const count_start = document.querySelector("#count_start");
+    stars.forEach((star, index) => {
+        star.starValue = (index + 1);
+
+        star.addEventListener("click", starRate);
+
     })
+
+
+    function starRate(e) {
+        count_start.value = e.target.starValue;
+        stars.forEach((star, index) => {
+            if (index < e.target.starValue) {
+                star.classList.add("orange")
+            } else {
+                star.classList.remove("orange")
+            }
+        })
+    }
+
+  
 </script>

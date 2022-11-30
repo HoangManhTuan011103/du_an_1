@@ -236,6 +236,7 @@ a {
     border: 1px solid #ccc;
     padding: 15px;
     color: #9D9C9C;
+    box-shadow: 1px 2px 5px;
     overflow: hidden;
 }
 
@@ -251,6 +252,7 @@ a {
 
 .tab-pane.active {
     display: block !important;
+    width: 100%;
 }
 
 .product_info_shipper {
@@ -351,4 +353,12 @@ h2.product_list_with_categories_title {
 
 .product__banner__price--sale.product_one_price_old {
     padding-left: 10px;
+}
+.active1{
+    
+    display: block;
+}
+.hidden1{
+    
+    display:none;
 }

@@ -8,6 +8,8 @@ require_once "./model/model-user.php";
 require_once "./model/model-product.php";
 require_once "./model/model-category.php";
 require_once "./model/model-order.php";
+require_once "./model/model-comment.php";
+
 $pronew = loadall_product_home();
 if (!isset($_SESSION['mycart'])) {
     $_SESSION['mycart'] = [];
@@ -54,10 +56,14 @@ if (isset($_GET['act'])) {
                 $id = $_GET['id'];
                 $onepro_categories =  loadone_detail_product_flow_categories($id);
                 $list_image_product = loadone_detail_product_flow_product_images($id);
+
                 // extract($onepro_categories);
                 // var_dump($onepro_categories);
                 // die();
                 $protop4 = loadtop4_product_home();
+
+
+                $data = comment_select_by_users($id);
 
                 require_once "view/detail_product.php";
             } else {
