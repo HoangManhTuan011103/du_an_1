@@ -11,6 +11,7 @@ require_once "../model/model-product.php";
 require_once "../model/model-category.php";
 require_once "../model/model-order.php";
 require_once "../model/model-statistical.php";
+require_once "../model/model-comment.php";
 if (!isset($_SESSION['orderAdmin'])) {
     $_SESSION['orderAdmin'] = [];
 }
@@ -475,112 +476,124 @@ if (isset($_GET['actAdmin'])) {
             require_once "./users/list.php";
             break;
         case 'addUser':
-            if (isset($_POST['btn--addUser'])) {
-                $name = $_POST['name'];
-                $image = $_FILES['image'];
-                $email = $_POST['email'];
-                $password = $_POST['password'];
-                $phone = $_POST['phone'];
-                $address = $_POST['address'];
-                $status = $_POST['status'];
-                $role = $_POST['role'];
-                $NameurlImage = $image['name'];
-                $pathImage = $image['tmp_name'];
-                $target_file = "UserAvt/" . $NameurlImage;
-                move_uploaded_file($pathImage, $target_file);
-
-                $check = true;
-                if ($name == "") {
-                    $thongbao[0] = "Tên không được bỏ trống !!!";
-                    $check = false;
-                } else if (is_numeric($name) || (strlen($name) < 2)) {
-                    $thongbao[0] = "Tên không phải là số , tối thiểu 2 ký tự !";
-                    $check = false;
-                }
-                if ($image['size'] <= 0) {
-                    $thongbao[1] = "Vui lòng chọn hình ảnh cho người dùng !!!";
-                    $check = false;
-                } else {
+                if (isset($_POST['btn--addUser'])) {
+                    $name = $_POST['name'];
+                    $image = $_FILES['image'];
+                    $email = $_POST['email'];
+                    $password = $_POST['password'];
+                    $phone = $_POST['phone'];
+                    $address = $_POST['address'];
+                    $status = $_POST['status'];
+                    $role = $_POST['role'];
                     $NameurlImage = $image['name'];
-                    $ext = pathinfo($NameurlImage, PATHINFO_EXTENSION);
-                    if ($ext != 'gif' && $ext != 'jpeg' && $ext != 'png' && $ext != 'jpg') {
-                        $thongbao[1] = "Sai định dạng ảnh(png,jpg,jpeg,gif)";
+                    $pathImage = $image['tmp_name'];
+                    $target_file = "UserAvt/" . $NameurlImage;
+                    move_uploaded_file($pathImage, $target_file);
+
+                    $check = true;
+                    if ($name == "") {
+                        $thongbao[0] = "Tên không được bỏ trống !!!";
+                        $check = false;
+                    } else if (is_numeric($name) || (strlen($name) < 2)) {
+                        $thongbao[0] = "Tên không phải là số , tối thiểu 2 ký tự !";
+                        $check = false;
+                    }
+                    if ($image['size'] <= 0) {
+                        $thongbao[1] = "Vui lòng chọn hình ảnh cho người dùng !!!";
                         $check = false;
                     } else {
+                        $NameurlImage = $image['name'];
+                        $ext = pathinfo($NameurlImage, PATHINFO_EXTENSION);
+                        if ($ext != 'gif' && $ext != 'jpeg' && $ext != 'png' && $ext != 'jpg') {
+                            $thongbao[1] = "Sai định dạng ảnh(png,jpg,jpeg,gif)";
+                            $check = false;
+                        } else {
+                            $pathImage = $image['tmp_name'];
+                            $target_file = "UserAvt/" . $NameurlImage;
+                            move_uploaded_file($pathImage, $target_file);
+                        }
+                    }
+                    if ($email == "") {
+                        $thongbao[2] = "Email không được bỏ trống !!!";
+                        $check = false;
+                    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                        $thongbao[2] = "Email không đúng định dạng";
+                        $check = false;
+                    }
+                    if ($password == "") {
+                        $thongbao[3] = "Mật khẩu không được bỏ trống !!!";
+                        $check = false;
+                    } else if ((strlen($password) < 8)) {
+                        $thongbao[3] = "Mật khẩu tối thiểu 8 ký tự !";
+                        $check = false;
+                    }
+                    $password = md5($password);
+                    if ($phone == '') {
+                        $thongbao[4] = "Điện thoại không được bỏ trống !!!";
+                        $check = false;
+                    } else if (!is_numeric($phone)) {
+                        $thongbao[4] = "Điện thoại phải là số !!!";
+                        $check = false;
+                    } else if (strlen($phone) != 10) {
+                        $thongbao[4] = "Điện thoại phải đủ 10 số !!!";
+                        $check = false;
+                    }
+                    if ($address == "") {
+                        $thongbao[5] = "Địa chỉ không được bỏ trống !!!";
+                        $check = false;
+                    } else if (is_numeric($address) || (strlen($address) < 6)) {
+                        $thongbao[5] = "Địa chỉ không phải là số , tối thiểu 6 ký tự !";
+                        $check = false;
+                    }
+                    if ($status == "") {
+                        $thongbao[6] = "Trạng thái không được bỏ trống !!!";
+                        $check = false;
+                    }
+                    if ($role == "") {
+                        $thongbao[7] = "Quyền không được bỏ trống !!!";
+                        $check = false;
+                    }
+                    if ($check == true) {
+                        InsertUser2($name, $email, $password, $phone, $address, $NameurlImage, $status, $role);
+                        header('Location: index.php?actAdmin=showUsers&&msg=Thêm người thành công !');
+                        ob_end_flush();
+                    }
+                }
+                require_once "./users/add.php";
+                break;
+            case 'editUser':
+                $id = $_GET['id'];
+                $infoUser = getUserFollowId($id);
+                if (isset($_POST['btn--editUser'])) {
+                    if (is_array($infoUser)) {
+                        extract($infoUser);
+                    }
+                    $id = $_GET['id'];
+                    $name_update = $_POST['name'];
+                    $email_update = $_POST['email'];
+                    $password_update = $_POST['password'];
+                    $phone_update = $_POST['phone'];
+                    $address_update = $_POST['address'];
+                    $image = $_FILES['image'];
+                    $status_update = $_POST['status'];
+                    $role_update = $_POST['role'];
+                    if ($password_update != $password) {
+                        $password_update = md5($password_update);
+                    }
+                    if($image['size'] <= 0){
+                        $NameurlImage = $_POST['image_old'];
+                    }else{
+                        $NameurlImage = $image['name'];
                         $pathImage = $image['tmp_name'];
                         $target_file = "UserAvt/" . $NameurlImage;
                         move_uploaded_file($pathImage, $target_file);
                     }
-                }
-                if ($email == "") {
-                    $thongbao[2] = "Email không được bỏ trống !!!";
-                    $check = false;
-                } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $thongbao[2] = "Email không đúng định dạng";
-                    $check = false;
-                }
-                if ($password == "") {
-                    $thongbao[3] = "Mật khẩu không được bỏ trống !!!";
-                    $check = false;
-                } else if ((strlen($password) < 8)) {
-                    $thongbao[3] = "Mật khẩu tối thiểu 8 ký tự !";
-                    $check = false;
-                }
-                $password = md5($password);
-                if ($phone == '') {
-                    $thongbao[4] = "Điện thoại không được bỏ trống !!!";
-                    $check = false;
-                } else if (!is_numeric($phone)) {
-                    $thongbao[4] = "Điện thoại phải là số !!!";
-                    $check = false;
-                } else if (strlen($phone) != 10) {
-                    $thongbao[4] = "Điện thoại phải đủ 10 số !!!";
-                    $check = false;
-                }
-                if ($address == "") {
-                    $thongbao[5] = "Địa chỉ không được bỏ trống !!!";
-                    $check = false;
-                } else if (is_numeric($address) || (strlen($address) < 6)) {
-                    $thongbao[5] = "Địa chỉ không phải là số , tối thiểu 6 ký tự !";
-                    $check = false;
-                }
-                if ($check == true) {
-                    InsertUser2($name, $email, $password, $phone, $address, $NameurlImage, $status, $role);
-                    header('Location: index.php?actAdmin=showUsers&&msg=Thêm người thành công !');
+                    UpdatetUser($name_update, $email_update, $password_update, $phone_update, $address_update, $NameurlImage, $status_update, $role_update, $id);
+                    header('Location: index.php?actAdmin=showUsers&&msg=Cập nhật thành công !');
                     ob_end_flush();
                 }
-            }
-            require_once "./users/add.php";
-            break;
-        case 'editUser':
-            $id = $_GET['id'];
-            $infoUser = getUserFollowId($id);
-            if (isset($_POST['btn--editUser'])) {
-                if (is_array($infoUser)) {
-                    extract($infoUser);
-                }
-                $id = $_GET['id'];
-                $name_update = $_POST['name'];
-                $email_update = $_POST['email'];
-                $password_update = $_POST['password'];
-                $phone_update = $_POST['phone'];
-                $address_update = $_POST['address'];
-                $image = $_FILES['image'];
-                $status_update = $_POST['status'];
-                $role_update = $_POST['role'];
-                if ($password_update != $password) {
-                    $password_update = md5($password_update);
-                }
-                $NameurlImage = $image['name'];
-                $pathImage = $image['tmp_name'];
-                $target_file = "UserAvt/" . $NameurlImage;
-                move_uploaded_file($pathImage, $target_file);
-                UpdatetUser($name_update, $email_update, $password_update, $phone_update, $address_update, $NameurlImage, $status_update, $role_update, $id);
-                header('Location: index.php?actAdmin=showUsers&&msg=Cập nhật thành công !');
-                ob_end_flush();
-            }
-            require_once "./users/edit.php";
-            break;
+                require_once "./users/edit.php";
+                break;
         case 'deleteUser':
             $id = $_GET['id'];
             if (isset($id) && $id != "") {
@@ -595,12 +608,22 @@ if (isset($_GET['actAdmin'])) {
             require_once "./statisticals/list.php";
             break;
         case 'comments':
-            
+            $listCmt = commented_getAll();
             require_once "./comments/list.php";
             break;
         case 'detailComment':
-            
-            require_once "./comments/detailComment.php";
+            if(isset($_GET['pid'])){
+                $listCmt=commented_getAllDetail($_GET['pid']);
+                require_once "./comments/detailComment.php";
+            }else{
+                header('Location: index.php?actAdmin=comments');
+            }
+            break;
+        case 'detailCommentDele':
+            $uid=$_GET['uid'];
+            $pid=$_GET['pid'];
+            comment_delete($_GET['cid']);
+            header('Location: index.php?actAdmin=detailComment&uid='.$uid.'&pid='.$pid.'&msg=Xoá bình luận thành công !');
             break;
         case 'dangxuat':
             session_destroy();
