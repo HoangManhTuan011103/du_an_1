@@ -84,7 +84,7 @@
                                 <span style="color: #d53e3e;">&nbsp; '.$thongbao[5].'</span>
                             </p>';
                         }
-                    ?>
+                        ?>
                 </div>
             </div>
             <div class="form--right">
@@ -93,17 +93,31 @@
                     <p>Trạng thái hoạt động:</p>
                     <select name="status" id="">
                         <option value="" hidden>-- Chọn trạng thái --</option>
-                        <option value="0" selected>Active</option>
-                        <option value="1">Disable</option>
+                        <option value="0" selected>Active</button>
+                        <option value="1">Disable</button>
                     </select>
+                    <?php
+                        if(isset($thongbao[6])){
+                         echo'<p style="padding-top: 5px">
+                                <span style="color: #d53e3e;">&nbsp; '.$thongbao[6].'</span>
+                            </p>';
+                        }
+                        ?>
                 </div>
                 <div class="status">
                     <p>Quyền quản trị:</p>
                     <select name="role" id="">
                         <option value="" hidden>-- Chọn trạng thái --</option>
-                        <option value="0" selected>Tài khoản thường</option>
-                        <option value="1">Quản trị viên</option>
+                        <option value="0" selected>Người dùng</button>
+                        <option value="1">Quản trị</button>
                     </select>
+                    <?php
+                        if(isset($thongbao[7])){
+                         echo'<p style="padding-top: 5px">
+                                <span style="color: #d53e3e;">&nbsp; '.$thongbao[7].'</span>
+                            </p>';
+                        }
+                        ?>
                 </div>
                 <div class="btn__action btn__action--addProduct mrg_top--btn">
                     <button type="submit" class="btn--addProduct" name="btn--addUser">Thêm người dùng</button>
