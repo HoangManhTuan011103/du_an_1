@@ -75,20 +75,20 @@
 
                             <td class="status">
                                 <?php
-                                if ($value['status'] == 0) {
-                                    echo "<button class='status-isset'>Active</button>";
-                                } else {
-                                    echo " <button class='status-empty'>Disable</button>";
-                                }
+                                if($value['status']==0){
+                                        echo "<button class='status-isset'>Active</button>";
+                                }else if($value['status']==1){
+                                 echo "<button class='status-empty'>Disable</button>";
+                                    }
                                 ?>
                             </td>
                             <td class="status user">
-                                <?php
-                                if ($value['role'] == 0) {
-                                    echo "<button class='status-isset'>Người dùng</button>";
-                                } else {
-                                    echo " <button class='status-empty'>Quản trị</button>";
-                                }
+                            <?php
+                                if($value['role']==0){
+                                        echo "<button class='status-isset'>Người dùng</button>";
+                                }else if($value['role']==1){
+                                 echo "<button class='status-empty'>Quản trị</button>";
+                                    }
                                 ?>
                             </td>
                             <td class="dateCreate">

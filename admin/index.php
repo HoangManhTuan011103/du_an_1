@@ -323,6 +323,14 @@ if (isset($_SESSION['user'])  && ($_SESSION['user']['role'] == 1)) {
                         $thongbao[5] = "Địa chỉ không phải là số , tối thiểu 6 ký tự !";
                         $check = false;
                     }
+                    if ($status == "") {
+                        $thongbao[6] = "Trạng thái không được bỏ trống !!!";
+                        $check = false;
+                    }
+                    if ($role == "") {
+                        $thongbao[7] = "Quyền không được bỏ trống !!!";
+                        $check = false;
+                    }
                     if ($check == true) {
                         InsertUser2($name, $email, $password, $phone, $address, $NameurlImage, $status, $role);
                         header('Location: index.php?actAdmin=showUsers&&msg=Thêm người thành công !');
@@ -350,10 +358,14 @@ if (isset($_SESSION['user'])  && ($_SESSION['user']['role'] == 1)) {
                     if ($password_update != $password) {
                         $password_update = md5($password_update);
                     }
-                    $NameurlImage = $image['name'];
-                    $pathImage = $image['tmp_name'];
-                    $target_file = "UserAvt/" . $NameurlImage;
-                    move_uploaded_file($pathImage, $target_file);
+                    if($image['size'] <= 0){
+                        $NameurlImage = $_POST['image_old'];
+                    }else{
+                        $NameurlImage = $image['name'];
+                        $pathImage = $image['tmp_name'];
+                        $target_file = "UserAvt/" . $NameurlImage;
+                        move_uploaded_file($pathImage, $target_file);
+                    }
                     UpdatetUser($name_update, $email_update, $password_update, $phone_update, $address_update, $NameurlImage, $status_update, $role_update, $id);
                     header('Location: index.php?actAdmin=showUsers&&msg=Cập nhật thành công !');
                     ob_end_flush();
