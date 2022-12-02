@@ -153,8 +153,44 @@ if (isset($_GET['actAdmin'])) {
                 $status = $_POST['status'];
                 $hotProduct = (isset($_POST['hotProduct']) ? 1 : 0);
                 $errors = [];
-                if($name == ""){
+                if(trim($name) == ""){
                     $errors['name'] = "Bạn phải nhập tên sản phẩm";
+                }
+                if($category == ""){
+                    $errors['category'] = "Bạn phải chọn danh mục";
+                }
+                if($status == ""){
+                    $errors['status'] = "Bạn phải chọn trạng thái sản phẩm";
+                }
+                if($file['size'] <= 0){
+                    $errors['image'] = "Vui lòng chọn ảnh sản phẩm";
+                }else if($file['size'] > 0){
+                    $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+                    if($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg'){
+                        $errors['image'] = "Bạn chưa chọn đúng file ảnh (png, jpg, jpeg)";
+                    }else if($file['size'] >= 1*1024*1024){
+                        $errors['image'] = "Ảnh phải nhỏ hơn 1MB";
+                    }
+                }
+                for ($i = 0; $i < count($files["name"]); $i++) {
+                    if($files['size'][$i] > 0){
+                        $exts[$i] = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
+                        if($exts[$i] != 'png' && $exts[$i] != 'jpg' && $exts[$i] != 'jpeg'){
+                            $errors['images'] = "Bạn chưa chọn đúng file ảnh (png, jpg, jpeg)";
+                        }
+                    }
+                }
+              
+                if($price == ""){
+                    $errors['price'] = "Bạn phải nhập giá sản phẩm";
+                }else if($price <= 0){
+                    $errors['price'] = "Giá sản phẩm phải lớn hơn 0";
+                }
+
+                if($quantity == ""){
+                    $errors['quantity'] = "Bạn phải nhập số lượng sản phẩm";
+                }else if(!is_numeric($quantity)){
+                    $errors['quantity'] = "Số lượng sản phẩm phải là số";
                 }
                 if(!$errors){
                     foreach ($files['name'] as $key => $value) {
@@ -182,28 +218,24 @@ if (isset($_GET['actAdmin'])) {
                 $detailProduct = getProductFollowId($id);
                 $listCategories = getAllCategories();
                 $listImagesProduct = getProductAllImage($id);
-            }
-            require_once "./products/edit.php";
-            break;
-        case 'updateProduct':
-            if (isset($_POST['btn--updateProduct'])) {
-                $idProduct = $_POST['idProduct'];
-                $avatarProduct = getAvatarProduct($idProduct);
-                $file = $_FILES['image'];
-                $files = $_FILES['images'];
-                $avatar = $avatarProduct['avatar'];
-                if ($file['error'] == 0) {
-                    if ($avatarProduct["avatar"] != "" && file_exists("../imageProduct/" . $avatarProduct["avatar"])) {
-                        unlink("../imageProduct/" . $avatarProduct["avatar"]);
+                if (isset($_POST['btn--updateProduct'])) {
+                    $idProduct = $_POST['idProduct'];
+                    $avatarProduct = getAvatarProduct($idProduct);
+                    $file = $_FILES['image'];
+                    $files = $_FILES['images'];
+                    $avatar = $avatarProduct['avatar'];
+                    if ($file['error'] == 0) {
+                        if ($avatarProduct["avatar"] != "" && file_exists("../imageProduct/" . $avatarProduct["avatar"])) {
+                            unlink("../imageProduct/" . $avatarProduct["avatar"]);
+                        }
+                        $dir_uploads = "../imageProduct/";
+                        if (!file_exists($dir_uploads)) {
+                            mkdir($dir_uploads);
+                        }
+                        $avatar = time() . "-" . $file['name'];
+                        move_uploaded_file($file['tmp_name'], $dir_uploads . $avatar);
                     }
-                    $dir_uploads = "../imageProduct/";
-                    if (!file_exists($dir_uploads)) {
-                        mkdir($dir_uploads);
-                    }
-                    $avatar = time() . "-" . $file['name'];
-                    move_uploaded_file($file['tmp_name'], $dir_uploads . $avatar);
-                }
-
+    
                     if (!empty($files['name'][0])) {
                         $result = getProductAllImage($idProduct);
                         for ($i = 0; $i < count($result); $i++) {
@@ -232,41 +264,58 @@ if (isset($_GET['actAdmin'])) {
                     $quantity = $_POST['quantity'];
                     $status = $_POST['status'];
                     $hotProduct = (isset($_POST['hotProduct']) ? 1 : 0);
-
-                updateProduct($name, $category, $avatar, $description, $quantity, $price, $discount, $hotProduct, $idProduct, $status);
-                // Start fix error here (Completed)
-                $idCateNew = getIdCategoryUpdateCount($idProduct);
-                $idCateOld = $_POST['categoryCLone'];
-                $totalCurrent = getTotalProductCat($idCateNew);
-                $totalUpđate = getTotalProductCat2($idCateNew);
-                if ($totalCurrent != $totalUpđate) {
-                    countProductFollowCat($idCateNew);
-                    reduceProductFollowCat($idCateOld);
+                    $errors = [];
+                    if(trim($name) == ""){
+                        $errors['name'] = "Bạn phải nhập tên sản phẩm";
+                    }
+                    if($file['size'] > 0){
+                        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+                        if($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg'){
+                            $errors['image'] = "Bạn chưa chọn đúng file ảnh (png, jpg, jpeg)";
+                        }else if($file['size'] >= 1*1024*1024){
+                            $errors['image'] = "Ảnh phải nhỏ hơn 1MB";
+                        }
+                    }
+                    for ($i = 0; $i < count($files["name"]); $i++) {
+                        if($files['size'][$i] > 0){
+                            $exts[$i] = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
+                            if($exts[$i] != 'png' && $exts[$i] != 'jpg' && $exts[$i] != 'jpeg'){
+                                $errors['images'] = "Bạn chưa chọn đúng file ảnh (png, jpg, jpeg)";
+                            }
+                        }
+                    }
+                  
+                    if($price == ""){
+                        $errors['price'] = "Bạn phải nhập giá sản phẩm";
+                    }else if($price <= 0){
+                        $errors['price'] = "Giá sản phẩm phải lớn hơn 0";
+                    }
+    
+                    if($quantity == ""){
+                        $errors['quantity'] = "Bạn phải nhập số lượng sản phẩm";
+                    }else if(!is_numeric($quantity)){
+                        $errors['quantity'] = "Số lượng sản phẩm phải là số";
+                    }
+                    if(!$errors){
+                        updateProduct($name, $category, $avatar, $description, $quantity, $price, $discount, $hotProduct, $idProduct, $status);
+                        // Start fix error here (Completed)
+                        $idCateNew = getIdCategoryUpdateCount($idProduct);
+                        $idCateOld = $_POST['categoryCLone'];
+                        $totalCurrent = getTotalProductCat($idCateNew);
+                        $totalUpđate = getTotalProductCat2($idCateNew);
+                        if ($totalCurrent != $totalUpđate) {
+                            countProductFollowCat($idCateNew);
+                            reduceProductFollowCat($idCateOld);
+                        }
+                        // End fix error here (Completed)
+                        // $notification = "Bạn đã thay đổi sản phẩm thành công";
+                        setcookie("notification", "Thay đổi sản phẩm thành công", time() + 1);  
+                        header("location: index.php?actAdmin=showProduct");
+                    }
                 }
-                // End fix error here (Completed)
-                // $notification = "Bạn đã thay đổi sản phẩm thành công";
-                setcookie("notification", "Thay đổi sản phẩm thành công", time() + 1);
-                header("location: index.php?actAdmin=showProduct");
             }
-            $listProduct = getAllProduct("","", $rowsProductAdmin);
-            $listCategories = getAllCategories();
-            require_once "./products/list.php";
+            require_once "./products/edit.php";
             break;
-        // case 'deleteProduct':
-        //     $id = isset($_GET['id']) ? $_GET['id'] : "";
-        //     if ($id > 0 && is_numeric($id)) {
-        //         productDeleteAllImage($id);
-        //         productDeletecomment($id);
-        //         productDeleteDetailProduct($id);
-        //         productDelete($id);
-        //         // Xóa bảng comment và bảng orderdetail nữa
-        //         $notification = "Xóa sản phẩm thành công";
-        //         header("location: index.php?actAdmin=showProduct");
-        //         exit;
-        //     }
-        //     // $listProduct = getAllProduct();
-        //     // require_once "./products/list.php";
-        //     break;
         case 'showProduct':
             if (isset($_POST['btn-search--Product'] )) {
                 $keyWord = $_POST['keyWord'];

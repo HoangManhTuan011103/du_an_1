@@ -29,7 +29,7 @@
                 <span style="color: red; font-size: 15px;"><?= $_GET['imageerr']?></span>
             <?php endif ?>
                 </div>
-                <div class="status">N
+                <div class="status">
                     <p>Trạng thái</p>
                     <select name="status" id="">
                         <option value="" hidden>-- Trạng thái hiển thị --</option>

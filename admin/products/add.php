@@ -17,21 +17,23 @@
                     <div class="form--left">
                         <div class="name">
                             <p>Tên sản phẩm:</p>
-                            <input class="name" name="nameProduct" style=" background-color: #000000;" type="text" placeholder="Nhập tên sản phẩm...">
+                            <input class="name" name="nameProduct" value="<?= $name ?? "" ?>" style=" background-color: #000000;" type="text" placeholder="Nhập tên sản phẩm...">
                             <p style="color: red; padding: 8px 0 0 8px; font-size: 14px;"><?= $errors['name'] ?? "" ?></p>
                         </div>
                         <div class="image">
                             <p>Ảnh sản phẩm:</p>
                             <input type="file" name="image" style="background-color: #0F172A;">
                             <!-- <img width="150px" src="src/image/iphone14.jpg" alt=""> -->
+                            <p style="color: red; padding: 8px 0 0 8px; font-size: 14px;"><?= $errors['image'] ?? "" ?></p>
                         </div>
                         <div class="imgaes">
                             <p>Ảnh mô tả sản phẩm:</p>
                             <input type="file" name="images[]" multiple="multiple" style="background-color: #0F172A;">
+                            <p style="color: red; padding: 8px 0 0 8px; font-size: 14px;"><?= $errors['images'] ?? "" ?></p>
                         </div>
                         <div class="description">
                             <p>Mô tả sản phẩm:</p>
-                            <textarea name="description" id="" cols="30" rows="10"></textarea>
+                            <textarea name="description" id="" cols="30" rows="10"><?= $description ?? "" ?></textarea>
                         </div>
                     </div>
                     <div class="form--right">
@@ -41,31 +43,35 @@
                             <select name="category" id="">
                                 <option value="" hidden>-- Chọn danh mục sản phẩm --</option>
                                 <?php foreach($listCategories as $value): ?>
-                                    <option value="<?= $value['id'] ?>" ><?= $value['name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?= $category==$value['id'] ? "selected" : ""  ?> ><?= $value['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
+                            <p style="color: red; padding: 8px 0 0 8px; font-size: 14px;"><?= $errors['category'] ?? "" ?></p>
                             
                         </div>
                         <div class="status">
                             <p>Trạng thái hoạt động:</p>
                             <select name="status" id="">
                                 <option value="" hidden>-- Chọn trạng thái --</option>
-                                <option value="0">Active</option>
-                                <option value="1">Disable</option>
+                                <option value="0"  >Active</option>
+                                <option value="1"  >Disable</option>
                             </select>
+                            <p style="color: red; padding: 8px 0 0 8px; font-size: 14px;"><?= $errors['status'] ?? "" ?></p>
                             
                         </div>
                         <div class="pice">
                             <p>Giá sản phẩm:</p>
-                            <input type="number" name="price">
+                            <input type="number" name="price" value="<?= $price ?? "" ?>" >
+                            <p style="color: red; padding: 8px 0 0 8px; font-size: 14px;"><?= $errors['price'] ?? "" ?></p>
                         </div>
                         <div class="discount">
                             <p>% Khuyến mại:</p>
-                            <input min="0" type="number" name="discount">
+                            <input min="0" max="100" type="number" name="discount" value="<?= $discount ?? "" ?>">
                         </div>
                         <div class="quantity">
                             <p>Số lượng:</p>
-                            <input min="0" type="number" name="quantity">
+                            <input min="0" type="number" name="quantity" value="<?= $quantity ?? "" ?>" >
+                            <p style="color: red; padding: 8px 0 0 8px; font-size: 14px;"><?= $errors['quantity'] ?? "" ?></p>
                         </div>
                         <div class="special">
                             <input type="checkbox" id="special" name="hotProduct">

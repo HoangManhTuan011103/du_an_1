@@ -8,12 +8,13 @@
                 </div>
             </div>
             <div class="contentManager--product__footer contentManager--product__footer--addProduct">
-                <form action="index.php?actAdmin=updateProduct" method="post" enctype="multipart/form-data">
+                <form action="" method="post" enctype="multipart/form-data">
                     <div class="form--left">
                         <input type="hidden" name="idProduct" value="<?= $detailProduct['id'] ?>">
                         <div class="name">
                             <p>Tên sản phẩm:</p>
                             <input class="name" value="<?= $detailProduct['nameProduct'] ?>" name="nameProduct" style=" background-color: #000000;" type="text" placeholder="Nhập tên sản phẩm...">
+                            <p style="color: red; padding: 8px 0 0 8px; font-size: 14px;"><?= $errors['name'] ?? "" ?></p>
                         </div>
                         <div class="image">
                             <?php
@@ -27,7 +28,9 @@
                             <p>Ảnh sản phẩm:</p>
 
                             <input type="file" name="image" style="background-color: #0F172A;">
+                            <p style="color: red; padding: 8px 0 0 8px; font-size: 14px;"><?= $errors['image'] ?? "" ?></p>
                             <?= $image ?>
+                           
 
                             
                         </div>
@@ -35,6 +38,7 @@
                            
                             <p>Ảnh mô tả sản phẩm:</p>
                             <input type="file" name="images[]" multiple="multiple" style="background-color: #0F172A;">
+                            <p style="color: red; padding: 8px 0 0 8px; font-size: 14px;"><?= $errors['images'] ?? "" ?></p>
                             <?php foreach($listImagesProduct as $key => $value): ?>
                                     <?php $imagePath = "../imageProduct/" . $value['images']; ?>
                                     <?php if(is_file($imagePath)): ?>
@@ -81,14 +85,16 @@
                         <div class="pice">
                             <p>Giá sản phẩm:</p>
                             <input type="number" name="price" value="<?= $detailProduct['price'] ?>">
+                            <p style="color: red; padding: 8px 0 0 8px; font-size: 14px;"><?= $errors['price'] ?? "" ?></p>
                         </div>
                         <div class="discount">
                             <p>% Khuyến mại:</p>
-                            <input min="0" type="number" name="discount" value="<?= $detailProduct['discount'] ?>">
+                            <input min="0" max="100" type="number" name="discount" value="<?= $detailProduct['discount'] ?>">
                         </div>
                         <div class="quantity">
                             <p>Số lượng:</p>
                             <input min="0" type="number" name="quantity" value="<?= $detailProduct['quantity'] ?>" >
+                            <p style="color: red; padding: 8px 0 0 8px; font-size: 14px;"><?= $errors['quantity'] ?? "" ?></p>
                         </div>
                         <div class="special">
                             <input type="checkbox" id="special" name="hotProduct" <?= isset($detailProduct['hot_product']) && $detailProduct['hot_product']==1  ? "checked" : "" ?>>

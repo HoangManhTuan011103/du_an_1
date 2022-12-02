@@ -292,3 +292,10 @@ function insertUnspecifiedProduct($id_product,$name_product,$avatar,$price_produ
     pdo_execute($sql);
 }
 // Insert Product to unspecified
+// Select count product home
+function getCountProductHome(){
+    $sql = "select COUNT(*) as countProduct from products WHERE 1";
+    return pdo_query_one($sql);
+}   
+// Select count product home
+

@@ -18,25 +18,32 @@
             </div>
         </div>
         <div class="smallStatistics smallStatisticsGreen">
+
             <h2 class="numberStatistics">
-                10
+                <?php
+                    $getCountProductHome = getCountProductHome();
+                    echo $getCountProductHome['countProduct'];
+                ?>
             </h2>
             <p class="nameStatistics">
                 Số lượng sản phẩm hiện có
             </p>
             <div class="viewDetailStatistics">
-                Xem chi tiết<i class="fa-sharp fa-solid fa-gear"></i>
+                <a href="index.php?actAdmin=showProduct" style="color: #ffffff;"> Xem chi tiết<i class="fa-sharp fa-solid fa-gear"></i></a>
             </div>
         </div>
         <div class="smallStatistics smallStatisticsOrange">
             <h2 class="numberStatistics">
-                5
+                <?php
+                    $getCountUserHome = getCountUserHome();
+                    echo $getCountUserHome['countUser'];
+                ?>
             </h2>
             <p class="nameStatistics">
                 Số lượng tài khoản khách hàng
             </p>
             <div class="viewDetailStatistics">
-                Xem chi tiết<i class="fa-sharp fa-solid fa-gear"></i>
+                <a href="index.php?actAdmin=showUsers" style="color: #ffffff;"> Xem chi tiết<i class="fa-sharp fa-solid fa-gear"></i></a>
             </div>
         </div>
         <div class="smallStatistics smallStatisticsRed">
@@ -44,7 +51,7 @@
                 7
             </h2>
             <p class="nameStatistics">
-                Lượt truy cập hàng ngày
+                Lượt truy cập website
             </p>
             <div class="viewDetailStatistics">
                 Xem chi tiết<i class="fa-sharp fa-solid fa-gear"></i>

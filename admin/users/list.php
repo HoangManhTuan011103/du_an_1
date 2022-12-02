@@ -98,9 +98,7 @@
                                 <a href="index.php?actAdmin=editUser&id=<?= $value['id'] ?>">
                                     <button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button>
                                 </a>
-                                <a onclick="return confirm(`Bạn có chắc chắn muốn xóa  '<?= $value['name'] ?>' `)" href="index.php?actAdmin=deleteUser&&id=<?= $value['id'] ?>">
-                                    <button><i class="fa-sharp fa-solid fa-trash"></i></button>
-                                </a>
+                               
                             </td>
                         </tr>
                     <?php endforeach; ?>
