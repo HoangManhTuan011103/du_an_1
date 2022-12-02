@@ -261,7 +261,7 @@
     let perPage = 8;
     let totalPage = 0;
     let perProduct = [];
-    let count_page = 0;
+    let count_page = arr_prodcut3;
     const params = new URL(location.href).searchParams;
 
 
@@ -295,11 +295,11 @@
     show_products(array_product_2, category_grid_review_);
 
     show_products();
-
     getDataProduct();
 
 
-    function show_product123(arr_price = listArrayPrice, arrDesc = listArrayDesc, list_arr = arr_prodcut3) {
+
+    function show_product123(arr_price = listArrayPrice, arrDesc = listArrayDesc, list_arr = users) {
         if (id_category !== 0) {
             list_arr = list_arr.filter(function(item) {
                 return item.category_id == id_category;
@@ -310,7 +310,6 @@
                 let prices_price = Math.floor(iteam.price - ((iteam.price * iteam.discount) / 100));
 
                 if (arr_price.length > 0) {
-
 
                     if (prices_price < 100000 && arr_price.includes("1") == false) {
                         return
@@ -337,8 +336,7 @@
                     }
                 }
 
-                console.log("check", list_arr.length);
-                count_page = list_arr.length
+
                 return ` 
                 <div class=" col l-3 m-4 c-6 prodcut_mg_bottom">
                        <div class="product__banner">
@@ -360,8 +358,11 @@
                            </div>
                        </div>
                    </div>`
+
             })
             .join("");
+
+
         category_grid_review.innerHTML = arrlist;
 
     }
@@ -374,7 +375,7 @@
                 } else {
                     listArrayPrice = listArrayPrice.filter(e => e !== this.value);
                 }
-                show_product123(listArrayPrice, listArrayDesc)
+                show_product123(listArrayPrice, listArrayDesc, perProduct)
             })
         })
 
@@ -396,16 +397,16 @@
 
             if (this.checked) {
                 if (this.value == "price_desc") {
-                    let data_price = arr_prodcut3.sort((a, b) => (
-                            Math.floor(a.price - ((a.price * a.discount) / 100)) -
-                            Math.floor(b.price - ((b.price * b.discount) / 100))
-                        ))
+                    let data_price = perProduct.sort((a, b) => (
+                        Math.floor(a.price - ((a.price * a.discount) / 100)) -
+                        Math.floor(b.price - ((b.price * b.discount) / 100))
+                    ))
 
 
                     show_product123(listArrayPrice, listArrayDesc, data_price)
                 }
                 if (this.value == "price_asc") {
-                    let data_price = arr_prodcut3.sort((a, b) =>
+                    let data_price = perProduct.sort((a, b) =>
                         (
                             Math.floor(b.price - ((b.price * b.discount) / 100)) -
                             Math.floor(a.price - ((a.price * a.discount) / 100))
@@ -416,7 +417,7 @@
                 }
                 if (this.value == "old") {
 
-                    let data_price = arr_prodcut3.sort((a, b) =>
+                    let data_price = perProduct.sort((a, b) =>
                         (
                             parseInt(moment(new Date(a.created_at)).format('YYYYMMDDHHmmss')) -
                             parseInt(moment(new Date(b.created_at)).format('YYYYMMDDHHmmss'))
@@ -425,7 +426,7 @@
                     show_product123(listArrayPrice, listArrayDesc, data_price)
                 }
                 if (this.value == "new") {
-                    let data_price = arr_prodcut3.sort((a, b) =>
+                    let data_price = perProduct.sort((a, b) =>
                         (
                             parseInt(moment(new Date(b.created_at)).format('YYYYMMDDHHmmss')) -
                             parseInt(moment(new Date(a.created_at)).format('YYYYMMDDHHmmss'))
@@ -500,7 +501,7 @@
             (currentPage - 1) * perPage + perPage,
 
         )
-        renderPageNumber()
+        renderPageNumber(users.length)
         show_product123(listArrayPrice, listArrayDesc, perProduct)
     }
 
@@ -515,8 +516,8 @@
 
     }
 
-    function renderPageNumber() {
-        totalPage = Math.ceil((users.length / perPage));
+    function renderPageNumber(count) {
+        totalPage = Math.ceil((count / perPage));
         console.log("total páge :", totalPage);
         if (totalPage == 1) {
             document.querySelector("#pagination").innerHTML = " "
