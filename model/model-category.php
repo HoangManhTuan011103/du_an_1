@@ -46,13 +46,13 @@ function loadall_category()
 }
 function load2_category()
 {
-    $sql = "select * from categories where status = 0 order by id desc  limit 0,2";
+    $sql = 'select * from categories where status = 0 and avatar like "%.%" order by id asc  limit 0,2';
     $listcategory = pdo_query($sql);
     return $listcategory;
 }
 function load3_category()
 {
-    $sql = "select * from categories where status = 0 order by id asc  limit 0,3";
+    $sql = 'select * from categories where status = 0 and avatar like "%.%" order by id desc limit 0,3';
     $listcategory = pdo_query($sql);
     return $listcategory;
 }

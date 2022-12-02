@@ -50,11 +50,9 @@ if (isset($_GET['actAdmin'])) {
                     if (strlen($status) == 0) {
                         $statuserr = "Mời bạn chọn trạng thái hiển thị danh mục";
                     }
-                    if ($_FILES['avatar']['size'] == 0) {
-                        $imageerr = "Mời đăng ảnh  danh mục";
-                    }
-                    if (!empty($nameerr) || !empty($imageerr) || !empty($statuserr)) {
-                        header("location: index.php?actAdmin=addCategory&nameerr=$nameerr&imageerr=$imageerr&statuserr=$statuserr");
+                  
+                    if (!empty($nameerr) || !empty($statuserr)) {
+                        header("location: index.php?actAdmin=addCategory&nameerr=$nameerr&statuserr=$statuserr");
                         die;
                     }
                     move_uploaded_file($_FILES['avatar']['tmp_name'], "../imageProduct/" . $avatar);
@@ -168,8 +166,8 @@ if (isset($_GET['actAdmin'])) {
                     $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
                     if($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg'){
                         $errors['image'] = "Bạn chưa chọn đúng file ảnh (png, jpg, jpeg)";
-                    }else if($file['size'] >= 1*1024*1024){
-                        $errors['image'] = "Ảnh phải nhỏ hơn 1MB";
+                    }else if($file['size'] >= 3*1024*1024){
+                        $errors['image'] = "Ảnh phải nhỏ hơn 3MB";
                     }
                 }
                 for ($i = 0; $i < count($files["name"]); $i++) {
@@ -272,8 +270,8 @@ if (isset($_GET['actAdmin'])) {
                         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
                         if($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg'){
                             $errors['image'] = "Bạn chưa chọn đúng file ảnh (png, jpg, jpeg)";
-                        }else if($file['size'] >= 1*1024*1024){
-                            $errors['image'] = "Ảnh phải nhỏ hơn 1MB";
+                        }else if($file['size'] >= 3*1024*1024){
+                            $errors['image'] = "Ảnh phải nhỏ hơn 3MB";
                         }
                     }
                     for ($i = 0; $i < count($files["name"]); $i++) {

@@ -89,8 +89,8 @@ foreach ($check_user_bying_product as $check) {
     <!-- điều hương -->
     <div class="row product_title_path">
         <p>Trang chủ</p>
-        <span>></span>
-        <p>Giày nam</p>
+        <!-- <span>></span>
+        <p>Giày nam</p> -->
         <span>></span>
         <p>
             <span class="red_word">

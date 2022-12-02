@@ -36,21 +36,23 @@
 
         foreach ($load3dm as $dm) {
             extract($dm);
-            $linkdm = "index.php?act=showProducts&id=" . $id;
-            $hinh = $image_path . $avatar;
-            echo '<div class=" product-1  product-1-col-1 col l-4 m-0 c-0">
-                            <div class="product_hover_change">
-        
-                                <img class="product-1__img" src="' . $hinh . '" alt="">
-                                <a href="' . $linkdm . '" class="product-1__name">
-                                    ' . $name . '
-                                </a>
-                                <p class="section--product-1__amount">
-                                   ' . $total_product . ' sản phẩm
-                                </p>
-                            </div>
-                          </div> ';
-            $i += 1;
+         
+                $linkdm = "index.php?act=showProducts&id=" . $id;
+                $hinh = $image_path . $avatar;
+                echo '<div class=" product-1  product-1-col-1 col l-4 m-0 c-0">
+                                <div class="product_hover_change">
+            
+                                    <img class="product-1__img" src="' . $hinh . '" alt="">
+                                    <a href="' . $linkdm . '" class="product-1__name">
+                                        ' . $name . '
+                                    </a>
+                                    <p class="section--product-1__amount">
+                                       ' . $total_product . ' sản phẩm
+                                    </p>
+                                </div>
+                              </div> ';
+                $i += 1;
+            
         }
         ?>
     </div>

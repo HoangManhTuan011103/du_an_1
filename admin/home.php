@@ -97,10 +97,11 @@
                 <div class="btn--seeProduct ">
                     <a href=" "><button>Xem chi tiết sản phẩm</button></a>
                 </div>
-            <?php endif; ?>
+            <?php else: ?>
             <div class="title ">
                 <h2 style="text-align: center;">Chưa có sản phẩm bán chạy nào</h2>
             </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>

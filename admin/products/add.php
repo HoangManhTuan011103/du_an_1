@@ -43,7 +43,7 @@
                             <select name="category" id="">
                                 <option value="" hidden>-- Chọn danh mục sản phẩm --</option>
                                 <?php foreach($listCategories as $value): ?>
-                                    <option value="<?= $value['id'] ?>" <?= $category==$value['id'] ? "selected" : ""  ?> ><?= $value['name'] ?></option>
+                                    <option value="<?= $value['id'] ?>" <?= (isset($category)&&$category==$value['id']) ? "selected" : ""  ?> ><?= $value['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <p style="color: red; padding: 8px 0 0 8px; font-size: 14px;"><?= $errors['category'] ?? "" ?></p>
