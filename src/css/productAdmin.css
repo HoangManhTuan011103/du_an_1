@@ -319,3 +319,70 @@ span.pluss {
 .contentManager--product__footer--table>ul>li>a:hover>i {
     color: #ffffff;
 }
+
+
+/* Product filer follow Category */
+
+.filer__Product--followCategory form select {
+    padding: 10px 6px;
+    outline: none;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.filer__Product--followCategory form button {
+    padding: 10px 8px;
+    outline: none;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 2px solid #00A85A;
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #00A85A;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: all linear 0.3s;
+}
+
+.filer__Product--followCategory form button i {
+    color: #ffffff;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.filer__Product--followCategory form button:hover {
+    background-color: #04884b;
+    border: 2px solid #04884b;
+}
+
+.filer__Product--followCategory {
+    display: flex;
+}
+
+.filer__Product--followCategory {
+    display: flex;
+}
+
+.filer__Product--followCategory button.deleteChoose {
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 2px solid #00A85A;
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #00A85A;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: all linear 0.3s;
+    margin-left: 15px;
+}
+
+.filer__Product--followCategory button.deleteChoose:hover {
+    background-color: #04884b;
+    border: 2px solid #04884b;
+}
+
+
+/* Product filer follow Category */

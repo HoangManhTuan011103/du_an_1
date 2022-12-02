@@ -39,10 +39,10 @@
                     <div class="table__detailOrdered">
                         <?php
                             $detailPayS = getDeltailPaySuccess($listOrderAdmin['id']);
+                            $detailPaySUnspecified = getDeltailPaySuccessUnspecified($listOrderAdmin['id']);
                         ?>
                         <table border="1">
                             <tr>
-                                <th>TT</th>
                                 <th>Mã sản phẩm</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Ảnh</th>
@@ -56,9 +56,24 @@
                                     $image = "<img width='120px' height='120px' src='" . $imagePath . "' alt=''>";
                                 ?>
                                 <tr>
-                                    <td><?= $key+1 ?></td>
+                                   
                                     <td>SP00<?= $valueDetail['id'] ?></td>
                                     <td><?= $valueDetail['name'] ?></td>
+                                    <td class="image"><?= $image ?></td>
+                                    <td><?= $valueDetail['quantity'] ?></td>
+                                    <td><?= number_format($valueDetail['price_product'])."đ" ?></td>
+                                    <td><?= number_format($valueDetail['quantity']*$valueDetail['price_product'])."đ" ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                            <?php foreach($detailPaySUnspecified as $key => $valueDetail): ?>
+                                <?php
+                                    $imagePath = "../imageProduct/" . $valueDetail['avatar'];
+                                    $image = "<img width='120px' height='120px' src='" . $imagePath . "' alt=''>";
+                                ?>
+                                <tr>
+                                    
+                                    <td>SP00<?= $valueDetail['id_product'] ?></td>
+                                    <td><?= $valueDetail['name_product'] ?></td>
                                     <td class="image"><?= $image ?></td>
                                     <td><?= $valueDetail['quantity'] ?></td>
                                     <td><?= number_format($valueDetail['price_product'])."đ" ?></td>

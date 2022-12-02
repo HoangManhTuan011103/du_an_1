@@ -35,6 +35,7 @@
                                 <button class="btnSee__detail--yourOrder">Xem chi tiết</button>
                                 <?php
                                     $detailPayS = getDeltailPaySuccess($value['id']);
+                                    $detailPaySUnspecified = getDeltailPaySuccessUnspecified($value['id']);
                                 ?>
                                 <div class="over-lay detail_payment--success-hidden" >
                                     <div class="detail_payment--success">
@@ -49,19 +50,36 @@
                                                 <th>Ảnh sản phẩm</th>
                                                 <th>Số lượng</th>
                                                 <th>Giá</th>
+                                                <th>Tổng</th>
                                             </tr>
                                             <?php foreach($detailPayS as $valueDetail): ?>
                                                 <?php
                                                     $imagePath = "./imageProduct/" . $valueDetail['avatar'];
                                                     $image = "<img class='imageOrder' src='" . $imagePath . "' alt=''>";
                                                 ?>
-                                            <tr class="detail">
-                                                <td>SP00<?= $valueDetail['id'] ?></td>
-                                                <td><?= $valueDetail['name'] ?></td>
-                                                <td class="image"><?= $image ?></td>
-                                                <td><?= $valueDetail['quantity'] ?></td>
-                                                <td><?= number_format($valueDetail['price_product'])."đ" ?></td>
-                                            </tr>
+                                                <tr class="detail">
+                                                    <td>SP00<?= $valueDetail['id'] ?></td>
+                                                    <td><?= $valueDetail['name'] ?></td>
+                                                    <td class="image"><?= $image ?></td>
+                                                    <td><?= $valueDetail['quantity'] ?></td>
+                                                    <td><?= number_format($valueDetail['price_product'])."đ" ?></td>
+                                                    <td><?= number_format($valueDetail['quantity']*$valueDetail['price_product'])."đ" ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                            <?php foreach($detailPaySUnspecified as $key => $valueDetail): ?>
+                                                <?php
+                                                    $imagePath = "./imageProduct/" . $valueDetail['avatar'];
+                                                    $image = "<img class='imageOrder' src='" . $imagePath . "' alt=''>";
+                                                ?>
+                                                <tr>
+                                                    
+                                                    <td>SP00<?= $valueDetail['id_product'] ?></td>
+                                                    <td><?= $valueDetail['name_product'] ?></td>
+                                                    <td class="image"><?= $image ?></td>
+                                                    <td><?= $valueDetail['quantity'] ?></td>
+                                                    <td><?= number_format($valueDetail['price_product'])."đ" ?></td>
+                                                    <td><?= number_format($valueDetail['quantity']*$valueDetail['price_product'])."đ" ?></td>
+                                                </tr>
                                             <?php endforeach; ?>
                                         </table>  
                                         

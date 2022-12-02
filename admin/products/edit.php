@@ -77,7 +77,6 @@
                                 <option value="0" <?= $detailProduct['status'] == 0 ?"selected" : ""  ?>  >Active</option>
                                 <option value="1" <?= $detailProduct['status'] == 1 ?"selected" : ""  ?> >Disable</option>
                             </select>
-                            
                         </div>
                         <div class="pice">
                             <p>Giá sản phẩm:</p>

@@ -21,6 +21,8 @@ $listBuyOnDay = buyProductWithDay();
 $bestSale = bestProductSales();
 $totalOrderWeek = totalOrderWithWeek();
 $sumMoneyMonthCurrently = sumMoneyMonthCurrently();
+$listProductFlCat = getAllCategories();
+
 require_once "./header.php";
 if (isset($_GET['actAdmin'])) {
     $actAdmin = $_GET['actAdmin'];
@@ -87,6 +89,7 @@ if (isset($_GET['actAdmin'])) {
             // long code categories
 
             // products
+          
         case 'deleteProduct':
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
@@ -94,14 +97,31 @@ if (isset($_GET['actAdmin'])) {
                 $getIdCategory = getIdCategoryUpdateCount($id);
                 // Update total product
                 productDeleteAllImage($id);
+                productDeletecomment($id);
+                // Insert Product to unspecified
+                $orderDetailUnspecified = selectUnspecifiedOrderDetail($id);
+                foreach ($orderDetailUnspecified as $value) {
+                    insertUnspecifiedOrderDetail($value['order_id'],$value['product_id'],$value['quantity'],$value['price_product']);
+                }
+                $productUnspecified = selectUnspecifiedProduct($id);
+                foreach ($productUnspecified as $value) {
+                    insertUnspecifiedProduct($value['id'],$value['name'],$value['avatar'],$value['price'],$value['category_id']);
+                }
+                // Insert Product to unspecified
+                productDeleteDetailProduct($id);
                 productDelete($id);
                 reduceProductFollowCat($getIdCategory);
                 // Update total product
                 $notification = "Xóa sản phẩm thành công";
+                setcookie("notification", "Xóa sản phẩm thành công", time() + 1);
+                header("location: index.php?actAdmin=showProduct");
             }
-            $listProduct = getAllProduct("", $rowsProductAdmin);
-            require_once "./products/list.php";
+            // $countPage = get_Page_Product_admin("","",$rowsProductAdmin);
+            // $listProduct = getAllProduct("","",$rowsProductAdmin);
+            // require_once "./products/list.php";
             break;
+          
+
         case 'addProduct':
             if (isset($_POST['btn--addProduct'])) {
                 $name = $_POST['nameProduct'];
@@ -115,20 +135,26 @@ if (isset($_GET['actAdmin'])) {
                 $quantity = $_POST['quantity'];
                 $status = $_POST['status'];
                 $hotProduct = (isset($_POST['hotProduct']) ? 1 : 0);
-                foreach ($files['name'] as $key => $value) {
-                    $tmp_name = $files['tmp_name'][$key];
-                    move_uploaded_file($tmp_name, "../imageProduct/" . $value);
+                $errors = [];
+                if($name == ""){
+                    $errors['name'] = "Bạn phải nhập tên sản phẩm";
                 }
-                move_uploaded_file($file['tmp_name'], "../imageProduct/" . $file['name']);
-                $idProduct = InsertProduct($name, $category, $name_image, $description, $quantity, $price, $discount, $hotProduct, $status);
-                // Update total product
-                countProductFollowCat($category);
-                // Update total product
-                foreach ($files['name'] as $value) {
-                    pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$value')");
-                }
-                setcookie("notification", "Thêm sản phẩm thành công", time() + 1);
-                header("location: index.php?actAdmin=showProduct");
+                if(!$errors){
+                    foreach ($files['name'] as $key => $value) {
+                        $tmp_name = $files['tmp_name'][$key];
+                        move_uploaded_file($tmp_name, "../imageProduct/" . $value);
+                    }
+                    move_uploaded_file($file['tmp_name'], "../imageProduct/" . $file['name']);
+                    $idProduct = InsertProduct($name, $category, $name_image, $description, $quantity, $price, $discount, $hotProduct, $status);
+                    // Update total product
+                    countProductFollowCat($category);
+                    // Update total product
+                    foreach ($files['name'] as $value) {
+                        pdo_execute("INSERT INTO `product_images`(`product_id`, `images`) VALUES ('$idProduct','$value')");
+                    }
+                    setcookie("notification", "Thêm sản phẩm thành công", time() + 1);
+                    header("location: index.php?actAdmin=showProduct");
+                }     
             }
             $listCategories = getAllCategories();
             require_once "./products/add.php";
@@ -205,22 +231,25 @@ if (isset($_GET['actAdmin'])) {
                 setcookie("notification", "Thay đổi sản phẩm thành công", time() + 1);
                 header("location: index.php?actAdmin=showProduct");
             }
-            $listProduct = getAllProduct("", $rowsProductAdmin);
+            $listProduct = getAllProduct("","", $rowsProductAdmin);
             $listCategories = getAllCategories();
             require_once "./products/list.php";
             break;
-        case 'deleteProduct':
-            $id = isset($_GET['id']) ? $_GET['id'] : "";
-            if ($id > 0 && is_numeric($id)) {
-                productDeleteAllImage($id);
-                productDelete($id);
-                $notification = "Xóa sản phẩm thành công";
-                header("location: index.php?actAdmin=showProduct");
-                exit;
-            }
-            // $listProduct = getAllProduct();
-            // require_once "./products/list.php";
-            break;
+        // case 'deleteProduct':
+        //     $id = isset($_GET['id']) ? $_GET['id'] : "";
+        //     if ($id > 0 && is_numeric($id)) {
+        //         productDeleteAllImage($id);
+        //         productDeletecomment($id);
+        //         productDeleteDetailProduct($id);
+        //         productDelete($id);
+        //         // Xóa bảng comment và bảng orderdetail nữa
+        //         $notification = "Xóa sản phẩm thành công";
+        //         header("location: index.php?actAdmin=showProduct");
+        //         exit;
+        //     }
+        //     // $listProduct = getAllProduct();
+        //     // require_once "./products/list.php";
+        //     break;
         case 'showProduct':
             if (isset($_POST['btn-search--Product'] )) {
                 $keyWord = $_POST['keyWord'];
@@ -229,8 +258,15 @@ if (isset($_GET['actAdmin'])) {
             } else {
                 $keyWord = "";
             }
-            $countPage = get_Page_Product_admin($keyWord, $rowsProductAdmin);
-            $listProduct = getAllProduct($keyWord, $rowsProductAdmin);
+            if(isset($_POST['btn--filterProduct__followCat'])){
+                $nameCaterory = $_POST['nameCaterory'];
+            }else if(isset($_GET['nameCaterory'])) {
+                $nameCaterory = $_GET['nameCaterory'];
+            }else{
+                $nameCaterory = "";
+            }
+            $countPage = get_Page_Product_admin($keyWord,$nameCaterory,$rowsProductAdmin);
+            $listProduct = getAllProduct($keyWord,$nameCaterory,$rowsProductAdmin);
             require_once "./products/list.php";
             break;
         case 'showOrder':

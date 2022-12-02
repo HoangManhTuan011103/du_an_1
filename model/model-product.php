@@ -12,7 +12,7 @@ function updateProduct($name, $category, $name_image, $description, $quantity, $
     pdo_execute($sql);
 }
 
-
+// Delete product Admin
 function productDelete($id)
 {
     $sql = "delete from products where id=$id";
@@ -23,6 +23,18 @@ function productDeleteAllImage($id)
     $sql = "delete from product_images where product_id=$id";
     pdo_execute($sql);
 }
+function productDeletecomment($id)
+{
+    $sql = "delete from comments_product where product_id=$id";
+    pdo_execute($sql);
+}
+function productDeleteDetailProduct($id)
+{
+    $sql = "delete from orders_detail where product_id=$id";
+    pdo_execute($sql);
+}
+// Delete product Admin
+
 function getProductFollowId($id)
 {
     $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.id as 'idCategory',B.name from products A INNER JOIN categories B ON A.category_id = B.id where A.id=$id";
@@ -168,20 +180,23 @@ function getOneProductFlowId($id)
 }
 
 // Panigation Product In PHP Admin
-function get_Page_Product_admin($keyWord, $rowsProductAdmin)
+function get_Page_Product_admin($keyWord, $nameCaterory ,$rowsProductAdmin)
 {
     $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.name from products A INNER JOIN categories B ON A.category_id = B.id where 1 ";
     if ($keyWord != "") {
         $sql .= " and A.name like '%$keyWord%'";
+    }
+    if($nameCaterory != ""){
+        $sql .= " and A.category_id like '%$nameCaterory%'";
     }
     $sql .= " order by A.id desc";
     $numberPage = pdo_query($sql);
     $countPage = sizeof($numberPage) / $rowsProductAdmin;
     return $countPage;
 }
-function getAllProduct($keyWord, $rowsProductAdmin)
+function getAllProduct($keyWord,$nameCaterory, $rowsProductAdmin)
 {
-    $countPage = get_Page_Product_admin($keyWord, $rowsProductAdmin);
+    $countPage = get_Page_Product_admin($keyWord,$nameCaterory ,$rowsProductAdmin);
     if (isset($_GET['page']) &&  $_GET['page'] > 0 && $_GET['page'] <= $countPage + 1) {
         $page = $_GET['page'];
     } else {
@@ -191,6 +206,9 @@ function getAllProduct($keyWord, $rowsProductAdmin)
     $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.name from products A INNER JOIN categories B ON A.category_id = B.id where 1";
     if ($keyWord != "") {
         $sql .= " and A.name like '%$keyWord%'";
+    }
+    if($nameCaterory != ""){
+        $sql .= " and A.category_id like '%$nameCaterory%'";
     }
     $sql .= " order by A.id desc limit $from,$rowsProductAdmin";
     return pdo_query($sql);
@@ -250,3 +268,23 @@ function fillter_price_asc()
     $sql = " SELECT * FROM `products` ORDER BY price ";
     return pdo_query($sql);
 }
+
+// Insert Product to unspecified
+
+function selectUnspecifiedOrderDetail($id){
+    $sql = "SELECT * FROM `orders_detail` WHERE product_id=$id";
+    return pdo_query($sql);
+}
+function selectUnspecifiedProduct($id){
+    $sql = "SELECT * FROM `products` WHERE id=$id";
+    return pdo_query($sql);
+}
+function insertUnspecifiedOrderDetail($order_id,$product_id,$quantity,$price_product){
+    $sql = "INSERT INTO `unspecified_orders_detail`(`order_id`, `product_id`, `quantity`, `price_product`) VALUES ('$order_id','$product_id','$quantity','$price_product')";
+    pdo_execute($sql);
+}
+function insertUnspecifiedProduct($id_product,$name_product,$avatar,$price_product,$id_category){
+    $sql = "INSERT INTO `unspecified_products`(`id_product`, `name_product`, `avatar`, `price_product`, `id_category`) VALUES ('$id_product','$name_product','$avatar','$price_product','$id_category')";
+    pdo_execute($sql);
+}
+// Insert Product to unspecified

@@ -324,7 +324,7 @@
     let id_category = 0;
     let users = [];
     let currentPage = 1;
-    let perPage = 8;
+    let perPage = 12;
     let totalPage = 0;
     let perProduct = [];
 
@@ -559,7 +559,7 @@
     }
 
     function renderPageNumber() {
-        totalPage = Math.round((users.length / perPage) + 0.5);
+        totalPage = Math.round((users.length / perPage));
         console.log(totalPage);
         for (let i = 1; i <= totalPage; i++) {
             document.querySelector("#pagination").innerHTML += `<li class="product_page-item" onclick="handlePageNumber(${i})">${i}</li>`

@@ -24,6 +24,7 @@
                                 <th>Ảnh</th>
                                 <th>Danh mục</th>
                                 <th>Số lượng bình luận</th>
+                                <th>Đánh giá</th>
                                 <th>Thao tác</th>
                             </tr>
                         </thead>
@@ -40,6 +41,9 @@
                                 </td>
                                 <td class="dateCreate">
                                     4
+                                </td>
+                                <td class="total_rating">
+                                    3
                                 </td>
                                 <td class="detailBill">
                                     <a href="index.php?actAdmin=detailComment"><button class="detailBill--see"><i class="fa-solid fa-eye" style="padding-right: 5px;" ></i>Xem chi tiết</button></a>

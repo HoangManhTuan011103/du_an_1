@@ -32,6 +32,7 @@
                                 <th>Tên khách hàng</th>
                                 <th>Email</th>
                                 <th>Nội dung bình luận</th>
+                                <th>Đánh giá</th>
                                 <th>Ngày bình luận</th>
                                 <th>Vai trò</th>
                                 <th>Thao tác</th>
@@ -47,6 +48,9 @@
                                 </td>
                                 <td class="content">
                                     Đẹp vãi ò
+                                </td>
+                                <td class="detailRating">
+                                    4
                                 </td>
                                 <td class="dateCreate">
                                     4/11/2022

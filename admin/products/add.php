@@ -18,6 +18,7 @@
                         <div class="name">
                             <p>Tên sản phẩm:</p>
                             <input class="name" name="nameProduct" style=" background-color: #000000;" type="text" placeholder="Nhập tên sản phẩm...">
+                            <p style="color: red; padding: 8px 0 0 8px; font-size: 14px;"><?= $errors['name'] ?? "" ?></p>
                         </div>
                         <div class="image">
                             <p>Ảnh sản phẩm:</p>
