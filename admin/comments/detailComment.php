@@ -19,7 +19,7 @@
                 <h2>Sản phẩm bình luận: </h2><span> <?=$ProName?></span>
                 <br>
                 <div class="show--productComment--Image">
-                    <img width="80px" height="80px" src="../imageProduct/<?=$Avt?>" alt="">
+                    <img width="150px" height="150px" src="../imageProduct/<?=$Avt?>" alt="">
                 </div>
             </div>
            
