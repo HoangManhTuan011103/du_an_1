@@ -18,18 +18,27 @@
                 <div class="name">
                     <p>Tên danh mục:</p>
                     <input class="name" style=" background-color: #000000;" type="text" name="name" placeholder="Nhập tên danh mục...">
+                    <?php if (isset($_GET['nameerr'])) : ?>
+                        <span style="color: red; font-size: 15px;"><?= $_GET['nameerr'] ?></span>
+                    <?php endif ?>
                 </div>
                 <div class="name">
                     <p>Ảnh danh mục:</p>
                     <input class="name" style=" background-color: #000000;" type="file" name="avatar" placeholder="Đăng ảnh danh mục..">
+                    <?php if(isset($_GET['imageerr'])):?>
+                <span style="color: red; font-size: 15px;"><?= $_GET['imageerr']?></span>
+            <?php endif ?>
                 </div>
-                <div class="status">
+                <div class="status">N
                     <p>Trạng thái</p>
                     <select name="status" id="">
                         <option value="" hidden>-- Trạng thái hiển thị --</option>
                         <option value="0">Active</option>
                         <option value="1">Disable</option>
                     </select>
+                    <?php if(isset($_GET['statuserr'])):?>
+                <span style="color: red; font-size: 15px;"><?= $_GET['statuserr']?></span>
+            <?php endif ?>
                 </div>
                 <div class="btn__action btn__action--addProduct">
                     <button type="submit" class="btn--addProduct" name="btn--addProduct">Thêm danh mục</button>

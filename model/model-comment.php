@@ -73,3 +73,8 @@ function commented_count($Pid){
     $sql = "SELECT COUNT(*) AS SL FROM comments_product WHERE product_id='$Pid'";
     return pdo_query($sql);
 }
+function total_comment_id_product($id)
+{
+    $sql = "SELECT COUNT(product_id) as total_comment_id_product ,SUM(rating_products) total FROM `comments_product` WHERE product_id=$id";
+    return pdo_query_one($sql);
+}

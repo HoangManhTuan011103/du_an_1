@@ -89,8 +89,13 @@
 }
 
 .write_comment_send {
-    padding: 5px;
+    padding: 7px 20px ;
     border-radius: 5px;
+    border: none;
+    background: #ff2828;
+    color: white;
+    font-weight: 500;
+    font-size: large;
 }
 
 .write_comment_send:hover {

@@ -204,38 +204,6 @@
 
             <div class="row category--grid--review">
 
-                <?php
-                // foreach ($prolist  as $pro) {
-
-                //     // var_dump($pro);
-                //     extract($pro);
-
-                //     $hinh = $image_path . $avatar;
-                //     $linkpro = "index.php?act=detail_product&id=" . $id;
-                //     $pricepricem = ($price * $discount) / 100;
-
-                //     echo '<div class="grid wide col l-3 m-4 c-6">
-                //         <div class="product__banner">
-                //             <div class="product--hot__img">
-                //             <a href="' . $linkpro . '">    <img src="' . $hinh . '" alt="">
-                //             </a> </div>
-                //             <div class="product__banner__name">
-                //             <a href="' . $linkpro . '">    <p>' . $name . '</p></a>
-                //             </div>
-                //         </div>
-                //         <div class="product__banner__price">
-                //             <div>
-                //                 <p class="product__banner__price--cost">' . number_format($price - $pricepricem) . '<u>đ</u></p>
-
-                //                 <p class="product__banner__price--sale   product_one_price_old">' . number_format($price) . '<u>đ</u></p>
-                //             </div>
-                //             <div class="product__banner__btn--detail">
-                //                 <a href="' . $linkpro . '">chi tiết</a>
-                //             </div>
-                //         </div>
-                //     </div>';
-                // }
-                ?>
 
 
             </div>
@@ -250,37 +218,6 @@
             <h2 class="products_all">Có thể bạn thích</h2>
             <div class="row category--grid--review helo">
 
-                <?php
-                // foreach ($protop4 as $pro) {
-                //     extract($pro);
-                //     $hinh = $image_path . $avatar;
-                //     $linkpro = "index.php?act=detail_product&id=" . $id;
-                //     $pricepricem = ($price * $discount) / 100;
-                //     // $pricesale = $price - $pricepricem;
-                //     echo '<div class=" col l-3 m-4 c-6">
-                //         <div class="product__banner">
-                //             <div class="product--hot__img">
-                //             <a href="' . $linkpro . '"> <img src="' . $hinh . '" alt=""></a>
-                //             </div>
-                //             <div class="product__banner__name">
-                //             <a href="' . $linkpro . '">   <p>' . $name . '</p></a>
-                //             </div>
-                //         </div>
-                //         <div class="product__banner__price">
-                //             <div>
-                //                 <p class="product__banner__price--cost">' . number_format($price - $pricepricem) . '<u>đ</u></p>
-
-                //                 <p class="product__banner__price--sale product_one_price_old">' . number_format($price) . '<u>đ</u></p>
-                //             </div>
-                //             <div class="product__banner__btn--detail">
-                //                 <a href="' . $linkpro . '">chi tiết</a>
-                //             </div>
-                //         </div>
-                //     </div>';
-                // }
-                ?>
-
-
             </div>
 
         </div>
@@ -288,7 +225,7 @@
 
 </div>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script type="text/javascript">
     // document.addEventListener('DOMContentLoaded', function() {
     let arr_prodcut1 = <?php echo json_encode($prolist); ?>;
@@ -296,24 +233,21 @@
 
     let arr_prodcut3 = <?php echo json_encode($prolist1); ?>;
     let array_product_2 = <?php echo json_encode($protop4); ?>;
-    let fillter_price_asc = <?php echo json_encode($fillter_price_asc); ?>;
+
 
     let fillter_create_at_asc = <?php echo json_encode($fillter_create_at_asc); ?>;
     let fillter_created_at_desc = <?php echo json_encode($fillter_created_at_desc); ?>;
-    let fillter_price_desc = <?php echo json_encode($fillter_price_desc); ?>;
-
 
     let category_grid_review = document.querySelector(".category--grid--review");
     let category_grid_review_ = document.querySelector(".category--grid--review.helo");
     let fillter_categories_list = document.querySelectorAll(".fillter_categories_list li")
-    let li_first_one = document.querySelector(".fillter_categories_list>li")
+
 
     let fillter_list_flow_price = document.querySelectorAll(".fillter_list_flow_price input")
     let product_fillter_flow_desc = document.querySelectorAll(".product_fillter_flow_desc input")
-    let fillter_product_color = document.querySelectorAll(".fillter_product_color input")
-    let product_fillter_size = document.querySelectorAll(".product_fillter_size input")
+
     let fillter_products_time = document.querySelectorAll(".fillter_products_time input")
-    let show_title_cate = document.querySelector(".products_all red_word");
+
     let format_number_price = new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND'
@@ -327,7 +261,7 @@
     let perPage = 12;
     let totalPage = 0;
     let perProduct = [];
-
+    let count_page = arr_prodcut3;
     const params = new URL(location.href).searchParams;
 
 
@@ -361,9 +295,11 @@
     show_products(array_product_2, category_grid_review_);
 
     show_products();
+    getDataProduct();
 
 
-    function show_product123(arr_price = [], arrDesc = [], list_arr = perProduct) {
+
+    function show_product123(arr_price = listArrayPrice, arrDesc = listArrayDesc, list_arr = users) {
         if (id_category !== 0) {
             list_arr = list_arr.filter(function(item) {
                 return item.category_id == id_category;
@@ -371,10 +307,9 @@
         }
         const arrlist = list_arr.map((iteam, index) => {
 
-                let prices_price = Number(iteam.price);
+                let prices_price = Math.floor(iteam.price - ((iteam.price * iteam.discount) / 100));
 
                 if (arr_price.length > 0) {
-
 
                     if (prices_price < 100000 && arr_price.includes("1") == false) {
                         return
@@ -423,8 +358,11 @@
                            </div>
                        </div>
                    </div>`
+
             })
             .join("");
+
+
         category_grid_review.innerHTML = arrlist;
 
     }
@@ -437,7 +375,7 @@
                 } else {
                     listArrayPrice = listArrayPrice.filter(e => e !== this.value);
                 }
-                show_product123(listArrayPrice, listArrayDesc)
+                show_product123(listArrayPrice, listArrayDesc, perProduct)
             })
         })
 
@@ -460,9 +398,10 @@
             if (this.checked) {
                 if (this.value == "price_desc") {
                     let data_price = perProduct.sort((a, b) => (
-                            Math.floor(a.price - ((a.price * a.discount) / 100))) -
-                        Math.floor(b.price - ((b.price * b.discount) / 100)))
-                 
+                        Math.floor(a.price - ((a.price * a.discount) / 100)) -
+                        Math.floor(b.price - ((b.price * b.discount) / 100))
+                    ))
+
 
                     show_product123(listArrayPrice, listArrayDesc, data_price)
                 }
@@ -472,15 +411,29 @@
                             Math.floor(b.price - ((b.price * b.discount) / 100)) -
                             Math.floor(a.price - ((a.price * a.discount) / 100))
                         ))
-                 
+
 
                     show_product123(listArrayPrice, listArrayDesc, data_price)
                 }
                 if (this.value == "old") {
-                    show_product123(listArrayPrice, listArrayDesc, fillter_create_at_asc)
+
+                    let data_price = perProduct.sort((a, b) =>
+                        (
+                            parseInt(moment(new Date(a.created_at)).format('YYYYMMDDHHmmss')) -
+                            parseInt(moment(new Date(b.created_at)).format('YYYYMMDDHHmmss'))
+                        ))
+                    console.log(data_price)
+                    show_product123(listArrayPrice, listArrayDesc, data_price)
                 }
                 if (this.value == "new") {
-                    show_product123(listArrayPrice, listArrayDesc, fillter_created_at_desc)
+                    let data_price = perProduct.sort((a, b) =>
+                        (
+                            parseInt(moment(new Date(b.created_at)).format('YYYYMMDDHHmmss')) -
+                            parseInt(moment(new Date(a.created_at)).format('YYYYMMDDHHmmss'))
+                        ))
+                    console.log(data_price)
+
+                    show_product123(listArrayPrice, listArrayDesc, data_price)
                 }
             }
         })
@@ -536,14 +489,19 @@
 
 
     function getDataProduct() {
+        if (params.get('id')) {
+            users = arr_prodcut1;
 
-        users = arr_prodcut1;
+        } else {
+            users = arr_prodcut3;
+
+        }
         perProduct = users.slice(
             (currentPage - 1) * perPage,
             (currentPage - 1) * perPage + perPage,
 
         )
-        renderPageNumber()
+        renderPageNumber(users.length)
         show_product123(listArrayPrice, listArrayDesc, perProduct)
     }
 
@@ -558,22 +516,31 @@
 
     }
 
-    function renderPageNumber() {
-        totalPage = Math.round((users.length / perPage));
-        console.log(totalPage);
-        for (let i = 1; i <= totalPage; i++) {
-            document.querySelector("#pagination").innerHTML += `<li class="product_page-item" onclick="handlePageNumber(${i})">${i}</li>`
+
+    function renderPageNumber(count) {
+        totalPage = Math.ceil((count / perPage));
+        console.log("total páge :", totalPage);
+        if (totalPage == 1) {
+            document.querySelector("#pagination").innerHTML = " "
+
+        } else {
+
+            for (let i = 1; i <= totalPage; i++) {
+                document.querySelector("#pagination").innerHTML += `<li class="product_page-item" onclick="handlePageNumber(${i})">${i}</li>`
+            }
         }
     }
-    getDataProduct();
-    // document.addEventListener('DOMContentLoaded', function() {
-    let li_active = document.querySelectorAll("li.product_page-item")
-    li_active[0].classList.add('activ');
-    li_active.forEach(item => {
-        item.addEventListener('click', e => {
-            document.querySelector(".product_page-item.activ").classList.remove("activ");
-            e.target.classList.add('activ');
+    document.addEventListener('DOMContentLoaded', function() {
+        let li_active = document.querySelectorAll("li.product_page-item");
+        if (li_active[0]) {
+
+            li_active[0].classList.add('activ');
+        }
+        li_active.forEach(item => {
+            item.addEventListener('click', e => {
+                document.querySelector(".product_page-item.activ").classList.remove("activ");
+                e.target.classList.add('activ');
+            })
         })
     })
-    // })
 </script>
