@@ -14,19 +14,19 @@ $pronew = loadall_product_home();
 if (!isset($_SESSION['mycart'])) {
     $_SESSION['mycart'] = [];
 }
-    // Ai làm bên này có giao diện người dùng thì tự động thêm vào
-    // Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
-    // Comment thêm tên chức năng nữa nhé
-    $protop8 =  loadtop8_product_home();
-    // $protop16 = loadtop16_product_home();
-    $protop4 = loadtop4_product_home();
-    $dsdm= loadall_category();
-    $load2dm = load2_category();
-    $load3dm = load3_category();
-    $fillter_price_desc=fillter_price_desc();
-    $fillter_created_at_desc=fillter_created_at_desc();
-    $fillter_create_at_asc=fillter_create_at_asc();
-    $fillter_price_asc=fillter_price_asc();
+// Ai làm bên này có giao diện người dùng thì tự động thêm vào
+// Làm cái gì thì cứ comment tên người làm lại ở đầu và cuối chức năng
+// Comment thêm tên chức năng nữa nhé
+$protop8 =  loadtop8_product_home();
+// $protop16 = loadtop16_product_home();
+$protop4 = loadtop4_product_home();
+$dsdm = loadall_category();
+$load2dm = load2_category();
+$load3dm = load3_category();
+$fillter_price_desc = fillter_price_desc();
+$fillter_created_at_desc = fillter_created_at_desc();
+$fillter_create_at_asc = fillter_create_at_asc();
+$fillter_price_asc = fillter_price_asc();
 require_once "view/header.php";
 if (isset($_GET['act'])) {
     $actAdmin = $_GET['act'];
@@ -44,11 +44,11 @@ if (isset($_GET['act'])) {
                 $idcategori = 0;
             }
 
-            $prolist = loadall_product($kyw,$idcategori);
+            $prolist = loadall_product($kyw, $idcategori);
             $prolist1 = loadall_product_fromproducs();
 
             $namecategory = load_name_category($idcategori);
-           
+
             require_once "view/showProducts.php";
             break;
         case 'detail_product':
@@ -216,7 +216,6 @@ if (isset($_GET['act'])) {
                             $thongbao[0] = "Đăng nhập thành công !";
                             header("Location: index.php");
                             ob_end_flush();
-                           
                         }
                     } else {
                         $thongbao[0] = "Sai email hoặc mật khẩu !";
@@ -372,7 +371,9 @@ if (isset($_GET['act'])) {
             // echo "<script>
             // window.location.href = 'index.php?act=cart';
             // </script>";
-            require_once "./view/cart/giohang.php";
+           
+         // require_once "./view/cart/giohang.php";
+            echo "<script>window.location.href='index.php?act=cart';</script>";
 
             break;
             // update quantity use by product
@@ -390,7 +391,8 @@ if (isset($_GET['act'])) {
                 $_SESSION['mycart'][$id]['use_quantity_buy']++;
             }
 
-            require_once "./view/cart/giohang.php";
+            // require_once "./view/cart/giohang.php";
+            echo "<script>window.location.href='index.php?act=cart';</script>";
 
             break;
 
@@ -413,7 +415,7 @@ if (isset($_GET['act'])) {
                     $totalPricePay = $_POST['totalPricePay'];
                     $dateCurrent = time();
                     $dateToInt = date("Y-m-d h:i:s", $dateCurrent);
-                    
+
                     if ($phoneNumber == "") {
                         $errors['phoneNumber'] = "Bạn phải nhập số điện thoại";
                     } else if (!is_numeric($phoneNumber)) {

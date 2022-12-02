@@ -22,12 +22,18 @@ if (is_array($detailDm)) {
                 <div class="name">
                     <p>Tên danh mục:</p>
                     <input class="name" style=" background-color: #000000;" type="text" name="name" value="<?= $name ?>">
+                    <?php if (isset($_GET['nameerr'])) : ?>
+                        <span style="color: red; font-size: 14px;"><?= $_GET['nameerr'] ?></span>
+                    <?php endif ?>
                 </div>
                 <div class="name">
                     <p>Ảnh danh mục:</p>
                     <input type="hidden" name="avatar_old" value="<?= $avatar ?>">
                     <input class="name" style=" background-color: #000000;" type="file" name="avatar_new">
                     <img src="../imageProduct/<?= $avatar ?>" width="120" style="margin-top: 10px;">
+                    <?php if(isset($_GET['imageerr'])):?>
+                <span style="color: red; font-size: 14px;"><?= $_GET['imageerr']?></span>
+                 <?php endif ?>
                 </div>
                 <div class="status">
                     <p>Trạng thái</p>
@@ -36,6 +42,10 @@ if (is_array($detailDm)) {
                         <option value="0" <?= $status == 0 ? 'selected' : '' ?>>Active</option>
                         <option value="1" <?= $status == 1 ? 'selected' : '' ?>>Disable</option>
                     </select>
+                    <?php if(isset($_GET['statuserr'])):?>
+                <span style="color: red; font-size: 14px;"><?= $_GET['statuserr']?>
+                <?php endif ?>
+            </span>
                 </div>
 
                 <div class="btn__action btn__action--addProduct">
