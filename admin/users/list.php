@@ -75,42 +75,32 @@
 
                             <td class="status">
                                 <?php
-                                if ($value['status'] == 0) {
-                                    echo "<button class='status-isset'>Active</button>";
-                                } else if ($value['status'] == 1) {
-                                    echo " <button class='status-empty'>Disable</button>";
-                                }else{
-                                    echo " <button style='background: #24448f'; class='status-empty'>Direct</button>";
-                                }
+                                if($value['status']==0){
+                                        echo "<button class='status-isset'>Active</button>";
+                                }else if($value['status']==1){
+                                 echo "<button class='status-empty'>Disable</button>";
+                                    }
                                 ?>
                             </td>
                             <td class="status user">
-                                <?php
-                                if ($value['role'] == 0) {
-                                    echo "<button class='status-isset'>Người dùng</button>";
-                                } else if ($value['role'] == 1) {
-                                    echo " <button class='status-empty'>Quản trị</button>";
-                                }
-                                else if ($value['role'] == 3) {
-                                    echo " <button style='background: #24448f'; class='status-empty'>Khách trực tiếp</button>";
-                                }
+                            <?php
+                                if($value['role']==0){
+                                        echo "<button class='status-isset'>Người dùng</button>";
+                                }else if($value['role']==1){
+                                 echo "<button class='status-empty'>Quản trị</button>";
+                                    }
                                 ?>
                             </td>
                             <td class="dateCreate">
                                 <?= $value['created_at'] ?>
                             </td>
                             <td class="btn-action">
-                                <?php
-                                    $countOrderUser = countOrderWithUser($value['id']);
-                                ?>
                                 <a href="index.php?actAdmin=editUser&id=<?= $value['id'] ?>">
-                                    <button ><i class="fa-solid fa-screwdriver"></i></button>
+                                    <button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button>
                                 </a>
-                                <?php if($countOrderUser == 0): ?>
-                                    <a onclick="return confirm(`Bạn có chắc chắn muốn xóa khách hàng mã <?= 'KH00'.$value['id'] ?> `)" href="index.php?actAdmin=deleteUser&&id=<?= $value['id'] ?>">
-                                        <button style="margin-left: 5px;" ><i class="fa-sharp fa-solid fa-trash"></i></button>
-                                    </a>
-                                <?php endif; ?>
+                                <a onclick="return confirm(`Bạn có chắc chắn muốn xóa  '<?= $value['name'] ?>' `)" href="index.php?actAdmin=deleteUser&&id=<?= $value['id'] ?>">
+                                    <button><i class="fa-sharp fa-solid fa-trash"></i></button>
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

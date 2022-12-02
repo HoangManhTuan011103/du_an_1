@@ -36,7 +36,19 @@
                                 }
                             } ?>
                             <li><a href="index.php?act=dsdonhang">Đơn hàng của bạn</a></li>
-                            <li><a href="index.php?act=doimatkhau">Đổi mật khẩu</a></li>
+
+                            <?php if (isset($_GET['act'])) {
+                                $actc = $_GET['act'];
+                                switch ($actc) {
+                                    case 'doimatkhau':
+                                        echo '<li><a href=""style="color:#ff2d37">Đổi mật khẩu</a></li>';
+                                        break;
+                                    default:
+                                        echo '<li><a href="">Đổi mật khẩu</a></li>';
+                                        break;
+                                }
+                            } ?>
+                            
                         </ul>
                     </div>
                 </div>

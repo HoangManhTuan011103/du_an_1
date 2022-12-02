@@ -229,7 +229,21 @@ foreach ($check_user_bying_product as $check) {
 
                                             <div class="form-comment--one">
                                                 <div class="form-comment__avatar">
-                                                    <img src="./imageProduct/<?= $image ?>" alt="">
+                                                <?php
+                                                    if ($image != "") {
+                                                         echo'<img src="./Admin/UserAvt/'.$image.'" alt="">';
+                                                        } else {
+                                                            $string1 = $name_person_comment;
+                                                            $string = convert_vi_to_en($string1);
+                                                            $pieces = explode(' ', $string);
+                                                            $name_user1 = array_pop($pieces);
+                                                            $name_user2 = ucfirst($name_user1);
+                                                            $name_user3 = substr($name_user2, 0, 1);
+                                                            echo ' <div class="cmt_pro---img" style=" position: relative; height: 37px; width: 37px; background-color: #ff2d37; border-radius: 50%;">
+                                                            <span class="name" style=" position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: 500; font-size: 19px; ">'.$name_user3.'</span>
+                                                        </div>';
+                                                        }
+                                                 ?>
                                                 </div>
                                                 <div class="form-comment__content">
                                                     <div class="form__toggle_clickedit">
