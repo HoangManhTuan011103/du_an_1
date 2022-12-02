@@ -56,6 +56,26 @@
                                 $nameUser = commented_toUser($value['user_id'],$value['product_id']);
                                 $pathDele = 'index.php?actAdmin=detailCommentDele&cid='.$value['id'].'&uid='.$value['user_id'].'&pid='.$value['product_id'];
                                 if($nameUser['RoleUser']==1){$Role = 'Admin';}else if($nameUser['RoleUser']==0){$Role = 'Khách';};
+                                switch ($value['rating_products']) {
+                                    case '1':
+                                        $star = '<i class="fa-regular fa-star orange"></i>';
+                                        break;
+                                    case '2':
+                                        $star = '<i class="fa-regular fa-star orange"></i><i class="fa-regular fa-star orange"></i>';
+                                        break;
+                                    case '3':
+                                        $star = '<i class="fa-regular fa-star orange"></i><i class="fa-regular fa-star orange"></i><i class="fa-regular fa-star orange"></i>';
+                                        break;
+                                    case '4':
+                                        $star = '<i class="fa-regular fa-star orange"></i><i class="fa-regular fa-star orange"></i><i class="fa-regular fa-star orange"></i><i class="fa-regular fa-star orange"></i>';
+                                        break;
+                                    case '5':
+                                        $star = '<i class="fa-regular fa-star orange"></i><i class="fa-regular fa-star orange"></i><i class="fa-regular fa-star orange"></i><i class="fa-regular fa-star orange"></i><i class="fa-regular fa-star orange"></i>';
+                                        break;
+                                    default:
+                                        $star = '';
+                                        break;
+                                }
                                 echo '
                                 <tr>
                                     <td><input type="checkbox"></td>
@@ -63,6 +83,7 @@
                                     <td class="name">'.$nameUser['NameUser'].'</td>
                                     <td class="email">'.$nameUser['EamilUser'].'</td>
                                     <td class="content">'.$value['content'].'</td>
+                                    <td class="content">'.$star.'</td>
                                     <td class="dateCreate">'.$value['created_at'].'</td>
                                     <td class="role">'.$Role.'</td>
                                     <td class="btn-action">
