@@ -28,6 +28,10 @@ function productDeletecomment($id)
     $sql = "delete from comments_product where product_id=$id";
     pdo_execute($sql);
 }
+function getIdDetailOrderNeedDeleteCat($id){
+    $sql = "SELECT A.product_id FROM `orders_detail` A INNER JOIN `products` B ON A.product_id=B.id WHERE B.category_id=$id";
+    return pdo_query($sql);
+}
 function productDeleteDetailProduct($id)
 {
     $sql = "delete from orders_detail where product_id=$id";
@@ -62,16 +66,11 @@ function selectAllImageProductFlowCategory($id_cagtegory)
     return pdo_query($sql);
 }
 
-function deleteAllImageProductFlowCategory($id_cagtegory)
+function deleteAllImageProductFlowCategory($id)
 {
+    $sql = "delete from product_images where product_id =$id ";
+    pdo_execute($sql);
 
-    $convert_int = (int)$id_cagtegory;
-    $id =  selectAllImageProductFlowCategory($convert_int);
-    foreach ($id as $value) {
-        extract($value);
-        $sql = "delete from product_images where product_id =$id ";
-        pdo_execute($sql);
-    }
 }
 // Update product total in category
 function getIdCategoryUpdateCount($id)
@@ -301,6 +300,27 @@ function selectUnspecifiedOrderDetail($id){
 function selectUnspecifiedProduct($id){
     $sql = "SELECT * FROM `products` WHERE id=$id";
     return pdo_query($sql);
+}
+function selectUnspecifiedProductCat($id){
+    $sql = "SELECT * FROM `products` WHERE category_id=$id";
+    return pdo_query($sql);
+}
+function selectUnspecifiedOrderDetailCat($id){
+    $sql = "SELECT A.order_id,A.product_id,A.quantity,A.price_product FROM `orders_detail` A INNER JOIN `products` B ON A.product_id=B.id WHERE B.category_id=$id";
+    return pdo_query($sql);
+}
+function getIdCatNeedDelete($id){
+    $sql = "select A.id from comments_product A inner join products B on A.product_id=B.id where B.category_id=$id";
+    return pdo_query($sql);
+}
+function getNumberComment($id){
+    $sql = "select * from comments_product A inner join products B on A.product_id=B.id where B.category_id=$id";
+    return pdo_query($sql);
+}
+function productDeletecommentCat($id)
+{
+    $sql = "delete from comments_product where id=$id";
+    pdo_execute($sql);
 }
 function insertUnspecifiedOrderDetail($order_id,$product_id,$quantity,$price_product){
     $sql = "INSERT INTO `unspecified_orders_detail`(`order_id`, `product_id`, `quantity`, `price_product`) VALUES ('$order_id','$product_id','$quantity','$price_product')";

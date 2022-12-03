@@ -95,17 +95,16 @@
 <section class="grid wide section__wrap--review--1">
     <div class="warp--review--1--row-1 ">
         <div class="review--1-row--1__img l-5 m-12 c-12">
-            <img src="./src/image/img_header_hoan/banner_product_nangdong.webp" alt="">
+            <img src="./src/image/img_header_hoan/image_one.png" alt="">
         </div>
         <div class="warp--review--1--row-1__text">
             <h2>THỂ THAO NĂNG ĐỘNG</h2>
-            <p>Sneaker đã trở thành một biểu tượng của xã hội, là một sản phẩm của thời đại với
+            <p>Áo thể thao đã trở thành một biểu tượng của xã hội, là một sản phẩm của thời đại với
                 những thiết
-                kế cổ điển và những điều đó đều nằm trong những đôi giày Sneaker Delta Shoes. Không
+                kế cổ điển và những điều đó đều nằm trong những mẫu áo thiết kế năng động và hiện đại. Không
                 lỗi thời
-                với thời gian, mang dấu ấn cá tính khác biệt và tạo mọi sự lôi cuốn từ chính đôi
-                giày Sneaker
-                . Tự tạo cuộc chơi, tự tạo phong cách, đó là Delta Shoes</p>
+                với thời gian, mang dấu ấn cá tính khác biệt và tạo mọi sự lôi cuốn từ chính chiếc áo bạn mặc trên người
+                . Tự tạo cuộc chơi, tự tạo phong cách, đó là F-Sport</p>
             <div class="warp--review--1--row-1__text__see-more">
                 <a href="">XEM THÊM <i class="fa-solid fa-angle-right"></i></a>
             </div>
@@ -147,20 +146,14 @@
 <section class="grid wide section__wrap--review--2">
     <div class="warp--review--2--row-1 ">
         <div class="warp--review--2--row-1__text">
-            <h2>THỂ THAO NĂNG ĐỘNG</h2>
-            <p>Sneaker đã trở thành một biểu tượng của xã hội, là một sản phẩm của thời đại với
-                những thiết
-                kế cổ điển và những điều đó đều nằm trong những đôi giày Sneaker Delta Shoes. Không
-                lỗi thời
-                với thời gian, mang dấu ấn cá tính khác biệt và tạo mọi sự lôi cuốn từ chính đôi
-                giày Sneaker
-                . Tự tạo cuộc chơi, tự tạo phong cách, đó là Delta Shoes</p>
+            <h2>MẪU ÁO THIẾT KẾ HIỆN ĐẠI</h2>
+            <p>F-Sport là nơi mang đến cho quý khách những mấu mã về những loại áo chất lượng nhất, phù hợp nhất với giá cả và tương xứng với chất lượng. Mẫu áo thiết kế năng động trẻ trung tạo sức cuốn hút ngay cả trong cuộc sống hàng ngày và trong thể thao. F-Sport luôn mang đến cho quý khách trải nghiệm và dịch vụ tốt nhất.</p>
             <div class="warp--review--1--row-1__text__see-more">
                 <a href="">XEM THÊM <i class="fa-solid fa-angle-right"></i></a>
             </div>
         </div>
         <div class="review--2-row--1__img l-5 m-12 c-12">
-            <img src="./src/image/img_header_hoan/banner_product_nangdong.webp" alt="">
+            <img src="./src/image/img_header_hoan/image_second.png" alt="">
         </div>
     </div>
     <div class="section__product--hot__banner warp--review--1--row-2 row">

@@ -70,10 +70,44 @@ if (isset($_GET['actAdmin'])) {
             case 'deleteCategory':
                 if (isset($_GET['id'])) {
                     $id = $_GET['id'];
-                    deleteAllImageProductFlowCategory($id);
+                    // Insert Product to unspecified
+                   
+                    $productUnspecifiedCat = selectUnspecifiedProductCat($id);
+                    if(sizeof($productUnspecifiedCat) > 0){
+                        foreach ($productUnspecifiedCat as $value) {
+                            insertUnspecifiedProduct($value['id'],$value['name'],$value['avatar'],$value['price'],$value['category_id']);
+                        }
+                    }
+                   
+
+                    $orderDetailUnspecifiedCat = selectUnspecifiedOrderDetailCat($id);
+                    if(sizeof($orderDetailUnspecifiedCat) > 0){
+                        foreach ($orderDetailUnspecifiedCat as $value) {
+                            insertUnspecifiedOrderDetail($value['order_id'],$value['product_id'],$value['quantity'],$value['price_product']);
+                        }
+                    }
+                   
+
+                    // Insert Product to unspecified
+                    $idDetailOrderCat = getIdDetailOrderNeedDeleteCat($id);
+                    foreach($idDetailOrderCat as $value){
+                        productDeleteDetailProduct($value['product_id']);
+                    }
+                    
+                    $numberComment = getNumberComment($id);
+                
+                    if(sizeof($numberComment) > 0){
+                        $idCatComment = getIdCatNeedDelete($id);
+                        foreach($idCatComment as $value){
+                            productDeletecommentCat($value['id']);
+                        }
+                    }
+                    $idCatAllImage = selectAllImageProductFlowCategory($id);
+                    foreach($idCatAllImage as $value){
+                        deleteAllImageProductFlowCategory($value['id']);
+                    }    
                     deleteProductFlowCategory($id);
                     category_delete($id);
-
                     $notification = "Xóa danh mục thành công";
                 }
                 $listdm = getAllCategories();
