@@ -295,6 +295,10 @@ span.pluss {
     background-color: #DD4B39;
 }
 
+.contentManager--product__footer .contentManager--product__footer--table table td.status button.status-empty.direct {
+    background-color: #6b32c5;
+}
+
 .contentManager--product__footer--table>ul {
     padding-top: 20px;
     text-align: center;

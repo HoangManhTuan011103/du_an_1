@@ -79,7 +79,9 @@
                                         echo "<button class='status-isset'>Active</button>";
                                 }else if($value['status']==1){
                                  echo "<button class='status-empty'>Disable</button>";
-                                    }
+                                }else if($value['status']==3){
+                                    echo "<button class='status-empty direct'>Direct</button>";
+                                   }
                                 ?>
                             </td>
                             <td class="status user">
@@ -89,15 +91,21 @@
                                 }else if($value['role']==1){
                                  echo "<button class='status-empty'>Quản trị</button>";
                                     }
+                                    else if($value['role']==3){
+                                        echo "<button class='status-empty direct'>Khách hàng trực tiếp</button>";
+                                           }
                                 ?>
                             </td>
                             <td class="dateCreate">
                                 <?= $value['created_at'] ?>
                             </td>
                             <td class="btn-action">
-                                <a href="index.php?actAdmin=editUser&id=<?= $value['id'] ?>">
-                                    <button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button>
-                                </a>
+                                <?php if($value['role'] != 3){ ?>
+                                    <a href="index.php?actAdmin=editUser&id=<?= $value['id'] ?>">
+                                        <button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button>
+                                    </a>
+                                <?php } ?>
+                               
                                
                             </td>
                         </tr>
