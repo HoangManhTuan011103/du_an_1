@@ -59,3 +59,8 @@ function total_comment_id_product($id)
     $sql = "SELECT COUNT(product_id) as total_comment_id_product ,SUM(rating_products) total FROM `comments_product` WHERE product_id=$id";
     return pdo_query_one($sql);
 }
+function check_count_comment_follow_user($id_product){
+    $sql="SELECT COUNT(product_id) as total_comment_id_product,user_id ,SUM(rating_products) total FROM `comments_product` WHERE product_id=$id_product GROUP BY user_id";
+    return pdo_query_one($sql);
+
+}
