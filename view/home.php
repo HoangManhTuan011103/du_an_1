@@ -1,6 +1,6 @@
 <!-- SECTION -->
 <section class="section--banner1">
-    <img src="./src/image/img_header_hoan/banner1_balck-skin.png" alt="">
+    <img src="./src/image/img_header_hoan/banner_main_header.png" alt="">
 </section>
 <section class="grid wide section--product-1">
     <div class="row">
@@ -189,7 +189,7 @@
 </section>
 <section class="grid wide section__wrap--category--review">
     <div class="img--banner--category">
-        <img src="./src/image/img_header_hoan/banner_product_noibat.webp" alt="">
+        <img src="./src/image/img_header_hoan/banner_footer_news.png" alt="">
     </div>
     
     <div class="category--review--flex row">

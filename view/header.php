@@ -39,9 +39,9 @@
     <div class="grid">
         <!-- HEADER -->
         <header class="header">
-            <div class="topbar">
-                <img class="topbar__img" src="./src/image/img_header_hoan/banner.webp" alt="">
-            </div>
+            <!-- <div class="topbar">
+                <img class="topbar__img" src="./src/image/img_header_hoan/slideshow_1.png" alt="">
+            </div> -->
             <div class="grid wide  mid-header">
                 <div class="mid-header__logo">
                     <img src="./src/image/img_header_hoan/Layer 1.png" alt="">
