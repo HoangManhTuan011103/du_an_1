@@ -11,6 +11,9 @@ require_once "./model/model-order.php";
 require_once "./model/model-comment.php";
 
 $pronew = loadall_product_home();
+$pronew2 = loadall_product_home2();
+$pronew3 = loadall_product_home3();
+
 if (!isset($_SESSION['mycart'])) {
     $_SESSION['mycart'] = [];
 }
@@ -56,11 +59,11 @@ if (isset($_GET['act'])) {
                 $id = $_GET['id'];
                 $onepro_categories =  loadone_detail_product_flow_categories($id);
                 $list_image_product = loadone_detail_product_flow_product_images($id);
-
+                $idCategory = $onepro_categories['id_category'];
                 // extract($onepro_categories);
                 // var_dump($onepro_categories);
                 // die();
-                $protop4 = loadtop4_product_home();
+                $protop5 = loadtop4_product_home2($idCategory);
 
 
                 $data = comment_select_by_users($id);

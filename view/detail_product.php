@@ -448,7 +448,7 @@ foreach ($check_user_bying_product as $check) {
             <div class="section__product--hot__banner review__product--hot row">
 
                 <?php
-                foreach ($protop4 as $value) {
+                foreach ($protop5 as $value) {
                     extract($value);
                     $pricesale = $price * ($discount / 100);
                     $img =  $image_path . $avatar;
@@ -482,6 +482,9 @@ foreach ($check_user_bying_product as $check) {
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
     let btn_decre = document.querySelector(".btn_decre");
     let btn_incre = document.querySelector(".btn_incre");
@@ -540,4 +543,19 @@ foreach ($check_user_bying_product as $check) {
             }
         })
     }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.review__product--hot').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            // autoplay: true,
+            autoplaySpeed: 2000,
+            arrows: true,
+            prevArrow: '<span class="prevArrow" id="prevArrowLimited"><i class="fa-solid fa-chevron-left"></i></span>',
+            nextArrow: '<span class="nextArrow" id="nextArrowLimited"><i class="fa-solid fa-chevron-right"></i></span',
+            slidesToScroll: 1
+        });
+    });
 </script>

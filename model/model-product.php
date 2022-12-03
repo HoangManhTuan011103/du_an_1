@@ -102,9 +102,22 @@ function getTotalProductCat2($idCategory)
 
 // Update product total in category
 // Hiệp hiện thị top 5 sản phẩm mới nhất
+// Fix slide phía home
 function loadall_product_home()
 {
-    $sql = "select * from products where status = 0 order by id desc limit 0,5 ";
+    $sql = "select * from products where status = 0 order by rand() desc limit 0,10 ";
+    $listproduct = pdo_query($sql);
+    return $listproduct;
+}
+function loadall_product_home2()
+{
+    $sql = "select * from products where status = 0 order by rand() desc limit 5,10 ";
+    $listproduct = pdo_query($sql);
+    return $listproduct;
+}
+function loadall_product_home3()
+{
+    $sql = "select * from products where status = 0 order by rand() desc limit 3,10 ";
     $listproduct = pdo_query($sql);
     return $listproduct;
 }
@@ -116,9 +129,15 @@ function loadtop8_product_home()
     return $listproduct;
 }
 // hiện thị top 4 sản phẩm cu nhat
+function loadtop4_product_home2($id)
+{
+    $sql = "select * from products where status = 0 and category_id=$id order by rand() limit 0,8";
+    $listproduct = pdo_query($sql);
+    return $listproduct;
+}
 function loadtop4_product_home()
 {
-    $sql = "select * from products where status = 0 order by id asc limit 0,4";
+    $sql = "select * from products where status = 0 order by rand() limit 0,5";
     $listproduct = pdo_query($sql);
     return $listproduct;
 }

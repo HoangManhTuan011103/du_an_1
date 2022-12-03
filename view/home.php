@@ -114,7 +114,7 @@
     </div>
     <div class="section__product--hot__banner warp--review--1--row-2 row">
         <?php
-        foreach ($pronew as $pro) {
+        foreach ($pronew2 as $pro) {
             extract($pro);
             $linkpro = "index.php?act=detail_product&id=" . $id;
             $hinh = $image_path . $avatar;
@@ -165,7 +165,7 @@
     </div>
     <div class="section__product--hot__banner warp--review--1--row-2 row">
         <?php
-        foreach ($pronew as $pro) {
+        foreach ($pronew3 as $pro) {
             extract($pro);
             $hinh = $image_path . $avatar;
             $linkpro = "index.php?act=detail_product&id=" . $id;
@@ -274,3 +274,35 @@
 
 </section>
 </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.review__product--hot').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            arrows: true,
+            prevArrow: '<span class="prevArrow" id="prevArrowLimited"><i class="fa-solid fa-chevron-left"></i></span>',
+            nextArrow: '<span class="nextArrow" id="nextArrowLimited"><i class="fa-solid fa-chevron-right"></i></span',
+            slidesToScroll: 1
+        });
+    });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.warp--review--1--row-2').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            // autoplay: true,
+            autoplaySpeed: 2000,
+            arrows: true,
+            prevArrow: '<span class="prevArrow" id="prevArrowLimited"><i class="fa-solid fa-chevron-left"></i></span>',
+            nextArrow: '<span class="nextArrow" id="nextArrowLimited"><i class="fa-solid fa-chevron-right"></i></span',
+            slidesToScroll: 1
+        });
+    });
+</script>

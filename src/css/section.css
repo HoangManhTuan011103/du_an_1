@@ -305,3 +305,53 @@
 .ul--sup--product--menu li a:hover {
     color: #ff2d37;
 }
+
+
+/* Slider Product sale */
+
+.prevArrow.slick-arrow {
+    display: block !important;
+    background-color: #ff2d37;
+    position: absolute;
+    top: 30%;
+    padding: 17px 20px;
+    left: -2%;
+    z-index: 999;
+    /* border-radius: 40px 0 0 40px; */
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s all linear;
+}
+
+.prevArrow.slick-arrow i {
+    color: #ffffff;
+}
+
+.nextArrow.slick-arrow i {
+    color: #ffffff;
+}
+
+.nextArrow.slick-arrow:hover {
+    background-color: #333;
+}
+
+.prevArrow.slick-arrow:hover {
+    background-color: #333;
+}
+
+.nextArrow.slick-arrow {
+    display: block !important;
+    background-color: #ff2d37;
+    position: absolute;
+    padding: 17px 20px;
+    top: 30%;
+    z-index: 999;
+    border-radius: 50px;
+    /* border-radius: 0 40px 40px 0; */
+    right: -2%;
+    transition: 0.2s all linear;
+    cursor: pointer;
+}
+
+
+/* Slider Product sale */
