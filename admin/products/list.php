@@ -28,6 +28,7 @@
 
                 <select name="nameCaterory" id="">
                     <option value="" hidden>--- Lọc sản phẩm theo danh mục ---</option>
+                    <option value="" <?= (isset($nameCaterory)&&$nameCaterory=="") ? "selected" : "" ?> >Tất cả sản phẩm</option>
                     <?php foreach($listProductFlCat as $value): ?>
                         <option value="<?= $value['id'] ?>" <?= (isset($nameCaterory)&&$nameCaterory==$value['id']) ? "selected" : "" ?>  ><?= $value['name'] ?></option>
                     <?php endforeach; ?>
@@ -126,14 +127,14 @@
                     $i = 0; 
                 ?>
                         <?php if(isset($_GET['page']) && $_GET['page'] > 2){ $fisrtPage = 1; ?>
-                            <li><a href="index.php?actAdmin=showProduct&page=<?= $fisrtPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><i class="fa-sharp fa-solid fa-angles-left"></i></a></li>
+                            <li><a  href="index.php?actAdmin=showProduct&page=<?= $fisrtPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><i class="fa-sharp fa-solid fa-angles-left"></i></a></li>
                         <?php } ?>
 
                         <?php if(isset($_GET['page']) && $_GET['page'] > 1){ $prevPage = $_GET['page'] - 1; ?>
-                            <li><a href="index.php?actAdmin=showProduct&page=<?= $prevPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><i class="fa-solid fa-angle-left"></i></a></li>
+                            <li><a  href="index.php?actAdmin=showProduct&page=<?= $prevPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><i class="fa-solid fa-angle-left"></i></a></li>
                         <?php } ?>
 
-                        <?php for($i; $i <= $countPage; $i++): ?>
+                        <?php for($i; $i < $countPage; $i++): ?>
                                 <?php if(isset($_GET['page'])): ?>
                                     <?php if($i+1 != $_GET['page']): ?>
                                         <?php if($i+1 > $_GET['page']-2 && $i+1 < $_GET['page']+2): ?>
@@ -156,18 +157,20 @@
                                             $colorWord = "";
                                         } 
                                     ?>
-                                    <?php if($i <= $countPage): ?>
+                                    <?php if($i < 4): ?>
                                         <li><a <?= $backGround.$color.$word.$colorWord ?> href="index.php?actAdmin=showProduct&page=<?= $i+1 ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><?= $i+1 ?></a></li>
+                                        
                                     <?php endif; ?>
+                                    
                                 <?php endif; ?>
                         <?php endfor ?>
 
                         <?php if(isset($_GET['page']) && $_GET['page'] < ceil($countPage)){ $nextPage = $_GET['page'] + 1; ?>
-                            <li><a href="index.php?actAdmin=showProduct&page=<?= $nextPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><i class="fa-solid fa-angle-right"></i></a></li>
+                            <li><a  href="index.php?actAdmin=showProduct&page=<?= $nextPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><i class="fa-solid fa-angle-right"></i></a></li>
                         <?php } ?>
 
                         <?php if(isset($_GET['page']) && $_GET['page'] < ceil($countPage)-1){ $endPage = ceil($countPage); ?>
-                            <li><a href="index.php?actAdmin=showProduct&page=<?= $endPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><i class="fa-sharp fa-solid fa-angles-right"></i></a></li>
+                            <li><a  href="index.php?actAdmin=showProduct&page=<?= $endPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><i class="fa-sharp fa-solid fa-angles-right"></i></a></li>
                         <?php } ?>
 
                     <?php } ?>

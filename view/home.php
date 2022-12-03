@@ -258,7 +258,7 @@
                 ?>
             </div>
             <div class="grid wide review--category__p--more">
-                <p>Xem tất cả<i class="fa-solid fa-angle-right"></i></p>
+                <a href="index.php?act=showProducts"><p>Xem tất cả<i class="fa-solid fa-angle-right" style="margin-left: 5px; font-size: 17px;"></i></p></a>
             </div>
         </div>
 

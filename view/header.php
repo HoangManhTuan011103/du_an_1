@@ -44,7 +44,7 @@
             </div> -->
             <div class="grid wide  mid-header">
                 <div class="mid-header__logo">
-                    <img src="./src/image/img_header_hoan/Layer 1.png" alt="">
+                    <a href="./index.php"><img src="./src/image/img_header_hoan/Layer 1.png" alt=""></a>
                 </div>
 
                 <div class="mid-header__nav">

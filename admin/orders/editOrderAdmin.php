@@ -88,7 +88,7 @@
                         <li><a href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $prevPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-solid fa-angle-left"></i></a></li>
                     <?php } ?>
 
-                    <?php for ($i; $i <= $countPage; $i++) : ?>
+                    <?php for ($i; $i < $countPage; $i++) : ?>
                         <?php if (isset($_GET['page'])) : ?>
                             <?php if ($i + 1 != $_GET['page']) : ?>
                                 <?php if ($i + 1 > $_GET['page'] - 2 && $i + 1 < $_GET['page'] + 2) : ?>
@@ -111,7 +111,7 @@
                                 $colorWord = "";
                             }
                             ?>
-                            <?php if ($i <= $countPage) : ?>
+                            <?php if ($i < 4) : ?>
                                 <li><a <?= $backGround . $color . $word . $colorWord ?> href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&&page=<?= $i + 1 ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><?= $i + 1 ?></a></li>
                             <?php endif; ?>
                         <?php endif; ?>
