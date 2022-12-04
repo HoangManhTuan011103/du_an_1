@@ -152,9 +152,7 @@
                     </li>
                     <li class="nav__ul__li--list nav__ul--product"><a
                             href="index.php?act=showProducts">Sản phẩm</a></li>
-                    <li class="nav__ul__li--list nav__ul--spt-male"><a href="">Thể thao nam</a></li>
-                    <li class="nav__ul__li--list nav__ul--spt-female"><a href="">Thể thao nữ</a>
-                    </li>
+                   
                     <li class="nav__ul__li--list nav__ul--contact"><a href="">Liên hệ</a></li>
                     <li class="nav__ul__li--list nav__ul--introduce"><a href="">Giới thiệu</a></li>
                     <li class="nav__ul__li--list nav__ul--news"><a href="">Tin tức</a></li>

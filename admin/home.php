@@ -71,7 +71,7 @@
                     <?php
                         $productSale = getProductBestSalePrintAdmin();
                     ?>
-                    <h2>Sản phẩm bán chạy nhất: SP00<?= $bestSale['id'] ?></h2>
+                    <h2>Mã sản phẩm: SP00<?= $bestSale['id'] ?></h2>
                     <h2 style="padding-top: 10px;">Số lượng bán được: <?= $productSale['quantityBestSale'] ?></h2>
                 </div>
                 <div class="tableProduct ">
@@ -98,7 +98,7 @@
                     </div>
                 </div>
                 <div class="btn--seeProduct ">
-                    <a href=" "><button>Xem chi tiết sản phẩm</button></a>
+                    <a href=""><button>Sản phẩm bán chạy nhất</button></a>
                 </div>
             <?php else: ?>
             <div class="title ">
