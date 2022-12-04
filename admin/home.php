@@ -68,8 +68,11 @@
         <div class="contentManager--footer__right ">
             <?php if($bestSale != ""): ?>
                 <div class="title ">
+                    <?php
+                        $productSale = getProductBestSalePrintAdmin();
+                    ?>
                     <h2>Sản phẩm bán chạy nhất: SP00<?= $bestSale['id'] ?></h2>
-                    <h2 style="padding-top: 10px;">Số lượng bán được: <?= $bestSale['quantity'] ?></h2>
+                    <h2 style="padding-top: 10px;">Số lượng bán được: <?= $productSale['quantityBestSale'] ?></h2>
                 </div>
                 <div class="tableProduct ">
                     <?php

@@ -224,12 +224,26 @@
     </div>
 
 </div>
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.category--grid--review.helo').slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            arrows: true,
+            prevArrow: '<span class="prevArrow" id="prevArrowLimited"><i class="fa-solid fa-chevron-left"></i></span>',
+            nextArrow: '<span class="nextArrow" id="nextArrowLimited"><i class="fa-solid fa-chevron-right"></i></span',
+            slidesToScroll: 1
+        });
+    });
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script type="text/javascript">
     // document.addEventListener('DOMContentLoaded', function() {
     let arr_prodcut1 = <?php echo json_encode($prolist); ?>;
-
+    let kyw = <?php echo json_encode($kyw); ?>;
 
     let arr_prodcut3 = <?php echo json_encode($prolist1); ?>;
     let array_product_2 = <?php echo json_encode($protop4); ?>;
@@ -489,7 +503,7 @@
 
 
     function getDataProduct() {
-        if (params.get('id')) {
+        if (params.get('id') || kyw) {
             users = arr_prodcut1;
 
         } else {

@@ -209,8 +209,8 @@ foreach ($check_user_bying_product as $check) {
             <div class="row mt_chung">
                 <ul class="product_change_tab">
                     <li class='tab-item active'>Mô tả sản phẩm</li>
-                    <li class="tab-item">Tab tùy chỉnh</li>
-                    <li class="tab-item">Đánh giá</li>
+                    <li class="tab-item">Bình luận - đánh giá</li>
+                    <li class="tab-item">Demo</li>
                 </ul>
             </div>
             <div class="row product_desc_detail">
@@ -318,11 +318,11 @@ foreach ($check_user_bying_product as $check) {
                             </ul>
                         </div>
                         <div class="form_to_seen_cmt ">
-                            <h3>Be the first to review “Sản phẩm”</h3>
+                            <h3>Đánh giá, bình luận sản phẩm</h3>
                             <form ation="<?= $_SERVER['PHP_SELF'] ?>" method="post">
                                 <input type="hidden" id="count_start" name="count_start" value="">
                                 <input type="hidden" name="id_product" value="<?= $_GET['id'] ?>">
-                                <label for="">Your rating *</label>
+                                <label for="">Đánh giá của bạn</label>
                                 <ul class="stars">
                                     <li class="star">&#10029;</li>
                                     <li class="star">&#10029;</li>

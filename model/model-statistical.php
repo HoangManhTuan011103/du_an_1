@@ -15,11 +15,23 @@
         return pdo_query_one($sql);
     };
     // Sản phẩm bán chạy nhất
+    function getProductBestSalePrintAdmin(){
+        $sql = "SELECT SUM(TABLE1.total_price),TABLE1.id_order,TABLE1.user_id,TABLE1.product_id,SUM(TABLE1.quantity) as quantityBestSale
+        from (SELECT orders.id id_order,orders.created_at,orders.user_id,orders.total_price,orders_detail.product_id,orders_detail.quantity
+        ,orders_detail.price_product FROM orders_detail JOIN orders on orders_detail.order_id=orders.id
+        ) table1 WHERE TABLE1.product_id
+        GROUP BY TABLE1.product_id,TABLE1.user_id order by SUM(TABLE1.quantity) DESC LIMIT 0,1;       
+       ";
+       return pdo_query_one($sql);
+    }
     function bestProductSales(){
+        $productSale = getProductBestSalePrintAdmin();
+        $id =  $productSale['product_id'];
         $sql = "select COUNT(B.product_id) as 'quantity', A.id, A.name, A.discount, A.price, A.avatar 
         FROM `products` A INNER JOIN `orders_detail` B ON A.id = B.product_id 
+        WHERE B.product_id=$id
         GROUP BY B.product_id 
-        ORDER BY COUNT(B.product_id) DESC LIMIT 0,1";
+        ORDER BY COUNT(B.product_id) DESC LIMIT 0,1 ";
         return pdo_query_one($sql);
     }
     // Số lượng đơn theo tuần
