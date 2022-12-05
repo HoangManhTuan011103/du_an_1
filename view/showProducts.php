@@ -272,17 +272,77 @@
     let id_category = 0;
     let users = [];
     let currentPage = 1;
-    let perPage = 12;
+    let perPage = 8;
     let totalPage = 0;
     let perProduct = [];
     let count_page = arr_prodcut3;
     const params = new URL(location.href).searchParams;
 
 
+    
+
+    // phân trang
+
+
+    function data_render_page() {
+        if (params.get('id') || kyw) {
+            users = arr_prodcut1;
+
+        } else {
+            users = arr_prodcut3;
+
+        }
+        perProduct = users.slice(
+            (currentPage - 1) * perPage,
+            (currentPage - 1) * perPage + perPage,
+
+        )
+        renderPageNumber(users.length)
+        show_product123(listArrayPrice, listArrayDesc, perProduct)
+    }
+
+    function handlePageNumber(numberPage) {
+        currentPage = numberPage;
+        perProduct = users.slice(
+            (currentPage - 1) * perPage,
+            (currentPage - 1) * perPage + perPage,
+
+        )
+        show_product123(listArrayPrice, listArrayDesc, perProduct)
+
+    }
+
+
+    function renderPageNumber(count) {
+        totalPage = Math.ceil((count / perPage));
+        console.log("total páge :", totalPage);
+        if (totalPage == 1) {
+            document.querySelector("#pagination").innerHTML = " "
+
+        } else {
+
+            for (let i = 1; i <= totalPage; i++) {
+                document.querySelector("#pagination").innerHTML += `<li class="product_page-item" onclick="handlePageNumber(${i})">${i}</li>`
+            }
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        let li_active = document.querySelectorAll("li.product_page-item");
+        if (li_active[0]) {
+
+            li_active[0].classList.add('activ');
+        }
+        li_active.forEach(item => {
+            item.addEventListener('click', e => {
+                document.querySelector(".product_page-item.activ").classList.remove("activ");
+                e.target.classList.add('activ');
+            })
+        })
+    })
+
     function show_products(list_product = arr_prodcut1, show_position = category_grid_review) {
         show_position.innerHTML = "";
         list_product.forEach(item => {
-            // console.log("arra item ", item)
             show_position.innerHTML += `
                     <div class=" col l-3 m-4 c-6">
                        <div class="product__banner">
@@ -309,7 +369,7 @@
     show_products(array_product_2, category_grid_review_);
 
     show_products();
-    getDataProduct();
+    data_render_page();
 
 
 
@@ -319,65 +379,51 @@
                 return item.category_id == id_category;
             });
         }
-        const arrlist = list_arr.map((iteam, index) => {
+        const arrlist = list_arr.filter((iteam, index) => {
 
-                let prices_price = Math.floor(iteam.price - ((iteam.price * iteam.discount) / 100));
+            let prices_price = Math.floor(iteam.price - ((iteam.price * iteam.discount) / 100));
 
-                if (arr_price.length > 0) {
+            if (arr_price.length > 0) {
 
-                    if (prices_price < 100000 && arr_price.includes("1") == false) {
-                        return
-                    }
-                    if (prices_price >= 100000 && prices_price < 200000 && arr_price.includes("2") == false) {
-                        return
-                    }
-                    if (prices_price >= 200000 && prices_price < 300000 && arr_price.includes("3") == false) {
-                        return
-                    }
-                    if (prices_price >= 300000 && prices_price < 500000 && arr_price.includes("4") == false) {
-                        return
-                    }
-                    if (prices_price >= 500000 && prices_price < 1000000 && arr_price.includes("5") == false) {
-                        return
-                    }
-                    if (prices_price >= 1000000 && arr_price.includes("6") == false) {
-                        return
-                    }
+                if (prices_price < 100000 && arr_price.includes("1") == false) {
+                    return
                 }
-                if (arrDesc.length > 0) {
-                    if (arrDesc.includes(iteam.name) == false) {
-                        return
-                    }
+                if (prices_price >= 100000 && prices_price < 200000 && arr_price.includes("2") == false) {
+                    return
                 }
+                if (prices_price >= 200000 && prices_price < 300000 && arr_price.includes("3") == false) {
+                    return
+                }
+                if (prices_price >= 300000 && prices_price < 500000 && arr_price.includes("4") == false) {
+                    return
+                }
+                if (prices_price >= 500000 && prices_price < 1000000 && arr_price.includes("5") == false) {
+                    return
+                }
+                if (prices_price >= 1000000 && arr_price.includes("6") == false) {
+                    return
+                }
+            }
+            if (arrDesc.length > 0) {
+                if (arrDesc.includes(iteam.name) == false) {
+                    return
+                }
+            }
 
 
-                return ` 
-                <div class=" col l-3 m-4 c-6 prodcut_mg_bottom">
-                       <div class="product__banner">
-                           <div class="product--hot__img">
-                           <a href="index.php?act=detail_product&id=${iteam.id}">    <img src="imageProduct/${iteam.avatar}" alt="">
-                           </a> </div>
-                           <div class="product__banner__name">
-                           <a href="index.php?act=detail_product&id=${iteam.id}">    <p>${iteam.name}</p></a>
-                           </div>
-                       </div>
-                       <div class="product__banner__price">
-                           <div>
-                               <p class="product__banner__price--cost"> ${format_number_price.format(Math.floor(iteam.price - ((iteam.price * iteam.discount) / 100)))} </p>
-
-                               <p class="product__banner__price--sale   product_one_price_old">${format_number_price.format(Math.floor(iteam.price))}</p>
-                           </div>
-                           <div class="product__banner__btn--detail">
-                               <a href="index.php?act=detail_product&id=${iteam.id}">chi tiết</a>
-                           </div>
-                       </div>
-                   </div>`
-
-            })
-            .join("");
+            return [{
+                id: iteam.id,
+                price: iteam.price,
+                discount: iteam.discount,
+                avatar: iteam.avatar
+            }]
 
 
-        category_grid_review.innerHTML = arrlist;
+        })
+        console.log(arrlist)
+        // data_render_page();
+
+        show_products(arrlist, category_grid_review)
 
     }
 
@@ -497,64 +543,4 @@
     }
 
     loop_list();
-    // })
-
-    // phân trang
-
-
-    function getDataProduct() {
-        if (params.get('id') || kyw) {
-            users = arr_prodcut1;
-
-        } else {
-            users = arr_prodcut3;
-
-        }
-        perProduct = users.slice(
-            (currentPage - 1) * perPage,
-            (currentPage - 1) * perPage + perPage,
-
-        )
-        renderPageNumber(users.length)
-        show_product123(listArrayPrice, listArrayDesc, perProduct)
-    }
-
-    function handlePageNumber(numberPage) {
-        currentPage = numberPage;
-        perProduct = users.slice(
-            (currentPage - 1) * perPage,
-            (currentPage - 1) * perPage + perPage,
-
-        )
-        show_product123(listArrayPrice, listArrayDesc, perProduct)
-
-    }
-
-
-    function renderPageNumber(count) {
-        totalPage = Math.ceil((count / perPage));
-        console.log("total páge :", totalPage);
-        if (totalPage == 1) {
-            document.querySelector("#pagination").innerHTML = " "
-
-        } else {
-
-            for (let i = 1; i <= totalPage; i++) {
-                document.querySelector("#pagination").innerHTML += `<li class="product_page-item" onclick="handlePageNumber(${i})">${i}</li>`
-            }
-        }
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-        let li_active = document.querySelectorAll("li.product_page-item");
-        if (li_active[0]) {
-
-            li_active[0].classList.add('activ');
-        }
-        li_active.forEach(item => {
-            item.addEventListener('click', e => {
-                document.querySelector(".product_page-item.activ").classList.remove("activ");
-                e.target.classList.add('activ');
-            })
-        })
-    })
 </script>

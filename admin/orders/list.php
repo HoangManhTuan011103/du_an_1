@@ -70,9 +70,9 @@
                                             </div>
                                         <?php elseif($value['status'] == 1): ?>
                                             <div class="tick--Order">
-                                                <p style="color: #ffffff;">Hủy duyệt đơn</p>
-                                                <a href="index.php?actAdmin=updateOrderAdmin&&status=0&&id=<?= $value['id'] ?>">
-                                                    <i class="fa-solid fa-xmark" style="color: #24448f;"></i>
+                                                <p style="color: #ffffff;">Hoàn thành đơn</p>
+                                                <a href="index.php?actAdmin=updateOrderAdmin&&status=6&&id=<?= $value['id'] ?>">
+                                                    <i class="fa-solid fa-arrow-right" style="color: #24448f;"></i>
                                                 </a>
                                             </div>
                                         <?php endif; ?>
@@ -84,6 +84,8 @@
                                     </td>
                                     <td class="detailBill">
                                         <a href="index.php?actAdmin=detailOrder&&id=<?= $value['id'] ?>"><button class="detailBill--see"><i class="fa-solid fa-eye" style="padding-right: 5px;" ></i>Xem chi tiết</button></a>
+                                        
+                                        
                                     </td>
                                     <td class="btn-action">
                                         <?php if($value['statusUser'] == 3): ?>

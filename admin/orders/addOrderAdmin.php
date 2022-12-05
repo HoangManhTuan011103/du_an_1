@@ -21,6 +21,28 @@
                 <?= $notification ?>
             </div>
         <?php endif ?>
+        <div class="rule__shop_addProduct">
+            <i class="fa-regular fa-circle-question" style="color: #ffffff; font-size: 22px; cursor: pointer; text-align: right;" >
+                <div class="text_rule">
+                    <section>
+                        <h3>Quy định đổi trả tại Shop</h3>
+                        <ol>
+                            <li>Bạn có thể đổi sản phẩm trong vòng 03-07 ngày kể từ ngày mua sản phẩm. 
+                            </li>
+                            <li>Chính sách chỉ áp dụng đổi sản phẩm nguyên giá và chỉ được đổi 01 lần duy nhất.</li>
+                            <li> Chính sách chỉ áp dụng khi sản phẩm còn hóa đơn mua hàng, còn nguyên nhãn mác, thẻ bài đính kèm sản phẩm và sản phẩm không bị dơ bẩn, hư hỏng bởi những tác nhân bên ngoài cửa hàng sau khi mua sản phẩm.
+                            </li>
+                            <li>
+                            Chính sách không áp dụng đối với sản phẩm giảm giá hoặc đổi từ sản phẩm nguyên giá sang sản phẩm giảm giá, hoặc sản phẩm đang trong chương trình ưu đãi khác.
+                            </li>
+                            <li>
+                            Sản phẩm nguyên giá mua tại cửa hàng chỉ được đổi trả tại cửa hàng cửa hàng đã mua.
+                            </li>
+                        </ol>
+                    </section>
+                </div>
+            </i>
+        </div>
 
         <div id="getData" class="contentManager--product__footer--table">
             <table border="1" class="addOrder--Admin">

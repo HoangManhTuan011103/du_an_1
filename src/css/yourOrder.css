@@ -61,6 +61,23 @@ button.btnSee__detail--yourOrder {
     transition: all 0.2s linear;
 }
 
+button.detailBill--cancelOrder {
+    padding: 7px 10px;
+    background-color: #8d87c4;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s linear;
+}
+
+button.detailBill--cancelOrder:hover {
+    background-color: #4c4877;
+}
+
 button.btnSee__detail--yourOrder:hover {
     background-color: rgb(121, 21, 21);
 }

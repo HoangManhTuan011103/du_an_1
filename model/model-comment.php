@@ -50,7 +50,7 @@ function comment_select_by_users($product_id)
 
 function check_user_bying_product()
 {
-    $sql = "SELECT orders.user_id,dt.product_id,orders.created_at FROM `orders` JOIN orders_detail dt on orders.id=dt.order_id WHERE orders.status=1 ;";
+    $sql = "SELECT orders.user_id,dt.product_id,orders.created_at FROM `orders` JOIN orders_detail dt on orders.id=dt.order_id WHERE orders.status=6 ;";
     return pdo_query($sql);
 }
 function commented_getAllDetail($Pid){

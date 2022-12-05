@@ -18,11 +18,11 @@
       </div>
     </div>
     <div class="content__giohang">
-      <p>
-        Không có sản phẩm nào trong giỏ hàng. 
-        mua sắm.
+      <p style="margin-bottom: 10px;">
+        Không có sản phẩm nào trong giỏ hàng của bạn
+        
       </p>
-      <a href="index.php?">Quay lại cửa hàng để tiếp tục</a>
+      <a href="index.php?act=showProducts" style="color: #ff2d37; font-weight: bold;">Quay lại cửa hàng để tiếp tục</a>
     </div>
   </section>
 </body>

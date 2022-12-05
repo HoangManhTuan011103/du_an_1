@@ -404,6 +404,7 @@ if (isset($_GET['act'])) {
                 exit;
             } else {
                 $totalAllProductPay = isset($_POST['totalAllProductPay']) ? $_POST['totalAllProductPay'] : $_POST['totalPricePay'];
+            
                 if (isset($_POST['btn-orderSuccess'])) {
                     date_default_timezone_set("Asia/Ho_Chi_Minh");
                     $errors = [];
@@ -416,6 +417,10 @@ if (isset($_GET['act'])) {
                     $totalPricePay = $_POST['totalPricePay'];
                     $dateCurrent = time();
                     $dateToInt = date("Y-m-d h:i:s", $dateCurrent);
+                    
+                    if(!isset($_POST['btn-checkRule'])){
+                        $errors['checkRule'] = "Chấp nhận chính sách để thanh toán!";
+                    }
                     
                     if ($phoneNumber == "") {
                         $errors['phoneNumber'] = "Bạn phải nhập số điện thoại";

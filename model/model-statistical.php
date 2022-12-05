@@ -16,12 +16,7 @@
     };
     // Sản phẩm bán chạy nhất
     function getProductBestSalePrintAdmin(){
-        $sql = "SELECT SUM(TABLE1.total_price),TABLE1.id_order,TABLE1.user_id,TABLE1.product_id,SUM(TABLE1.quantity) as quantityBestSale
-        from (SELECT orders.id id_order,orders.created_at,orders.user_id,orders.total_price,orders_detail.product_id,orders_detail.quantity
-        ,orders_detail.price_product FROM orders_detail JOIN orders on orders_detail.order_id=orders.id
-        ) table1 WHERE TABLE1.product_id
-        GROUP BY TABLE1.product_id,TABLE1.user_id order by SUM(TABLE1.quantity) DESC LIMIT 0,1;       
-       ";
+        $sql = "select SUM(quantity) as quantityBestSale ,product_id FROM orders_detail GROUP BY product_id ORDER BY SUM(quantity) DESC LIMIT 0,1";
        return pdo_query_one($sql);
     }
     function bestProductSales(){

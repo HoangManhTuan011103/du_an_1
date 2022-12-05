@@ -210,7 +210,7 @@ foreach ($check_user_bying_product as $check) {
                 <ul class="product_change_tab">
                     <li class='tab-item active'>Mô tả sản phẩm</li>
                     <li class="tab-item">Bình luận - đánh giá</li>
-                    <li class="tab-item">Demo</li>
+                    <!-- <li class="tab-item">Demo</li> -->
                 </ul>
             </div>
             <div class="row product_desc_detail">

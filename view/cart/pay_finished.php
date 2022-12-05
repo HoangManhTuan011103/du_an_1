@@ -21,6 +21,7 @@
                     <th>Địa chỉ</th>
                     <th>Giá trị đơn hàng</th>
                     <th>PT thanh toán</th>
+                    <th>TT đơn hàng</th>
                     <th>Thao tác</th>
                 </tr>
                 <?php if(count($listYourOrder) > 0): ?>
@@ -32,7 +33,21 @@
                             <td><?= number_format($value['total_price'])."đ" ?></td>
                             <td ><?= $value['payment']==0 ? "Thanh toán khi nhận hàng" : "" ?></td>
                             <td>
+                                <?php
+                                    if($value['status'] == 0){
+                                        echo "Đơn hàng mới";
+                                    }else if($value['status'] == 1){
+                                        echo "Đã duyệt đơn";
+                                    }else{
+                                        echo "Đã thanh toán";
+                                    }
+                                ?>
+                            </td>
+                            <td>
                                 <button class="btnSee__detail--yourOrder">Xem chi tiết</button>
+                                <?php if($value['status'] == 0): ?>
+                                    <a href=""><button class="detailBill--cancelOrder">Hủy đơn</button></a>
+                                <?php endif; ?>
                                 <?php
                                     $detailPayS = getDeltailPaySuccess($value['id']);
                                     $detailPaySUnspecified = getDeltailPaySuccessUnspecified($value['id']);
@@ -91,7 +106,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td style="padding: 20px 0;" colspan="6">Không có đơn hàng nào</td>
+                        <td style="padding: 20px 0;" colspan="7">Không có đơn hàng nào</td>
                     </tr>
                 <?php endif; ?>
 

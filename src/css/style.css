@@ -539,3 +539,54 @@
 
 
 /* End Statistical Website */
+
+
+/* Rule add product */
+
+.rule__shop_addProduct {
+    position: relative;
+    margin-bottom: 40px;
+    margin-right: 20px;
+}
+
+.rule__shop_addProduct i.fa-circle-question {
+    position: absolute;
+    right: 0px;
+}
+
+.rule__shop_addProduct i.fa-circle-question:hover>.text_rule {
+    display: block;
+}
+
+.text_rule {
+    position: relative;
+    width: 370px;
+    display: none;
+}
+
+.text_rule section {
+    border-radius: 5px;
+    padding: 20px 10px;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #000000;
+    text-align: left;
+}
+
+.text_rule section h3 {
+    color: #ffffff;
+    padding-left: 5px;
+}
+
+.text_rule section ol {
+    margin-left: 15px;
+}
+
+.text_rule section ol li {
+    color: #ffffff;
+    padding: 5px 0;
+}
+
+
+/* Rule add product */

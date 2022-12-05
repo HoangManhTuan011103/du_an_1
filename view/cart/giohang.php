@@ -100,7 +100,7 @@ $sum = 0;
       </table>
       <div class="bottom__thtt--ctn">
         <div>
-          <a href="index.php?">Tiếp tục mua hàng</a>
+          <a href="index.php?act=showProducts">Tiếp tục mua hàng</a>
         </div>
         <div>
           <div>

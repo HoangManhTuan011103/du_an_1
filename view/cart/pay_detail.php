@@ -5,8 +5,8 @@
             <div class="col l-8 pay_detai_left">
                 <!-- tiêu đề -->
                 <h4 class="name_shop">
-                    <a href="">
-                        Delta Shoes
+                    <a href="index.php?act=showProducts">
+                        F-Sport
                     </a>
                 </h4>
                 <div class="row">
@@ -86,7 +86,32 @@
                 </div>
             </div>
             <div class="col l-4 pay_detai_right">
-                <h2 class="order_pay_title">Đơn hàng ( <?= count($_SESSION['mycart']) ?> sản phẩm )</h2>
+                <h2 style="display: flex; justify-content: center;" class="order_pay_title">Đơn hàng ( <?= count($_SESSION['mycart']) ?> sản phẩm )
+                    <div class="rule__shop_addProduct">
+                            <i class="fa-regular fa-circle-question" style="color: #000000; font-size: 20px; cursor: pointer; text-align: right;">
+                                <div class="text_rule">
+                                    <section>
+                                        <h3>Quy định đổi trả tại Shop</h3>
+                                        <ol>
+                                            <li>Bạn có thể đổi sản phẩm trong vòng 03-07 ngày kể từ ngày mua sản phẩm.
+                                            </li>
+                                            <li>Chính sách chỉ áp dụng đổi sản phẩm nguyên giá và chỉ được đổi 01 lần duy nhất.</li>
+                                            <li> Chính sách chỉ áp dụng khi sản phẩm còn hóa đơn mua hàng, còn nguyên nhãn mác, thẻ bài đính kèm sản phẩm và sản phẩm không bị dơ bẩn, hư hỏng bởi những tác nhân bên ngoài cửa hàng sau khi mua sản phẩm.
+                                            </li>
+                                            <li>
+                                                Chính sách không áp dụng đối với sản phẩm giảm giá hoặc đổi từ sản phẩm nguyên giá sang sản phẩm giảm giá, hoặc sản phẩm đang trong chương trình ưu đãi khác.
+                                            </li>
+                                            <li>
+                                                Sản phẩm nguyên giá mua tại cửa hàng chỉ được đổi trả tại cửa hàng cửa hàng đã mua.
+                                            </li>
+                                            <li>Tất cả các chi phí phát sinh khi đổi trả  khách hàng phải chịu 100%.</li>
+                                        </ol>
+                                    </section>
+                                </div>
+                            </i>
+                        </div>
+                </h2>
+
                 <!-- <div class="padding_left-28"> -->
 
 
@@ -96,7 +121,7 @@
                     <table style="text-align:center" class="product_order_info_detail">
                         <tr>
                             <th>Ảnh </th>
-                            <th>Tên sản phẩm</th>
+                            <th style="width: 170px;">Tên sản phẩm</th>
                             <th>Số lượng</th>
                             <th>Giá tiền</th>
                         </tr>
@@ -139,7 +164,14 @@
 
                         <p style="display: none;" class="price_shipping price_total_all_pay-color" id="total--noneFortyThousand"><input type="hidden" name="totalPricePay" value="<?= $totalAllProductPay ?>"><?= number_format($totalAllProductPay) ?><span class="icon_d_posiotion_">đ</span></p>
 
-
+                    </div>
+                    <div class="input__rule">
+                        <div class="btn__accepted_rule">
+                            <input id="checkRule" type="checkbox" name="btn-checkRule" style="cursor: pointer;">
+                            <label for="checkRule" style="cursor: pointer;">Đồng ý với chính sách của F-Sport</label>
+                        </div>
+                        <p style="padding: 6px 0 5px 0px;color: red; text-align:left; font-size:13px; "><?= $errors['checkRule'] ?? ""  ?></p>
+                      
                     </div>
                 </div>
 
@@ -147,11 +179,11 @@
                 <div class="order_payment_btn">
 
 
-                    <a href="index.php?act=addToCart" class="return_cart_detail"><i class="fa-solid fa-chevron-left"></i>Quay về giỏ
+                    <a href="index.php?act=addToCart" class="return_cart_detail"><i class="fa-solid fa-chevron-left" style="margin-right: 5px;" ></i>Quay về giỏ
                         hàng</a>
 
 
-                    <button  class="order_total_pay_all-button" type="submit" name="btn-orderSuccess">Đặt hàng</button>
+                    <button class="order_total_pay_all-button" type="submit" name="btn-orderSuccess">Đặt hàng</button>
                     <div class="over-lay-payment payment--success-hidden">
                         <div class="payment--success">
                             <h2 class="congratulation">Chúc mừng bạn đã đặt hàng thành công!!</h2>
@@ -170,6 +202,7 @@
 
 </main>
 <script>
+   
     let countPayMent = 0;
 
     function check() {
@@ -196,7 +229,7 @@
             document.querySelector('#total--fortyThousand').style.display = "none";
         }
     }
-    
+
     // const btnPaySuccess = document.querySelector('.order_total_pay_all-button');
 
     // function toggleModal() {

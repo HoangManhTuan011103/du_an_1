@@ -138,6 +138,19 @@ p.method_pay {
     overflow-y: scroll;
 }
 
+.product_order_info::-webkit-scrollbar {
+    width: 5px;
+}
+
+.product_order_info::-webkit-scrollbar-track {
+    background-color: #ccc;
+}
+
+.product_order_info::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 50px;
+}
+
 table.product_order_info_detail {
     margin-top: 5px;
     border-collapse: collapse;
@@ -153,7 +166,8 @@ table.product_order_info_detail th {
 
 table.product_order_info_detail td {
     border: 1px solid #ccc;
-    padding: 4px;
+    padding: 4px 0;
+    font-size: 14px;
 }
 
 table.product_order_info_detail td:nth-child(3) {
@@ -231,3 +245,86 @@ table.product_order_info_detail td:nth-child(4) {
 .order_payment_btn button.order_total_pay_all-button:hover {
     background-color: #2a9dcc;
 }
+
+.order_payment_btn {
+    margin: 20px 10px;
+}
+
+
+/* Rule add product */
+
+.btn__accepted_rule {
+    display: flex;
+    align-items: center;
+}
+
+.input__rule {
+    margin-top: 20px;
+}
+
+.input__rule input {
+    height: 17px;
+    padding: 2px;
+    width: 17px;
+    margin-right: 5px;
+}
+
+.rule__shop_addProduct {
+    position: relative;
+    /* z-index: 1; */
+}
+
+.rule__shop_addProduct i.fa-circle-question {
+    position: absolute;
+    right: -25px;
+}
+
+.rule__shop_addProduct i.fa-circle-question:hover>.text_rule {
+    display: block;
+}
+
+.text_rule {
+    position: relative;
+    width: 380px;
+    display: none;
+    margin-top: 11px;
+    z-index: 999;
+    right: -8px;
+}
+
+.text_rule::before {
+    content: "";
+    position: absolute;
+    right: 8px;
+    top: -8px;
+    border-bottom: 8px solid #2a6395;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+}
+
+.text_rule section {
+    border-radius: 5px;
+    padding: 20px 10px;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #2a6395;
+    text-align: left;
+}
+
+.text_rule section h3 {
+    color: #ffffff;
+    padding-left: 5px;
+}
+
+.text_rule section ol {
+    margin-left: 15px;
+}
+
+.text_rule section ol li {
+    color: #ffffff;
+    padding: 5px 0;
+}
+
+
+/* Rule add product */
