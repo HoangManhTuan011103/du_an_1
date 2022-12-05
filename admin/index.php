@@ -642,6 +642,7 @@ if (isset($_GET['actAdmin'])) {
                     move_uploaded_file($pathImage, $target_file);
 
                 $check = true;
+                $checkemail_tontai = true;
                 if ($name == "") {
                     $thongbao[0] = "Tên không được bỏ trống !!!";
                     $check = false;
@@ -670,6 +671,13 @@ if (isset($_GET['actAdmin'])) {
                 } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $thongbao[2] = "Email không đúng định dạng";
                     $check = false;
+                }else{
+                    $checkmail_dangky = CheckEmail($email);
+                    if (is_array($checkmail_dangky)) {
+                        echo '<style> .form_validate_dangky{display: none !important;}</style>';
+                        $thongbao[2] = "Email đã tồn tại !";
+                        $checkemail_tontai = false;
+                    }
                 }
                 if ($password == "") {
                     $thongbao[3] = "Mật khẩu không được bỏ trống !!!";
@@ -704,7 +712,7 @@ if (isset($_GET['actAdmin'])) {
                     $thongbao[7] = "Quyền không được bỏ trống !!!";
                     $check = false;
                 }
-                if ($check == true) {
+                if ($check == true && $checkemail_tontai == true) {
                     InsertUser2($name, $email, $password, $phone, $address, $NameurlImage, $status, $role);
                     header('Location: index.php?actAdmin=showUsers&&msg=Thêm người thành công !');
                     ob_end_flush();
@@ -822,8 +830,24 @@ if (isset($_GET['actAdmin'])) {
         case 'detailCommentDele':
             $uid=$_GET['uid'];
             $pid=$_GET['pid'];
+            if(isset($_GET['pageRate'])){
+                global $pageRate;
+                $pageRate = '&&rate';
+                $pageRate_1 = '&&pageRate';
+                
+            }else{
+                $pageRate ='';
+                $pageRate_1 = '&&page';
+            }
             comment_delete($_GET['cid']);
-            header('Location: index.php?actAdmin=detailComment&uid='.$uid.'&pid='.$pid.'&msg=Xoá bình luận thành công !');
+            $rows = comment_count_pro_cmt($pid);
+            $slpage = ceil($rows['Count(*)']/5);
+            $count_cmt_detail = comment_count_pro_cmt($pid);
+            if($count_cmt_detail['Count(*)']<1){
+                header('Location: index.php?actAdmin=comments&&page=1&msg=Xoá bình luận thành công !');
+            }else{
+                header('Location: index.php?actAdmin=detailComment'.$pageRate_1.'&parent='.$_GET['parent'].'&uid='.$uid.'&pid='.$pid.'&page='.$slpage.'&msg=Xoá bình luận thành công !');
+            }
             break;
         case 'dangxuat':
             session_destroy();

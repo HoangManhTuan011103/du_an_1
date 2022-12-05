@@ -94,7 +94,7 @@
                     <select name="status" id="">
                         <option value="" hidden>-- Chọn trạng thái --</option>
                         <option value="0" selected>Active</button>
-                        <option value="1">Disable</button>
+                        <option value="1">Inactive</button>
                     </select>
                     <?php
                         if(isset($thongbao[6])){
@@ -107,8 +107,8 @@
                 <div class="status">
                     <p>Quyền quản trị:</p>
                     <select name="role" id="">
-                        <option value="" hidden>-- Chọn trạng thái --</option>
-                        <option value="0" selected>Người dùng</button>
+                        <option value="" disabled>-- Chọn trạng thái --</option>
+                        <option value="0">Người dùng</button>
                         <option value="1">Quản trị</button>
                     </select>
                     <?php

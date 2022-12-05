@@ -78,7 +78,7 @@
                                 if($value['status']==0){
                                         echo "<button class='status-isset'>Active</button>";
                                 }else if($value['status']==1){
-                                 echo "<button class='status-empty'>Disable</button>";
+                                 echo "<button class='status-empty'>Inactive</button>";
                                 }else if($value['status']==3){
                                     echo "<button class='status-empty direct'>Direct</button>";
                                    }
