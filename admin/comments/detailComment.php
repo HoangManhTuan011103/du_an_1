@@ -24,7 +24,18 @@
             </div>
            
             <div class="btn-backtoComment" style="margin:10px 0px;">
-                <a href="index.php?actAdmin=comments"><button>Quay lại</button></a>
+                <?php 
+                    if(isset($_GET['pageRate'])){
+                        global $pageRate;
+                        $pageRate = '&&rate';
+                        $pageRate_1 = '&&pageRate';
+                        
+                    }else{
+                        $pageRate ='';
+                        $pageRate_1 = '&&page';
+                    }
+                ?>
+                <a href="index.php?actAdmin=comments<?=$pageRate?><?=$pageRate_1?>=<?=$_GET['parent']?>"><button>Quay lại</button></a>
                 <?php if(isset($_GET['msg'])): ?>
                     <div class="alert alert-success" style="padding: 15px 0 15px 25px;">
                         <?= $_GET['msg'] ?>
@@ -96,23 +107,69 @@
                         </tbody>
                     </table>
                     <ul>
-                        <li>
-                            <a href=""><i class="fa-sharp fa-solid fa-angles-left"></i></a>
-                        </li>
-                        <li>
-                            <a href=""><i class="fa-solid fa-angle-left"></i></a>
-                        </li>
-                        <li><a href="" style="background-color: #F39C12; color: #ffffff;">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">4</a></li>
-                        <li>
-                            <a href=""><i class="fa-solid fa-angle-right"></i></a>
-                        </li>
-                        <li>
-                            <a href=""><i class="fa-sharp fa-solid fa-angles-right"></i></a>
-                        </li>
-                    </ul>
+                <?php   
+                        if((isset($_GET['uid'])&& ($_GET['uid']>0))&&(isset($_GET['pid'])&& ($_GET['pid']>0))){
+                            $uid = $_GET['uid'];
+                            $pid = $_GET['pid'];
+                        }else{
+                            $uid = 0;
+                            $pid = 0;
+                        }
+                        $rows = comment_count_pro_cmt($pid);
+                        $slpage = ceil($rows['Count(*)']/5);
+                        global $slpage;
+                        if(isset($_GET['page'])){
+                            if($_GET['page'] > 0){
+                                if($_GET['page'] <= 1){
+                                    $prev = 1 ;
+                                }else{
+                                    $prev = $_GET['page'] - 1;
+                                }
+                                if($_GET['page'] >= $slpage){
+                                    $next = $_GET['page'];
+                                }else{
+                                    $next = $_GET['page'] + 1;
+                                }
+                            }else{
+                                $next = 1;
+                            }
+                        }else{
+                            $prev = 1;
+                            $next = 1;
+                        }
+                 ?>
+                <li>
+                    <a href="index.php?actAdmin=detailComment<?=$pageRate_1?>&parent=<?=$_GET['parent']?>&uid=<?=$uid?>&pid=<?=$pid?>&page=1"><i class="fa-sharp fa-solid fa-angles-left"></i></a>
+                </li>
+                <li>
+                    <a href="index.php?actAdmin=detailComment<?=$pageRate_1?>&parent=<?=$_GET['parent']?>&uid=<?=$uid?>&pid=<?=$pid?>&page=<?= isset($prev) ? $prev : ''?>"><i class="fa-solid fa-angle-left"></i></a>
+                </li>
+                <?php
+                        for ($i=1; $i <= $slpage; $i++) {
+                            if(isset($_GET['page']) && $i == $_GET['page']){
+                                echo ' <li style="margin: 0 3px;">
+                                <a style="background-color: #F39C12; color: #ffffff;" href="index.php?actAdmin=detailComment'.$pageRate_1.'&parent='.$_GET['parent'].'&uid='.$uid.'&pid='.$pid.'&page='.$i.'">'.$i.'</a></li>';
+                            }else if(!isset($_GET['page'])){
+                                if($i ==1 ){
+                                    echo ' <li style="margin: 0 3px;">
+                                    <a style="background-color: #F39C12; color: #ffffff;" href="index.php?actAdmin=detailComment'.$pageRate_1.'&parent='.$_GET['parent'].'&uid='.$uid.'&pid='.$pid.'&page='.$i.'">'.$i.'</a></li>';
+                                }else{
+                                echo '<li style="margin: 0 3px">
+                                <a href="index.php?actAdmin=detailComment'.$pageRate_1.'&parent='.$_GET['parent'].'&uid='.$uid.'&pid='.$pid.'&page='.$i.'">'.$i.'</a></li>';
+                                }
+                            }else{
+                                echo '<li style="margin: 0 3px">
+                                <a href="index.php?actAdmin=detailComment'.$pageRate_1.'&parent='.$_GET['parent'].'&uid='.$uid.'&pid='.$pid.'&page='.$i.'">'.$i.'</a></li>';
+                            }
+                        }
+                ?>
+                <li>
+                    <a href="index.php?actAdmin=detailComment<?=$pageRate_1?>&parent=<?=$_GET['parent']?>&uid=<?=$uid?>&pid=<?=$pid?>&page=<?= isset($next) ? $next : ''?>"><i class="fa-solid fa-angle-right"></i></a>
+                </li>
+                <li>
+                    <a href="index.php?actAdmin=detailComment<?=$pageRate_1?>&parent=<?=$_GET['parent']?>&uid=<?=$uid?>&pid=<?=$pid?>&page=<?=$slpage?>"><i class="fa-sharp fa-solid fa-angles-right"></i></a>
+                </li>
+            </ul>
                 </div>
             </div>
         </div>

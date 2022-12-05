@@ -603,8 +603,23 @@ if (isset($_GET['actAdmin'])) {
             break;
             // Đức - Quản lý người dùng
         case 'showUsers':
-            $listUser = getAllUser();
-            require_once "./users/list.php";
+            if(isset($_GET['page'])){
+                $table = 'users';
+                $rows = count_rows($table);
+                $slpage = ceil($rows['rows']/5);
+                if($_GET['page'] > 0 && $_GET['page'] <= $slpage){
+                    $page = (int)$_GET['page'];
+                    $page = ($page-1)*5;
+                    $listUser = getAllUser2($page);
+                    require_once "./users/list.php";
+                }else{
+                    $listUser = getAllUser1();
+                    require_once "./users/list.php";
+                }
+            }else{
+                $listUser = getAllUser1();
+                require_once "./users/list.php";
+            }
             break;
         case 'SearchUsers':
             $kyw = $_POST['kyw'];
@@ -744,13 +759,62 @@ if (isset($_GET['actAdmin'])) {
             require_once "./statisticals/list.php";
             break;
         case 'comments':
-            $listCmt = commented_getAll();
+            if(isset($_GET['rate'])&&isset($_GET['pageRate'])){
+                $table = 'comments_product';
+                $rows = count_rows($table);
+                $slpage = ceil($rows['rows']/5);
+                if($_GET['pageRate'] > 0 && $_GET['pageRate'] < $slpage){
+                    $page = (int)$_GET['pageRate'];
+                    $page = ($page-1)*5;
+                    $listCmt = filter_rate2($page);
+                    require_once "./comments/cmtMuch.php";
+                }else{
+                    $listCmt = filter_rate2(0);
+                    require_once "./comments/cmtMuch.php";
+                }
+            }
+            if(isset($_GET['page'])){
+                $table = 'comments_product';
+                $rows = count_rows($table);
+                $slpage = ceil($rows['rows']/5);
+                if($_GET['page'] > 0 && $_GET['page'] < $slpage){
+                    $page = (int)$_GET['page'];
+                    $page = ($page-1)*5;
+                    $listCmt = commented_getAll2($page);
+                    require_once "./comments/list.php";
+                }else{
+                    $listCmt = commented_getAll2(0);
+                    require_once "./comments/list.php";
+                }
+            }
+            // else{
+            //     $listCmt = commented_getAll2(0);
+            //     require_once "./comments/list.php";
+            // }
+            break;
+        case 'searchProCmt':
+            $kyw = $_POST['kyw'];
+            $listCmt = comment_searchFollow_pro($kyw);
             require_once "./comments/list.php";
             break;
         case 'detailComment':
             if(isset($_GET['pid'])){
-                $listCmt=commented_getAllDetail($_GET['pid']);
-                require_once "./comments/detailComment.php";
+                if(isset($_GET['page'])){
+                    $rows = comment_count_pro_cmt($_GET['pid']);
+                    $slpage = ceil($rows['Count(*)']/5);
+                    if($_GET['page'] > 0 && $_GET['page'] <= $slpage){
+                        $page = (int)$_GET['page'];
+                        $page = ($page-1)*5;
+                        $listCmt=comment_select_pro_cmt($page,$_GET['pid']);
+                        require_once "./comments/detailComment.php";
+                    }else{
+                        $listCmt=comment_select_pro_cmt(0,$_GET['pid']);
+                        require_once "./comments/detailComment.php";
+                    }
+                }else{
+                    $listCmt=comment_select_pro_cmt(0,$_GET['pid']);
+                    require_once "./comments/detailComment.php";
+                }
             }else{
                 header('Location: index.php?actAdmin=comments');
             }

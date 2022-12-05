@@ -58,7 +58,12 @@ function commented_getAllDetail($Pid){
     return pdo_query($sql);
 }
 function commented_getAll(){
-    $sql = "SELECT * FROM comments_product GROUP BY product_id ";
+    $sql = "SELECT * FROM comments_product GROUP BY product_id limit ";
+    return pdo_query($sql);
+}
+function commented_getAll2($page){
+    $sql = "SELECT * FROM comments_product GROUP BY product_id
+    ORDER BY product_id Desc limit $page,5 ";
     return pdo_query($sql);
 }
 function commented_toUser($Uid,$Pid){
@@ -77,4 +82,33 @@ function total_comment_id_product($id)
 {
     $sql = "SELECT COUNT(product_id) as total_comment_id_product ,SUM(rating_products) total FROM `comments_product` WHERE product_id=$id";
     return pdo_query_one($sql);
+}
+function comment_count_pro(){
+    $sql = "SELECT Count(*)  FROM (SELECT DISTINCT product_id FROM comments_product) AS dt ";
+    return pdo_query_one($sql);
+}
+function comment_select_pro_cmt($Page,$Pid){
+    $sql = "SELECT * FROM comments_product WHERE product_id='$Pid' ORDER BY created_at DESC LIMIT $Page,5";
+    return pdo_query($sql);
+}
+function comment_count_pro_cmt($Pid){
+    $sql = "SELECT Count(*)  FROM (SELECT * FROM comments_product WHERE product_id='$Pid') AS dt";
+    return pdo_query_one($sql);
+}
+function comment_searchFollow_pro($kyw)
+{
+    $sql = "SELECT comments_product.id as id , products.name as ProNameKyw , product_id, user_id, content rating_products, comments_product.created_at as created_at FROM comments_product JOIN products ON product_id=products.id WHERE 1";
+    if ($kyw != "") {
+        $sql .= " and products.name like '%" . $kyw . "%' or products.id like '%" . $kyw . "%'";
+    }
+    $sql .= " GROUP BY product_id ORDER BY product_id Desc limit 0,5";
+    return pdo_query($sql);
+}
+function filter_rate(){
+    $sql = 'SELECT comments_product.id as id , products.name as ProNameKyw , product_id, user_id, content rating_products, comments_product.created_at as created_at, COUNT(*) AS number_record FROM comments_product JOIN products ON product_id=products.id GROUP BY product_id HAVING number_record > 1 order by number_record Desc limit 0,5;';
+    return pdo_query($sql);
+}
+function  filter_rate2($page){
+    $sql = "SELECT comments_product.id as id , products.name as ProNameKyw , product_id, user_id, content rating_products, comments_product.created_at as created_at, COUNT(*) AS number_record FROM comments_product JOIN products ON product_id=products.id GROUP BY product_id HAVING number_record > -1 order by number_record Desc limit $page,5;";
+    return pdo_query($sql);
 }

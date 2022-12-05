@@ -33,6 +33,9 @@ if (is_array($infoUser)) {
                     <p>Ảnh người dùng:</p>
                     <input type="file" name="image" style="background-color: #0F172A;">
                     <input type="text" value="<?= isset($image) ? $image : $image ='' ;?>" name="image_old" id="" hidden>
+                    <div>
+                        <img src="./UserAvt/<?=$image?>" width="80px" height="80px" style="color: white; margin: 5px 5px" alt="Không có ảnh" srcset="">
+                    </div>
                 </div>
                 <div class="image">
                     <p>Email:</p>
