@@ -42,13 +42,21 @@
 
                     foreach ($listdm as $key => $category) :
                     ?>
+                      <?php
+                            $imagePath = "../imageProduct/" . $category['avatar'];
+                            if (is_file($imagePath)) {
+                                $image = "<img src='" . $imagePath . "' alt='' width='100px' height='100px'>";
+                            } else {
+                                $image = "<h4 style='color: #ffffff' >Không có hình ảnh</h4>";
+                            }
+                        ?>
                         <tr>
                             <td><input type="checkbox"></td>
                             <td><?= $key + 1 ?></td>
                             <td>DM00<?= $category['id'] ?></td>
                             <td class="name"><?= $category['name'] ?></td>
                             <td class="name">
-                                <img style="width: 100px; height: 100px;" src="../imageProduct/<?= $category['avatar'] ?>" alt="">
+                                <?= $image ?>
                             </td>
 
                             <td class="status">

@@ -30,7 +30,7 @@
                                 <!-- <th>Mã đơn hàng</th> -->
                                 <th>Tên khách hàng</th>
                                 <th>Số lượng đơn</th>
-                                <th>Tổng tiền</th>
+                                <!-- <th>Tổng tiền</th> -->
                                 <th>Ngày mua</th>
                             </tr>
                         </thead>
@@ -41,7 +41,7 @@
                                     
                                     <td><?= $value['name'] == "" ? "Khách hàng trực tiếp" : $value['name'] ?></td>
                                     <td><?= $value['kh_mua'] ?></td>
-                                    <td><?= number_format($value['total_price']) . "đ" ?></td>
+                                    
                                     <td><?= $value['created_at'] ?></td>
                                 </tr>
                             <?php endforeach; ?>
@@ -78,7 +78,7 @@
                               
                                 <th>Tên khách hàng</th>
                                 <th>Số lượng đơn</th>
-                                <th>Tổng tiền</th>
+                                <!-- <th>Tổng tiền</th> -->
                                 <th>Ngày mua</th>
                             </tr>
                         </thead>
@@ -89,7 +89,7 @@
                                     
                                     <td><?= $value['name'] == "" ? "Khách hàng trực tiếp" : $value['name'] ?></td>
                                     <td><?= $value['kh_mua'] ?></td>
-                                    <td><?= number_format($value['total_price']) . "đ" ?></td>
+                                    
                                     <td><?= $value['created_at'] ?></td>
                                 </tr>
                             <?php endforeach; ?>
@@ -151,6 +151,8 @@
                 'rgb(255, 99, 132)',
                 'rgb(54, 162, 235)',
                 '#009900',
+                '#FFFF00',
+                '#000080'
                 
             ],
             hoverOffset: 4

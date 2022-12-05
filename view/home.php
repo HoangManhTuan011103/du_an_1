@@ -36,21 +36,23 @@
 
         foreach ($load3dm as $dm) {
             extract($dm);
-            $linkdm = "index.php?act=showProducts&id=" . $id;
-            $hinh = $image_path . $avatar;
-            echo '<div class=" product-1  product-1-col-1 col l-4 m-0 c-0">
-                            <div class="product_hover_change">
-        
-                                <img class="product-1__img" src="' . $hinh . '" alt="">
-                                <a href="' . $linkdm . '" class="product-1__name">
-                                    ' . $name . '
-                                </a>
-                                <p class="section--product-1__amount">
-                                   ' . $total_product . ' sản phẩm
-                                </p>
-                            </div>
-                          </div> ';
-            $i += 1;
+         
+                $linkdm = "index.php?act=showProducts&id=" . $id;
+                $hinh = $image_path . $avatar;
+                echo '<div class=" product-1  product-1-col-1 col l-4 m-0 c-0">
+                                <div class="product_hover_change">
+            
+                                    <img class="product-1__img" src="' . $hinh . '" alt="">
+                                    <a href="' . $linkdm . '" class="product-1__name">
+                                        ' . $name . '
+                                    </a>
+                                    <p class="section--product-1__amount">
+                                       ' . $total_product . ' sản phẩm
+                                    </p>
+                                </div>
+                              </div> ';
+                $i += 1;
+            
         }
         ?>
     </div>
@@ -93,17 +95,16 @@
 <section class="grid wide section__wrap--review--1">
     <div class="warp--review--1--row-1 ">
         <div class="review--1-row--1__img l-5 m-12 c-12">
-            <img src="./src/image/img_header_hoan/banner_product_nangdong.webp" alt="">
+            <img src="./src/image/img_header_hoan/image_one.png" alt="">
         </div>
         <div class="warp--review--1--row-1__text">
             <h2>THỂ THAO NĂNG ĐỘNG</h2>
-            <p>Sneaker đã trở thành một biểu tượng của xã hội, là một sản phẩm của thời đại với
+            <p>Áo thể thao đã trở thành một biểu tượng của xã hội, là một sản phẩm của thời đại với
                 những thiết
-                kế cổ điển và những điều đó đều nằm trong những đôi giày Sneaker Delta Shoes. Không
+                kế cổ điển và những điều đó đều nằm trong những mẫu áo thiết kế năng động và hiện đại. Không
                 lỗi thời
-                với thời gian, mang dấu ấn cá tính khác biệt và tạo mọi sự lôi cuốn từ chính đôi
-                giày Sneaker
-                . Tự tạo cuộc chơi, tự tạo phong cách, đó là Delta Shoes</p>
+                với thời gian, mang dấu ấn cá tính khác biệt và tạo mọi sự lôi cuốn từ chính chiếc áo bạn mặc trên người
+                . Tự tạo cuộc chơi, tự tạo phong cách, đó là F-Sport</p>
             <div class="warp--review--1--row-1__text__see-more">
                 <a href="">XEM THÊM <i class="fa-solid fa-angle-right"></i></a>
             </div>
@@ -112,7 +113,7 @@
     </div>
     <div class="section__product--hot__banner warp--review--1--row-2 row">
         <?php
-        foreach ($pronew as $pro) {
+        foreach ($pronew2 as $pro) {
             extract($pro);
             $linkpro = "index.php?act=detail_product&id=" . $id;
             $hinh = $image_path . $avatar;
@@ -145,25 +146,19 @@
 <section class="grid wide section__wrap--review--2">
     <div class="warp--review--2--row-1 ">
         <div class="warp--review--2--row-1__text">
-            <h2>THỂ THAO NĂNG ĐỘNG</h2>
-            <p>Sneaker đã trở thành một biểu tượng của xã hội, là một sản phẩm của thời đại với
-                những thiết
-                kế cổ điển và những điều đó đều nằm trong những đôi giày Sneaker Delta Shoes. Không
-                lỗi thời
-                với thời gian, mang dấu ấn cá tính khác biệt và tạo mọi sự lôi cuốn từ chính đôi
-                giày Sneaker
-                . Tự tạo cuộc chơi, tự tạo phong cách, đó là Delta Shoes</p>
+            <h2>MẪU ÁO THIẾT KẾ HIỆN ĐẠI</h2>
+            <p>F-Sport là nơi mang đến cho quý khách những mấu mã về những loại áo chất lượng nhất, phù hợp nhất với giá cả và tương xứng với chất lượng. Mẫu áo thiết kế năng động trẻ trung tạo sức cuốn hút ngay cả trong cuộc sống hàng ngày và trong thể thao. F-Sport luôn mang đến cho quý khách trải nghiệm và dịch vụ tốt nhất.</p>
             <div class="warp--review--1--row-1__text__see-more">
                 <a href="">XEM THÊM <i class="fa-solid fa-angle-right"></i></a>
             </div>
         </div>
         <div class="review--2-row--1__img l-5 m-12 c-12">
-            <img src="./src/image/img_header_hoan/banner_product_nangdong.webp" alt="">
+            <img src="./src/image/img_header_hoan/image_second.png" alt="">
         </div>
     </div>
     <div class="section__product--hot__banner warp--review--1--row-2 row">
         <?php
-        foreach ($pronew as $pro) {
+        foreach ($pronew3 as $pro) {
             extract($pro);
             $hinh = $image_path . $avatar;
             $linkpro = "index.php?act=detail_product&id=" . $id;
@@ -272,3 +267,35 @@
 
 </section>
 </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.review__product--hot').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            arrows: true,
+            prevArrow: '<span class="prevArrow" id="prevArrowLimited"><i class="fa-solid fa-chevron-left"></i></span>',
+            nextArrow: '<span class="nextArrow" id="nextArrowLimited"><i class="fa-solid fa-chevron-right"></i></span',
+            slidesToScroll: 1
+        });
+    });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.warp--review--1--row-2').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            // autoplay: true,
+            autoplaySpeed: 2000,
+            arrows: true,
+            prevArrow: '<span class="prevArrow" id="prevArrowLimited"><i class="fa-solid fa-chevron-left"></i></span>',
+            nextArrow: '<span class="nextArrow" id="nextArrowLimited"><i class="fa-solid fa-chevron-right"></i></span',
+            slidesToScroll: 1
+        });
+    });
+</script>

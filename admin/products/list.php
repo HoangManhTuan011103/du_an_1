@@ -19,22 +19,38 @@
         </div>
         
         <?php if(isset($_COOKIE['notification'])): ?>
-            <div class="alert alert-success">
+            <div class="alert alert-success" style="margin-bottom: 15px;">
                 <?= $_COOKIE['notification'] ?>
             </div>
         <?php endif ?>
-        <?php if(isset($notification)): ?>
-            <div class="alert alert-success">
-                <?= $notification ?>
-            </div>
-        <?php endif ?>
-      
+        <div class="filer__Product--followCategory">
+           <form action="" method="POST" >
+
+                <select name="nameCaterory" id="">
+                    <option value="" hidden>--- Lọc sản phẩm theo danh mục ---</option>
+                    <?php foreach($listProductFlCat as $value): ?>
+                        <option value="<?= $value['id'] ?>" <?= (isset($nameCaterory)&&$nameCaterory==$value['id']) ? "selected" : "" ?>  ><?= $value['name'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+                <select name="" id="" style="margin-left: 5px;" >
+                    <option value="" hidden>--- Lọc sản phẩm theo giá ---</option>
+                    <option value="">Giá từ cao xuống thấp</option>
+                    <option value="">Giá từ thấp lên cao</option>
+                </select>
+
+                <button type="submit" name="btn--filterProduct__followCat"><i class="fa-sharp fa-solid fa-filter"></i>Lọc </button>
+           </form>
+           <a onclick="return confirm('Bạn có muốn xóa các mục đã chọn không?')" href="">
+                <button type="submit" class="deleteChoose">Xóa mục chọn</button>
+           </a>
+        </div>
         <div id="getData" class="contentManager--product__footer--table" >
             <table border="1">
                 <thead>
                     <tr>
-                        <th><input type="checkbox"></th>
-                        <th>STT</th>
+                        <th><input type="checkbox" id="Allproduct"></th>
+                        
                         <th>Mã sản phẩm</th>
                         <th>Tên sản phẩm</th>
                         <th>Ảnh</th>
@@ -47,6 +63,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php if(sizeof($listProduct) > 0): ?> 
                     <?php foreach ($listProduct as $key => $value) : ?>
                         <?php
                             $imagePath = "../imageProduct/" . $value['avatar'];
@@ -58,7 +75,7 @@
                         ?>
                         <tr>
                             <td><input type="checkbox"></td>
-                            <td><?= $key + 1 ?></td>
+                           
                             <td>SP00<?= $value['id'] ?></td>
                             <td class="name"><?= $value['nameProduct'] ?></td>
                             <td class="image">
@@ -93,6 +110,11 @@
                             </td>
                         </tr>
                     <?php endforeach; ?>
+                    <?php else: ?> 
+                        <tr>
+                            <td colspan="10" style="padding: 15px 0;">Không có sản phẩm nào</td>
+                        </tr>
+                    <?php endif; ?> 
                 </tbody>
             </table>
             <ul>
@@ -104,21 +126,21 @@
                     $i = 0; 
                 ?>
                         <?php if(isset($_GET['page']) && $_GET['page'] > 2){ $fisrtPage = 1; ?>
-                            <li><a href="index.php?actAdmin=showProduct&page=<?= $fisrtPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-sharp fa-solid fa-angles-left"></i></a></li>
+                            <li><a href="index.php?actAdmin=showProduct&page=<?= $fisrtPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><i class="fa-sharp fa-solid fa-angles-left"></i></a></li>
                         <?php } ?>
 
                         <?php if(isset($_GET['page']) && $_GET['page'] > 1){ $prevPage = $_GET['page'] - 1; ?>
-                            <li><a href="index.php?actAdmin=showProduct&page=<?= $prevPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-solid fa-angle-left"></i></a></li>
+                            <li><a href="index.php?actAdmin=showProduct&page=<?= $prevPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><i class="fa-solid fa-angle-left"></i></a></li>
                         <?php } ?>
 
                         <?php for($i; $i <= $countPage; $i++): ?>
                                 <?php if(isset($_GET['page'])): ?>
                                     <?php if($i+1 != $_GET['page']): ?>
                                         <?php if($i+1 > $_GET['page']-2 && $i+1 < $_GET['page']+2): ?>
-                                            <li><a href="index.php?actAdmin=showProduct&page=<?= $i+1 ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><?= $i+1 ?></a></li>
+                                            <li><a href="index.php?actAdmin=showProduct&page=<?= $i+1 ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><?= $i+1 ?></a></li>
                                         <?php endif; ?>
                                     <?php else: ?>
-                                        <li><a style="background-color: #F39C12; color: #ffffff" href="index.php?actAdmin=showProduct&page=<?= $i+1 ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><?= $i+1 ?></a></li>
+                                        <li><a style="background-color: #F39C12; color: #ffffff" href="index.php?actAdmin=showProduct&page=<?= $i+1 ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><?= $i+1 ?></a></li>
                                     <?php endif; ?>
                                 <?php else: ?>
                                     <?php   
@@ -135,17 +157,17 @@
                                         } 
                                     ?>
                                     <?php if($i <= $countPage): ?>
-                                        <li><a <?= $backGround.$color.$word.$colorWord ?> href="index.php?actAdmin=showProduct&page=<?= $i+1 ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><?= $i+1 ?></a></li>
+                                        <li><a <?= $backGround.$color.$word.$colorWord ?> href="index.php?actAdmin=showProduct&page=<?= $i+1 ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><?= $i+1 ?></a></li>
                                     <?php endif; ?>
                                 <?php endif; ?>
                         <?php endfor ?>
 
                         <?php if(isset($_GET['page']) && $_GET['page'] < ceil($countPage)){ $nextPage = $_GET['page'] + 1; ?>
-                            <li><a href="index.php?actAdmin=showProduct&page=<?= $nextPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-solid fa-angle-right"></i></a></li>
+                            <li><a href="index.php?actAdmin=showProduct&page=<?= $nextPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><i class="fa-solid fa-angle-right"></i></a></li>
                         <?php } ?>
 
                         <?php if(isset($_GET['page']) && $_GET['page'] < ceil($countPage)-1){ $endPage = ceil($countPage); ?>
-                            <li><a href="index.php?actAdmin=showProduct&page=<?= $endPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-sharp fa-solid fa-angles-right"></i></a></li>
+                            <li><a href="index.php?actAdmin=showProduct&page=<?= $endPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?>"><i class="fa-sharp fa-solid fa-angles-right"></i></a></li>
                         <?php } ?>
 
                     <?php } ?>
@@ -157,30 +179,7 @@
 </div>
 </div>
 <script src="../src/js/animation.js"></script>
-<!-- <script src="../src/js/jquery.js"></script> -->
-<!-- <script type="text/javascript">
-    $(document).ready(function() {
-        function loadTable(page){
-            $.ajax({
-                url: "./products/navigation.php",
-                method: "POST",
-                data: {
-                    page: page
-                },
-                success: function(data) {
-                    $("#getData").html(data);
-                }
-            });
-        }
-        loadTable();
-        //Pagination Code
-        $(document).on("click","#pagination li a",function(e) {
-            e.preventDefault();
-            const page_id = $(this).attr("id");
-            loadTable(page_id);
-        });
-    });
-</script> -->
+<script src="../src/js/script.js"></script>
 </body>
 
 </html>

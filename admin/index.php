@@ -4,27 +4,29 @@
 session_start();
 if (isset($_SESSION['user'])  && ($_SESSION['user']['role'] == 1)) {
     ob_start();
-    require_once "../global.php";
-    require_once "../model/pdo.php";
-    require_once "../model/model-user.php";
-    require_once "../model/model-product.php";
-    require_once "../model/model-category.php";
-    require_once "../model/model-order.php";
-    require_once "../model/model-statistical.php";
-    if (!isset($_SESSION['orderAdmin'])) {
-        $_SESSION['orderAdmin'] = [];
-    }
-    if (!isset($_SESSION['orderUpdateAdmin'])) {
-        $_SESSION['orderUpdateAdmin'] = [];
-    }
-    $listBuyOnDay = buyProductWithDay();
-    $bestSale = bestProductSales();
-    $totalOrderWeek = totalOrderWithWeek();
-    $sumMoneyMonthCurrently = sumMoneyMonthCurrently();
-    require_once "./header.php";
-    if (isset($_GET['actAdmin'])) {
-        $actAdmin = $_GET['actAdmin'];
-        switch ($actAdmin) {
+require_once "../global.php";
+require_once "../model/pdo.php";
+require_once "../model/model-user.php";
+require_once "../model/model-product.php";
+require_once "../model/model-category.php";
+require_once "../model/model-order.php";
+require_once "../model/model-statistical.php";
+require_once "../model/model-comment.php";
+if (!isset($_SESSION['orderAdmin'])) {
+    $_SESSION['orderAdmin'] = [];
+}
+if (!isset($_SESSION['orderUpdateAdmin'])) {
+    $_SESSION['orderUpdateAdmin'] = [];
+}
+$listBuyOnDay = buyProductWithDay();
+$bestSale = bestProductSales();
+$totalOrderWeek = totalOrderWithWeek();
+$sumMoneyMonthCurrently = sumMoneyMonthCurrently();
+$listProductFlCat = getAllCategories();
+require_once "./header.php";
+if (isset($_GET['actAdmin'])) {
+    $actAdmin = $_GET['actAdmin'];
+    switch ($actAdmin) {
 
                 // long code categories
             case 'addCategory':
@@ -48,11 +50,9 @@ if (isset($_SESSION['user'])  && ($_SESSION['user']['role'] == 1)) {
                     if (strlen($status) == 0) {
                         $statuserr = "Mời bạn chọn trạng thái hiển thị danh mục";
                     }
-                    if ($_FILES['avatar']['size'] == 0) {
-                        $imageerr = "Mời đăng ảnh  danh mục";
-                    }
-                    if (!empty($nameerr) || !empty($imageerr) || !empty($statuserr)) {
-                        header("location: index.php?actAdmin=addCategory&nameerr=$nameerr&imageerr=$imageerr&statuserr=$statuserr");
+                  
+                    if (!empty($nameerr) || !empty($statuserr)) {
+                        header("location: index.php?actAdmin=addCategory&nameerr=$nameerr&statuserr=$statuserr");
                         die;
                     }
                     move_uploaded_file($_FILES['avatar']['tmp_name'], "../imageProduct/" . $avatar);
@@ -70,10 +70,44 @@ if (isset($_SESSION['user'])  && ($_SESSION['user']['role'] == 1)) {
             case 'deleteCategory':
                 if (isset($_GET['id'])) {
                     $id = $_GET['id'];
-                    deleteAllImageProductFlowCategory($id);
+                    // Insert Product to unspecified
+                   
+                    $productUnspecifiedCat = selectUnspecifiedProductCat($id);
+                    if(sizeof($productUnspecifiedCat) > 0){
+                        foreach ($productUnspecifiedCat as $value) {
+                            insertUnspecifiedProduct($value['id'],$value['name'],$value['avatar'],$value['price'],$value['category_id']);
+                        }
+                    }
+                   
+
+                    $orderDetailUnspecifiedCat = selectUnspecifiedOrderDetailCat($id);
+                    if(sizeof($orderDetailUnspecifiedCat) > 0){
+                        foreach ($orderDetailUnspecifiedCat as $value) {
+                            insertUnspecifiedOrderDetail($value['order_id'],$value['product_id'],$value['quantity'],$value['price_product']);
+                        }
+                    }
+                   
+
+                    // Insert Product to unspecified
+                    $idDetailOrderCat = getIdDetailOrderNeedDeleteCat($id);
+                    foreach($idDetailOrderCat as $value){
+                        productDeleteDetailProduct($value['product_id']);
+                    }
+                    
+                    $numberComment = getNumberComment($id);
+                
+                    if(sizeof($numberComment) > 0){
+                        $idCatComment = getIdCatNeedDelete($id);
+                        foreach($idCatComment as $value){
+                            productDeletecommentCat($value['id']);
+                        }
+                    }
+                    $idCatAllImage = selectAllImageProductFlowCategory($id);
+                    foreach($idCatAllImage as $value){
+                        deleteAllImageProductFlowCategory($value['id']);
+                    }    
                     deleteProductFlowCategory($id);
                     category_delete($id);
-
                     $notification = "Xóa danh mục thành công";
                 }
                 $listdm = getAllCategories();
@@ -122,7 +156,7 @@ if (isset($_SESSION['user'])  && ($_SESSION['user']['role'] == 1)) {
                 break;
                 // long code categories
 
-                // products
+            // products
             case 'deleteProduct':
                 if (isset($_GET['id']) && $_GET['id'] > 0) {
                     $id = $_GET['id'];
@@ -130,27 +164,83 @@ if (isset($_SESSION['user'])  && ($_SESSION['user']['role'] == 1)) {
                     $getIdCategory = getIdCategoryUpdateCount($id);
                     // Update total product
                     productDeleteAllImage($id);
+                    productDeletecomment($id);
+                    // Insert Product to unspecified
+                    $orderDetailUnspecified = selectUnspecifiedOrderDetail($id);
+                    foreach ($orderDetailUnspecified as $value) {
+                        insertUnspecifiedOrderDetail($value['order_id'],$value['product_id'],$value['quantity'],$value['price_product']);
+                    }
+                    $productUnspecified = selectUnspecifiedProduct($id);
+                    foreach ($productUnspecified as $value) {
+                        insertUnspecifiedProduct($value['id'],$value['name'],$value['avatar'],$value['price'],$value['category_id']);
+                    }
+                    // Insert Product to unspecified
+                    productDeleteDetailProduct($id);
                     productDelete($id);
                     reduceProductFollowCat($getIdCategory);
                     // Update total product
                     $notification = "Xóa sản phẩm thành công";
+                    setcookie("notification", "Xóa sản phẩm thành công", time() + 1);
+                    header("location: index.php?actAdmin=showProduct");
                 }
-                $listProduct = getAllProduct("", $rowsProductAdmin);
-                require_once "./products/list.php";
+                // $countPage = get_Page_Product_admin("","",$rowsProductAdmin);
+                // $listProduct = getAllProduct("","",$rowsProductAdmin);
+                // require_once "./products/list.php";
                 break;
-            case 'addProduct':
-                if (isset($_POST['btn--addProduct'])) {
-                    $name = $_POST['nameProduct'];
-                    $file = $_FILES['image'];
-                    $name_image = $file['name'];
-                    $files = $_FILES['images'];
-                    $description = $_POST['description'];
-                    $category = $_POST['category'];
-                    $price = $_POST['price'];
-                    $discount = $_POST['discount'];
-                    $quantity = $_POST['quantity'];
-                    $status = $_POST['status'];
-                    $hotProduct = (isset($_POST['hotProduct']) ? 1 : 0);
+        case 'addProduct':
+            if (isset($_POST['btn--addProduct'])) {
+                $name = $_POST['nameProduct'];
+                $file = $_FILES['image'];
+                $name_image = $file['name'];
+                $files = $_FILES['images'];
+                $description = $_POST['description'];
+                $category = $_POST['category'];
+                $price = $_POST['price'];
+                $discount = $_POST['discount'];
+                $quantity = $_POST['quantity'];
+                $status = $_POST['status'];
+                $hotProduct = (isset($_POST['hotProduct']) ? 1 : 0);
+                $errors = [];
+                if(trim($name) == ""){
+                    $errors['name'] = "Bạn phải nhập tên sản phẩm";
+                }
+                if($category == ""){
+                    $errors['category'] = "Bạn phải chọn danh mục";
+                }
+                if($status == ""){
+                    $errors['status'] = "Bạn phải chọn trạng thái sản phẩm";
+                }
+                if($file['size'] <= 0){
+                    $errors['image'] = "Vui lòng chọn ảnh sản phẩm";
+                }else if($file['size'] > 0){
+                    $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+                    if($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg'){
+                        $errors['image'] = "Bạn chưa chọn đúng file ảnh (png, jpg, jpeg)";
+                    }else if($file['size'] >= 3*1024*1024){
+                        $errors['image'] = "Ảnh phải nhỏ hơn 3MB";
+                    }
+                }
+                for ($i = 0; $i < count($files["name"]); $i++) {
+                    if($files['size'][$i] > 0){
+                        $exts[$i] = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
+                        if($exts[$i] != 'png' && $exts[$i] != 'jpg' && $exts[$i] != 'jpeg'){
+                            $errors['images'] = "Bạn chưa chọn đúng file ảnh (png, jpg, jpeg)";
+                        }
+                    }
+                }
+              
+                if($price == ""){
+                    $errors['price'] = "Bạn phải nhập giá sản phẩm";
+                }else if($price <= 0){
+                    $errors['price'] = "Giá sản phẩm phải lớn hơn 0";
+                }
+
+                if($quantity == ""){
+                    $errors['quantity'] = "Bạn phải nhập số lượng sản phẩm";
+                }else if(!is_numeric($quantity)){
+                    $errors['quantity'] = "Số lượng sản phẩm phải là số";
+                }
+                if(!$errors){
                     foreach ($files['name'] as $key => $value) {
                         $tmp_name = $files['tmp_name'][$key];
                         move_uploaded_file($tmp_name, "../imageProduct/" . $value);
@@ -165,20 +255,17 @@ if (isset($_SESSION['user'])  && ($_SESSION['user']['role'] == 1)) {
                     }
                     setcookie("notification", "Thêm sản phẩm thành công", time() + 1);
                     header("location: index.php?actAdmin=showProduct");
-                }
+                }     
+            }
+            $listCategories = getAllCategories();
+            require_once "./products/add.php";
+            break;
+        case 'editProduct':
+            $id = isset($_GET['id']) ? $_GET['id'] : "";
+            if ($id > 0 && is_numeric($id)) {
+                $detailProduct = getProductFollowId($id);
                 $listCategories = getAllCategories();
-                require_once "./products/add.php";
-                break;
-            case 'editProduct':
-                $id = isset($_GET['id']) ? $_GET['id'] : "";
-                if ($id > 0 && is_numeric($id)) {
-                    $detailProduct = getProductFollowId($id);
-                    $listCategories = getAllCategories();
-                    $listImagesProduct = getProductAllImage($id);
-                }
-                require_once "./products/edit.php";
-                break;
-            case 'updateProduct':
+                $listImagesProduct = getProductAllImage($id);
                 if (isset($_POST['btn--updateProduct'])) {
                     $idProduct = $_POST['idProduct'];
                     $avatarProduct = getAvatarProduct($idProduct);
@@ -196,7 +283,7 @@ if (isset($_SESSION['user'])  && ($_SESSION['user']['role'] == 1)) {
                         $avatar = time() . "-" . $file['name'];
                         move_uploaded_file($file['tmp_name'], $dir_uploads . $avatar);
                     }
-
+    
                     if (!empty($files['name'][0])) {
                         $result = getProductAllImage($idProduct);
                         for ($i = 0; $i < count($result); $i++) {
@@ -225,69 +312,96 @@ if (isset($_SESSION['user'])  && ($_SESSION['user']['role'] == 1)) {
                     $quantity = $_POST['quantity'];
                     $status = $_POST['status'];
                     $hotProduct = (isset($_POST['hotProduct']) ? 1 : 0);
-
-                    updateProduct($name, $category, $avatar, $description, $quantity, $price, $discount, $hotProduct, $idProduct, $status);
-                    // Start fix error here (Completed)
-                    $idCateNew = getIdCategoryUpdateCount($idProduct);
-                    $idCateOld = $_POST['categoryCLone'];
-                    $totalCurrent = getTotalProductCat($idCateNew);
-                    $totalUpđate = getTotalProductCat2($idCateNew);
-                    if ($totalCurrent != $totalUpđate) {
-                        countProductFollowCat($idCateNew);
-                        reduceProductFollowCat($idCateOld);
+                    $errors = [];
+                    if(trim($name) == ""){
+                        $errors['name'] = "Bạn phải nhập tên sản phẩm";
                     }
-                    // End fix error here (Completed)
-                    // $notification = "Bạn đã thay đổi sản phẩm thành công";
-                    setcookie("notification", "Thay đổi sản phẩm thành công", time() + 1);
-                    header("location: index.php?actAdmin=showProduct");
+                    if($file['size'] > 0){
+                        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+                        if($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg'){
+                            $errors['image'] = "Bạn chưa chọn đúng file ảnh (png, jpg, jpeg)";
+                        }else if($file['size'] >= 3*1024*1024){
+                            $errors['image'] = "Ảnh phải nhỏ hơn 3MB";
+                        }
+                    }
+                    for ($i = 0; $i < count($files["name"]); $i++) {
+                        if($files['size'][$i] > 0){
+                            $exts[$i] = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
+                            if($exts[$i] != 'png' && $exts[$i] != 'jpg' && $exts[$i] != 'jpeg'){
+                                $errors['images'] = "Bạn chưa chọn đúng file ảnh (png, jpg, jpeg)";
+                            }
+                        }
+                    }
+                  
+                    if($price == ""){
+                        $errors['price'] = "Bạn phải nhập giá sản phẩm";
+                    }else if($price <= 0){
+                        $errors['price'] = "Giá sản phẩm phải lớn hơn 0";
+                    }
+    
+                    if($quantity == ""){
+                        $errors['quantity'] = "Bạn phải nhập số lượng sản phẩm";
+                    }else if(!is_numeric($quantity)){
+                        $errors['quantity'] = "Số lượng sản phẩm phải là số";
+                    }
+                    if(!$errors){
+                        updateProduct($name, $category, $avatar, $description, $quantity, $price, $discount, $hotProduct, $idProduct, $status);
+                        // Start fix error here (Completed)
+                        $idCateNew = getIdCategoryUpdateCount($idProduct);
+                        $idCateOld = $_POST['categoryCLone'];
+                        $totalCurrent = getTotalProductCat($idCateNew);
+                        $totalUpđate = getTotalProductCat2($idCateNew);
+                        if ($totalCurrent != $totalUpđate) {
+                            countProductFollowCat($idCateNew);
+                            reduceProductFollowCat($idCateOld);
+                        }
+                        // End fix error here (Completed)
+                        // $notification = "Bạn đã thay đổi sản phẩm thành công";
+                        setcookie("notification", "Thay đổi sản phẩm thành công", time() + 1);  
+                        header("location: index.php?actAdmin=showProduct");
+                    }
                 }
-                $listProduct = getAllProduct("", $rowsProductAdmin);
-                $listCategories = getAllCategories();
-                require_once "./products/list.php";
-                break;
-            case 'deleteProduct':
-                $id = isset($_GET['id']) ? $_GET['id'] : "";
-                if ($id > 0 && is_numeric($id)) {
-                    productDeleteAllImage($id);
-                    productDelete($id);
-                    $notification = "Xóa sản phẩm thành công";
-                    header("location: index.php?actAdmin=showProduct");
-                    exit;
-                }
-                // $listProduct = getAllProduct();
-                // require_once "./products/list.php";
-                break;
-            case 'showProduct':
-                if (isset($_POST['btn-search--Product'])) {
-                    $keyWord = $_POST['keyWord'];
-                } else if (isset($_GET['keyWord'])) {
-                    $keyWord = $_GET['keyWord'];
-                } else {
-                    $keyWord = "";
-                }
-                $countPage = get_Page_Product_admin($keyWord, $rowsProductAdmin);
-                $listProduct = getAllProduct($keyWord, $rowsProductAdmin);
-                require_once "./products/list.php";
-                break;
-            case 'showOrder':
-                $listOrderUser = getAllOrderToAdmin();
-                require_once "./orders/list.php";
-                break;
-            case 'addOrderAdmin':
-                $temp = -1;
-                if (isset($_POST['btn-search--Product'])) {
-                    $keyWord = $_POST['keyWord'];
-                } else if (isset($_GET['keyWord'])) {
-                    $keyWord = $_GET['keyWord'];
-                } else {
-                    $keyWord = "";
-                }
-                if (isset($_POST['btn__addOrderAdmin'])) {
-                    $idProductOrder = $_POST['idProductOrder'];
-                    $nameProductOrder = $_POST['nameProductOrder'];
-                    $imageProductOrder = $_POST['imageProductOrder'];
-                    $priceProductOrder = $_POST['priceProductOrder'];
-                    $quantityProductOrder = $_POST['quantityProductOrder'];
+            }
+            require_once "./products/edit.php";
+            break;
+        case 'showProduct':
+            if (isset($_POST['btn-search--Product'] )) {
+                $keyWord = $_POST['keyWord'];
+            }else if(isset($_GET['keyWord'])) {
+                $keyWord = $_GET['keyWord'];
+            } else {
+                $keyWord = "";
+            }
+            if(isset($_POST['btn--filterProduct__followCat'])){
+                $nameCaterory = $_POST['nameCaterory'];
+            }else if(isset($_GET['nameCaterory'])) {
+                $nameCaterory = $_GET['nameCaterory'];
+            }else{
+                $nameCaterory = "";
+            }
+            $countPage = get_Page_Product_admin($keyWord,$nameCaterory,$rowsProductAdmin);
+            $listProduct = getAllProduct($keyWord,$nameCaterory,$rowsProductAdmin);
+            require_once "./products/list.php";
+            break;
+        case 'showOrder':
+            $listOrderUser = getAllOrderToAdmin();
+            require_once "./orders/list.php";
+            break;
+        case 'addOrderAdmin':
+            $temp = -1;
+            if (isset($_POST['btn-search--Product'])) {
+                $keyWord = $_POST['keyWord'];
+            }else if(isset($_GET['keyWord'])) {
+                $keyWord = $_GET['keyWord'];
+            } else {
+                $keyWord = "";
+            }
+            if (isset($_POST['btn__addOrderAdmin'])) {
+                $idProductOrder = $_POST['idProductOrder'];
+                $nameProductOrder = $_POST['nameProductOrder'];
+                $imageProductOrder = $_POST['imageProductOrder'];
+                $priceProductOrder = $_POST['priceProductOrder'];
+                $quantityProductOrder = $_POST['quantityProductOrder'];
 
                     $orderEmty = [$idProductOrder, $nameProductOrder, $imageProductOrder, $priceProductOrder, $quantityProductOrder];
                     foreach ($_SESSION['orderAdmin'] as $key => $item) {
@@ -492,25 +606,28 @@ if (isset($_SESSION['user'])  && ($_SESSION['user']['role'] == 1)) {
                 }
                 $listOrderUser = getAllOrderToAdmin();
                 require_once "./orders/list.php";
-                break;
-            case "detailOrder":
-                $id = isset($_GET['id']) ? $_GET['id'] : "";
-                if ($id > 0 && is_numeric($id)) {
-                    $listOrderAdmin = getOrderAdmin($id);
-                }
-                require_once "./orders/detailOrder.php";
-                break;
-                // Đức - Quản lý người dùng
-            case 'showUsers':
-                $listUser = getAllUser();
-                require_once "./users/list.php";
-                break;
-            case 'SearchUsers':
-                $kyw = $_POST['kyw'];
-                $listUser = SearchUser($kyw);
-                require_once "./users/list.php";
-                break;
-            case 'addUser':
+            
+            $listOrderUser = getAllOrderToAdmin();
+            require_once "./orders/list.php";
+            break;
+        case "detailOrder":
+            $id = isset($_GET['id']) ? $_GET['id'] : "";
+            if ($id > 0 && is_numeric($id)) {
+                $listOrderAdmin = getOrderAdmin($id);
+            }
+            require_once "./orders/detailOrder.php";
+            break;
+            // Đức - Quản lý người dùng
+        case 'showUsers':
+            $listUser = getAllUser();
+            require_once "./users/list.php";
+            break;
+        case 'SearchUsers':
+            $kyw = $_POST['kyw'];
+            $listUser = SearchUser($kyw);
+            require_once "./users/list.php";
+            break;
+        case 'addUser':
                 if (isset($_POST['btn--addUser'])) {
                     $name = $_POST['name'];
                     $image = $_FILES['image'];
@@ -525,128 +642,150 @@ if (isset($_SESSION['user'])  && ($_SESSION['user']['role'] == 1)) {
                     $target_file = "UserAvt/" . $NameurlImage;
                     move_uploaded_file($pathImage, $target_file);
 
-                    $check = true;
-                    if ($name == "") {
-                        $thongbao[0] = "Tên không được bỏ trống !!!";
-                        $check = false;
-                    } else if (is_numeric($name) || (strlen($name) < 2)) {
-                        $thongbao[0] = "Tên không phải là số , tối thiểu 2 ký tự !";
-                        $check = false;
-                    }
-                    if ($image['size'] <= 0) {
-                        $thongbao[1] = "Vui lòng chọn hình ảnh cho người dùng !!!";
+                $check = true;
+                if ($name == "") {
+                    $thongbao[0] = "Tên không được bỏ trống !!!";
+                    $check = false;
+                } else if (is_numeric($name) || (strlen($name) < 2)) {
+                    $thongbao[0] = "Tên không phải là số , tối thiểu 2 ký tự !";
+                    $check = false;
+                }
+                if ($image['size'] <= 0) {
+                    $thongbao[1] = "Vui lòng chọn hình ảnh cho người dùng !!!";
+                    $check = false;
+                } else {
+                    $NameurlImage = $image['name'];
+                    $ext = pathinfo($NameurlImage, PATHINFO_EXTENSION);
+                    if ($ext != 'gif' && $ext != 'jpeg' && $ext != 'png' && $ext != 'jpg') {
+                        $thongbao[1] = "Sai định dạng ảnh(png,jpg,jpeg,gif)";
                         $check = false;
                     } else {
-                        $NameurlImage = $image['name'];
-                        $ext = pathinfo($NameurlImage, PATHINFO_EXTENSION);
-                        if ($ext != 'gif' && $ext != 'jpeg' && $ext != 'png' && $ext != 'jpg') {
-                            $thongbao[1] = "Sai định dạng ảnh(png,jpg,jpeg,gif)";
-                            $check = false;
-                        } else {
-                            $pathImage = $image['tmp_name'];
-                            $target_file = "UserAvt/" . $NameurlImage;
-                            move_uploaded_file($pathImage, $target_file);
-                        }
-                    }
-                    if ($email == "") {
-                        $thongbao[2] = "Email không được bỏ trống !!!";
-                        $check = false;
-                    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                        $thongbao[2] = "Email không đúng định dạng";
-                        $check = false;
-                    }
-                    if ($password == "") {
-                        $thongbao[3] = "Mật khẩu không được bỏ trống !!!";
-                        $check = false;
-                    } else if ((strlen($password) < 8)) {
-                        $thongbao[3] = "Mật khẩu tối thiểu 8 ký tự !";
-                        $check = false;
-                    }
-                    $password = md5($password);
-                    if ($phone == '') {
-                        $thongbao[4] = "Điện thoại không được bỏ trống !!!";
-                        $check = false;
-                    } else if (!is_numeric($phone)) {
-                        $thongbao[4] = "Điện thoại phải là số !!!";
-                        $check = false;
-                    } else if (strlen($phone) != 10) {
-                        $thongbao[4] = "Điện thoại phải đủ 10 số !!!";
-                        $check = false;
-                    }
-                    if ($address == "") {
-                        $thongbao[5] = "Địa chỉ không được bỏ trống !!!";
-                        $check = false;
-                    } else if (is_numeric($address) || (strlen($address) < 6)) {
-                        $thongbao[5] = "Địa chỉ không phải là số , tối thiểu 6 ký tự !";
-                        $check = false;
-                    }
-                    if ($check == true) {
-                        InsertUser2($name, $email, $password, $phone, $address, $NameurlImage, $status, $role);
-                        header('Location: index.php?actAdmin=showUsers&&msg=Thêm người thành công !');
-                        ob_end_flush();
+                        $pathImage = $image['tmp_name'];
+                        $target_file = "UserAvt/" . $NameurlImage;
+                        move_uploaded_file($pathImage, $target_file);
                     }
                 }
-                require_once "./users/add.php";
-                break;
-            case 'editUser':
+                if ($email == "") {
+                    $thongbao[2] = "Email không được bỏ trống !!!";
+                    $check = false;
+                } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $thongbao[2] = "Email không đúng định dạng";
+                    $check = false;
+                }
+                if ($password == "") {
+                    $thongbao[3] = "Mật khẩu không được bỏ trống !!!";
+                    $check = false;
+                } else if ((strlen($password) < 8)) {
+                    $thongbao[3] = "Mật khẩu tối thiểu 8 ký tự !";
+                    $check = false;
+                }
+                $password = md5($password);
+                if ($phone == '') {
+                    $thongbao[4] = "Điện thoại không được bỏ trống !!!";
+                    $check = false;
+                } else if (!is_numeric($phone)) {
+                    $thongbao[4] = "Điện thoại phải là số !!!";
+                    $check = false;
+                } else if (strlen($phone) != 10) {
+                    $thongbao[4] = "Điện thoại phải đủ 10 số !!!";
+                    $check = false;
+                }
+                if ($address == "") {
+                    $thongbao[5] = "Địa chỉ không được bỏ trống !!!";
+                    $check = false;
+                } else if (is_numeric($address) || (strlen($address) < 6)) {
+                    $thongbao[5] = "Địa chỉ không phải là số , tối thiểu 6 ký tự !";
+                    $check = false;
+                }
+                if ($status == "") {
+                    $thongbao[6] = "Trạng thái không được bỏ trống !!!";
+                    $check = false;
+                }
+                if ($role == "") {
+                    $thongbao[7] = "Quyền không được bỏ trống !!!";
+                    $check = false;
+                }
+                if ($check == true) {
+                    InsertUser2($name, $email, $password, $phone, $address, $NameurlImage, $status, $role);
+                    header('Location: index.php?actAdmin=showUsers&&msg=Thêm người thành công !');
+                    ob_end_flush();
+                }
+            }
+            require_once "./users/add.php";
+            break;
+        case 'editUser':
+            $id = $_GET['id'];
+            $infoUser = getUserFollowId($id);
+            if (isset($_POST['btn--editUser'])) {
+                if (is_array($infoUser)) {
+                    extract($infoUser);
+                }
                 $id = $_GET['id'];
-                $infoUser = getUserFollowId($id);
-                if (isset($_POST['btn--editUser'])) {
-                    if (is_array($infoUser)) {
-                        extract($infoUser);
-                    }
-                    $id = $_GET['id'];
-                    $name_update = $_POST['name'];
-                    $email_update = $_POST['email'];
-                    $password_update = $_POST['password'];
-                    $phone_update = $_POST['phone'];
-                    $address_update = $_POST['address'];
-                    $image = $_FILES['image'];
-                    $status_update = $_POST['status'];
-                    $role_update = $_POST['role'];
-                    if ($password_update != $password) {
-                        $password_update = md5($password_update);
-                    }
+                $name_update = $_POST['name'];
+                $email_update = $_POST['email'];
+                $password_update = $_POST['password'];
+                $phone_update = $_POST['phone'];
+                $address_update = $_POST['address'];
+                $image = $_FILES['image'];
+                $status_update = $_POST['status'];
+                $role_update = $_POST['role'];
+                if ($password_update != $password) {
+                    $password_update = md5($password_update);
+                }
+                if($image['size'] <= 0){
+                    $NameurlImage = $_POST['image_old'];
+                }else{
                     $NameurlImage = $image['name'];
                     $pathImage = $image['tmp_name'];
                     $target_file = "UserAvt/" . $NameurlImage;
                     move_uploaded_file($pathImage, $target_file);
-                    UpdatetUser($name_update, $email_update, $password_update, $phone_update, $address_update, $NameurlImage, $status_update, $role_update, $id);
-                    header('Location: index.php?actAdmin=showUsers&&msg=Cập nhật thành công !');
-                    ob_end_flush();
                 }
-                require_once "./users/edit.php";
-                break;
-            case 'deleteUser':
-                $id = $_GET['id'];
-                if (isset($id) && $id != "") {
-                    UserDelete($id);
-                    $notification = "Xóa tài khoản thành công !";
-                    $listUser = getAllUser();
-                    require_once "./users/list.php";
-                }
-                break;
-            case 'statisticals':
-                $getToTalProductChart = getToTalProductChartJs();
-                require_once "./statisticals/list.php";
-                break;
-            case 'comments':
-
-                require_once "./comments/list.php";
-                break;
-            case 'detailComment':
-
+                UpdatetUser($name_update, $email_update, $password_update, $phone_update, $address_update, $NameurlImage, $status_update, $role_update, $id);
+                header('Location: index.php?actAdmin=showUsers&&msg=Cập nhật thành công !');
+                ob_end_flush();
+            }
+            require_once "./users/edit.php";
+            break;
+        case 'deleteUser':
+            $id = $_GET['id'];
+            if (isset($id) && $id != "") {
+                UserDelete($id);
+                $notification = "Xóa tài khoản thành công !";
+                $listUser = getAllUser();
+                require_once "./users/list.php";
+            }
+            break;
+        case 'statisticals':
+            $getToTalProductChart = getToTalProductChartJs();
+            require_once "./statisticals/list.php";
+            break;
+        case 'comments':
+            $listCmt = commented_getAll();
+            require_once "./comments/list.php";
+            break;
+        case 'detailComment':
+            if(isset($_GET['pid'])){
+                $listCmt=commented_getAllDetail($_GET['pid']);
                 require_once "./comments/detailComment.php";
-                break;
-            case 'dangxuat':
-                session_destroy();
-                header("Location: ../index.php?act=dangnhap");
-                break;
-            default:
-                $listBuyOnDay = buyProductWithDay();
-                $bestSale = bestProductSales();
-                $totalOrderWeek = totalOrderWithWeek();
-                $sumMoneyMonthCurrently = sumMoneyMonthCurrently();
+            }else{
+                header('Location: index.php?actAdmin=comments');
+            }
+            break;
+        case 'detailCommentDele':
+            $uid=$_GET['uid'];
+            $pid=$_GET['pid'];
+            comment_delete($_GET['cid']);
+            header('Location: index.php?actAdmin=detailComment&uid='.$uid.'&pid='.$pid.'&msg=Xoá bình luận thành công !');
+            break;
+        case 'dangxuat':
+            session_destroy();
+            header("Location: ../index.php?act=dangnhap");
+            break;
+        default:
+            $listBuyOnDay = buyProductWithDay();
+            $bestSale = bestProductSales();
+            $totalOrderWeek = totalOrderWithWeek();
+            $sumMoneyMonthCurrently = sumMoneyMonthCurrently();
 
                 require_once "./home.php";
                 break;

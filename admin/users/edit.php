@@ -32,6 +32,7 @@ if (is_array($infoUser)) {
                 <div class="image">
                     <p>Ảnh người dùng:</p>
                     <input type="file" name="image" style="background-color: #0F172A;">
+                    <input type="text" value="<?= isset($image) ? $image : $image ='' ;?>" name="image_old" id="" hidden>
                 </div>
                 <div class="image">
                     <p>Email:</p>
@@ -56,16 +57,16 @@ if (is_array($infoUser)) {
                     <p>Trạng thái hoạt động:</p>
                     <select name="status" id="">
                         <option value="" hidden>-- Chọn trạng thái --</option>
-                        <option value="0" selected>Active</option>
-                        <option value="1">Disable</option>
+                        <option value="0" <?= ($status == 0) ? 'selected' :'' ?>>Active</option>
+                        <option value="1" <?= ($status == 1) ? 'selected' :'' ?>>Disable</option>  
                     </select>
                 </div>
                 <div class="status">
                     <p>Quyền quản trị:</p>
                     <select name="role" id="">
                         <option value="" hidden>-- Chọn trạng thái --</option>
-                        <option value="0" selected>Tài khoản thường</option>
-                        <option value="1">Quản trị viên</option>
+                        <option value="0" <?= ($role == 0) ? 'selected' :'' ?>>Người dùng</option>
+                        <option value="1" <?= ($role == 1) ? 'selected' :'' ?>>Quản trị</option>  
                     </select>
                 </div>
                 <div class="btn__action btn__action--addProduct mrg_top--btn">

@@ -80,3 +80,9 @@ function UpdatePasstUser($password, $id)
     $sql = "UPDATE `users` SET  `password`='$password' WHERE `id`='$id';";
     pdo_execute($sql);
 }
+// Select count users home
+function getCountUserHome(){
+    $sql = "select COUNT(*) as countUser from users WHERE role >=0 AND role <=1";
+    return pdo_query_one($sql);
+}   
+// Select count users home

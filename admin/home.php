@@ -18,25 +18,32 @@
             </div>
         </div>
         <div class="smallStatistics smallStatisticsGreen">
+
             <h2 class="numberStatistics">
-                10
+                <?php
+                    $getCountProductHome = getCountProductHome();
+                    echo $getCountProductHome['countProduct'];
+                ?>
             </h2>
             <p class="nameStatistics">
                 Số lượng sản phẩm hiện có
             </p>
             <div class="viewDetailStatistics">
-                Xem chi tiết<i class="fa-sharp fa-solid fa-gear"></i>
+                <a href="index.php?actAdmin=showProduct" style="color: #ffffff;"> Xem chi tiết<i class="fa-sharp fa-solid fa-gear"></i></a>
             </div>
         </div>
         <div class="smallStatistics smallStatisticsOrange">
             <h2 class="numberStatistics">
-                5
+                <?php
+                    $getCountUserHome = getCountUserHome();
+                    echo $getCountUserHome['countUser'];
+                ?>
             </h2>
             <p class="nameStatistics">
                 Số lượng tài khoản khách hàng
             </p>
             <div class="viewDetailStatistics">
-                Xem chi tiết<i class="fa-sharp fa-solid fa-gear"></i>
+                <a href="index.php?actAdmin=showUsers" style="color: #ffffff;"> Xem chi tiết<i class="fa-sharp fa-solid fa-gear"></i></a>
             </div>
         </div>
         <div class="smallStatistics smallStatisticsRed">
@@ -44,7 +51,7 @@
                 7
             </h2>
             <p class="nameStatistics">
-                Lượt truy cập hàng ngày
+                Lượt truy cập website
             </p>
             <div class="viewDetailStatistics">
                 Xem chi tiết<i class="fa-sharp fa-solid fa-gear"></i>
@@ -59,36 +66,42 @@
             <canvas id="canvas5"></canvas>
         </div>
         <div class="contentManager--footer__right ">
-            <div class="title ">
-                <h2>Sản phẩm bán chạy nhất: SP00<?= $bestSale['id'] ?></h2>
-                <h2 style="padding-top: 10px;">Số lượng bán được: <?= $bestSale['quantity'] ?></h2>
-            </div>
-            <div class="tableProduct ">
-                <?php
-                $imagePath = "../imageProduct/" . $bestSale['avatar'];
-                $image = "<img src='" . $imagePath . "' alt='' width='200px' >";
-                ?>
-                <div class="image">
-                    <?= $image  ?>
+            <?php if($bestSale != ""): ?>
+                <div class="title ">
+                    <h2>Sản phẩm bán chạy nhất: SP00<?= $bestSale['id'] ?></h2>
+                    <h2 style="padding-top: 10px;">Số lượng bán được: <?= $bestSale['quantity'] ?></h2>
                 </div>
-                <div class="infor">
-                    <div class="title--inforProduct">
-                        <h2 style="color: #ffffff;"><?= $bestSale['name'] ?></h2>
+                <div class="tableProduct ">
+                    <?php
+                    $imagePath = "../imageProduct/" . $bestSale['avatar'];
+                    $image = "<img src='" . $imagePath . "' alt='' width='200px' >";
+                    ?>
+                    <div class="image">
+                        <?= $image  ?>
                     </div>
-                    <div class="price--inforProduct">
-                        <div class="price--inforProduct__discount">
-                            <p style="color: #ffffff;"><?= number_format($bestSale['price']) . "đ"  ?></p>
+                    <div class="infor">
+                        <div class="title--inforProduct">
+                            <h2 style="color: #ffffff;"><?= $bestSale['name'] ?></h2>
                         </div>
-                        <div class="price--inforProduct__root">
+                        <div class="price--inforProduct">
+                            <div class="price--inforProduct__discount">
+                                <p style="color: #ffffff;"><?= number_format($bestSale['price']) . "đ"  ?></p>
+                            </div>
+                            <div class="price--inforProduct__root">
 
-                            <p style="color: #ffffff;"><?= number_format($bestSale['price'] - ($bestSale['price'] * $bestSale['discount']) / 100) . "đ" ?></p>
+                                <p style="color: #ffffff;"><?= number_format($bestSale['price'] - ($bestSale['price'] * $bestSale['discount']) / 100) . "đ" ?></p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="btn--seeProduct ">
+                    <a href=" "><button>Xem chi tiết sản phẩm</button></a>
+                </div>
+            <?php else: ?>
+            <div class="title ">
+                <h2 style="text-align: center;">Chưa có sản phẩm bán chạy nào</h2>
             </div>
-            <div class="btn--seeProduct ">
-                <a href=" "><button>Xem chi tiết sản phẩm</button></a>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>

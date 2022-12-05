@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="./src/css/pay_detail.css">
     <link rel="stylesheet" href="./src/css/yourOrder.css">
     <link rel="stylesheet" href="./src/css/product_review.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 

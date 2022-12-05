@@ -89,8 +89,8 @@ foreach ($check_user_bying_product as $check) {
     <!-- điều hương -->
     <div class="row product_title_path">
         <p>Trang chủ</p>
-        <span>></span>
-        <p>Giày nam</p>
+        <!-- <span>></span>
+        <p>Giày nam</p> -->
         <span>></span>
         <p>
             <span class="red_word">
@@ -236,7 +236,21 @@ foreach ($check_user_bying_product as $check) {
 
                                             <div class="form-comment--one">
                                                 <div class="form-comment__avatar">
-                                                    <img src="./imageProduct/<?= $image ?>" alt="">
+                                                <?php
+                                                    if ($image != "") {
+                                                         echo'<img src="./Admin/UserAvt/'.$image.'" alt="">';
+                                                        } else {
+                                                            $string1 = $name_person_comment;
+                                                            $string = convert_vi_to_en($string1);
+                                                            $pieces = explode(' ', $string);
+                                                            $name_user1 = array_pop($pieces);
+                                                            $name_user2 = ucfirst($name_user1);
+                                                            $name_user3 = substr($name_user2, 0, 1);
+                                                            echo ' <div class="cmt_pro---img" style=" position: relative; height: 37px; width: 37px; background-color: #ff2d37; border-radius: 50%;">
+                                                            <span class="name" style=" position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: 500; font-size: 19px; ">'.$name_user3.'</span>
+                                                        </div>';
+                                                        }
+                                                 ?>
                                                 </div>
                                                 <div class="form-comment__content">
                                                     <div class="form__toggle_clickedit">
@@ -434,7 +448,7 @@ foreach ($check_user_bying_product as $check) {
             <div class="section__product--hot__banner review__product--hot row">
 
                 <?php
-                foreach ($protop4 as $value) {
+                foreach ($protop5 as $value) {
                     extract($value);
                     $pricesale = $price * ($discount / 100);
                     $img =  $image_path . $avatar;
@@ -468,6 +482,9 @@ foreach ($check_user_bying_product as $check) {
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
     let btn_decre = document.querySelector(".btn_decre");
     let btn_incre = document.querySelector(".btn_incre");
@@ -526,4 +543,19 @@ foreach ($check_user_bying_product as $check) {
             }
         })
     }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.review__product--hot').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            // autoplay: true,
+            autoplaySpeed: 2000,
+            arrows: true,
+            prevArrow: '<span class="prevArrow" id="prevArrowLimited"><i class="fa-solid fa-chevron-left"></i></span>',
+            nextArrow: '<span class="nextArrow" id="nextArrowLimited"><i class="fa-solid fa-chevron-right"></i></span',
+            slidesToScroll: 1
+        });
+    });
 </script>

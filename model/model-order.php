@@ -64,6 +64,13 @@
         $sql = "SELECT B.id,B.avatar,A.quantity,A.price_product, B.name FROM `orders_detail` A INNER JOIN `products` B ON A.product_id=B.id where A.order_id=$id ";
         return pdo_query($sql);
     }
+    // Get detail order unspecified
+    function getDeltailPaySuccessUnspecified($id){
+        $sql = "SELECT B.id_product,B.avatar,A.quantity,A.price_product, B.name_product FROM `unspecified_orders_detail` A INNER JOIN `unspecified_products` B ON A.product_id=B.id_product where A.order_id=$id ";
+        return pdo_query($sql);
+    }
+    // Get detail order unspecified
+
     function getAllDetailOrderAdmin($id){
         $sql = "SELECT B.id,B.avatar,A.quantity,A.price_product, B.name FROM `orders_detail` A INNER JOIN `products` B ON A.product_id=B.id where A.order_id=$id ";
         return pdo_query($sql);

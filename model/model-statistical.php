@@ -24,7 +24,7 @@
     }
     // Số lượng đơn theo tuần
     function totalOrderWithWeek(){
-        $sql = "SELECT ors.*, COUNT(ors.id_kh) as kh_mua FROM (SELECT kh.id id_kh , od.id id_don_hang, kh.name ,od.created_at, od.total_price FROM orders od JOIN users kh on od.user_id=kh.id WHERE od.created_at >= DATE_SUB(CURDATE(), INTERVAL 10 DAY)) ors GROUP BY id_kh ORDER BY kh_mua DESC;";
+        $sql = "SELECT ors.*, COUNT(ors.id_kh) as kh_mua FROM (SELECT kh.id id_kh , od.id id_don_hang, kh.name ,od.created_at, od.total_price FROM orders od JOIN users kh on od.user_id=kh.id WHERE od.created_at >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)) ors GROUP BY id_kh ORDER BY kh_mua DESC;";
         return pdo_query($sql);
     }
     // Tổng doanh thu theo năm tháng hiện tại
@@ -36,5 +36,6 @@
         $sql = "select name, total_product FROM categories";
         return pdo_query($sql);
     }
+    //<?= number_format($value['total_price']) . "đ" ?>
 
 ?>

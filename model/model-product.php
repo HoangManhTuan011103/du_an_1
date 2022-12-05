@@ -12,7 +12,7 @@ function updateProduct($name, $category, $name_image, $description, $quantity, $
     pdo_execute($sql);
 }
 
-
+// Delete product Admin
 function productDelete($id)
 {
     $sql = "delete from products where id=$id";
@@ -23,6 +23,22 @@ function productDeleteAllImage($id)
     $sql = "delete from product_images where product_id=$id";
     pdo_execute($sql);
 }
+function productDeletecomment($id)
+{
+    $sql = "delete from comments_product where product_id=$id";
+    pdo_execute($sql);
+}
+function getIdDetailOrderNeedDeleteCat($id){
+    $sql = "SELECT A.product_id FROM `orders_detail` A INNER JOIN `products` B ON A.product_id=B.id WHERE B.category_id=$id";
+    return pdo_query($sql);
+}
+function productDeleteDetailProduct($id)
+{
+    $sql = "delete from orders_detail where product_id=$id";
+    pdo_execute($sql);
+}
+// Delete product Admin
+
 function getProductFollowId($id)
 {
     $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.id as 'idCategory',B.name from products A INNER JOIN categories B ON A.category_id = B.id where A.id=$id";
@@ -50,16 +66,11 @@ function selectAllImageProductFlowCategory($id_cagtegory)
     return pdo_query($sql);
 }
 
-function deleteAllImageProductFlowCategory($id_cagtegory)
+function deleteAllImageProductFlowCategory($id)
 {
+    $sql = "delete from product_images where product_id =$id ";
+    pdo_execute($sql);
 
-    $convert_int = (int)$id_cagtegory;
-    $id =  selectAllImageProductFlowCategory($convert_int);
-    foreach ($id as $value) {
-        extract($value);
-        $sql = "delete from product_images where product_id =$id ";
-        pdo_execute($sql);
-    }
 }
 // Update product total in category
 function getIdCategoryUpdateCount($id)
@@ -90,9 +101,22 @@ function getTotalProductCat2($idCategory)
 
 // Update product total in category
 // Hiệp hiện thị top 5 sản phẩm mới nhất
+// Fix slide phía home
 function loadall_product_home()
 {
-    $sql = "select * from products where status = 0 order by id desc limit 0,5 ";
+    $sql = "select * from products where status = 0 order by rand() desc limit 0,10 ";
+    $listproduct = pdo_query($sql);
+    return $listproduct;
+}
+function loadall_product_home2()
+{
+    $sql = "select * from products where status = 0 order by rand() desc limit 5,10 ";
+    $listproduct = pdo_query($sql);
+    return $listproduct;
+}
+function loadall_product_home3()
+{
+    $sql = "select * from products where status = 0 order by rand() desc limit 3,10 ";
     $listproduct = pdo_query($sql);
     return $listproduct;
 }
@@ -104,9 +128,15 @@ function loadtop8_product_home()
     return $listproduct;
 }
 // hiện thị top 4 sản phẩm cu nhat
+function loadtop4_product_home2($id)
+{
+    $sql = "select * from products where status = 0 and category_id=$id order by rand() limit 0,8";
+    $listproduct = pdo_query($sql);
+    return $listproduct;
+}
 function loadtop4_product_home()
 {
-    $sql = "select * from products where status = 0 order by id asc limit 0,4";
+    $sql = "select * from products where status = 0 order by rand() limit 0,5";
     $listproduct = pdo_query($sql);
     return $listproduct;
 }
@@ -168,20 +198,23 @@ function getOneProductFlowId($id)
 }
 
 // Panigation Product In PHP Admin
-function get_Page_Product_admin($keyWord, $rowsProductAdmin)
+function get_Page_Product_admin($keyWord, $nameCaterory ,$rowsProductAdmin)
 {
     $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.name from products A INNER JOIN categories B ON A.category_id = B.id where 1 ";
     if ($keyWord != "") {
         $sql .= " and A.name like '%$keyWord%'";
+    }
+    if($nameCaterory != ""){
+        $sql .= " and A.category_id like '%$nameCaterory%'";
     }
     $sql .= " order by A.id desc";
     $numberPage = pdo_query($sql);
     $countPage = sizeof($numberPage) / $rowsProductAdmin;
     return $countPage;
 }
-function getAllProduct($keyWord, $rowsProductAdmin)
+function getAllProduct($keyWord,$nameCaterory, $rowsProductAdmin)
 {
-    $countPage = get_Page_Product_admin($keyWord, $rowsProductAdmin);
+    $countPage = get_Page_Product_admin($keyWord,$nameCaterory ,$rowsProductAdmin);
     if (isset($_GET['page']) &&  $_GET['page'] > 0 && $_GET['page'] <= $countPage + 1) {
         $page = $_GET['page'];
     } else {
@@ -191,6 +224,9 @@ function getAllProduct($keyWord, $rowsProductAdmin)
     $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.name from products A INNER JOIN categories B ON A.category_id = B.id where 1";
     if ($keyWord != "") {
         $sql .= " and A.name like '%$keyWord%'";
+    }
+    if($nameCaterory != ""){
+        $sql .= " and A.category_id like '%$nameCaterory%'";
     }
     $sql .= " order by A.id desc limit $from,$rowsProductAdmin";
     return pdo_query($sql);
@@ -250,10 +286,55 @@ function fillter_price_asc()
     $sql = " SELECT * FROM `products` ORDER BY price ";
     return pdo_query($sql);
 }
-
-
 // update total comment and count start
 function update_total_comment_id($total_comment,$sum_start,$id){
     $sql="UPDATE `products` SET `comment_total`='$total_comment',`rating_total`='$sum_start' WHERE id=$id";
     pdo_execute($sql);
 }
+// Insert Product to unspecified
+
+function selectUnspecifiedOrderDetail($id){
+    $sql = "SELECT * FROM `orders_detail` WHERE product_id=$id";
+    return pdo_query($sql);
+}
+function selectUnspecifiedProduct($id){
+    $sql = "SELECT * FROM `products` WHERE id=$id";
+    return pdo_query($sql);
+}
+function selectUnspecifiedProductCat($id){
+    $sql = "SELECT * FROM `products` WHERE category_id=$id";
+    return pdo_query($sql);
+}
+function selectUnspecifiedOrderDetailCat($id){
+    $sql = "SELECT A.order_id,A.product_id,A.quantity,A.price_product FROM `orders_detail` A INNER JOIN `products` B ON A.product_id=B.id WHERE B.category_id=$id";
+    return pdo_query($sql);
+}
+function getIdCatNeedDelete($id){
+    $sql = "select A.id from comments_product A inner join products B on A.product_id=B.id where B.category_id=$id";
+    return pdo_query($sql);
+}
+function getNumberComment($id){
+    $sql = "select * from comments_product A inner join products B on A.product_id=B.id where B.category_id=$id";
+    return pdo_query($sql);
+}
+function productDeletecommentCat($id)
+{
+    $sql = "delete from comments_product where id=$id";
+    pdo_execute($sql);
+}
+function insertUnspecifiedOrderDetail($order_id,$product_id,$quantity,$price_product){
+    $sql = "INSERT INTO `unspecified_orders_detail`(`order_id`, `product_id`, `quantity`, `price_product`) VALUES ('$order_id','$product_id','$quantity','$price_product')";
+    pdo_execute($sql);
+}
+function insertUnspecifiedProduct($id_product,$name_product,$avatar,$price_product,$id_category){
+    $sql = "INSERT INTO `unspecified_products`(`id_product`, `name_product`, `avatar`, `price_product`, `id_category`) VALUES ('$id_product','$name_product','$avatar','$price_product','$id_category')";
+    pdo_execute($sql);
+}
+// Insert Product to unspecified
+// Select count product home
+function getCountProductHome(){
+    $sql = "select COUNT(*) as countProduct from products WHERE 1";
+    return pdo_query_one($sql);
+}   
+// Select count product home
+

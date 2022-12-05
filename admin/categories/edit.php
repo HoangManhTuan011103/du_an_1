@@ -30,10 +30,15 @@ if (is_array($detailDm)) {
                     <p>Ảnh danh mục:</p>
                     <input type="hidden" name="avatar_old" value="<?= $avatar ?>">
                     <input class="name" style=" background-color: #000000;" type="file" name="avatar_new">
-                    <img src="../imageProduct/<?= $avatar ?>" width="120" style="margin-top: 10px;">
-                    <?php if(isset($_GET['imageerr'])):?>
-                <span style="color: red; font-size: 14px;"><?= $_GET['imageerr']?></span>
-                 <?php endif ?>
+                    <?php
+                            $imagePath = "../imageProduct/" . $avatar;
+                            if (is_file($imagePath)) {
+                                $image = "<img src='" . $imagePath . "' alt='' width='100px' height='100px'>";
+                            } else {
+                                $image = "<h4 style='color: #ffffff' >Không có hình ảnh</h4>";
+                            }
+                        ?>
+                    <?= $image ?>
                 </div>
                 <div class="status">
                     <p>Trạng thái</p>

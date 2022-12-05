@@ -259,7 +259,7 @@
     let id_category = 0;
     let users = [];
     let currentPage = 1;
-    let perPage = 8;
+    let perPage = 12;
     let totalPage = 0;
     let perProduct = [];
     let count_page = arr_prodcut3;
@@ -502,6 +502,7 @@
         show_product123(listArrayPrice, listArrayDesc, perProduct)
 
     }
+
 
     function renderPageNumber(count) {
         totalPage = Math.ceil((count / perPage));

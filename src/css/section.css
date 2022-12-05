@@ -28,14 +28,14 @@
 }
 
 .product-1__img {
+    transform: scale(1.2);
     width: 100%;
     height: 100%;
     transition-duration: 0.5s;
-
 }
 
 .product-1__img:hover {
-    transform: scale(1.2);
+    transform: scale(1.4);
 }
 
 .product-1__name {
@@ -78,7 +78,6 @@
     display: block;
     bottom: 20%;
     color: #ffffff;
-
 }
 
 .grid .section__product--hot {
@@ -135,10 +134,12 @@
     padding-left: 20px;
 }
 
+
 /* .product__banner__btn--detail{
     width: 70px;
     height: 25px;
 } */
+
 .product__banner__btn--detail a {
     border: none;
     display: flex;
@@ -151,14 +152,12 @@
     height: 25px;
     border-radius: 5px;
     padding: 5px 8px 5px 8px;
-
 }
 
 .product__banner__btn--detail a:hover {
     background-color: #f9ddde;
     border: 1px solid #ff2d37;
     color: #ff2d37;
-
 }
 
 .section__product--hot h2 {
@@ -217,7 +216,9 @@
     margin-top: 20px;
 }
 
+
 /* REVIEW--2- */
+
 .grid .section__wrap--review--2 {
     /* border: 1px solid black; */
     margin-top: 40px;
@@ -266,9 +267,11 @@
     margin-top: 20px;
 }
 
+
 /* .grid .section__wrap--category--review{
      
 } */
+
 .img--banner--category img {
     width: 100%;
     height: auto;
@@ -292,8 +295,6 @@
     list-style-type: none;
 }
 
-.ul--sup--product--menu li {}
-
 .ul--sup--product--menu li a {
     display: block;
     padding: 10px;
@@ -304,3 +305,53 @@
 .ul--sup--product--menu li a:hover {
     color: #ff2d37;
 }
+
+
+/* Slider Product sale */
+
+.prevArrow.slick-arrow {
+    display: block !important;
+    background-color: #ff2d37;
+    position: absolute;
+    top: 30%;
+    padding: 17px 20px;
+    left: -2%;
+    z-index: 999;
+    /* border-radius: 40px 0 0 40px; */
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s all linear;
+}
+
+.prevArrow.slick-arrow i {
+    color: #ffffff;
+}
+
+.nextArrow.slick-arrow i {
+    color: #ffffff;
+}
+
+.nextArrow.slick-arrow:hover {
+    background-color: #333;
+}
+
+.prevArrow.slick-arrow:hover {
+    background-color: #333;
+}
+
+.nextArrow.slick-arrow {
+    display: block !important;
+    background-color: #ff2d37;
+    position: absolute;
+    padding: 17px 20px;
+    top: 30%;
+    z-index: 999;
+    border-radius: 50px;
+    /* border-radius: 0 40px 40px 0; */
+    right: -2%;
+    transition: 0.2s all linear;
+    cursor: pointer;
+}
+
+
+/* Slider Product sale */
