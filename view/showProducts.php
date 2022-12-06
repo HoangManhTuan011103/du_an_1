@@ -244,7 +244,7 @@
 
     let kyw = <?php echo json_encode($kyw); ?>;
     let arr_prodcut1 = <?php echo json_encode($prolist); ?>;
-    let kyw = <?php echo json_encode($kyw); ?>;
+   
 
     let arr_prodcut3 = <?php echo json_encode($prolist1); ?>;
     let array_product_2 = <?php echo json_encode($protop4); ?>;
