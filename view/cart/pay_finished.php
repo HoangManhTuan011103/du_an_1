@@ -46,7 +46,7 @@
                             <td>
                                 <button class="btnSee__detail--yourOrder">Xem chi tiết</button>
                                 <?php if($value['status'] == 0): ?>
-                                    <a href=""><button class="detailBill--cancelOrder">Hủy đơn</button></a>
+                                    <a onclick="return confirm('Bạn có chắc muốn hủy đơn hàng này không?');" href="index.php?act=cancelOrderUser&idOrder=<?= $value['id'] ?>"><button class="detailBill--cancelOrder">Hủy đơn</button></a>
                                 <?php endif; ?>
                                 <?php
                                     $detailPayS = getDeltailPaySuccess($value['id']);

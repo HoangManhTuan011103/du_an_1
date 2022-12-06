@@ -458,6 +458,19 @@ if (isset($_GET['act'])) {
             }
 
             break;
+        case "cancelOrderUser":
+            $idOrder = $_GET['idOrder'] ?? "";
+            if(is_numeric($idOrder) && $idOrder > 0){
+                $_SESSION['mycart'] = [];
+                $product_value = selectOrderCancelToCart($idOrder);
+                foreach($product_value as $value){
+                    $_SESSION['mycart'][] = $value;
+                }
+                cancelOrderUserFromDetailOrder($idOrder);
+                cancelOrderUserFromOrder($idOrder);
+                header("location: index.php?act=cart");
+            }
+            break;
         default:
             // require_once "";
             break;

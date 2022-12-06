@@ -98,5 +98,22 @@
     }
     // Lấy đơn hàng bên phía Admin
 
+    // Cancel Order User
+    function selectOrderCancelToCart($id){
+        $sql = "SELECT B.id as id,B.avatar,B.name,A.price_product as giagiam ,A.quantity as use_quantity_buy FROM `orders_detail` A INNER JOIN `products` B ON A.product_id=B.id WHERE A.order_id=$id";
+        return pdo_query($sql);
+    }
+    function cancelOrderUserFromDetailOrder($id){
+        $sql = "Delete from orders_detail where order_id=$id";
+        pdo_execute($sql);
+    }
+    function cancelOrderUserFromOrder($id){
+        $sql = "Delete from orders where id=$id";
+        pdo_execute($sql);
+    }
+
+    // Cancel Order User
+
+
 
 ?>
