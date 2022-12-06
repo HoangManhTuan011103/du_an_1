@@ -31,7 +31,7 @@
                     <table border="1" class="orderAdminTable">
                         <thead>
                             <tr>
-                                <th><input type="checkbox"></th>
+                                <!-- <th><input type="checkbox"></th> -->
                                 <th>STT</th>
                                 <th>Mã đơn hàng</th>
                                 <th>Tên khách hàng</th>
@@ -45,7 +45,7 @@
                         <tbody>
                             <?php foreach($listOrderUser as $key => $value): ?>
                                 <tr>
-                                    <td><input type="checkbox"></td>
+                                    <!-- <td><input type="checkbox"></td> -->
                                     <td><?= $key+ 1 ?></td>
                                     <td>DH00<?= $value['id'] ?></td>
                                     <td class="name"><?= $value['name'] ?></td>

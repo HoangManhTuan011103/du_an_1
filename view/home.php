@@ -209,12 +209,7 @@
                 </ul>
             </div>
 
-            <p class="p--category--product--menu">Hãng sản xuất</p>
-            <p class="p--sup--product--menu">Adidas</p>
-            <p class="p--sup--product--menu">Nike</p>
-            <p class="p--sup--product--menu">Puma</p>
-            <p class="p--sup--product--menu">Anta</p>
-            <p class="p--sup--product--menu">Erke</p>
+          
             <p class="p--category--product--menu">Liên hệ</p>
             <p class="p--category--product--menu">Giới thiệu</p>
             <p class="p--category--product--menu">Tin tức</p>

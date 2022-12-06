@@ -26,7 +26,7 @@
             <table border="1">
                 <thead>
                     <tr>
-                        <th><input type="checkbox"></th>
+                        <!-- <th><input type="checkbox"></th> -->
                         <th>STT</th>
                         <th>Mã danh mục</th>
                         <th>Tên danh mục</th>
@@ -51,7 +51,7 @@
                             }
                         ?>
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <!-- <td><input type="checkbox"></td> -->
                             <td><?= $key + 1 ?></td>
                             <td>DM00<?= $category['id'] ?></td>
                             <td class="name"><?= $category['name'] ?></td>

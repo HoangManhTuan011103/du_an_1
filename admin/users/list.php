@@ -31,7 +31,7 @@
             <table border="1">
                 <thead>
                     <tr>
-                        <th><input type="checkbox"></th>
+                        <!-- <th><input type="checkbox"></th> -->
                         <th>STT</th>
                         <th>Mã</th>
                         <th>Tên</th>
@@ -56,7 +56,7 @@
                         }
                         ?>
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <!-- <td><input type="checkbox"></td> -->
                             <td><?= $key + 1 ?></td>
                             <td>KH00<?= $value['id'] ?></td>
                             <td class="name"><?= $value['name'] ?></td>
