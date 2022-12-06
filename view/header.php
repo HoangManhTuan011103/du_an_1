@@ -139,8 +139,16 @@
                         </ul>
                     </div>
                     <div class="mid-header__cart">
+                        <div class="mid-header__cart--count">
+                            <?php
+
+                                echo sizeof($_SESSION['mycart']);
+
+                            ?>
+                        </div>
                         <a href="index.php?act=cart"><i
-                                class="mid-header__cart__icon mid-header__cart__icon--color fas fa-shopping-cart"></i></a>
+                                class="mid-header__cart__icon mid-header__cart__icon--color fas fa-shopping-cart"></i>
+                            </a>
                     </div>
                 </div>
             </div>

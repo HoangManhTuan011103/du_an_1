@@ -127,6 +127,22 @@ if (isset($_GET['actAdmin'])) {
                     $avatar = uniqid()  . $avatar_new['name'];
                     $status = $_POST['status'];
                     $id = $_POST['id'];
+
+                    $nameerr = "";
+                    $imageerr = "";
+                    $statuserr = "";
+
+                    if (strlen($name) == 0) {
+                        $nameerr = "Mời Bạn nhập vào tên danh mục mới";
+                    } 
+                    if (strlen($status) == 0) {
+                        $statuserr = "Mời bạn chọn trạng thái hiển thị danh mục";
+                    }
+                  
+                    if (!empty($nameerr) || !empty($statuserr)) {
+                        header("location: index.php?actAdmin=editCategories&id=$id&nameerr=$nameerr&statuserr=$statuserr");
+                        die;
+                    }
                     if ($avatar_new['size'] > 0) {
                         move_uploaded_file($avatar_new['tmp_name'], "../imageProduct/" . $avatar);
                     } else {

@@ -252,6 +252,7 @@ span.mid-header__user__icon:hover {
 }
 
 .mid-header__cart {
+    position: relative;
     background-color: #ff2d37;
     width: 45px;
     height: 45px;
@@ -259,6 +260,20 @@ span.mid-header__user__icon:hover {
     text-align: center;
     cursor: pointer;
     margin-left: 30px;
+}
+
+.mid-header__cart--count {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    z-index: 99;
+    padding-top: 5px;
+    top: -8px;
+    right: -10px;
+    font-size: 14px;
+    border-radius: 50%;
+    background-color: #ff2828;
+    color: white;
 }
 
 .mid-header__cart__icon {

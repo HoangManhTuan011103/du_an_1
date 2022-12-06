@@ -241,7 +241,8 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script type="text/javascript">
-    // document.addEventListener('DOMContentLoaded', function() {
+
+    let kyw = <?php echo json_encode($kyw); ?>;
     let arr_prodcut1 = <?php echo json_encode($prolist); ?>;
     let kyw = <?php echo json_encode($kyw); ?>;
 
@@ -543,4 +544,64 @@
     }
 
     loop_list();
+    // })
+
+    // phân trang
+
+
+    function data_render_page(arr = arr_prodcut3) {
+        if (params.get('id')||kyw) {
+            users = arr_prodcut1;
+
+        } else {
+            users = arr;
+
+        }
+        perProduct = users.slice(
+            (currentPage - 1) * perPage,
+            (currentPage - 1) * perPage + perPage,
+
+        )
+        renderPageNumber(users.length)
+        show_product123(listArrayPrice, listArrayDesc, perProduct)
+    }
+
+    function handlePageNumber(numberPage) {
+        currentPage = numberPage;
+        perProduct = users.slice(
+            (currentPage - 1) * perPage,
+            (currentPage - 1) * perPage + perPage,
+
+        )
+        show_product123(listArrayPrice, listArrayDesc, perProduct)
+
+    }
+
+
+    function renderPageNumber(count) {
+        totalPage = Math.ceil((count / perPage));
+        console.log("total páge :", totalPage);
+        if (totalPage == 1) {
+            document.querySelector("#pagination").innerHTML = " "
+
+        } else {
+
+            for (let i = 1; i <= totalPage; i++) {
+                document.querySelector("#pagination").innerHTML += `<li class="product_page-item" onclick="handlePageNumber(${i})">${i}</li>`
+            }
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        let li_active = document.querySelectorAll("li.product_page-item");
+        if (li_active[0]) {
+
+            li_active[0].classList.add('activ');
+        }
+        li_active.forEach(item => {
+            item.addEventListener('click', e => {
+                document.querySelector(".product_page-item.activ").classList.remove("activ");
+                e.target.classList.add('activ');
+            })
+        })
+    })
 </script>

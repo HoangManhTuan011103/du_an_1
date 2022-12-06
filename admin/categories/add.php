@@ -19,14 +19,14 @@
                     <p>Tên danh mục:</p>
                     <input class="name" style=" background-color: #000000;" type="text" name="name" placeholder="Nhập tên danh mục...">
                     <?php if (isset($_GET['nameerr'])) : ?>
-                        <span style="color: red; font-size: 15px;"><?= $_GET['nameerr'] ?></span>
+                        <span style="color: red; font-size: 14px;"><?= $_GET['nameerr'] ?></span>
                     <?php endif ?>
                 </div>
                 <div class="name">
                     <p>Ảnh danh mục:</p>
                     <input class="name" style=" background-color: #000000;" type="file" name="avatar" placeholder="Đăng ảnh danh mục..">
                     <?php if(isset($_GET['imageerr'])):?>
-                <span style="color: red; font-size: 15px;"><?= $_GET['imageerr']?></span>
+                <span style="color: red; font-size: 14px;"><?= $_GET['imageerr']?></span>
             <?php endif ?>
                 </div>
                 <div class="status">
@@ -37,7 +37,7 @@
                         <option value="1">Disable</option>
                     </select>
                     <?php if(isset($_GET['statuserr'])):?>
-                <span style="color: red; font-size: 15px;"><?= $_GET['statuserr']?></span>
+                <span style="color: red; font-size: 14px;"><?= $_GET['statuserr']?></span>
             <?php endif ?>
                 </div>
                 <div class="btn__action btn__action--addProduct">
