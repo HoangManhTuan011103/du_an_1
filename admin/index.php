@@ -374,13 +374,17 @@ if (isset($_GET['actAdmin'])) {
             }
             if(isset($_POST['btn--filterProduct__followCat'])){
                 $nameCaterory = $_POST['nameCaterory'];
+                $filterToPrice = $_POST['filterToPrice'];
             }else if(isset($_GET['nameCaterory'])) {
                 $nameCaterory = $_GET['nameCaterory'];
+                $filterToPrice = $_GET['filterToPrice'];
             }else{
                 $nameCaterory = "";
+                $filterToPrice = "";
             }
-            $countPage = get_Page_Product_admin($keyWord,$nameCaterory,$rowsProductAdmin);
-            $listProduct = getAllProduct($keyWord,$nameCaterory,$rowsProductAdmin);
+            
+            $countPage = get_Page_Product_admin($keyWord,$nameCaterory,$rowsProductAdmin,$filterToPrice);
+            $listProduct = getAllProduct($keyWord,$nameCaterory,$rowsProductAdmin,$filterToPrice);
             require_once "./products/list.php";
             break;
         case 'showOrder':

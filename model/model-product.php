@@ -198,7 +198,7 @@ function getOneProductFlowId($id)
 }
 
 // Panigation Product In PHP Admin
-function get_Page_Product_admin($keyWord, $nameCaterory ,$rowsProductAdmin)
+function get_Page_Product_admin($keyWord, $nameCaterory ,$rowsProductAdmin, $filterToPrice)
 {
     $sql = "select A.id, A.name as 'nameProduct', A.avatar, A.description, A.quantity, A.price, A.discount, A.status, A.hot_product, A.created_at,B.name from products A INNER JOIN categories B ON A.category_id = B.id where 1 ";
     if ($keyWord != "") {
@@ -207,14 +207,20 @@ function get_Page_Product_admin($keyWord, $nameCaterory ,$rowsProductAdmin)
     if($nameCaterory != ""){
         $sql .= " and A.category_id like '%$nameCaterory%'";
     }
-    $sql .= " order by A.id desc";
+    if($filterToPrice == "hightToLow"){
+        $sql .= " order by A.price desc";
+    } else if($filterToPrice == "lowTohight"){
+        $sql .= " order by A.price asc";
+    }else{
+        $sql .= " order by A.id desc";
+    }
     $numberPage = pdo_query($sql);
     $countPage = sizeof($numberPage) / $rowsProductAdmin;
     return $countPage;
 }
-function getAllProduct($keyWord,$nameCaterory, $rowsProductAdmin)
+function getAllProduct($keyWord,$nameCaterory, $rowsProductAdmin, $filterToPrice)
 {
-    $countPage = get_Page_Product_admin($keyWord,$nameCaterory ,$rowsProductAdmin);
+    $countPage = get_Page_Product_admin($keyWord,$nameCaterory ,$rowsProductAdmin, $filterToPrice);
     if (isset($_GET['page']) &&  $_GET['page'] > 0 && $_GET['page'] <= $countPage + 1) {
         $page = $_GET['page'];
     } else {
@@ -228,7 +234,13 @@ function getAllProduct($keyWord,$nameCaterory, $rowsProductAdmin)
     if($nameCaterory != ""){
         $sql .= " and A.category_id like '%$nameCaterory%'";
     }
-    $sql .= " order by A.id desc limit $from,$rowsProductAdmin";
+    if($filterToPrice == "hightToLow"){
+        $sql .= " order by A.price desc limit $from,$rowsProductAdmin";
+    } else if($filterToPrice == "lowTohight"){
+        $sql .= " order by A.price asc limit $from,$rowsProductAdmin";
+    }else{
+        $sql .= " order by A.id desc limit $from,$rowsProductAdmin";
+    }
     return pdo_query($sql);
 }
 
