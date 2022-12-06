@@ -438,10 +438,12 @@ if (isset($_GET['act'])) {
                             insertToOrderDetail($idOrder, $value['id'], $value['use_quantity_buy'], $value['giagiam']);
                         }
                         // header("location: index.php?act=dsdonhang");
+                        $_SESSION['mycart'] = [];
                         echo "<script> 
                                 alert('Bạn đã mua hàng thành công');
                                 window.location.href = 'index.php?act=dsdonhang';
                             </script>";
+                          
                     }
                 }
                 require_once "./view/cart/pay_detail.php";
