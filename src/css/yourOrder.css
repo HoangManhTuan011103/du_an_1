@@ -159,6 +159,19 @@ h2.congratulation {
     border: 1px solid #afb830 !important;
 }
 
+.detail_payment--success::-webkit-scrollbar {
+    width: 5px;
+}
+
+.detail_payment--success::-webkit-scrollbar-track {
+    background-color: #ffffff;
+}
+
+.detail_payment--success::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border-radius: 50px;
+}
+
 div.detail_payment--success {
     position: fixed;
     background-color: #ffffff;
@@ -166,8 +179,8 @@ div.detail_payment--success {
     left: 30%;
     z-index: 1005;
     width: 800px;
-    /* height: 500px; */
-    /* overflow-y: scroll; */
+    height: 500px;
+    overflow-y: scroll;
     /* border-radius: 10px; */
     /* box-shadow: 20px 20px 50px #ffffff; */
     transition: all linear 0.2s;
