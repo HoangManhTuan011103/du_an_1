@@ -112,9 +112,8 @@ function filter_rate(){
 function  filter_rate2($page){
     $sql = "SELECT comments_product.id as id , products.name as ProNameKyw , product_id, user_id, content rating_products, comments_product.created_at as created_at, COUNT(*) AS number_record FROM comments_product JOIN products ON product_id=products.id GROUP BY product_id HAVING number_record > -1 order by number_record Desc limit $page,5;";
     return pdo_query($sql);
-
+}
 function check_count_comment_follow_user($id_product){
     $sql="SELECT COUNT(product_id) as total_comment_id_product,user_id ,SUM(rating_products) total FROM `comments_product` WHERE product_id=$id_product GROUP BY user_id";
     return pdo_query_one($sql);
-
 }
