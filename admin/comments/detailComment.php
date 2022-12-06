@@ -32,7 +32,7 @@
                         
                     }else{
                         $pageRate ='';
-                        $pageRate_1 = '&&page';
+                        $pageRate_1 = '';
                     }
                 ?>
                 <a href="index.php?actAdmin=comments<?=$pageRate?><?=$pageRate_1?>=<?=$_GET['parent']?>"><button>Quay lại</button></a>
@@ -65,7 +65,7 @@
                              foreach ($listCmt as $value) {
                                 extract($value);
                                 $nameUser = commented_toUser($value['user_id'],$value['product_id']);
-                                $pathDele = 'index.php?actAdmin=detailCommentDele&cid='.$value['id'].'&uid='.$value['user_id'].'&pid='.$value['product_id'];
+                                $pathDele = 'index.php?actAdmin=detailCommentDele&cid='.$value['id'].'&uid='.$value['user_id'].'&pid='.$value['product_id'].'&page-at='.$_GET['page'];
                                 if($nameUser['RoleUser']==1){$Role = 'Admin';}else if($nameUser['RoleUser']==0){$Role = 'Khách';};
                                 switch ($value['rating_products']) {
                                     case '1':

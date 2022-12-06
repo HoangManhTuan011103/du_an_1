@@ -24,7 +24,7 @@
         </p>
       </div>
       <div>
-        <span>Bạn quên mật khẩu? Nhập địa chỉ email để lấy lại mật khẩu qua
+        <span style="margin-left: 20px;">Bạn quên mật khẩu? Nhập địa chỉ email để lấy lại mật khẩu qua
           email.</span>
       </div>
     </div>
@@ -42,6 +42,7 @@
           </div>
           <div>
             <p>Mật khẩu *</p>
+            <input type="text" name="code" value="<?= isset($_GET['code']) ? $_GET['code'] : $_GET['code']=''?>" id="" hidden>
             <input type="password" name="password" id="password" placeholder="Mật khẩu" />
             <p class="login__thongbao">
               <?= isset($thongbao[2]) ? $thongbao[2] : $thongbao[2] = ''; ?>
@@ -75,13 +76,30 @@
         <form action="index.php?act=dangnhap" method="post" enctype="multipart/form-data">
           <div>
             <p>Email *</p>
-            <input type="text" name="email" id="email" placeholder="Email" />
+            <input type="text" name="email" value="<?= isset($_POST['email']) ? $_POST['email'] : $_POST['email']=''?>" id="email" placeholder="Email" />
             <div>
               <span class="login__thongbao">
                 <?= isset($thongbao[3]) ? $thongbao[3] : $thongbao[3] = ''; ?>
               </span>
             </div>
           </div>
+          <div style="margin-top: 15px;">
+            <p style="margin-bottom: 5px;">Họ tên *</p>
+            <input type="text" name="name" value="<?= isset($_POST['name']) ? $_POST['name'] : $_POST['name']=''?>" id="namefoget" placeholder="Họ tên trong tài khoản" />
+            <div>
+              <span class="login__thongbao">
+                <?= isset($thongbao[4]) ? $thongbao[4] : $thongbao[4] = ''; ?>
+              </span>
+            </div>
+          </div>
+          <div>
+              <span class="login__thongbao">
+                <?= isset($_GET['codelogin']) ? $_GET['codelogin'] : $_GET['codelogin'] = ''; ?>
+              </span>
+              <span class="login__thongbao">
+                <?= isset($thongbao[5]) ? $thongbao[5] : $thongbao[5] = ''; ?>
+              </span>
+            </div>
           <div>
             <input class="forget__pass" name="quenmatkhau" type="submit" value="Lấy lại mật khẩu" />
           </div>

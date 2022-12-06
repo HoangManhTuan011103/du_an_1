@@ -21,6 +21,17 @@ function CheckEmail($email)
     $info =  pdo_query_one($sql);
     return $info;
 }
+function CheckEmail_Name($email,$name)
+{
+    $sql = "SELECT * FROM users WHERE email='$email' and name='$name'";
+    $info =  pdo_query_one($sql);
+    return $info;
+}
+function Reset_pass($pass,$email,$name)
+{
+    $sql = "UPDATE users SET `password`='$pass'  WHERE email='$email' and name='$name'";
+    pdo_execute($sql);
+}
 function convert_vi_to_en($str)
 {
     $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", "a", $str);

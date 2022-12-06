@@ -151,49 +151,55 @@ if (isset($_GET['act'])) {
             }
             break;
         case 'doimatkhau':
-            if (isset($_POST['doimatkhau'])) {
-                $password_old = $_POST['password_Old'];
-                $password_new = $_POST['password_new'];
-                $verypassword_new = $_POST['verypassword_new'];
-                $id = $_SESSION['user']['id'];
-                $check = true;
-                $password_old_md5 = md5($password_old);
-                if ($password_old_md5 != $_SESSION['user']['password']) {
-                    $thongbao[1] = "Mật khẩu cũ không chính xác  !!!";
-                    $check = false;
+            if(isset($_SESSION['user'])){
+                if (isset($_POST['doimatkhau'])) {
+                    $password_old = $_POST['password_Old'];
+                    $password_new = $_POST['password_new'];
+                    $verypassword_new = $_POST['verypassword_new'];
+                    $id = $_SESSION['user']['id'];
+                    $check = true;
+                    $password_old_md5 = md5($password_old);
+                    if ($password_old_md5 != $_SESSION['user']['password']) {
+                        $thongbao[1] = "Mật khẩu cũ không chính xác  !!!";
+                        $check = false;
+                    }
+                    if ($password_old == '') {
+                        $thongbao[1] = "Trường này không được bỏ trống  !!!";
+                        $check = false;
+                    }
+                    if ($password_new == '') {
+                        $thongbao[2] = "Trường này không được bỏ trống  !!!";
+                        $check = false;
+                    } else if (strlen($password_new) < 8) {
+                        $thongbao[2] = "Mật khẩu tối thiểu 8 ký tự  !!!";
+                        $check = false;
+                    }
+                    if ($verypassword_new == '') {
+                        $thongbao[3] = "Trường này không được bỏ trống  !!!";
+                        $check = false;
+                    } else if ($verypassword_new != $password_new) {
+                        $thongbao[3] = "Mật khẩu xác nhận không chính xác !!!";
+                        $check = false;
+                    }
+                    if ($check == true) {
+                        $password_new_insert = md5($password_new);
+                        UpdatePasstUser($password_new_insert, $id);
+                        header('Location: index.php?act=doimatkhau&&msg=Cập nhật mật khẩu thành công !');
+                        ob_end_flush();
+                    }
                 }
-                if ($password_old == '') {
-                    $thongbao[1] = "Trường này không được bỏ trống  !!!";
-                    $check = false;
-                }
-                if ($password_new == '') {
-                    $thongbao[2] = "Trường này không được bỏ trống  !!!";
-                    $check = false;
-                } else if (strlen($password_new) < 8) {
-                    $thongbao[2] = "Mật khẩu tối thiểu 8 ký tự  !!!";
-                    $check = false;
-                }
-                if ($verypassword_new == '') {
-                    $thongbao[3] = "Trường này không được bỏ trống  !!!";
-                    $check = false;
-                } else if ($verypassword_new != $password_new) {
-                    $thongbao[3] = "Mật khẩu xác nhận không chính xác !!!";
-                    $check = false;
-                }
-                if ($check == true) {
-                    $password_new_insert = md5($password_new);
-                    UpdatePasstUser($password_new_insert, $id);
-                    header('Location: index.php?act=doimatkhau&&msg=Cập nhật mật khẩu thành công !');
-                    ob_end_flush();
-                }
+                require_once "view/doimatkhau.php";
+            }else{
+                header("Location: index.php");
+                ob_end_flush();
             }
-            require_once "view/doimatkhau.php";
             break;
         case 'dangnhap':
             if (isset($_POST['dangnhap']) == true) {
                 $email_login = $_POST['email_login'];
                 $password = $_POST['password'];
                 $check = true;
+                $code = $_POST['code'];
                 if ($email_login == "") {
                     $thongbao[1] = "Email không được bỏ trống !";
                     $check = false;
@@ -215,10 +221,16 @@ if (isset($_GET['act'])) {
                         if (($checkuser_success['status'] == 1)) {
                             $thongbao[0] = "Tài khoản của bạn đã bị vô hiệu hóa liên hệ admin để được hỗ trợ !";
                         } else {
-                            $_SESSION['user'] = $checkuser_success;
-                            $thongbao[0] = "Đăng nhập thành công !";
-                            header("Location: index.php");
-                            ob_end_flush();
+                            if(isset($code) && ($code>100000)) {
+                                $_SESSION['user'] = $checkuser_success;
+                                header("Location: index.php?act=doimatkhau&codelogin=".$code);
+                            }else{
+                                $_SESSION['user'] = $checkuser_success;
+                                $thongbao[0] = "Đăng nhập thành công !";
+                                echo $_GET['code'];
+                                header("Location: index.php");
+                                ob_end_flush();
+                            }
                         }
                     } else {
                         $thongbao[0] = "Sai email hoặc mật khẩu !";
@@ -227,24 +239,41 @@ if (isset($_GET['act'])) {
             }
             if (isset($_POST['quenmatkhau']) == true) {
                 $email = $_POST['email'];
+                $name = $_POST['name'];
+                $check = true;
+                if($name == ''){
+                    $thongbao[4] = "Vui lòng nhập họ tên trong tài khoản";
+                    $check = false;
+                }
                 if ($email == "") {
-                    $thongbao[3] = "Vui lòng nhập email";
+                    $thongbao[3] = "Vui lòng nhập email liên kết tài khoản";
+                    $check = false;
                 } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $thongbao[3] = "Email sai định dạng VD: duc@abc.xyz !";
-                } else {
-                    $check_email = CheckEmail($email);
+                    $check = false;
+                } 
+                if($check==true){
+                    $pass = rand(100000,999999);
+                    $check_email = CheckEmail_Name($email,$name);
                     if (is_array($check_email)) {
-                        $thongbao[3] = 'Mật khẩu của bạn là: ' . $check_email['password'];
+                        // $thongbao[5] = 'Mật khẩu của bạn là: ' . $pass;
+                        $passins = md5($pass);
+                        Reset_pass($passins,$email,$name);
+                        header("Location: index.php?act=dangnhap&codelogin=Mật khẩu mới của bạn là: ".$pass.'&code='.$pass);
                     } else {
-                        $thongbao[3] = 'Email ' . $email . ' không tồn tại';
+                        $thongbao[5] = 'Email "' . $email . '" hoặc họ tên "'.$name.'" không đúng';
                     }
                 }
             }
-            if (isset($_SESSION['user'])) {
-                header("Location: index.php?");
-            } else {
+            // if (isset($_SESSION['user'])) {
+            //     header("Location: index.php?");
+            // } else {
+                //     require_once "./view/dangnhap.php";
+                // }
+            if(!isset($_SESSION['user'])){
                 require_once "./view/dangnhap.php";
             }
+
             break;
         case 'dangky':
             if (isset($_POST['dangky'])) {
@@ -324,7 +353,7 @@ if (isset($_GET['act'])) {
             break;
         case 'dangxuat':
             session_destroy();
-            header("Location: index.php?&msg=Đã đăng xuất !!!");
+            header("Location: index.php?act=dangnhap&msg=Đã đăng xuất !!!");
             break;
 
             // long cart 
