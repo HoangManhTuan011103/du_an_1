@@ -61,7 +61,7 @@ if (is_array($infoUser)) {
                     <select name="status" id="">
                         <option value="" hidden>-- Chọn trạng thái --</option>
                         <option value="0" <?= ($status == 0) ? 'selected' :'' ?>>Active</option>
-                        <option value="1" <?= ($status == 1) ? 'selected' :'' ?>>Disable</option>  
+                        <option value="1" <?= ($status == 1) ? 'selected' :'' ?>>Inactive</option>  
                     </select>
                 </div>
                 <div class="status">

@@ -78,7 +78,7 @@
                                 if($value['status']==0){
                                         echo "<button class='status-isset'>Active</button>";
                                 }else if($value['status']==1){
-                                 echo "<button class='status-empty'>Disable</button>";
+                                 echo "<button class='status-empty'>Inactive</button>";
                                 }else if($value['status']==3){
                                     echo "<button class='status-empty direct'>Direct</button>";
                                    }
@@ -113,21 +113,66 @@
                 </tbody>
             </table>
             <ul>
+                <?php 
+                        $table = 'users';
+                        $rows = count_rows($table);
+                        $slpage = ceil($rows['rows']/5);
+                        if(isset($_GET['page'])){
+                            if($_GET['page'] > 0){
+                                if($_GET['page'] <= 1){
+                                    $prev = 1 ;
+                                }else{
+                                    $prev = $_GET['page'] - 1;
+                                }
+                                if($_GET['page'] >= $slpage){
+                                    $next = $_GET['page'];
+                                }else{
+                                    $next = $_GET['page'] + 1;
+                                }
+                            }else{
+                                $next = 1;
+                            }
+                        }else{
+                            $prev = 1;
+                            $next = 2;
+                        }
+                 ?>
                 <li>
-                    <a href=""><i class="fa-sharp fa-solid fa-angles-left"></i></a>
+                    <a href="index.php?actAdmin=showUsers&&page=1"><i class="fa-sharp fa-solid fa-angles-left"></i></a>
                 </li>
                 <li>
-                    <a href=""><i class="fa-solid fa-angle-left"></i></a>
+                    <a href="index.php?actAdmin=showUsers&&page=<?= isset($prev) ? $prev : ''?>"><i class="fa-solid fa-angle-left"></i></a>
                 </li>
-                <li><a href="" style="background-color: #F39C12; color: #ffffff;">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-                <li><a href="">4</a></li>
+                <?php
+                        $table = 'users';
+                        $rows = count_rows($table);
+                        $slpage = ceil($rows['rows']/5);
+                        for ($i=1; $i <= $slpage; $i++) {
+                            if(isset($_GET['page']) && $i == $_GET['page']){
+                                echo ' <li style="margin: 0 3px;">
+                                <a style="background-color: #F39C12; color: #ffffff;" href="index.php?actAdmin=showUsers&&page='.$i.'">'.$i.'</a></li>';
+                            }else if(!isset($_GET['page'])){
+                                if($i ==1 ){
+                                    echo ' <li style="margin: 0 3px;">
+                                    <a style="background-color: #F39C12; color: #ffffff;" href="index.php?actAdmin=showUsers&&page='.$i.'">'.$i.'</a></li>';
+                                }else{
+                                echo '<li style="margin: 0 3px">
+                                <a href="index.php?actAdmin=showUsers&&page='.$i.'">'.$i.'</a></li>';
+                                }
+                            }else{
+                                echo '<li style="margin: 0 3px">
+                                <a href="index.php?actAdmin=showUsers&&page='.$i.'">'.$i.'</a></li>';
+                            }
+                           
+                        }
+                ?>
+              
+
                 <li>
-                    <a href=""><i class="fa-solid fa-angle-right"></i></a>
+                    <a href="index.php?actAdmin=showUsers&&page=<?= isset($next) ? $next : ''?>"><i class="fa-solid fa-angle-right"></i></a>
                 </li>
                 <li>
-                    <a href=""><i class="fa-sharp fa-solid fa-angles-right"></i></a>
+                    <a href="index.php?actAdmin=showUsers&&page=<?=$slpage?>"><i class="fa-sharp fa-solid fa-angles-right"></i></a>
                 </li>
             </ul>
         </div>

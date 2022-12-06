@@ -86,3 +86,23 @@ function getCountUserHome(){
     return pdo_query_one($sql);
 }   
 // Select count users home
+
+function getAllUser1()
+{
+    $sql = "SELECT * FROM users order by id desc limit 0,5";
+    return pdo_query($sql);
+}
+function getAllUser2($page)
+{
+    $sql = "SELECT * FROM users order by id desc limit $page,5";
+    return pdo_query($sql);
+}
+function count_rows($table){
+    $sql = "SELECT COUNT(id) AS `rows` FROM $table";
+    return pdo_query_one($sql);
+}
+function getPageLimit($page,$soPage,$table)
+{
+    $sql = "SELECT * FROM $table order by id desc limit $page,$soPage";
+    return pdo_query($sql);
+}
