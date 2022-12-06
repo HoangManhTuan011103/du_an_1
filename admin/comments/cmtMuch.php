@@ -7,7 +7,7 @@
                         <button type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
-                            <a href="index.php?actAdmin=comments&&rate&&pageRate=1" style="color: white;padding: 15px;background: #b31212;/* border: 1px; */border-radius: 8px;margin-right: px;">Bình luận nhiều nhất</a>
+                            <a href="index.php?actAdmin=comments&&rate&&pageRate=1" style="color: white;padding: 15px;background: #b31212;/* border: 1px; */border-radius: 8px;margin-left: 10px; font-weight: bold;">Bình luận nhiều nhất</a>
                     </form>
                 </div>
                 <div class="contentManager--product__header--control">
