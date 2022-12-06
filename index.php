@@ -507,6 +507,17 @@ if (isset($_GET['act'])) {
                 header("location: index.php?act=cart");
             }
             break;
+        case "lienhe":
+            require_once "./view/lienhe.php";
+            break;
+        case "gioithieu":
+        require_once "./view/gioithieu.php";
+        break;
+
+        case "tintuc":
+            require_once "./view/tintuc.php";
+            break;
+    
         default:
             // require_once "";
             break;

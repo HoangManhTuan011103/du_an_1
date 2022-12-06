@@ -161,9 +161,9 @@
                     <li class="nav__ul__li--list nav__ul--product"><a
                             href="index.php?act=showProducts">Sản phẩm</a></li>
                    
-                    <li class="nav__ul__li--list nav__ul--contact"><a href="">Liên hệ</a></li>
-                    <li class="nav__ul__li--list nav__ul--introduce"><a href="">Giới thiệu</a></li>
-                    <li class="nav__ul__li--list nav__ul--news"><a href="">Tin tức</a></li>
+                    <li class="nav__ul__li--list nav__ul--contact"><a href="index.php?act=lienhe">Liên hệ</a></li>
+                    <li class="nav__ul__li--list nav__ul--introduce"><a href="index.php?act=gioithieu">Giới thiệu</a></li>
+                    <li class="nav__ul__li--list nav__ul--news"><a href="index.php?act=tintuc">Tin tức</a></li>
                 </ul>
             </nav>
         </div>
