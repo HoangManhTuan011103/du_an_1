@@ -75,7 +75,7 @@
                             }
                         ?>
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td> <form action="" method="post"> <input type="checkbox" name="checkbox[]" value="<?= $value['id'] ?>" ></form></td>
                            
                             <td>SP00<?= $value['id'] ?></td>
                             <td class="name"><?= $value['nameProduct'] ?></td>

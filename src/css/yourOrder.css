@@ -89,7 +89,7 @@ button.btnSee__detail--yourOrder:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1004;
+    z-index: 10001;
     cursor: pointer;
     transition: all linear 0.2s;
     animation: backGroundShow linear 0.2s;
@@ -177,7 +177,7 @@ div.detail_payment--success {
     background-color: #ffffff;
     top: 20%;
     left: 30%;
-    z-index: 1005;
+    z-index: 10001;
     width: 800px;
     height: 500px;
     overflow-y: scroll;

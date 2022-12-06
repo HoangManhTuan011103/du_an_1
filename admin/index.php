@@ -365,6 +365,7 @@ if (isset($_GET['actAdmin'])) {
             require_once "./products/edit.php";
             break;
         case 'showProduct':
+            
             if (isset($_POST['btn-search--Product'] )) {
                 $keyWord = $_POST['keyWord'];
             }else if(isset($_GET['keyWord'])) {

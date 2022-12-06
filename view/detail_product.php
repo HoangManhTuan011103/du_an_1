@@ -85,7 +85,8 @@ foreach ($check_user_bying_product as $check) {
 ?>
 
 
-<div class="grid wide">
+<div class="grid wide" style="position: relative;
+    top: 150px;">
     <!-- điều hương -->
     <div class="row product_title_path">
         <p>Trang chủ</p>
