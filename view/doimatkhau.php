@@ -56,11 +56,11 @@
                     <p class="title_login--children-2">ĐỔI MẬT KHẨU</p>
                     <p class="title_login--children-2 dij998">&ensp;</p>
                     <p style="margin-bottom: 10px">Để đảm bảo tính bảo mật vui lòng đặt mật khẩu với ít nhất 8 kí tự</p>
-                    <div class="login__bottom-form-left">
-                        <form action="index.php?act=doimatkhau" method="post" enctype="multipart/form-data">
+                    <div class="login__bottom-form-left not">
+                        <form action="index.php?act=doimatkhau&&codelogin=<?= isset($_GET['codelogin']) ? $_GET['codelogin'] : $_GET['codelogin'] = ''; ?>" method="post" enctype="multipart/form-data">
                             <div>
                                 <p>Mật khẩu cũ *</p>
-                                <input type="password" value="<?= isset($_POST['password_Old']) ? $_POST['password_Old'] : $_POST['password_Old'] = ''; ?>" name="password_Old" id="email" placeholder="Mật khẩu cũ" />
+                                <input type="password" value="<?= isset($_GET['codelogin']) ? $_GET['codelogin'] : $_GET['codelogin'] = ''; ?>" name="password_Old" id="email" placeholder="Mật khẩu cũ" />
                                 <p class="login__thongbao">
                                     <?= isset($thongbao[1]) ? $thongbao[1] : $thongbao[1] = ''; ?>
                                 </p>

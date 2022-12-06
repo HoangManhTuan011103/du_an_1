@@ -863,10 +863,15 @@ if (isset($_GET['actAdmin'])) {
             $rows = comment_count_pro_cmt($pid);
             $slpage = ceil($rows['Count(*)']/5);
             $count_cmt_detail = comment_count_pro_cmt($pid);
+            if($_GET['page-at'] > $slpage){
+                $page_at = $slpage;
+            }else{
+                $page_at = $_GET['page-at'];
+            }
             if($count_cmt_detail['Count(*)']<1){
                 header('Location: index.php?actAdmin=comments&&page=1&msg=Xoá bình luận thành công !');
             }else{
-                header('Location: index.php?actAdmin=detailComment'.$pageRate_1.'&parent='.$_GET['parent'].'&uid='.$uid.'&pid='.$pid.'&page='.$slpage.'&msg=Xoá bình luận thành công !');
+                header('Location: index.php?actAdmin=detailComment'.$pageRate_1.'&parent='.$_GET['parent'].'&uid='.$uid.'&pid='.$pid.'&page='.$page_at.'&msg=Xoá bình luận thành công !');
             }
             break;
         case 'dangxuat':

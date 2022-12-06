@@ -77,15 +77,25 @@
 .login__bottom-form-left {
   width: 50%;
   padding-right: 29px;
+  width: 50%;
+  padding-right: 40px;
+  border-right: 1px solid #e3dcdc;
+  /* margin-right: px; */
+}
+.login__bottom-form-left.not{
+  width: 50%;
+  padding-right: 29px !important;
+  border: none;
 }
 .login__bottom-form-right {
   width: 50%;
+  margin-left: 40px;
 }
 .login__bottom-form-right > form > div:first-child > p,
 .login__bottom-form-left > form > div:not(:last-child) > p {
   margin-bottom: 5px;
 }
-.login__bottom-form-right > form > div:first-child > input,
+.login__bottom-form-right > form > div:not(:last-child) > input,
 .login__bottom-form-left > form > div:not(:last-child) > input {
   height: 40px;
   padding: 0 20px;
@@ -97,7 +107,7 @@
   margin-bottom: 15px;
   font-size: 14px;
 }
-.login__bottom-form-right > form > div:first-child > input:focus,
+.login__bottom-form-right > form > div:not(:last-child) > input:focus,
 .login__bottom-form-left > form > div:not(:last-child) > input:focus {
   outline: none;
 }
@@ -164,9 +174,10 @@
 }
 .login__bottom-form-right > form {
   display: flex;
+  flex-direction: column;
 }
-.login__bottom-form-right > form > div:first-child {
-  width: 75%;
+.login__bottom-form-right > form > div:not(:last-child) {
+  width: 100%;
   padding-right: 30px;
 }
 .login__bottom-form-right > form > div:last-child {
