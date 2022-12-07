@@ -98,7 +98,7 @@
                                     <td class="dateCreate">'.$value['created_at'].'</td>
                                     <td class="role">'.$Role.'</td>
                                     <td class="btn-action">
-                                        <a onclick="return confirm(`Bạn có chắc chắn muốn xóa khônng ? `)" href="'.$pathDele.'"><button><i class="fa-sharp fa-solid fa-trash"></i></button></a>
+                                        <a onclick="return confirm(`Bạn có chắc chắn muốn xóa khônng ? `)" href="'.$pathDele.'"><i class="fa-sharp fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>';
                                 $stt++;

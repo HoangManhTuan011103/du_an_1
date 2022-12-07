@@ -74,10 +74,10 @@
                                 <?= $category['created_at'] ?>
                             </td>
                             <td class="btn-action">
-                                <a href="index.php?actAdmin=editCategories&id=<?= $category['id'] ?>">
-                                    <button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button></a>
+                                <a href="index.php?actAdmin=editCategories&id=<?= $category['id'] ?>" style="margin-right: 5px;">
+                                    <i class="fa-solid fa-screwdriver"></i></a>
                                 <a onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục <?= $category['name'] ?> không?')" href="index.php?actAdmin=deleteCategory&id=<?= $category['id'] ?>">
-                                    <button><i class="fa-sharp fa-solid fa-trash"></i></button></a>
+                                    <i class="fa-sharp fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

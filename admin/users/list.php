@@ -102,7 +102,7 @@
                             <td class="btn-action">
                                 <?php if($value['role'] != 3){ ?>
                                     <a href="index.php?actAdmin=editUser&id=<?= $value['id'] ?>">
-                                        <button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button>
+                                        <i class="fa-solid fa-screwdriver"></i>
                                     </a>
                                 <?php } ?>
                                

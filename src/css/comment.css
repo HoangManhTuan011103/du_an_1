@@ -143,6 +143,18 @@
 
 /* Start css code for add category */
 
+.contentManager--product__footer.contentManager--product__footer--addProduct>form>.form--category .btn__action a {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #DD4B39;
+    font-size: 13.333px;
+    border: 1px solid #000000;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+
 .contentManager--product__footer.contentManager--product__footer--addProduct>form>.form--category .btn__action button {
     padding: 10px 15px;
     border-radius: 5px;
@@ -154,7 +166,7 @@
     transition: all 0.3s linear;
 }
 
-.contentManager--product__footer.contentManager--product__footer--addProduct>form>.form--category .btn__action>a>button:hover {
+.contentManager--product__footer.contentManager--product__footer--addProduct>form>.form--category .btn__action>a:hover {
     background-color: #a74133;
 }
 

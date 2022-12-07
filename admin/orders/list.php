@@ -89,7 +89,7 @@
                                     </td>
                                     <td class="btn-action">
                                         <?php if($value['statusUser'] == 3): ?>
-                                            <a href="index.php?actAdmin=editOrderAdmin-WithUser&&id=<?= $value['id'] ?>" class="update"><button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button></a>
+                                            <a href="index.php?actAdmin=editOrderAdmin-WithUser&&id=<?= $value['id'] ?>" class="update"><i class="fa-solid fa-screwdriver"></i></a>
                                         <?php endif; ?>
                                     </td>
                                 </tr>
