@@ -191,7 +191,7 @@
     let idPage = 1;
     let start = 0;
     let end = perPage;
-
+   
 
     if (kyw.length > 0) {
         productArr = arr_prodcut1;
@@ -249,16 +249,20 @@
         }).join("");
         category_grid_review.innerHTML = content;
     }
-
+ 
     function renderListPage(totalPages) {
         let html = '';
-        html += `<li class="current-page actives">${1}</li>`;
-        for (let i = 2; i <= totalPages; i++) {
-            html += `<li class="current-page">${i}</li>`;
+        if (totalPages === 0||totalPages === 1) {
+            html = ' '
         }
-        if (totalPages === 0) {
-            html = ''
+        else{
+            html += `<li class="current-page actives">${1}</li>`;
+            for (let i = 2; i <= totalPages; i++) {
+
+                html += `<li class="current-page">${i}</li>`;
+            }
         }
+       
         document.getElementById('number-page').innerHTML = html;
     }
 
@@ -270,7 +274,7 @@
 
                 document.querySelector(".current-page.actives").classList.remove("actives");
                 e.target.classList.add('actives');
-              let  idPage = index + 1;
+                let idPage = index + 1;
                 getCurrentPage(idPage);
                 renderProduct(productArr);
             })
@@ -313,10 +317,9 @@
         idPage = 1;
         if (id_category !== 0) {
             list_arr = list_arr.filter(function(item) {
-                return item.category_id == id_category;
+                return item.category_id === Number(id_category);
             });
         }
-        let arr_product = []
         const arrlist = list_arr.filter((iteam, index) => {
 
             let prices_price = Math.floor(iteam.price - ((iteam.price * iteam.discount) / 100));
@@ -351,10 +354,11 @@
                 avatar: iteam.avatar
             }]
         })
-    
-        let numberPage = Math.ceil(arrlist.length / perPage);
+
+        productArr=arrlist;
+        let numberPage = Math.ceil(productArr.length / perPage);
         getCurrentPage(idPage);
-        initRender(arrlist, numberPage);
+        initRender(productArr, numberPage);
         changePage();
 
     }
@@ -401,7 +405,7 @@
                             parseInt(moment(new Date(a.created_at)).format('YYYYMMDDHHmmss')) -
                             parseInt(moment(new Date(b.created_at)).format('YYYYMMDDHHmmss'))
                         ))
-                  
+
                     show_product123(listArrayPrice, data_price)
                 }
                 if (this.value == "new") {
@@ -410,7 +414,7 @@
                             parseInt(moment(new Date(b.created_at)).format('YYYYMMDDHHmmss')) -
                             parseInt(moment(new Date(a.created_at)).format('YYYYMMDDHHmmss'))
                         ))
-                  
+
                     show_product123(listArrayPrice, data_price)
                 }
             }
@@ -420,12 +424,12 @@
     function filter_array_cate_by_click(id) {
 
         let arr_list_cate = arr_prodcut3.filter(iteam => {
-            return iteam.category_id == id
+            return iteam.category_id === Number(id)
         })
 
-        show_product123(listArrayPrice, arr_list_cate);
-
+       show_product123(listArrayPrice, arr_list_cate);
     }
+
     if (params.get('id')) {
         id_category = params.get('id');
         filter_array_cate_by_click(id_category)
@@ -453,7 +457,7 @@
                     li_active.classList.remove('active');
                     this.classList.add('active');
                 }
-                id_category = this.getAttribute("data-id")
+                id_category = this.getAttribute("data-id");
                 filter_array_cate_by_click(id_category);
                 this.classList.add("active");
             })
