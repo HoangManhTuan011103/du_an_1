@@ -163,17 +163,17 @@
     color:black;
 }
 
-.btn-active{
+.btn-actives{
     color: #c6c9cc;
     border: solid 1px #c6c9cc !important;
 }
 
-  .content__paging .active{
+  .content__paging .actives{
     background: #ff6e06;
     border: 1px solid #ff6e06;
 }
 
- .content__paging .active{
+ .content__paging .actives{
     color: white;
 }
 

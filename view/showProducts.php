@@ -252,7 +252,7 @@
 
     function renderListPage(totalPages) {
         let html = '';
-        html += `<li class="current-page active">${1}</li>`;
+        html += `<li class="current-page actives">${1}</li>`;
         for (let i = 2; i <= totalPages; i++) {
             html += `<li class="current-page">${i}</li>`;
         }
@@ -263,14 +263,14 @@
     }
 
     function changePage() {
-
         let li_active = document.querySelectorAll(".number-page li");
+
         li_active.forEach((item, index) => {
             item.addEventListener('click', e => {
 
-                document.querySelector(".current-page.active").classList.remove("active");
-                e.target.classList.add('active');
-                idPage = index + 1;
+                document.querySelector(".current-page.actives").classList.remove("actives");
+                e.target.classList.add('actives');
+              let  idPage = index + 1;
                 getCurrentPage(idPage);
                 renderProduct(productArr);
             })
@@ -351,12 +351,11 @@
                 avatar: iteam.avatar
             }]
         })
-        console.log(arrlist)
-        arr_product.push(arrlist);
+    
         let numberPage = Math.ceil(arrlist.length / perPage);
         getCurrentPage(idPage);
-        changePage();
         initRender(arrlist, numberPage);
+        changePage();
 
     }
 
@@ -402,7 +401,7 @@
                             parseInt(moment(new Date(a.created_at)).format('YYYYMMDDHHmmss')) -
                             parseInt(moment(new Date(b.created_at)).format('YYYYMMDDHHmmss'))
                         ))
-                    console.log(data_price)
+                  
                     show_product123(listArrayPrice, data_price)
                 }
                 if (this.value == "new") {
@@ -411,8 +410,7 @@
                             parseInt(moment(new Date(b.created_at)).format('YYYYMMDDHHmmss')) -
                             parseInt(moment(new Date(a.created_at)).format('YYYYMMDDHHmmss'))
                         ))
-                    console.log(data_price)
-
+                  
                     show_product123(listArrayPrice, data_price)
                 }
             }
