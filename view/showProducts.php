@@ -191,7 +191,7 @@
     let idPage = 1;
     let start = 0;
     let end = perPage;
-   
+
 
     if (kyw.length > 0) {
         productArr = arr_prodcut1;
@@ -249,20 +249,19 @@
         }).join("");
         category_grid_review.innerHTML = content;
     }
- 
+
     function renderListPage(totalPages) {
         let html = '';
-        if (totalPages === 0||totalPages === 1) {
+        if (totalPages === 0 || totalPages === 1) {
             html = ' '
-        }
-        else{
+        } else {
             html += `<li class="current-page actives">${1}</li>`;
             for (let i = 2; i <= totalPages; i++) {
 
                 html += `<li class="current-page">${i}</li>`;
             }
         }
-       
+
         document.getElementById('number-page').innerHTML = html;
     }
 
@@ -355,7 +354,7 @@
             }]
         })
 
-        productArr=arrlist;
+        productArr = arrlist;
         let numberPage = Math.ceil(productArr.length / perPage);
         getCurrentPage(idPage);
         initRender(productArr, numberPage);
@@ -427,7 +426,7 @@
             return iteam.category_id === Number(id)
         })
 
-       show_product123(listArrayPrice, arr_list_cate);
+        show_product123(listArrayPrice, arr_list_cate);
     }
 
     if (params.get('id')) {

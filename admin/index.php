@@ -837,9 +837,8 @@ if (isset($_GET['actAdmin'])) {
             break;
         case 'statisticals':
             $getToTalProductChart = getToTalProductChartJs();
-            $getListMoneyOrderAdmin = getListMoneyOrderAdmin();
+      
             if(isset($_POST['btn__find--OrderMoney'])){
-              
                 if(isset($_POST['dayStart'])&&isset($_POST['dayEnd'])){
                     $dayStart = $_POST['dayStart'];
                     $dayEnd = $_POST['dayEnd'];
@@ -853,8 +852,23 @@ if (isset($_GET['actAdmin'])) {
                     $dayStart = "";
                     $dayEnd = "";
                 }
+
+                $getListMoneyOrderAdmin = getListMoneyOrderAdmin($dayStart,$dayEnd);
+                $countPage = getListMoneyOrderAdminPage($dayStart,$dayEnd);
+            }else{
+                if(isset($_GET['dayStart'])&&isset($_GET['dayEnd'])) {
+                    $dayStart = $_GET['dayStart'];
+                    $dayEnd = $_GET['dayEnd'];
+                    $getListMoneyOrderAdmin = getListMoneyOrderAdmin($dayStart,$dayEnd);
+                    $countPage = getListMoneyOrderAdminPage($dayStart,$dayEnd);
+                }else{
+                    $getListMoneyOrderAdmin = getListMoneyOrderAdmin("","");
+                    $countPage = getListMoneyOrderAdminPage("","");
+                }
+              
             }
-            $getListMoneyOrderAdmin = getListMoneyOrderAdmin();
+          
+         
             require_once "./statisticals/list.php";
             break;
         case 'comments':
