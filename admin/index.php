@@ -21,6 +21,8 @@ if (!isset($_SESSION['orderAdmin'])) {
 if (!isset($_SESSION['orderUpdateAdmin'])) {
     $_SESSION['orderUpdateAdmin'] = [];
 }
+$sumMoneyShop = getTotalMoneyToShop();
+$getListMoneyOrderAdmin = getListMoneyOrderAdmin();
 $countView = getViewAccessWebsite();
 $listBuyOnDay = buyProductWithDay();
 $bestSale = bestProductSales();

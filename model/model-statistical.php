@@ -44,6 +44,14 @@
         return pdo_query($sql);
     }
     //<?= number_format($value['total_price']) . "đ" 
+    function getTotalMoneyToShop(){
+        $sql = "SELECT SUM(total_price) as money FROM `orders` WHERE status=6";
+        return pdo_query_one($sql);
+    }
+    function getListMoneyOrderAdmin(){
+        $sql = "SELECT A.`id`, A.`user_id`, A.`total_price`,A.`address`, A.`created_at`,B.`name` FROM `orders` A LEFT JOIN `users` B ON A.user_id=B.id WHERE A.status = 6";
+        return pdo_query($sql);
+    }
   
 
 ?>

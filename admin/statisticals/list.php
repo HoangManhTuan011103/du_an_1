@@ -9,6 +9,85 @@
         </div>
     </div>
     <h2 style="color: #ffffff; margin-top: 45px; margin-bottom: 10px;">Tổng doanh thu tháng <?= $sumMoneyMonthCurrently['total_flow_month']  ?>/<?= $sumMoneyMonthCurrently['total_flow_year'] ?> là: <?= number_format($sumMoneyMonthCurrently['sum(total_price)']) . "đ" ?> </h2>
+    <div class="statistical--second">
+           
+            <div class="statistical--chart statistical--orderRecent chart ">
+                <div class="title">
+                    <h2>Doanh thu của F-Sport: <?= number_format($sumMoneyShop['money']).'đ' ?> </h2>
+                </div>
+                <div class="tableProduct">
+                    <form action="" method="POST" class="formOrderMoney">
+                        <input type="date" name="" id="">
+                        <p><i class="fa-solid fa-arrow-right"></i></p>
+                        <input type="date" name="" id="">
+                        <button type="submit" name="btn__find--OrderMoney"><i class="fa-sharp fa-solid fa-filter" style="margin-right: 5px; font-size: 16px; color: #ffffff;"></i>Lọc </button>
+                    </form>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Mã dơn hàng</th>
+                                <th>Mã khách hàng</th>
+                                <th>Tên khách hàng</th>
+                                <th>Tổng tiền</th>
+                                <th>Địa chỉ</th>
+                                <th>Ngày mua</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($getListMoneyOrderAdmin as $value) : ?>
+                                <tr>
+                                    <td>DH00<?= $value['id'] ?></td>
+                                    <td>KH00<?= $value['user_id'] ?></td>
+                                    
+                                    <td><?= $value['name'] ?></td>
+                                    <td><?= number_format($value['total_price']).'đ' ?></td>
+                                    <td><?= $value['address'] ?></td>
+                                    
+                                    <td><?= $value['created_at'] ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="statistical--orderRecent">
+                <div class="title">
+                    <?php
+                    $sumWeek = 0;
+                    foreach ($totalOrderWeek as $value) {
+                        $sumWeek += $value['kh_mua'];
+                    }
+                    ?>
+                    <h2>Số lượng đơn hàng giao dịch trong tuần: <?= $sumWeek ?></h2>
+                </div>
+                <div class="tableProduct">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Mã khách hàng</th>
+                              
+                                <th>Tên khách hàng</th>
+                                <th>Số lượng đơn</th>
+                                <!-- <th>Tổng tiền</th> -->
+                                <th>Ngày mua</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($totalOrderWeek as $value) : ?>
+                                <tr>
+                                    <td>KH00<?= $value['id_kh'] ?></td>
+                                    
+                                    <td><?= $value['name'] == "" ? "Khách hàng trực tiếp" : $value['name'] ?></td>
+                                    <td><?= $value['kh_mua'] ?></td>
+                                    
+                                    <td><?= $value['created_at'] ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     <div class="contentManager--product__footer contentManager--product__footer--addProduct">
         <div class="statistical--first">
             <div class="statistical--topProduct">
@@ -59,53 +138,7 @@
                 </div>
             </div>
         </div>
-        <div class="statistical--second">
-            <div class="statistical--orderRecent">
-                <div class="title">
-                    <?php
-                    $sumWeek = 0;
-                    foreach ($totalOrderWeek as $value) {
-                        $sumWeek += $value['kh_mua'];
-                    }
-                    ?>
-                    <h2>Số lượng đơn hàng giao dịch trong tuần: <?= $sumWeek ?></h2>
-                </div>
-                <div class="tableProduct">
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>Mã khách hàng</th>
-                              
-                                <th>Tên khách hàng</th>
-                                <th>Số lượng đơn</th>
-                                <!-- <th>Tổng tiền</th> -->
-                                <th>Ngày mua</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($totalOrderWeek as $value) : ?>
-                                <tr>
-                                    <td>KH00<?= $value['id_kh'] ?></td>
-                                    
-                                    <td><?= $value['name'] == "" ? "Khách hàng trực tiếp" : $value['name'] ?></td>
-                                    <td><?= $value['kh_mua'] ?></td>
-                                    
-                                    <td><?= $value['created_at'] ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="statistical--chart statistical--orderRecent chart ">
-                <div class="title">
-                    <h2>Thống kê sản phẩm được mua các danh mục</h2>
-                </div>
-                <div class="chart--doughnut">
-                    <canvas id="chart__first2"></canvas>
-                </div>
-            </div>
-        </div>
+       
 
     </div>
 </div>
