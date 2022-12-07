@@ -85,8 +85,6 @@
             </div>
 
 
-           
-
 
         </div>
         <div class="col l-9">
@@ -121,9 +119,18 @@
             </div>
 
             <!-- phân trang -->
-            <div class="row product_fillter_page">
+            <div class="row product_fillter_page content__paging">
 
-                <ul class="" id="pagination"> </ul>
+
+                <div class="page">
+                    <ul>
+
+                        <div class="number-page" id="number-page">
+
+                        </div>
+
+                    </ul>
+                </div>
 
             </div>
             <!-- bạn thích -->
@@ -153,25 +160,18 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script type="text/javascript">
-
     let kyw = <?php echo json_encode($kyw); ?>;
     let arr_prodcut1 = <?php echo json_encode($prolist); ?>;
-   
+
 
     let arr_prodcut3 = <?php echo json_encode($prolist1); ?>;
     let array_product_2 = <?php echo json_encode($protop4); ?>;
-
-
-    let fillter_create_at_asc = <?php echo json_encode($fillter_create_at_asc); ?>;
-    let fillter_created_at_desc = <?php echo json_encode($fillter_created_at_desc); ?>;
-
     let category_grid_review = document.querySelector(".category--grid--review");
     let category_grid_review_ = document.querySelector(".category--grid--review.helo");
     let fillter_categories_list = document.querySelectorAll(".fillter_categories_list li")
 
 
     let fillter_list_flow_price = document.querySelectorAll(".fillter_list_flow_price input")
-    let product_fillter_flow_desc = document.querySelectorAll(".product_fillter_flow_desc input")
 
     let fillter_products_time = document.querySelectorAll(".fillter_products_time input")
 
@@ -181,77 +181,103 @@
     })
 
     let listArrayPrice = [];
-    let listArrayDesc = [];
     let id_category = 0;
-    let users = [];
     let currentPage = 1;
     let perPage = 8;
-    let totalPage = 0;
-    let perProduct = [];
     let count_page = arr_prodcut3;
     const params = new URL(location.href).searchParams;
 
+    let productArr = [];
+    let idPage = 1;
+    let start = 0;
+    let end = perPage;
 
-    
 
-    // phân trang
+    if (kyw.length > 0) {
+        productArr = arr_prodcut1;
+    } else {
 
-
-    function data_render_page() {
-        if (params.get('id') || kyw) {
-            users = arr_prodcut1;
-
-        } else {
-            users = arr_prodcut3;
-
-        }
-        perProduct = users.slice(
-            (currentPage - 1) * perPage,
-            (currentPage - 1) * perPage + perPage,
-
-        )
-        renderPageNumber(users.length)
-        show_product123(listArrayPrice, listArrayDesc, perProduct)
-    }
-
-    function handlePageNumber(numberPage) {
-        currentPage = numberPage;
-        perProduct = users.slice(
-            (currentPage - 1) * perPage,
-            (currentPage - 1) * perPage + perPage,
-
-        )
-        show_product123(listArrayPrice, listArrayDesc, perProduct)
-
+        productArr = arr_prodcut3;
     }
 
 
-    function renderPageNumber(count) {
-        totalPage = Math.ceil((count / perPage));
-        console.log("total páge :", totalPage);
-        if (totalPage == 1) {
-            document.querySelector("#pagination").innerHTML = " "
+    let totalPages = Math.ceil(productArr.length / perPage);
 
-        } else {
 
-            for (let i = 1; i <= totalPage; i++) {
-                document.querySelector("#pagination").innerHTML += `<li class="product_page-item" onclick="handlePageNumber(${i})">${i}</li>`
+    function initRender(productAr, totalPage) {
+        renderProduct(productAr);
+        renderListPage(totalPage);
+    }
+
+    initRender(productArr, totalPages);
+
+    function getCurrentPage(indexPage) {
+        start = (indexPage - 1) * perPage;
+        end = indexPage * perPage;
+        totalPages = Math.ceil(productArr.length / perPage);
+    }
+
+    getCurrentPage(1);
+
+
+    function renderProduct(product) {
+        const content = product.map((item, index) => {
+            if (index >= start && index < end) {
+                return `
+                    <div class=" col l-3 m-4 c-6">
+                       <div class="product__banner">
+                           <div class="product--hot__img">
+                           <a href="index.php?act=detail_product&id=${item.id}">    <img src="imageProduct/${item.avatar}" alt="">
+                           </a> </div>
+                           <div class="product__banner__name">
+                           <a href="index.php?act=detail_product&id=${item.id}">    <p>${item.name}</p></a>
+                           </div>
+                       </div>
+                       <div class="product__banner__price">
+                           <div>
+                               <p class="product__banner__price--cost"> ${format_number_price.format(Math.floor(item.price - ((item.price * item.discount) / 100)))} </p>
+
+                               <p class="product__banner__price--sale   product_one_price_old">${format_number_price.format(Math.floor(item.price))}</p>
+                           </div>
+                           <div class="product__banner__btn--detail">
+                               <a href="index.php?act=detail_product&id=${item.id}">chi tiết</a>
+                           </div>
+                       </div>
+                   </div>`;
+
             }
-        }
+        }).join("");
+        category_grid_review.innerHTML = content;
     }
-    document.addEventListener('DOMContentLoaded', function() {
-        let li_active = document.querySelectorAll("li.product_page-item");
-        if (li_active[0]) {
 
-            li_active[0].classList.add('activ');
+    function renderListPage(totalPages) {
+        let html = '';
+        html += `<li class="current-page active">${1}</li>`;
+        for (let i = 2; i <= totalPages; i++) {
+            html += `<li class="current-page">${i}</li>`;
         }
-        li_active.forEach(item => {
+        if (totalPages === 0) {
+            html = ''
+        }
+        document.getElementById('number-page').innerHTML = html;
+    }
+
+    function changePage() {
+
+        let li_active = document.querySelectorAll(".number-page li");
+        li_active.forEach((item, index) => {
             item.addEventListener('click', e => {
-                document.querySelector(".product_page-item.activ").classList.remove("activ");
-                e.target.classList.add('activ');
+
+                document.querySelector(".current-page.active").classList.remove("active");
+                e.target.classList.add('active');
+                idPage = index + 1;
+                getCurrentPage(idPage);
+                renderProduct(productArr);
             })
         })
-    })
+
+    }
+    changePage()
 
     function show_products(list_product = arr_prodcut1, show_position = category_grid_review) {
         show_position.innerHTML = "";
@@ -281,17 +307,16 @@
     }
     show_products(array_product_2, category_grid_review_);
 
-    show_products();
-    data_render_page();
 
 
-
-    function show_product123(arr_price = listArrayPrice, arrDesc = listArrayDesc, list_arr = users) {
+    function show_product123(arr_price = listArrayPrice, list_arr) {
+        idPage = 1;
         if (id_category !== 0) {
             list_arr = list_arr.filter(function(item) {
                 return item.category_id == id_category;
             });
         }
+        let arr_product = []
         const arrlist = list_arr.filter((iteam, index) => {
 
             let prices_price = Math.floor(iteam.price - ((iteam.price * iteam.discount) / 100));
@@ -317,11 +342,6 @@
                     return
                 }
             }
-            if (arrDesc.length > 0) {
-                if (arrDesc.includes(iteam.name) == false) {
-                    return
-                }
-            }
 
 
             return [{
@@ -330,83 +350,70 @@
                 discount: iteam.discount,
                 avatar: iteam.avatar
             }]
-
-
         })
         console.log(arrlist)
-        // data_render_page();
-
-        show_products(arrlist, category_grid_review)
-
-    }
-
-    function loop_list() {
-        fillter_list_flow_price.forEach((product_item, inden) => {
-            product_item.addEventListener("click", function() {
-                if (this.checked) {
-                    listArrayPrice.push(this.value);
-                } else {
-                    listArrayPrice = listArrayPrice.filter(e => e !== this.value);
-                }
-                show_product123(listArrayPrice, listArrayDesc, perProduct)
-            })
-        })
-
-        product_fillter_flow_desc.forEach((product_item, inden) => {
-            product_item.addEventListener("click", function(e) {
-                if (this.checked) {
-                    listArrayDesc.push(this.value);
-                } else {
-                    listArrayDesc = listArrayDesc.filter(e => e !== this.value);
-                    console.log("check array curent", listArrayDesc)
-                }
-                show_product123(listArrayPrice, listArrayDesc)
-            })
-        })
+        arr_product.push(arrlist);
+        let numberPage = Math.ceil(arrlist.length / perPage);
+        getCurrentPage(idPage);
+        changePage();
+        initRender(arrlist, numberPage);
 
     }
+
+    fillter_list_flow_price.forEach((product_item, inden) => {
+        product_item.addEventListener("click", function() {
+            if (this.checked) {
+                listArrayPrice.push(this.value);
+            } else {
+                listArrayPrice = listArrayPrice.filter(e => e !== this.value);
+            }
+            show_product123(listArrayPrice, arr_prodcut3)
+
+        })
+    })
+
     fillter_products_time.forEach((product_item, inden) => {
         product_item.addEventListener("click", function(e) {
 
             if (this.checked) {
                 if (this.value == "price_desc") {
-                    let data_price = perProduct.sort((a, b) => (
+                    let data_price = productArr.sort((a, b) => (
                         Math.floor(a.price - ((a.price * a.discount) / 100)) -
                         Math.floor(b.price - ((b.price * b.discount) / 100))
                     ))
 
 
-                    show_product123(listArrayPrice, listArrayDesc, data_price)
+                    show_product123(listArrayPrice, data_price)
                 }
                 if (this.value == "price_asc") {
-                    let data_price = perProduct.sort((a, b) =>
+                    let data_price = productArr.sort((a, b) =>
                         (
                             Math.floor(b.price - ((b.price * b.discount) / 100)) -
                             Math.floor(a.price - ((a.price * a.discount) / 100))
                         ))
 
 
-                    show_product123(listArrayPrice, listArrayDesc, data_price)
+                    show_product123(listArrayPrice, data_price)
                 }
                 if (this.value == "old") {
 
-                    let data_price = perProduct.sort((a, b) =>
+                    let data_price = productArr.sort((a, b) =>
                         (
                             parseInt(moment(new Date(a.created_at)).format('YYYYMMDDHHmmss')) -
                             parseInt(moment(new Date(b.created_at)).format('YYYYMMDDHHmmss'))
                         ))
                     console.log(data_price)
-                    show_product123(listArrayPrice, listArrayDesc, data_price)
+                    show_product123(listArrayPrice, data_price)
                 }
                 if (this.value == "new") {
-                    let data_price = perProduct.sort((a, b) =>
+                    let data_price = productArr.sort((a, b) =>
                         (
                             parseInt(moment(new Date(b.created_at)).format('YYYYMMDDHHmmss')) -
                             parseInt(moment(new Date(a.created_at)).format('YYYYMMDDHHmmss'))
                         ))
                     console.log(data_price)
 
-                    show_product123(listArrayPrice, listArrayDesc, data_price)
+                    show_product123(listArrayPrice, data_price)
                 }
             }
         })
@@ -418,7 +425,7 @@
             return iteam.category_id == id
         })
 
-        show_product123(listArrayPrice, listArrayDesc, arr_list_cate);
+        show_product123(listArrayPrice, arr_list_cate);
 
     }
     if (params.get('id')) {
@@ -454,66 +461,4 @@
             })
         })
     }
-
-    loop_list();
-    // })
-
-    // phân trang
-
-
-    function data_render_page(arr = arr_prodcut3) {
-        if (params.get('id')||kyw) {
-            users = arr_prodcut1;
-
-        } else {
-            users = arr;
-
-        }
-        perProduct = users.slice(
-            (currentPage - 1) * perPage,
-            (currentPage - 1) * perPage + perPage,
-
-        )
-        renderPageNumber(users.length)
-        show_product123(listArrayPrice, listArrayDesc, perProduct)
-    }
-
-    function handlePageNumber(numberPage) {
-        currentPage = numberPage;
-        perProduct = users.slice(
-            (currentPage - 1) * perPage,
-            (currentPage - 1) * perPage + perPage,
-
-        )
-        show_product123(listArrayPrice, listArrayDesc, perProduct)
-
-    }
-
-
-    function renderPageNumber(count) {
-        totalPage = Math.ceil((count / perPage));
-        console.log("total páge :", totalPage);
-        if (totalPage == 1) {
-            document.querySelector("#pagination").innerHTML = " "
-
-        } else {
-
-            for (let i = 1; i <= totalPage; i++) {
-                document.querySelector("#pagination").innerHTML += `<li class="product_page-item" onclick="handlePageNumber(${i})">${i}</li>`
-            }
-        }
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-        let li_active = document.querySelectorAll("li.product_page-item");
-        if (li_active[0]) {
-
-            li_active[0].classList.add('activ');
-        }
-        li_active.forEach(item => {
-            item.addEventListener('click', e => {
-                document.querySelector(".product_page-item.activ").classList.remove("activ");
-                e.target.classList.add('activ');
-            })
-        })
-    })
 </script>
