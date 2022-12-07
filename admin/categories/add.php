@@ -42,7 +42,7 @@
                 </div>
                 <div class="btn__action btn__action--addProduct">
                     <button type="submit" class="btn--addProduct" name="btn--addProduct">Thêm danh mục</button>
-                    <a href=""><button>Quay lại</button></a>
+                    <a href="index.php?actAdmin=listCategories">Quay lại</a>
                 </div>
             </div>
             <?php

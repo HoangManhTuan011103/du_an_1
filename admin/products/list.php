@@ -42,11 +42,13 @@
 
                 <button type="submit" name="btn--filterProduct__followCat"><i class="fa-sharp fa-solid fa-filter"></i>Lọc </button>
            </form>
-           <a onclick="return confirm('Bạn có muốn xóa các mục đã chọn không?')" href="">
-                <button type="submit" class="deleteChoose">Xóa mục chọn</button>
-           </a>
+         
+            <label onclick="return confirm('Bạn có muốn xóa các mục đã chọn')" for="submitCheckbox" class="deleteChoose">Xóa mục chọn</label>
+          
+          
         </div>
         <div id="getData" class="contentManager--product__footer--table" >
+        <form action="" method="post"> 
             <table border="1">
                 <thead>
                     <tr>
@@ -75,7 +77,10 @@
                             }
                         ?>
                         <tr>
-                            <td> <form action="" method="post"> <input type="checkbox" name="checkbox[]" value="<?= $value['id'] ?>" ></form></td>
+                            <td>                                 
+                                <input type="checkbox" name="productID[]" value="<?= $value['id'] ?>" >
+                                <input type="submit" id="submitCheckbox" name="btn__deleteProductAdmin" hidden  value="">                                                                                           
+                            </td>
                            
                             <td>SP00<?= $value['id'] ?></td>
                             <td class="name"><?= $value['nameProduct'] ?></td>
@@ -105,9 +110,9 @@
                                 <?= $value['created_at'] ?>
                             </td>
                             <td class="btn-action">
-                                <a href="index.php?actAdmin=editProduct&&id=<?= $value['id'] ?>" class="update"><button style="margin-right: 5px;"><i class="fa-solid fa-screwdriver"></i></button></a>
+                                <a href="index.php?actAdmin=editProduct&&id=<?= $value['id'] ?>" class="update" style="margin-right:5px;" ><i class="fa-solid fa-screwdriver"></i></a>
                                 
-                                <a onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm <?= $value['nameProduct'] ?> không?')" href="index.php?actAdmin=deleteProduct&&id=<?= $value['id'] ?>" class="remove"><button><i class="fa-sharp fa-solid fa-trash"></i></button></a>
+                                <a onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm <?= $value['nameProduct'] ?> không?')" href="index.php?actAdmin=deleteProduct&&id=<?= $value['id'] ?>" class="remove"><i class="fa-sharp fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -118,6 +123,7 @@
                     <?php endif; ?> 
                 </tbody>
             </table>
+        </form>
             <ul>
                 <!-- Start Pagination -->
                 <?php if(ceil($countPage) <= 1){ 
@@ -164,7 +170,18 @@
                                     
                                 <?php endif; ?>
                         <?php endfor ?>
+                       
+                          
+                        <?php if(!isset($_GET['page'])){ $nextPage = 2; ?>
+                            <li><a  href="index.php?actAdmin=showProduct&page=<?= $nextPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?><?= isset($_REQUEST['filterToPrice']) ? "&filterToPrice=".$_REQUEST['filterToPrice'] : "" ?>"><i class="fa-solid fa-angle-right"></i></a></li>
+                        <?php } ?>
 
+                        <?php if(!isset($_GET['page'])){ $endPage = ceil($countPage); ?>
+                            <li><a  href="index.php?actAdmin=showProduct&page=<?= $endPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?><?= isset($_REQUEST['filterToPrice']) ? "&filterToPrice=".$_REQUEST['filterToPrice'] : "" ?>"><i class="fa-sharp fa-solid fa-angles-right"></i></a></li>
+                        <?php } ?>
+                          
+                       
+                        
                         <?php if(isset($_GET['page']) && $_GET['page'] < ceil($countPage)){ $nextPage = $_GET['page'] + 1; ?>
                             <li><a  href="index.php?actAdmin=showProduct&page=<?= $nextPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?><?= isset($_REQUEST['nameCaterory']) ? "&nameCaterory=".$_REQUEST['nameCaterory'] : "" ?><?= isset($_REQUEST['filterToPrice']) ? "&filterToPrice=".$_REQUEST['filterToPrice'] : "" ?>"><i class="fa-solid fa-angle-right"></i></a></li>
                         <?php } ?>

@@ -201,8 +201,14 @@ if (isset($_GET['actAdmin'])) {
                 $status = $_POST['status'];
                 $hotProduct = (isset($_POST['hotProduct']) ? 1 : 0);
                 $errors = [];
+                $validateNameProduct = getValidateNameProduct();
                 if(trim($name) == ""){
                     $errors['name'] = "Bạn phải nhập tên sản phẩm";
+                }
+                foreach($validateNameProduct as $value){
+                    if($name == $value['name']){
+                        $errors['name'] = "Tên sản phẩm đã tồn tại";
+                    }
                 }
                 if($category == ""){
                     $errors['category'] = "Bạn phải chọn danh mục";
@@ -316,6 +322,16 @@ if (isset($_GET['actAdmin'])) {
                     if(trim($name) == ""){
                         $errors['name'] = "Bạn phải nhập tên sản phẩm";
                     }
+                  
+                    if($name != $detailProduct['nameProduct']){
+                        $validateNameProduct = getValidateNameProduct();
+                        foreach($validateNameProduct as $value){
+                            if($name == $value['name']){
+                                $errors['name'] = "Tên sản phẩm đã tồn tại";
+                            }
+                        }
+                    }
+                   
                     if($file['size'] > 0){
                         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
                         if($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg'){
@@ -365,7 +381,37 @@ if (isset($_GET['actAdmin'])) {
             require_once "./products/edit.php";
             break;
         case 'showProduct':
-            
+            if(isset($_POST['btn__deleteProductAdmin'])){
+                if(!empty($_POST['productID'])){
+                    $sum = 0;
+                    foreach($_POST['productID'] as $key => $value){
+                        $sum++;
+                        $id = $value;
+                        // Update total product
+                        $getIdCategory = getIdCategoryUpdateCount($id);
+                        // Update total product
+                        productDeleteAllImage($id);
+                        productDeletecomment($id);
+                        // Insert Product to unspecified
+                        $orderDetailUnspecified = selectUnspecifiedOrderDetail($id);
+                        foreach ($orderDetailUnspecified as $value) {
+                            insertUnspecifiedOrderDetail($value['order_id'],$value['product_id'],$value['quantity'],$value['price_product']);
+                        }
+                        $productUnspecified = selectUnspecifiedProduct($id);
+                        foreach ($productUnspecified as $value) {
+                            insertUnspecifiedProduct($value['id'],$value['name'],$value['avatar'],$value['price'],$value['category_id']);
+                        }
+                        // Insert Product to unspecified
+                        productDeleteDetailProduct($id);
+                        productDelete($id);
+                        reduceProductFollowCat($getIdCategory);
+                        // Update total product
+                    }
+                    echo "<script> alert('$sum sản phẩm đã được xóa') </script>";  
+                }else{
+                    echo "<script> alert('Không hàng nào chịu tác động') </script>";
+                }
+            }
             if (isset($_POST['btn-search--Product'] )) {
                 $keyWord = $_POST['keyWord'];
             }else if(isset($_GET['keyWord'])) {

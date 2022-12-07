@@ -261,18 +261,18 @@ span.pluss {
 .contentManager--product__footer .contentManager--product__footer--table table td {
     color: #ffffff;
     text-align: center;
-    padding: 5px 15px;
+    padding: 10px 15px;
 }
 
-.contentManager--product__footer .contentManager--product__footer--table table td.btn-action button {
-    padding: 5px;
+.contentManager--product__footer .contentManager--product__footer--table table td.btn-action a {
+    padding: 5px 6px;
     background-color: #93D3A1;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.contentManager--product__footer .contentManager--product__footer--table table td.btn-action button:hover {
+.contentManager--product__footer .contentManager--product__footer--table table td.btn-action a:hover {
     background-color: #74b182;
 }
 
@@ -370,7 +370,7 @@ span.pluss {
     display: flex;
 }
 
-.filer__Product--followCategory button.deleteChoose {
+.filer__Product--followCategory label.deleteChoose {
     padding: 10px;
     font-size: 15px;
     border-radius: 5px;

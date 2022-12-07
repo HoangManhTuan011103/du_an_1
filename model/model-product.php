@@ -348,5 +348,9 @@ function getCountProductHome(){
     $sql = "select COUNT(*) as countProduct from products WHERE 1";
     return pdo_query_one($sql);
 }   
+function getValidateNameProduct(){
+    $sql = "select name from products";
+    return pdo_query($sql);
+}
 // Select count product home
 
