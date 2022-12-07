@@ -17,9 +17,12 @@
                 </div>
                 <div class="tableProduct">
                     <form action="" method="POST" class="formOrderMoney">
-                        <input type="date" name="" id="">
+                        <input type="date" name="dayStart" id="">
+
                         <p><i class="fa-solid fa-arrow-right"></i></p>
-                        <input type="date" name="" id="">
+                        
+                        <input type="date" name="dayEnd" id="">
+
                         <button type="submit" name="btn__find--OrderMoney"><i class="fa-sharp fa-solid fa-filter" style="margin-right: 5px; font-size: 16px; color: #ffffff;"></i>Lọc </button>
                     </form>
                     <table border="1">
