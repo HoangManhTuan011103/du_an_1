@@ -2,6 +2,7 @@
 <?php
 ob_start();
 session_start();
+
 require_once "./global.php";
 require_once "./model/pdo.php";
 require_once "./model/model-user.php";
@@ -9,7 +10,7 @@ require_once "./model/model-product.php";
 require_once "./model/model-category.php";
 require_once "./model/model-order.php";
 require_once "./model/model-comment.php";
-
+updateViewAccessWebsite();
 $pronew = loadall_product_home();
 $pronew2 = loadall_product_home2();
 $pronew3 = loadall_product_home3();

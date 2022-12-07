@@ -2,8 +2,10 @@
 
 <?php
 session_start();
+
 if (isset($_SESSION['user'])  && ($_SESSION['user']['role'] == 1)) {
     ob_start();
+
 require_once "../global.php";
 require_once "../model/pdo.php";
 require_once "../model/model-user.php";
@@ -12,12 +14,14 @@ require_once "../model/model-category.php";
 require_once "../model/model-order.php";
 require_once "../model/model-statistical.php";
 require_once "../model/model-comment.php";
+
 if (!isset($_SESSION['orderAdmin'])) {
     $_SESSION['orderAdmin'] = [];
 }
 if (!isset($_SESSION['orderUpdateAdmin'])) {
     $_SESSION['orderUpdateAdmin'] = [];
 }
+$countView = getViewAccessWebsite();
 $listBuyOnDay = buyProductWithDay();
 $bestSale = bestProductSales();
 $totalOrderWeek = totalOrderWithWeek();

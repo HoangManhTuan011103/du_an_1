@@ -117,3 +117,11 @@ function check_count_comment_follow_user($id_product){
     $sql="SELECT COUNT(product_id) as total_comment_id_product,user_id ,SUM(rating_products) total FROM `comments_product` WHERE product_id=$id_product GROUP BY user_id";
     return pdo_query_one($sql);
 }
+function updateViewAccessWebsite(){
+    $sql = "UPDATE `counter` SET `viewAccess`=`viewAccess`+1 WHERE 1";
+    pdo_execute($sql);
+}
+function getViewAccessWebsite(){
+    $sql = "SELECT * FROM `counter` WHERE 1";
+    return pdo_query($sql);
+}

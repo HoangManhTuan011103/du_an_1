@@ -43,6 +43,7 @@
         $sql = "select name, total_product FROM categories";
         return pdo_query($sql);
     }
-    //<?= number_format($value['total_price']) . "đ" ?>
+    //<?= number_format($value['total_price']) . "đ" 
+  
 
 ?>

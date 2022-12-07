@@ -47,15 +47,19 @@
             </div>
         </div>
         <div class="smallStatistics smallStatisticsRed">
-            <h2 class="numberStatistics">
-                7
+            <h2 class="numberStatistics" style="text-align: center; padding-top:35px;">
+                <?php
+                // var_dump($countView);
+                    $stringCount = str_pad($countView[0]['viewAccess'],8,"0",STR_PAD_LEFT);
+                    echo $stringCount;
+                ?>
             </h2>
-            <p class="nameStatistics">
+            <p class="nameStatistics" style="text-align: center; padding: 15px 0;">
                 Lượt truy cập website
             </p>
-            <div class="viewDetailStatistics">
-                Xem chi tiết<i class="fa-sharp fa-solid fa-gear"></i>
-            </div>
+            <!-- <div class="viewDetailStatistics"> -->
+                <!-- Xem chi tiết<i class="fa-sharp fa-solid fa-gear"></i> -->
+            <!-- </div> -->
         </div>
     </div>
     <div class="contentManager--footer">
