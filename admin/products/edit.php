@@ -102,7 +102,7 @@
                         </div>
                         <div class="btn__action btn__action--addProduct btn__action--updateProduct">
                             <button type="submit" class="btn--addProduct" name="btn--updateProduct">Thay đổi sản phẩm</button>
-                            <a href="index.php?actAdmin=showProduct"><button>Quay lại</button></a>
+                            <a href="index.php?actAdmin=showProduct">Quay lại</a>
                         </div>
                     </div>
                 </form>

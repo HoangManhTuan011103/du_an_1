@@ -138,6 +138,14 @@
                             <?php endif; ?>
                         <?php endif; ?>
                     <?php endfor ?>
+                    
+                    <?php if(!isset($_GET['page'])){ $nextPage = 2; ?>
+                            <li><a  href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&page=<?= $nextPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-solid fa-angle-right"></i></a></li>
+                        <?php } ?>
+
+                    <?php if(!isset($_GET['page'])){ $endPage = ceil($countPage); ?>
+                        <li><a  href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>&page=<?= $endPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-sharp fa-solid fa-angles-right"></i></a></li>
+                    <?php } ?>
 
                     <?php if (isset($_GET['page']) && $_GET['page'] < ceil($countPage)) {
                         $nextPage = $_GET['page'] + 1; ?>

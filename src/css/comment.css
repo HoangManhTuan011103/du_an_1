@@ -113,7 +113,19 @@
     transition: all 0.3s linear;
 }
 
-.contentManager--product__footer.contentManager--product__footer--addProduct>form>.form--right .btn__action>a>button:hover {
+.contentManager--product__footer.contentManager--product__footer--addProduct>form>.form--right .btn__action a {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 13.3333;
+    background-color: #DD4B39;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    border: 1px solid #000000;
+}
+
+.contentManager--product__footer.contentManager--product__footer--addProduct>form>.form--right .btn__action>a:hover {
     background-color: #a74133;
 }
 
