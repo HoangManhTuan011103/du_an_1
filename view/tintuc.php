@@ -23,10 +23,10 @@
           <div>
             <ul class="menu__left--children">
               <li class="nav_li">
-                <a href="">Trang chủ</a>
+                <a href="index.php">Trang chủ</a>
               </li>
               <li class="nav_li">
-                <a href="">Sản phẩm</a>
+                <a href="index.php?act=showProducts">Sản phẩm</a>
                 <i class="fa-solid fa-angle-down show__nav" onclick="chan(this)"></i>
                 <ul class="sub__menu--children">
                   <li>
@@ -44,30 +44,13 @@
                 </ul>
               </li>
               <li class="nav_li">
-                <a href="">Giày thể thao</a><i class="fa-solid fa-angle-down" onclick="chan(this)"></i>
-                <ul class="sub__menu--children">
-                  <li>
-                    <a href="">Giày nam</a>
-                  </li>
-                  <li>
-                    <a href="">Giày nữ</a>
-                  </li>
-                  <li>
-                    <a href="">Giày bé trai</a>
-                  </li>
-                  <li>
-                    <a href="">Giày bé gái</a>
-                  </li>
-                </ul>
+                <a href="index.php?act=lienhe">Liên hệ</a>
               </li>
               <li class="nav_li">
-                <a href="">Liên hệ</a>
+                <a href="index.php?act=gioithieu">Giới thiệu</a>
               </li>
               <li class="nav_li">
-                <a href="">Giới thiệu</a>
-              </li>
-              <li class="nav_li">
-                <a href="">Tin tức</a>
+                <a href="index.php?act=tintuc">Tin tức</a>
               </li>
             </ul>
           </div>
@@ -79,7 +62,29 @@
             </h4>
           </div>
           <div class="content__sbvg--ctn">
-            <div class="rows_sbvg">
+          <?php
+            foreach ($listLowPrice as $value) {
+              $priceFM = number_format($value['price'] - ($value['price'] / 100)*$value['discount'], 0, '', ',');
+              echo '
+                  <div class="rows_sbvg">
+                    <div class="sbvg__image">
+                      <img
+                        src="imageProduct/'.$value['avatar'].'"
+                        alt="" srcset="" />
+                    </div>
+                    <div class="sbvg__content">
+                      <p>
+                        <a href="index.php?act=detail_product&id='.$value['id'].'" class="cls__f_t_a">'.$value['name'].'</a>
+                      </p>
+                      <p class="price__sbvg">'.$priceFM.' đ</p>
+                      <p class="price__sbvg-old">'.number_format($value['price'], 0, '', ',').' đ</p>
+                    </div>
+                  </div>
+              ';
+            }
+
+          ?>
+            <!-- <div class="rows_sbvg">
               <div class="sbvg__image">
                 <img
                   src="https://bizweb.dktcdn.net/thumb/medium/100/342/645/products/men-s-original-canvas-casual-skate-shoes.png?v=1545564063607"
@@ -92,77 +97,7 @@
                 <p class="price__sbvg">269.000 đ</p>
                 <p class="price__sbvg-old">200.000 đ</p>
               </div>
-            </div>
-            <div class="rows_sbvg">
-              <div class="sbvg__image">
-                <img
-                  src="https://bizweb.dktcdn.net/thumb/medium/100/342/645/products/men-s-original-canvas-casual-skate-shoes.png?v=1545564063607"
-                  alt="" srcset="" />
-              </div>
-              <div class="sbvg__content">
-                <p>
-                  <a href="" class="cls__f_t_a">Giày thể thao nữ cổ thấp mẫu mới nhất</a>
-                </p>
-                <p class="price__sbvg">269.000 đ</p>
-                <p class="price__sbvg-old">200.000 đ</p>
-              </div>
-            </div>
-            <div class="rows_sbvg">
-              <div class="sbvg__image">
-                <img
-                  src="https://bizweb.dktcdn.net/thumb/medium/100/342/645/products/men-s-original-canvas-casual-skate-shoes.png?v=1545564063607"
-                  alt="" srcset="" />
-              </div>
-              <div class="sbvg__content">
-                <p>
-                  <a href="" class="cls__f_t_a">Giày thể thao nữ cổ thấp mẫu mới nhất</a>
-                </p>
-                <p class="price__sbvg">269.000 đ</p>
-                <p class="price__sbvg-old">200.000 đ</p>
-              </div>
-            </div>
-            <div class="rows_sbvg">
-              <div class="sbvg__image">
-                <img
-                  src="https://bizweb.dktcdn.net/thumb/medium/100/342/645/products/men-s-original-canvas-casual-skate-shoes.png?v=1545564063607"
-                  alt="" srcset="" />
-              </div>
-              <div class="sbvg__content">
-                <p>
-                  <a href="" class="cls__f_t_a">Giày thể thao nữ cổ thấp mẫu mới nhất</a>
-                </p>
-                <p class="price__sbvg">269.000 đ</p>
-                <p class="price__sbvg-old">200.000 đ</p>
-              </div>
-            </div>
-            <div class="rows_sbvg">
-              <div class="sbvg__image">
-                <img
-                  src="https://bizweb.dktcdn.net/thumb/medium/100/342/645/products/men-s-original-canvas-casual-skate-shoes.png?v=1545564063607"
-                  alt="" srcset="" />
-              </div>
-              <div class="sbvg__content">
-                <p>
-                  <a href="" class="cls__f_t_a">Giày thể thao nữ cổ thấp mẫu mới nhất</a>
-                </p>
-                <p class="price__sbvg">269.000 đ</p>
-                <p class="price__sbvg-old">200.000 đ</p>
-              </div>
-            </div>
-            <div class="rows_sbvg">
-              <div class="sbvg__image">
-                <img
-                  src="https://bizweb.dktcdn.net/thumb/medium/100/342/645/products/men-s-original-canvas-casual-skate-shoes.png?v=1545564063607"
-                  alt="" srcset="" />
-              </div>
-              <div class="sbvg__content">
-                <p>
-                  <a href="" class="cls__f_t_a">Giày thể thao nữ cổ thấp mẫu mới nhất</a>
-                </p>
-                <p class="price__sbvg">269.000 đ</p>
-                <p class="price__sbvg-old">200.000 đ</p>
-              </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -170,24 +105,17 @@
         <div class="tintuc__noibat">
           <div class="anh__ttnb">
             <a href=""><img
-                src="https://bizweb.dktcdn.net/thumb/large/100/342/645/articles/adidas-originals-prophere-1.jpg?v=1545574209190"
-                alt="" /></a>
+                src="https://file.hstatic.net/1000355922/file/converse_chuck_taylor_all_stars_c138c55f4b79487abde30f5e4c591dfd_grande.jpg"
+                alt="" class="daupage" /></a>
           </div>
           <div class="noidung__ttnb">
             <h4>
-              <a href="" class="cls__f_t_a">4 Đôi giày thể thao mới ra mắt đầu tháng 6</a>
+              <a href="" class="cls__f_t_a">TOP 12 mẫu giày thể thao nữ đẹp nhất năm 2022</a>
             </h4>
             <p>
-              Nếu là bạn tín đồ cuồng giầy thể thao thì chắc sẽ không muốn bỏ
-              qua những đôi giày mới ra đầu tháng 6 này đâu!Tháng 6 cũng được
-              xem là thời điểm đầy ý nghĩa với cộng đồng LGBT. Các hãng giầy,
-              trong đó có Addidas đã nhanh chóng đưa ra những phiên bản giày
-              mới cho sự kiện này Đó là những thiết kế các phiên bản có màu
-              sắc như đúng tên gọi của chúng “Rainbow Pack”. Toàn bộ chúng đều
-              được thêm thắt khéo léo màu sắc cầu vòng, là biểu tượng cho cộng
-              đồng LGBT. Được biết một phần lợi nhuận từ việc bán những thiết
-              kế này sẽ được dành cộng đồng LGBT thể thao là The Rainbow
-              Laces.
+            1. Converse Chuck Taylor All Stars Đứng đầu là mẫu giày Converse Chuck Taylor All Stars phổ biến được nhiều bạn nam và nữ biết đến nhiều nhất trên thế giới Tên giày được đặt theo tên của một vận động viên bóng rổ Indiana Chuck Taylor và đến nay nó vẫn là mẫu giày đẹp và tốt nhất mọi thời đại. Với rất nhiều màu sắc, bạn có thể lựa chọn cho mình những kiểu phù hợp nhất nhé
+            2. Gucci Sneakers
+            Năm 1984 đôi giày Sneakers đầu tiên được Gucci gới thiệu cho đến nay với nhiều thiết kế thay đổi lớn so với kiểu dáng ban đầu. Đã tạo nên cơn sốt cho người dùng khi có thể sở hữu cho mình một đôi giày thể thao hàng hiệu nổi tiếng nhưng giá thành lại phù hợp túi tiền.
             </p>
           </div>
         </div>
@@ -197,31 +125,25 @@
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://bizweb.dktcdn.net/thumb/large/100/342/645/articles/giay-dien-cung-quan-xe-ta-cuc-chat-he-nay-1.jpg?v=1545574058587"
+                    src="https://file.hstatic.net/1000355922/file/xu_huong_chunky_sneaker_1737f6f5e9824feebd9d6f668e41dfdb_grande.png"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
                 <h4>
-                  <a href="" class="cls__f_t_a">4 Đôi giày thể thao mới ra mắt đầu tháng 6</a>
+                  <a href="" class="cls__f_t_a">Top 10 mẫu giày thể thao yêu thích nhất hiện nay</a>
                 </h4>
                 <p class="contentt__child33">
-                  Nếu là bạn tín đồ cuồng giầy thể thao thì chắc sẽ không muốn
-                  bỏ qua những đôi giày mới ra đầu tháng 6 này đâu!Tháng 6
-                  cũng được xem là thời điểm đầy ý nghĩa với cộng đồng LGBT.
-                  Các hãng giầy, trong đó có Addidas đã nhanh chóng đưa ra
-                  những phiên bản giày mới cho sự kiện này Đó là những thiết
-                  kế các phiên bản có màu sắc như đúng tên gọi của chúng
-                  “Rainbow Pack”. Toàn bộ chúng đều được thêm thắt khéo léo
-                  màu sắc cầu vòng, là biểu tượng cho cộng đồng LGBT. Được
-                  biết một phần lợi nhuận từ việc bán những thiết kế này sẽ
-                  được dành cộng đồng LGBT thể thao là The Rainbow Laces.
+                Ngoài kiểu dáng kích thước nổi bật thì chất liệu tạo nên giày là một trong những yếu tố hàng đầu giúp cho sản phẩm nâng tầm cho người sử dụng.
+                Trước đây đa phần giày sẽ sử dụng chất liệu vải, da nhưng trong những năm gần đây xu hướng sử dụng chất liệu sợi dệt công nghệ cao đang được sử dụng rộng rãi giúp người dùng sủ dụng cảm giác thoải mái nhất
+                Giày thiết kế Chunky Sneaker ra đời năm 2018 đã tạo nên cơn sốt trong giới trẻ. Là loại giày có kiểu dáng kích thước to, đế giày to dày cùng với những chi tiết khỏe, trẻ trung.
+                Sản phẩm ra đời đã nhanh chóng chiếm được tình cảm của rất nhiều người là tín đồ của Sneaker và luôn là sự lựa chọn hàng đầu của giới trẻ
                 </p>
               </div>
             </div>
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://bizweb.dktcdn.net/thumb/large/100/342/645/articles/giay-dien-cung-quan-xe-ta-cuc-chat-he-nay-1.jpg?v=1545574058587"
+                    src="https://file.hstatic.net/1000355922/file/coman_shop_f5518fe7970843659b79aa51e1f7dd24_grande.jpg"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
@@ -229,71 +151,44 @@
                   <a href="" class="cls__f_t_a">4 Đôi giày thể thao mới ra mắt đầu tháng 6</a>
                 </h4>
                 <p class="contentt__child33">
-                  Nếu là bạn tín đồ cuồng giầy thể thao thì chắc sẽ không muốn
-                  bỏ qua những đôi giày mới ra đầu tháng 6 này đâu!Tháng 6
-                  cũng được xem là thời điểm đầy ý nghĩa với cộng đồng LGBT.
-                  Các hãng giầy, trong đó có Addidas đã nhanh chóng đưa ra
-                  những phiên bản giày mới cho sự kiện này Đó là những thiết
-                  kế các phiên bản có màu sắc như đúng tên gọi của chúng
-                  “Rainbow Pack”. Toàn bộ chúng đều được thêm thắt khéo léo
-                  màu sắc cầu vòng, là biểu tượng cho cộng đồng LGBT. Được
-                  biết một phần lợi nhuận từ việc bán những thiết kế này sẽ
-                  được dành cộng đồng LGBT thể thao là The Rainbow Laces.
+                Hàng được sản xuất tại Việt Nam, chất lượng luôn được đảm bảo ở hàng Fake cao nhất. Bạn sẽ nhận nhiều ưu đãi hấp dẫn mỗi khi ghé Shop để mua sắm.Vậy nên, bạn hãy đến với Coman Shop để có những đôi giày đẹp và thời trang nhất nhé!
                 </p>
               </div>
             </div>
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://bizweb.dktcdn.net/thumb/large/100/342/645/articles/giay-dien-cung-quan-xe-ta-cuc-chat-he-nay-1.jpg?v=1545574058587"
+                    src="https://file.hstatic.net/1000355922/file/adidas_stan_smith_trainers_18260fe3568849b698d91b010d0be2be_grande.jpg"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
                 <h4>
-                  <a href="" class="cls__f_t_a">4 Đôi giày thể thao mới ra mắt đầu tháng 6</a>
+                  <a href="" class="cls__f_t_a">Adidas Stan Smith Trainers</a>
                 </h4>
                 <p class="contentt__child33">
-                  Nếu là bạn tín đồ cuồng giầy thể thao thì chắc sẽ không muốn
-                  bỏ qua những đôi giày mới ra đầu tháng 6 này đâu!Tháng 6
-                  cũng được xem là thời điểm đầy ý nghĩa với cộng đồng LGBT.
-                  Các hãng giầy, trong đó có Addidas đã nhanh chóng đưa ra
-                  những phiên bản giày mới cho sự kiện này Đó là những thiết
-                  kế các phiên bản có màu sắc như đúng tên gọi của chúng
-                  “Rainbow Pack”. Toàn bộ chúng đều được thêm thắt khéo léo
-                  màu sắc cầu vòng, là biểu tượng cho cộng đồng LGBT. Được
-                  biết một phần lợi nhuận từ việc bán những thiết kế này sẽ
-                  được dành cộng đồng LGBT thể thao là The Rainbow Laces.
+                Mẫu giày phù hợp với nhiều lứa tuổi, dù bạn 20 hay 30 tuổi, Adidas Stan Smith vẫn luôn là một lựa chọn thích hợp. Nó đã thành công lớn kể từ khi được ra mắt vào đầu những năm bảy mươi.Kể từ ngày ra mắt năm 1973 đến nay có hơn 32 triệu đôi giày bán ra trên thị trường hiện nay bạn có thể mua giày tại rất nhiều địa điểm trên toàn quốc
                 </p>
               </div>
             </div>
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://bizweb.dktcdn.net/thumb/large/100/342/645/articles/giay-dien-cung-quan-xe-ta-cuc-chat-he-nay-1.jpg?v=1545574058587"
+                    src="https://file.hstatic.net/1000355922/file/shop-giay-cao-co-giay-la_fd608ca76c094442a13ef9e55b46eeb5_grande.jpg"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
                 <h4>
-                  <a href="" class="cls__f_t_a">4 Đôi giày thể thao mới ra mắt đầu tháng 6</a>
+                  <a href="" class="cls__f_t_a">NMD Triple White</a>
                 </h4>
                 <p class="contentt__child33">
-                  Nếu là bạn tín đồ cuồng giầy thể thao thì chắc sẽ không muốn
-                  bỏ qua những đôi giày mới ra đầu tháng 6 này đâu!Tháng 6
-                  cũng được xem là thời điểm đầy ý nghĩa với cộng đồng LGBT.
-                  Các hãng giầy, trong đó có Addidas đã nhanh chóng đưa ra
-                  những phiên bản giày mới cho sự kiện này Đó là những thiết
-                  kế các phiên bản có màu sắc như đúng tên gọi của chúng
-                  “Rainbow Pack”. Toàn bộ chúng đều được thêm thắt khéo léo
-                  màu sắc cầu vòng, là biểu tượng cho cộng đồng LGBT. Được
-                  biết một phần lợi nhuận từ việc bán những thiết kế này sẽ
-                  được dành cộng đồng LGBT thể thao là The Rainbow Laces.
+                Có mặt tại thị trường giày thể thao nữ vào tháng 12 năm 2015 đến nay Adidas NMD Triple White vẫn khẳng định được chổ đứng trong lòng người tiêu dùng. Mặc dù không được nổi bật như những dòng giày điểm qua phía trên.
                 </p>
               </div>
             </div>
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://bizweb.dktcdn.net/thumb/large/100/342/645/articles/giay-dien-cung-quan-xe-ta-cuc-chat-he-nay-1.jpg?v=1545574058587"
+                    src="https://file.hstatic.net/1000355922/file/nmd_triple_white_29f4b2a557564b9db01cd5eda727a2a6_grande.jpg"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
@@ -301,88 +196,52 @@
                   <a href="" class="cls__f_t_a">4 Đôi giày thể thao mới ra mắt đầu tháng 6</a>
                 </h4>
                 <p class="contentt__child33">
-                  Nếu là bạn tín đồ cuồng giầy thể thao thì chắc sẽ không muốn
-                  bỏ qua những đôi giày mới ra đầu tháng 6 này đâu!Tháng 6
-                  cũng được xem là thời điểm đầy ý nghĩa với cộng đồng LGBT.
-                  Các hãng giầy, trong đó có Addidas đã nhanh chóng đưa ra
-                  những phiên bản giày mới cho sự kiện này Đó là những thiết
-                  kế các phiên bản có màu sắc như đúng tên gọi của chúng
-                  “Rainbow Pack”. Toàn bộ chúng đều được thêm thắt khéo léo
-                  màu sắc cầu vòng, là biểu tượng cho cộng đồng LGBT. Được
-                  biết một phần lợi nhuận từ việc bán những thiết kế này sẽ
-                  được dành cộng đồng LGBT thể thao là The Rainbow Laces.
+                Mẫu Adidas này mang đến sự thoải mái linh hoạt cho cả ngày dài vận động. Đồng thời mang lại cho bạn một phong cách trẻ trung, ấn tượng.Ngoài ra, nhiều review của người dùng còn đề cao sự nhẹ nhàng và sự khéo léo cao cấp của nó, kết hợp hoàn hảo giữa tính năng dành cho vận động và phong cách trong một đôi giày thời trang.Với những đặc tính nổi bật trên không khó để EQT White Turbo lọt vào top những đôi giày thể thao nữ đẹp nhất mời thời đại
                 </p>
               </div>
             </div>
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://bizweb.dktcdn.net/thumb/large/100/342/645/articles/giay-dien-cung-quan-xe-ta-cuc-chat-he-nay-1.jpg?v=1545574058587"
+                    src="https://file.hstatic.net/1000355922/file/adidas_yeezy_boost_350_trainers_81a2d2cd5b4e43ef8d4d305f12abd7a5_grande.jpg"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
                 <h4>
-                  <a href="" class="cls__f_t_a">4 Đôi giày thể thao mới ra mắt đầu tháng 6</a>
+                  <a href="" class="cls__f_t_a">Adidas Yeezy Boost 350 Trainers</a>
                 </h4>
                 <p class="contentt__child33">
-                  Nếu là bạn tín đồ cuồng giầy thể thao thì chắc sẽ không muốn
-                  bỏ qua những đôi giày mới ra đầu tháng 6 này đâu!Tháng 6
-                  cũng được xem là thời điểm đầy ý nghĩa với cộng đồng LGBT.
-                  Các hãng giầy, trong đó có Addidas đã nhanh chóng đưa ra
-                  những phiên bản giày mới cho sự kiện này Đó là những thiết
-                  kế các phiên bản có màu sắc như đúng tên gọi của chúng
-                  “Rainbow Pack”. Toàn bộ chúng đều được thêm thắt khéo léo
-                  màu sắc cầu vòng, là biểu tượng cho cộng đồng LGBT. Được
-                  biết một phần lợi nhuận từ việc bán những thiết kế này sẽ
-                  được dành cộng đồng LGBT thể thao là The Rainbow Laces.
+                Đây là một trong các loại giày thể thao nữ được yêu thích và mua nhiều bởi cả nam và nữ.Chắc chắn rằng Yeezy Boost 350 sẽ luôn chiếm Top 1 trong  bảng xếp hạng những mẫu giày nữ hot nhất hiện nay mà nàng nên có
                 </p>
               </div>
             </div>
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://bizweb.dktcdn.net/thumb/large/100/342/645/articles/giay-dien-cung-quan-xe-ta-cuc-chat-he-nay-1.jpg?v=1545574058587"
+                    src="https://file.hstatic.net/1000355922/file/nike_cortez_sneakers_f5f752b305644de9b0986a66f4ea6b10_grande.jpg"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
                 <h4>
-                  <a href="" class="cls__f_t_a">4 Đôi giày thể thao mới ra mắt đầu tháng 6</a>
+                  <a href="" class="cls__f_t_a">Nike Cortez Sneakers</a>
                 </h4>
                 <p class="contentt__child33">
-                  Nếu là bạn tín đồ cuồng giầy thể thao thì chắc sẽ không muốn
-                  bỏ qua những đôi giày mới ra đầu tháng 6 này đâu!Tháng 6
-                  cũng được xem là thời điểm đầy ý nghĩa với cộng đồng LGBT.
-                  Các hãng giầy, trong đó có Addidas đã nhanh chóng đưa ra
-                  những phiên bản giày mới cho sự kiện này Đó là những thiết
-                  kế các phiên bản có màu sắc như đúng tên gọi của chúng
-                  “Rainbow Pack”. Toàn bộ chúng đều được thêm thắt khéo léo
-                  màu sắc cầu vòng, là biểu tượng cho cộng đồng LGBT. Được
-                  biết một phần lợi nhuận từ việc bán những thiết kế này sẽ
-                  được dành cộng đồng LGBT thể thao là The Rainbow Laces.
+                Với thiết kế kiểu dáng thời trang và đầy thể thao Nike Cortez Sneakers được Nike giới thiệu những mẫu lần đầu vào năm 1972 và luôn nằm trong top những mẫu giày thể thao nữ được yêu thích nhất.
                 </p>
               </div>
             </div>
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://bizweb.dktcdn.net/thumb/large/100/342/645/articles/giay-dien-cung-quan-xe-ta-cuc-chat-he-nay-1.jpg?v=1545574058587"
+                    src="https://file.hstatic.net/1000355922/file/prophere_all_black_ea5dabd1005c47639ef0d561cfbc5912_grande.jpg"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
                 <h4>
-                  <a href="" class="cls__f_t_a">4 Đôi giày thể thao mới ra mắt đầu tháng 6</a>
+                  <a href="" class="cls__f_t_a">Prophere All Black</a>
                 </h4>
                 <p class="contentt__child33">
-                  Nếu là bạn tín đồ cuồng giầy thể thao thì chắc sẽ không muốn
-                  bỏ qua những đôi giày mới ra đầu tháng 6 này đâu!Tháng 6
-                  cũng được xem là thời điểm đầy ý nghĩa với cộng đồng LGBT.
-                  Các hãng giầy, trong đó có Addidas đã nhanh chóng đưa ra
-                  những phiên bản giày mới cho sự kiện này Đó là những thiết
-                  kế các phiên bản có màu sắc như đúng tên gọi của chúng
-                  “Rainbow Pack”. Toàn bộ chúng đều được thêm thắt khéo léo
-                  màu sắc cầu vòng, là biểu tượng cho cộng đồng LGBT. Được
-                  biết một phần lợi nhuận từ việc bán những thiết kế này sẽ
-                  được dành cộng đồng LGBT thể thao là The Rainbow Laces.
+                Điểm thu hút của đôi giày này nằm ở phần đế giày, với việc áp dụng công nghệ Midsole PU chunky vào sản xuất đã tạo nên những mẫu giày mang rất nhẹ và êm chân giúp người dùng di chuyển linh hoạt và thoải mái.Được thiết kế từ các vật liệu chất lượng cao và thoải mái, đôi giày này không chỉ mang đến cho nàng một phong cách thời trang cá tính, mà còn nổi bật với ưu điểm bền bỉ và hỗ trợ hoàn hảo cho trang phục thông thường.
                 </p>
               </div>
             </div>
@@ -397,4 +256,5 @@
         </div>
       </div>
     </div>
+
   </section>

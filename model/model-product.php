@@ -286,6 +286,11 @@ function fillter_price_asc()
     $sql = " SELECT * FROM `products` ORDER BY price ";
     return pdo_query($sql);
 }
+function fillter_price_low()
+{
+    $sql = " SELECT * FROM `products` ORDER BY (products.price-(products.price/100*products.discount)) ASC Limit 0,5";
+    return pdo_query($sql);
+}
 // update total comment and count start
 function update_total_comment_id($total_comment,$sum_start,$id){
     $sql="UPDATE `products` SET `comment_total`='$total_comment',`rating_total`='$sum_start' WHERE id=$id";

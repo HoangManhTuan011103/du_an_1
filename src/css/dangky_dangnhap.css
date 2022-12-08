@@ -460,7 +460,12 @@
   width: 38%;
 }
 .anh__ttnb img {
-  width: 100%;
+  width: 154px;
+  height: 115.5px;
+}
+.anh__ttnb .daupage{
+  width: 300px;
+  height: 280px;
 }
 .noidung__ttnb {
   width: 63%;
