@@ -34,7 +34,7 @@
                         $pageRate_1 = '';
                     }
                 ?>
-                <a href="index.php?actAdmin=comments<?=$pageRate?><?=$pageRate_1?>=<?=$_GET['parent']?>" style="color: white;padding: 10px;background: #f51717;border-radius: 8px;font-weight: bold;">Quay lại</a>
+                <a href="index.php?actAdmin=comments<?=$pageRate?><?=$pageRate_1?>=<?=$_GET['parent']?>" style="color: white;padding: 10px 15px;background: #f51717;border-radius: 5px;font-weight: bold; font-size: 15px;">Quay lại</a>
                 <?php if(isset($_GET['msg'])): ?>
                     <div class="alert alert-success" style="padding: 15px 0 15px 25px;">
                         <?= $_GET['msg'] ?>
