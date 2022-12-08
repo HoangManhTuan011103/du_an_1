@@ -173,7 +173,6 @@ td.addOrderNew button .fa-solid {
 }
 
 .form--Order-direct form .form--right--inforUser button {
-    margin-top: 15px;
     padding: 10px;
     border-radius: 5px;
     font-size: 14px;
@@ -422,4 +421,19 @@ span.pluss {
     border-radius: 5px;
     font-weight: bold;
     border: 1px solid #00A85A;
+}
+
+.btn__action.btn__action--addProduct a {
+    padding: 12px 15px;
+    background-color: #DD4B39;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 13.333px;
+    font-weight: bold;
+    transition: all linear 0.3s;
+}
+
+.btn__action.btn__action--addProduct a:hover {
+    background-color: #ffffff;
+    color: #DD4B39;
 }

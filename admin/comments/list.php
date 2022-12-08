@@ -20,7 +20,7 @@
                     <table border="1">
                         <thead>
                             <tr>
-                                <th>STT</th>
+                                <!-- <th>STT</th> -->
                                 <th>Mã sản phẩm</th>
                                 <th>Sản phẩm</th>
                                 <th>Ảnh</th>
@@ -61,7 +61,7 @@
                                     }
                                     echo '
                                         <tr>
-                                            <td>'.$stt.'</td>
+                                            
                                             <td>SP0'.$nameUser['Pid'].'</td>
                                             <td class="name">'.$nameUser['ProName'].'</td>
                                             <td class="image">
