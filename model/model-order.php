@@ -31,8 +31,8 @@
         $sql = "UPDATE `users` SET `name`='$name',`email`='$email',`phone`='$phone',`address`='$address',`role`='$role',`status`='$status' WHERE id=$idUser";
         pdo_execute($sql);
     }
-    function insertToOrderDetail($order_id,$product_id,$quantity,$price_product){
-        $sql = "INSERT INTO `orders_detail`(`order_id`, `product_id`, `quantity`, `price_product`) VALUES ('$order_id','$product_id','$quantity','$price_product')";
+    function insertToOrderDetail($order_id,$product_id,$quantity,$price_product,$size){
+        $sql = "INSERT INTO `orders_detail`(`order_id`, `product_id`, `quantity`, `price_product`,`size`) VALUES ('$order_id','$product_id','$quantity','$price_product','$size')";
         pdo_execute($sql);
     }
     function updateToOrderDetail($order_id,$product_id,$quantity,$price_product){
@@ -61,12 +61,12 @@
         pdo_execute($sql);
     }
     function getDeltailPaySuccess($id){
-        $sql = "SELECT B.id,B.avatar,A.quantity,A.price_product, B.name FROM `orders_detail` A INNER JOIN `products` B ON A.product_id=B.id where A.order_id=$id ";
+        $sql = "SELECT B.id,B.avatar,A.quantity,A.price_product, B.name,A.size FROM `orders_detail` A INNER JOIN `products` B ON A.product_id=B.id where A.order_id=$id ";
         return pdo_query($sql);
     }
     // Get detail order unspecified
     function getDeltailPaySuccessUnspecified($id){
-        $sql = "SELECT B.id_product,B.avatar,A.quantity,A.price_product, B.name_product FROM `unspecified_orders_detail` A INNER JOIN `unspecified_products` B ON A.product_id=B.id_product where A.order_id=$id ";
+        $sql = "SELECT B.id_product,B.avatar,A.quantity,A.price_product, B.name_product,A.size FROM `unspecified_orders_detail` A INNER JOIN `unspecified_products` B ON A.product_id=B.id_product where A.order_id=$id ";
         return pdo_query($sql);
     }
     // Get detail order unspecified
@@ -84,7 +84,7 @@
         pdo_execute($sql);
     }
     function getOrderDirectU($id){
-        $sql = "SELECT A.`product_id`, A.`quantity`, A.`price_product`, B.`avatar`, B.`name` FROM `orders_detail` A INNER JOIN `products` B ON A.product_id=B.id WHERE A.order_id=$id";
+        $sql = "SELECT A.`product_id`, A.`quantity`, A.`price_product`, B.`avatar`, B.`name`,A.`size` FROM `orders_detail` A INNER JOIN `products` B ON A.product_id=B.id WHERE A.order_id=$id";
         return pdo_query($sql);
     }
     function getOneProductFlowIdUx($id)
@@ -100,7 +100,7 @@
 
     // Cancel Order User
     function selectOrderCancelToCart($id){
-        $sql = "SELECT B.id as id,B.avatar,B.name,A.price_product as giagiam ,A.quantity as use_quantity_buy FROM `orders_detail` A INNER JOIN `products` B ON A.product_id=B.id WHERE A.order_id=$id";
+        $sql = "SELECT B.id as id,B.avatar,B.name,A.price_product as giagiam ,A.quantity as use_quantity_buy, A.size as sizeProduct FROM `orders_detail` A INNER JOIN `products` B ON A.product_id=B.id WHERE A.order_id=$id";
         return pdo_query($sql);
     }
     function cancelOrderUserFromDetailOrder($id){

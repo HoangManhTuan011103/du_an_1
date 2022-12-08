@@ -391,3 +391,35 @@ span.pluss {
 
 
 /* Product filer follow Category */
+
+.size--ProductDetail ul li {
+    display: inline-block;
+    margin: 0 7px;
+}
+
+.size--ProductDetail ul li input {
+    display: block;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 0;
+    width: 40px;
+    text-align: center;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    transition: all linear 0.2s;
+}
+
+.size--ProductDetail ul li:hover>input {
+    background-color: #00A85A;
+    color: #ffffff;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.size--ProductDetail ul li.active input {
+    background-color: #00A85A;
+    color: #ffffff;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 1px solid #00A85A;
+}

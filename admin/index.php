@@ -459,10 +459,11 @@ if (isset($_GET['actAdmin'])) {
                 $imageProductOrder = $_POST['imageProductOrder'];
                 $priceProductOrder = $_POST['priceProductOrder'];
                 $quantityProductOrder = $_POST['quantityProductOrder'];
+                $sizeProduct = $_POST['sizeProduct'];
 
-                    $orderEmty = [$idProductOrder, $nameProductOrder, $imageProductOrder, $priceProductOrder, $quantityProductOrder];
+                    $orderEmty = [$idProductOrder, $nameProductOrder, $imageProductOrder, $priceProductOrder, $quantityProductOrder,$sizeProduct];
                     foreach ($_SESSION['orderAdmin'] as $key => $item) {
-                        if ($idProductOrder == $item[0]) {
+                        if ($idProductOrder == $item[0] && $sizeProduct == $item[5]) {
                             $temp = $key;
                             break;
                         }
@@ -521,7 +522,8 @@ if (isset($_GET['actAdmin'])) {
                     $idOrderAdminDirect = insertToOrder($idUserDirect, $payWhen, $statusOrder, $totalPricePay, $note, $addressDirect, $dateToInt);
 
                     foreach ($_SESSION['orderAdmin'] as $value) {
-                        insertToOrderDetail($idOrderAdminDirect, $value[0], $value[4], $value[3]);
+                        insertToOrderDetail($idOrderAdminDirect, $value[0], $value[4], $value[3],$value[5]);
+                        updateQuantityPaySuccess($value[0],$value[4]);
                         $_SESSION['orderAdmin'] = [];
                     }
                     setcookie("successOrder", "Thêm đơn mới thành công", time() + 1);
@@ -534,6 +536,8 @@ if (isset($_GET['actAdmin'])) {
                 if ($id > 0 && is_numeric($id)) {
                     $inforUserDirect = getInforOrderDirect($id);
                     $_SESSION['orderUpdateAdmin'] = getOrderDirectU($id);
+                  
+                    updateQuantityWhenCancelOrder($id,$quantity);
                     if (isset($_POST['btn-search--Product'])) {
                         $keyWord = $_POST['keyWord'];
                     } else if (isset($_GET['keyWord'])) {
@@ -559,16 +563,21 @@ if (isset($_GET['actAdmin'])) {
                     }
                     $temp = -1;
                     if (isset($_POST['btn__updateOrderAdmin'])) {
+                       
                         $idProductOrder = $_POST['idProductOrder'];
+                        $sizeProduct = $_POST['sizeProduct'];
+
                         $priceProductOrder = $_POST['priceProductOrder'];
                         $quantityProductOrder = $_POST['quantityProductOrder'];
 
                         $product_value = getOneProductFlowIdUx($idProductOrder);
                         $product_value['quantity'] = $quantityProductOrder;
                         $product_value['price_product'] = $priceProductOrder;
+                        $product_value['size'] = $sizeProduct;
+
 
                         foreach ($_SESSION['orderUpdateAdmin'] as $key => $item) {
-                            if ($idProductOrder == $item['product_id']) {
+                            if ($idProductOrder == $item['product_id'] && $sizeProduct == $item['size']) {
                                 $temp = $key;
                                 break;
                             }
@@ -603,8 +612,10 @@ if (isset($_GET['actAdmin'])) {
                 require_once "./orders/editOrderAdmin.php";
                 break;
             case 'updateOrderUserDirectSuccess':
+                
                 if (isset($_POST['btn--UpdateOrder'])) {
                     // date_default_timezone_set("Asia/Ho_Chi_Minh");
+                    
                     $errors = [];
                     $nameDirect = $_POST['nameDirect'];
                     $emailDirect = $_POST['emailDirect'];
@@ -620,18 +631,20 @@ if (isset($_GET['actAdmin'])) {
                     $statusOrder = "6";
                     $idOrder = $_POST['idOrder'];
                     $idUser = $_POST['idUser'];
+                    $updateNewQuantity = getOrderDirectU($idOrder);
+                    foreach($updateNewQuantity as $value){
+                        updateQuantityWhenCancelOrder($value['product_id'],$value['quantity']);
+                    }
                     $idOrderDetail = selectIdOrderDetail($idOrder);
                     deleteUpdateOrderAdmin2($idOrder);
                     UpdateToUserDirect($idUser, $nameDirect, $emailDirect, $phoneDirect, $addressDirect, $role, $status);
                     UpdateToOrder($idOrder, $payWhen, $statusOrder, $totalPricePay, $note, $addressDirect);
-
+                    
                     foreach ($_SESSION['orderUpdateAdmin'] as $value) {
-                        // if(count($_SESSION['orderUpdateAdmin']) == 1){
-                        //     updateToOrderDetail($idOrder, $value['product_id'], $value['quantity'], $value['price_product']);
-                        //     $_SESSION['orderUpdateAdmin'] = [];
-                        // }else{
 
-                        insertToOrderDetail($idOrder, $value['product_id'], $value['quantity'], $value['price_product']);
+                        insertToOrderDetail($idOrder, $value['product_id'], $value['quantity'], $value['price_product'],$value['size']);
+                        updateQuantityPaySuccess($value['product_id'],$value['quantity']);
+                       
                         $_SESSION['orderUpdateAdmin'] = [];
 
                         // }

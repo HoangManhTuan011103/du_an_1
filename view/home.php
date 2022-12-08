@@ -106,7 +106,7 @@
                     với thời gian, mang dấu ấn cá tính khác biệt và tạo mọi sự lôi cuốn từ chính chiếc áo bạn mặc trên người
                     . Tự tạo cuộc chơi, tự tạo phong cách, đó là F-Sport</p>
                 <div class="warp--review--1--row-1__text__see-more">
-                    <a href="">XEM THÊM <i class="fa-solid fa-angle-right"></i></a>
+                    <a href="index.php?act=showProducts">XEM THÊM <i class="fa-solid fa-angle-right"></i></a>
                 </div>
 
             </div>
@@ -149,7 +149,7 @@
                 <h2>MẪU ÁO THIẾT KẾ HIỆN ĐẠI</h2>
                 <p>F-Sport là nơi mang đến cho quý khách những mấu mã về những loại áo chất lượng nhất, phù hợp nhất với giá cả và tương xứng với chất lượng. Mẫu áo thiết kế năng động trẻ trung tạo sức cuốn hút ngay cả trong cuộc sống hàng ngày và trong thể thao. F-Sport luôn mang đến cho quý khách trải nghiệm và dịch vụ tốt nhất.</p>
                 <div class="warp--review--1--row-1__text__see-more">
-                    <a href="">XEM THÊM <i class="fa-solid fa-angle-right"></i></a>
+                    <a href="index.php?act=showProducts">XEM THÊM <i class="fa-solid fa-angle-right"></i></a>
                 </div>
             </div>
             <div class="review--2-row--1__img l-5 m-12 c-12">
