@@ -1,10 +1,35 @@
 
 <?php
-function getAllCategories()
-{
-    $sql = "select * from categories order by id desc";
+// panigation
+
+function get_Page_Cat_admin_order($keyWord){
+    $sql = "select * from categories";
+    if($keyWord != ""){
+        $sql .= " where name like '%$keyWord%'";
+    }
+    $sql .= " order by id desc";
+    $numberPage = pdo_query($sql);
+    $countPage = sizeof($numberPage) / 4;
+    return $countPage;
+}
+function getAllCategories($keyWord){
+    $countPage = get_Page_Cat_admin_order($keyWord);
+    if(isset($_GET['page']) &&  $_GET['page'] > 0 && $_GET['page'] <= $countPage+1 ){
+        $page = $_GET['page'];
+    }else{
+        $page = 1;
+    }
+    $from = ($page - 1) * 4;
+    $sql = "select * from categories";
+    if($keyWord != ""){
+        $sql .= " where name like '%$keyWord%'";
+    }
+    $sql .= " order by id desc limit $from,4";
+
     return pdo_query($sql);
 }
+// panigation
+
 function category_selectAllDesc()
 {
     $sql = "select products.quantity  as quantity_prodcut , categories.* from categories join products on products.category_id = categories.id order by id desc";

@@ -28,7 +28,7 @@ $listBuyOnDay = buyProductWithDay();
 $bestSale = bestProductSales();
 $totalOrderWeek = totalOrderWithWeek();
 $sumMoneyMonthCurrently = sumMoneyMonthCurrently();
-$listProductFlCat = getAllCategories();
+$listProductFlCat = getAllCategories("");
 require_once "./header.php";
 if (isset($_GET['actAdmin'])) {
     $actAdmin = $_GET['actAdmin'];
@@ -65,12 +65,20 @@ if (isset($_GET['actAdmin'])) {
                     category_insert($name, $avatar, $status);
                     $notification = "Thêm danh mục thành công";
                 }
-                $listdm = getAllCategories();
+                $listdm = getAllCategories("");
                 require_once "./categories/add.php";
                 break;
 
             case 'listCategories':
-                $listdm = getAllCategories();
+                if(isset($_POST['btn-searchCategory'])){
+                    $keyWord = $_POST['keyWord'];
+                }else if(isset($_GET['keyWord'])){
+                    $keyWord = $_GET['keyWord'];
+                }else {
+                    $keyWord = "";
+                }
+                $countPage = get_Page_Cat_admin_order($keyWord);
+                $listdm = getAllCategories($keyWord);
                 require_once "./categories/list.php";
                 break;
             case 'deleteCategory':
@@ -116,7 +124,7 @@ if (isset($_GET['actAdmin'])) {
                     category_delete($id);
                     $notification = "Xóa danh mục thành công";
                 }
-                $listdm = getAllCategories();
+                $listdm = getAllCategories("");
                 require_once "./categories/list.php";
                 break;
             case 'editCategories';
@@ -157,7 +165,7 @@ if (isset($_GET['actAdmin'])) {
                     category_update($id, $name, $avatar, $status);
                     $notification = "Bạn đã chỉnh sửa danh mục thành công";
                 }
-                $listdm = getAllCategories();
+                $listdm = getAllCategories("");
                 require_once "./categories/list.php";
                 break;
                 // long code categories
@@ -269,14 +277,14 @@ if (isset($_GET['actAdmin'])) {
                     header("location: index.php?actAdmin=showProduct");
                 }     
             }
-            $listCategories = getAllCategories();
+            $listCategories = getAllCategories("");
             require_once "./products/add.php";
             break;
         case 'editProduct':
             $id = isset($_GET['id']) ? $_GET['id'] : "";
             if ($id > 0 && is_numeric($id)) {
                 $detailProduct = getProductFollowId($id);
-                $listCategories = getAllCategories();
+                $listCategories = getAllCategories("");
                 $listImagesProduct = getProductAllImage($id);
                 if (isset($_POST['btn--updateProduct'])) {
                     $idProduct = $_POST['idProduct'];
@@ -441,7 +449,16 @@ if (isset($_GET['actAdmin'])) {
             require_once "./products/list.php";
             break;
         case 'showOrder':
-            $listOrderUser = getAllOrderToAdmin();
+            if(isset($_POST['btn-searchOrder'])){
+                $keyWord = $_POST['keyWord'];
+            }else if(isset($_GET['keyWord'])){
+                $keyWord = $_GET['keyWord'];
+            }else{
+                $keyWord = "";
+            }
+            $countPage = get_Page_Order_admin_order($keyWord);
+            $listOrderUser = getAllOrderToAdmin($keyWord);
+           
             require_once "./orders/list.php";
             break;
         case 'addOrderAdmin':
@@ -481,7 +498,7 @@ if (isset($_GET['actAdmin'])) {
                 }
                 $countPage = get_Page_Product_admin_order($keyWord, $rowsProductAdmin);
                 $listProduct = getAllProduct_order($keyWord, $rowsProductAdmin);
-                $listOrderUser = getAllOrderToAdmin();
+                $listOrderUser = getAllOrderToAdmin("");
                 require_once "./orders/addOrderAdmin.php";
                 break;
             case "update_quantity_products_CartAdmin":
@@ -499,7 +516,7 @@ if (isset($_GET['actAdmin'])) {
                 }
                 $countPage = get_Page_Product_admin_order($keyWord, $rowsProductAdmin);
                 $listProduct = getAllProduct_order($keyWord, $rowsProductAdmin);
-                $listOrderUser = getAllOrderToAdmin();
+                $listOrderUser = getAllOrderToAdmin("");
                 require_once "./orders/addOrderAdmin.php";
                 break;
             case 'AddOrderUserDirect':
@@ -662,7 +679,7 @@ if (isset($_GET['actAdmin'])) {
                 if ($id > 0 && is_numeric($id) && $status >= 0 && is_numeric($status)) {
                     tickOrderAdmin($id, $status);
                 }
-                $listOrderUser = getAllOrderToAdmin();
+                $listOrderUser = getAllOrderToAdmin("");
                 require_once "./orders/list.php";
                 break;
             case 'deleteOrder':
@@ -674,10 +691,10 @@ if (isset($_GET['actAdmin'])) {
                 } else {
                     require_once "./orders/list.php";
                 }
-                $listOrderUser = getAllOrderToAdmin();
+                $listOrderUser = getAllOrderToAdmin("");
                 require_once "./orders/list.php";
             
-            $listOrderUser = getAllOrderToAdmin();
+            $listOrderUser = getAllOrderToAdmin("");
             require_once "./orders/list.php";
             break;
         case "detailOrder":

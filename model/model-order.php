@@ -44,10 +44,37 @@
         return pdo_query($sql);
     }
     // Lấy đơn hàng bên phía Admin
-    function getAllOrderToAdmin(){
-        $sql = "SELECT A.`id`,B.`status` as `statusUser`,B.`name`, A.`status`, A.`total_price`, A.`address`, A.`created_at` FROM `orders` A INNER JOIN `users` B ON A.user_id=B.id where 1 order by id desc";
+    // panigation
+   
+    function get_Page_Order_admin_order($keyWord){
+        $sql = "SELECT A.`id`,B.`status` as `statusUser`,B.`name`, A.`status`, A.`total_price`, A.`address`, A.`created_at` FROM `orders` A INNER JOIN `users` B ON A.user_id=B.id ";
+        if($keyWord != ""){
+            $sql .= " where B.`name` like '%$keyWord%'";
+        }
+        $sql .= " order by A.id desc";
+        $numberPage = pdo_query($sql);
+        $countPage = sizeof($numberPage) / 10;
+        return $countPage;
+    }
+    function getAllOrderToAdmin($keyWord){
+        $countPage = get_Page_Order_admin_order($keyWord);
+        if(isset($_GET['page']) &&  $_GET['page'] > 0 && $_GET['page'] <= $countPage+1 ){
+            $page = $_GET['page'];
+        }else{
+            $page = 1;
+        }
+        $from = ($page - 1) * 10;
+        $sql = "SELECT A.`id`,B.`status` as `statusUser`,B.`name`, A.`status`, A.`total_price`, A.`address`, A.`created_at` FROM `orders` A INNER JOIN `users` B ON A.user_id=B.id ";
+        if($keyWord != ""){
+            $sql .= " where B.`name` like '%$keyWord%'";
+        }
+        $sql .= " order by A.id desc limit $from,10";
+
         return pdo_query($sql);
     }
+ 
+    // panigation
+
     function deleteOrderToAdmin($id){
         $sql = "DELETE FROM `orders` WHERE id=$id";
         pdo_execute($sql);
