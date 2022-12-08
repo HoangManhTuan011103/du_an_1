@@ -23,19 +23,18 @@
                 </div>
             </div>
            
-            <div class="btn-backtoComment" style="margin:10px 0px;">
+            <div class="btn-backtoComment" style="margin:20px 0px;">
                 <?php 
                     if(isset($_GET['pageRate'])){
                         global $pageRate;
                         $pageRate = '&&rate';
                         $pageRate_1 = '&&pageRate';
-                        
                     }else{
-                        $pageRate ='';
+                        $pageRate ='&&page';
                         $pageRate_1 = '';
                     }
                 ?>
-                <a href="index.php?actAdmin=comments<?=$pageRate?><?=$pageRate_1?>=<?=$_GET['parent']?>"><button>Quay lại</button></a>
+                <a href="index.php?actAdmin=comments<?=$pageRate?><?=$pageRate_1?>=<?=$_GET['parent']?>" style="color: white;padding: 10px;background: #f51717;border-radius: 8px;font-weight: bold;">Quay lại</a>
                 <?php if(isset($_GET['msg'])): ?>
                     <div class="alert alert-success" style="padding: 15px 0 15px 25px;">
                         <?= $_GET['msg'] ?>
