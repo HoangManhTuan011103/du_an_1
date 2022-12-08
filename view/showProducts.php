@@ -316,7 +316,7 @@
         idPage = 1;
         if (id_category !== 0) {
             list_arr = list_arr.filter(function(item) {
-                return item.category_id === Number(id_category);
+                return item.category_id == id_category;
             });
         }
         const arrlist = list_arr.filter((iteam, index) => {
@@ -423,7 +423,7 @@
     function filter_array_cate_by_click(id) {
 
         let arr_list_cate = arr_prodcut3.filter(iteam => {
-            return iteam.category_id === Number(id)
+            return iteam.category_id == id;
         })
 
         show_product123(listArrayPrice, arr_list_cate);
