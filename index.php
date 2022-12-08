@@ -15,6 +15,8 @@ $pronew = loadall_product_home();
 $pronew2 = loadall_product_home2();
 $pronew3 = loadall_product_home3();
 
+
+
 if (!isset($_SESSION['mycart'])) {
     $_SESSION['mycart'] = [];
 }
@@ -367,14 +369,16 @@ if (isset($_GET['act'])) {
             $temp = -1;
             if (isset($_POST['btn-addCart'])) {
                 $id = $_POST['id'];
+                $sizeProduct = $_POST['sizeProduct'];
                 $giagiam = $_POST['giagiam'];
                 $product_quantity_input = $_POST['product_quantity_input'];
                 $product_value = getOneProductFlowId($id);
                 $product_value['use_quantity_buy'] = $product_quantity_input;
                 $product_value['giagiam'] = $giagiam;
+                $product_value['sizeProduct'] = $sizeProduct;
 
                 foreach ($_SESSION['mycart'] as $key => $item) {
-                    if ($id == $item['id']) {
+                    if ($id == $item['id'] && $sizeProduct == $item['sizeProduct']) {
                         $temp = $key;
                         break;
                     }
@@ -446,7 +450,7 @@ if (isset($_GET['act'])) {
                     $address = $_POST['address'];
                     $payWhen = isset($_POST['payWhen']) ? $_POST['payWhen'] : "";
                     $note = $_POST['note'];
-                    $totalPricePay = $_POST['totalPricePay'];
+                    $totalPricePay = $_POST['totalPricePay1'];
                     $dateCurrent = time();
                     $dateToInt = date("Y-m-d h:i:s", $dateCurrent);
 
@@ -470,7 +474,7 @@ if (isset($_GET['act'])) {
                     if (!$errors) {
                         $idOrder = insertToOrderClient($id, $payWhen, $totalPricePay, $note, $address,$dateToInt);
                         foreach ($_SESSION['mycart'] as $value) {
-                            insertToOrderDetail($idOrder, $value['id'], $value['use_quantity_buy'], $value['giagiam']);
+                            insertToOrderDetail($idOrder, $value['id'], $value['use_quantity_buy'], $value['giagiam'],$value['sizeProduct']);
                             updateQuantityPaySuccess($value['id'],$value['use_quantity_buy']);
                         }
                         // header("location: index.php?act=dsdonhang");

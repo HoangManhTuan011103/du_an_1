@@ -51,6 +51,7 @@
                         <th>Mã sản phẩm</th>
                         <th>Tên sản phẩm</th>
                         <th>Ảnh</th>
+                        <th>Kích cỡ</th>
                         <th>Tên danh mục</th>
                         <th>Giá</th>
                         <th>Thao tác</th>
@@ -67,10 +68,23 @@
                         }
                         ?>
                         <tr>
+                        <form action="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>" method="POST">
                             <td>SP00<?= $value['id'] ?></td>
                             <td class="name"><?= $value['nameProduct'] ?></td>
                             <td class="image">
                                 <?= $image ?>
+                            </td>
+                            <td class="menuSize">
+                                <div class="size--ProductDetail">
+                                    <ul>
+                                        <li class="size" ><input name="" type="text" value="XS" readonly></li>
+                                        <li class="size active"><input name="sizeProduct" type="text" value="S" readonly></li>
+                                        <li class="size"><input name="" type="text" value="M" readonly ></li>
+                                        <li class="size"><input name="" type="text" value="L" readonly ></li>
+                                        <li class="size"><input name="" type="text" value="XL" readonly ></li>
+                                        <li class="size"><input name="" type="text" value="2XL" readonly ></li>
+                                    </ul>
+                                </div>
                             </td>
                             <td class="category">
                                 <?= $value['name'] ?>
@@ -79,15 +93,16 @@
                                 <?= number_format($value['price'] - ($value['price'] * $value['discount'] / 100)) . "đ" ?>
                             </td>
                             <td class="addOrderNew">
-                                <form action="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>" method="POST">
+                                <!-- <form action="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $id ?>" method="POST"> -->
                                     <input type="hidden" name="idProductOrder" value="<?= $value['id'] ?>">
                                     
                                     <input type="hidden" name="priceProductOrder" value="<?= $value['price'] - ($value['price'] * $value['discount'] / 100) ?>">
 
                                     <input type="hidden" name="quantityProductOrder" value="1">
                                     <button type="submit" name="btn__updateOrderAdmin"><i class="fa-solid fa-plus"></i>Thêm vào đơn</button>
-                                </form>
+                                <!-- </form> -->
                             </td>
+                            </form>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -185,7 +200,7 @@
                             ?>
                             <tr class="detail__OrderAdmin--Product">
                                 <td>SP00<?= $value['product_id'] ?></td>
-                                <td><?= $value['name'] ?></td>
+                                <td><?= $value['name']. ' (' .$value['size'] .')' ?></td>
                                 <td><?= $image ?></td>
                                 <td class="quantityOrderAdmin">
                                    <div>
@@ -255,6 +270,22 @@
 </div>
 </div>
 <script src="../src/js/animation.js"></script>
+<script>
+     // Chuyển size
+    const tdMenuSize = document.querySelectorAll('.menuSize');
+    tdMenuSize.forEach((item, index) => {
+            item.querySelectorAll('li').forEach((size, index) => {
+            size.onclick = function(){
+                const getNameSize = item.querySelector('.size.active');
+                getNameSize.classList.remove("active");
+                getNameSize.querySelector('input').name = "";
+                this.classList.add("active");
+                this.querySelector('input').name = "sizeProduct";
+            }
+        });
+    });
+    // Chuyển size
+</script>
 </body>
 
 </html>

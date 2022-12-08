@@ -58,7 +58,7 @@
                                 <tr>
                                    
                                     <td>SP00<?= $valueDetail['id'] ?></td>
-                                    <td><?= $valueDetail['name'] ?></td>
+                                    <td><?= $valueDetail['name']. ' (' .$valueDetail['size'] .')' ?></td>
                                     <td class="image"><?= $image ?></td>
                                     <td><?= $valueDetail['quantity'] ?></td>
                                     <td><?= number_format($valueDetail['price_product'])."đ" ?></td>
@@ -73,7 +73,7 @@
                                 <tr>
                                     
                                     <td>SP00<?= $valueDetail['id_product'] ?></td>
-                                    <td><?= $valueDetail['name_product'] ?></td>
+                                    <td><?= $valueDetail['name_product']. ' (' .$valueDetail['size'] .')' ?></td>
                                     <td class="image"><?= $image ?></td>
                                     <td><?= $valueDetail['quantity'] ?></td>
                                     <td><?= number_format($valueDetail['price_product'])."đ" ?></td>

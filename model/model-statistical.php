@@ -36,7 +36,7 @@
     }
     // Tổng doanh thu theo năm tháng hiện tại
     function sumMoneyMonthCurrently(){
-        $sql = "select year(CURRENT_TIMESTAMP) total_flow_year,month(CURRENT_TIMESTAMP) total_flow_month,sum(total_price) from orders group by year(created_at),month(created_at) order by year(created_at),month(created_at);";
+        $sql = "select year(CURRENT_TIMESTAMP) total_flow_year,month(CURRENT_TIMESTAMP) total_flow_month,sum(total_price) from orders where status=6 group by year(created_at),month(created_at) order by year(created_at),month(created_at);";
         return pdo_query_one($sql);
     }
     function getToTalProductChartJs(){

@@ -51,7 +51,6 @@
                     <div class="col l-6">
                         <!--tiêu đề vận chuyển -->
                         <div class="title_info_pay">
-
                             <p class="title_pay">Vận chuyển</p>
                         </div>
 
@@ -132,7 +131,7 @@
                                     <img src="./imageProduct/<?= $value['avatar'] ?>" alt="" />
                                 </td>
                                 <td class="product_order_info_detail-name">
-                                    <?= $value['name'] ?>
+                                    <?= $value['name']. ' (' .$value['sizeProduct'] .')' ?>
                                 </td>
                                 <td>
                                     <?= $value['use_quantity_buy'] ?>
@@ -160,7 +159,7 @@
                     <div class="price_total_all_pay">
                         <p>Tổng cộng</p>
 
-                        <p class="price_shipping price_total_all_pay-color" id="total--fortyThousand"> <input type="hidden" name="totalPricePay" value="<?= $totalAllProductPay + 40000 ?>"><?= number_format($totalAllProductPay + 40000) ?><span class="icon_d_posiotion_">đ</span></p>
+                        <p class="price_shipping price_total_all_pay-color" id="total--fortyThousand"> <input type="hidden" name="totalPricePay1" value="<?= $totalAllProductPay + 40000 ?>"><?= number_format($totalAllProductPay + 40000) ?><span class="icon_d_posiotion_">đ</span></p>
 
 
                         <p style="display: none;" class="price_shipping price_total_all_pay-color" id="total--noneFortyThousand"><input type="hidden" name="totalPricePay" value="<?= $totalAllProductPay ?>"><?= number_format($totalAllProductPay) ?><span class="icon_d_posiotion_">đ</span></p>

@@ -168,10 +168,24 @@ foreach ($check_user_bying_product as $check) {
                         </p>
                         </p>
                     </div>
+                  
+
                     <!-- số lượng -->
                     <div class="product__one_quantity">
 
                         <form action="index.php?act=addToCart" id="form_quantity" method="post" enctype="multipart/form-data">
+                              <!-- size -->
+                            <div class="size--ProductDetail">
+                                <ul>
+                                    <li class="size" ><input name="" type="text" value="XS" readonly></li>
+                                    <li class="size active"><input name="sizeProduct" type="text" value="S" readonly></li>
+                                    <li class="size"><input name="" type="text" value="M" readonly ></li>
+                                    <li class="size"><input name="" type="text" value="L" readonly ></li>
+                                    <li class="size"><input name="" type="text" value="XL" readonly ></li>
+                                    <li class="size"><input name="" type="text" value="2XL" readonly ></li>
+                                </ul>
+                            </div>
+                            <!-- size -->
                             <div class="form_product_submit_quatity">
                                 <p class="product_quantity_name">
                                     Số lượng :
@@ -555,6 +569,23 @@ foreach ($check_user_bying_product as $check) {
             }
         })
     }
+    // Chuyển size
+    const parentSize = document.querySelector('.size--ProductDetail ul');
+    const menuSize = parentSize.querySelectorAll('li');
+    menuSize.forEach((size, index) => {
+        size.onclick = function(){
+            const getNameSize = parentSize.querySelector('.size.active');
+            getNameSize.classList.remove("active");
+            getNameSize.querySelector('input').name = "";
+            this.classList.add("active");
+            this.querySelector('input').name = "sizeProduct";
+        }
+    });
+    // Chuyển size
+
+
+
+
 </script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script type="text/javascript">

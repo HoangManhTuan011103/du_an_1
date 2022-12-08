@@ -1,17 +1,4 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Giỏ hàng</title>
-  <link rel="stylesheet" href="../../src/css/dangky_dangnhap.css" />
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/sharp-solid.css" />
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css" />
-</head>
-
-<body> -->
 
 <?php
 if (!isset($_SESSION['mycart']) || empty($_SESSION['mycart'])) {
@@ -49,6 +36,7 @@ $sum = 0;
         <thead>
           <tr class="mone__8eu0-22">
             <th>Sản phẩm</th>
+          
             <th>Giá</th>
             <th>Số lượng</th>
             <th>Thành tiền</th>
@@ -64,13 +52,14 @@ $sum = 0;
                   <img src="./imageProduct/<?= $value['avatar'] ?>" alt="" />
                 </div>
                 <div>
-                  <p><?= $value['name'] ?></p>
+                  <p><?= $value['name'] . ' (' .$value['sizeProduct'] .')' ?> </p>
                   <a onclick="return confirm('Bạn có chắc muốn xóa sản phẩm <?= $value['name'] ?> không')" href="index.php?act=delete_product_cart_byId&id=<?= $id ?>" class="cls__f_t_a color__text--red size__a--92">
                     <i class="fa-solid fa-trash-can"></i>
                     Xóa sản phẩm
                   </a>
                 </div>
               </td>
+             
               <td>
                 <h5 class="fs---393 color__text--red"><?= number_format($value['giagiam']) ?> ₫</h5>
               </td>
