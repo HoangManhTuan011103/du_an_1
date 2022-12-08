@@ -514,10 +514,11 @@ if (isset($_GET['act'])) {
             require_once "./view/lienhe.php";
             break;
         case "gioithieu":
-        require_once "./view/gioithieu.php";
-        break;
+            require_once "./view/gioithieu.php";
+            break;
 
         case "tintuc":
+            $listLowPrice = fillter_price_low();
             require_once "./view/tintuc.php";
             break;
     

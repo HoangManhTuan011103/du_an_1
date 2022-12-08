@@ -17,35 +17,33 @@
     </div>
     <div class="login__bottom-form gt__text">
       <p>
-        Ra đời vào cuối năm 2011 là một sản phẩm của Delta Web, Delta Shoes đã
+        Ra đời vào cuối năm 2022 là một sản phẩm của FSPORT, FSPORT đã
         sớm có một vị trí vững chắc trên thị trường thương mại điện tử trong
         nước, trở thành shop mua sắm hàng thời trang online đầy tin cậy, tiện
         lợi cho khách hàng trên toàn quốc. Là một website thời trang online
         bán hàng trực tuyến chúng tôi phục vụ nhu cầu mua sắm trực tuyến đồng
-        thời bán buôn, bán sỉ và gia công may mặc bao gồm: giày dép, quần áo,
-        thời trang hàng hiệu, thời trang nam, thời trang nữ, quần áo công sở,
-        thời trang công sở, phụ kiện thời trang nam nữ... bất cứ khi nào khách
+        thời bán buôn, bán sỉ và gia công may mặc bao gồm: quần áo thể thao,
+        thời trang hàng hiệu,... bất cứ khi nào khách
         hàng có nhu cầu mua sắm hàng thời trang online chất lượng giá rẻ đẹp
-        thì Delta Shoes là 1 sựa lựa chọn tuyệt vời với hàng chục hotdeal mỗi
+        thì FSPORT là 1 sựa lựa chọn tuyệt vời với hàng chục hotdeal mỗi
         ngày.
         <br />
         <br />
 
-        Mua sắm thời trang là nhu cầu thiết yếu của cả phái mạnh và phái đẹp.
-        Thấu hiểu điều này, Delta Shoes sẽ mang đến cho bạn nhiều bộ sưu tập
-        thời trang 2018 hot nhất từ các thương hiệu trong và ngoài nước. Bên
+        Mua sắm thời trang là nhu cầu thiết yếu của cả phái mạnh.
+        Thấu hiểu điều này, FSPORT sẽ mang đến cho bạn nhiều bộ sưu tập
+        thời trang 2022 hot nhất từ các thương hiệu trong và ngoài nước. Bên
         cạnh đó, thời trang cao cấp Hàn Quốc từ các nhãn hàng thời trang nổi
         tiếng cũng là một thế mạnh của cửa hàng mua sắm thời trang online hàng
-        đầu này. Ngoài ra, Delta Shoes cũng sẽ gợi ý cho bạn những món quà
+        đầu này. Ngoài ra, FSPORT cũng sẽ gợi ý cho bạn những món quà
         thật ý nghĩa để tặng người thân, bạn bè. Chúng tôi sẽ làm bạn hài lòng
         với sự lựa chọn của mình bằng giá tốt nhất và chất lượng dịch vụ hoàn
-        hảo. Mua hàng trực tuyến giá rẻ chưa bao giờ dễ dàng đến thế với Delta
-        Shoes với Thời Trang Nam, Thời Trang Nữ, Thời Trang Công Sở được cập
+        hảo. Mua hàng trực tuyến giá rẻ chưa bao giờ dễ dàng đến thế với FSPORT với Thời Trang Thể Thao Nam được cập
         nhật mỗi ngày.
         <br />
         <br />
         Bạn có thể thoải mái mua sắm thời trang cao cấp hay thời trang hàng
-        hiệu và thậm chí cả thời trang cao cấp Việt Nam tại Delta Shoes. Đa
+        hiệu và thậm chí cả thời trang cao cấp Việt Nam tại FSPORT. Đa
         dạng mẫu mã, chủng loại và giá cả, bạn sẽ có nhiều lựa chọn cho phong
         cách thời trang của riêng mình. Đừng bỏ lỡ những đợt giảm giá khủng
         của chúng tôi để sắm cho mình những deal hot nhất mùa này. Chúng tôi
