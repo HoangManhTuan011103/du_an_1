@@ -105,17 +105,23 @@
         <div class="tintuc__noibat">
           <div class="anh__ttnb">
             <a href=""><img
-                src="https://file.hstatic.net/1000355922/file/converse_chuck_taylor_all_stars_c138c55f4b79487abde30f5e4c591dfd_grande.jpg"
+                src="https://cf.shopee.vn/file/sg-11134201-22100-ms6ckijmmxiv82"
                 alt="" class="daupage" /></a>
           </div>
           <div class="noidung__ttnb">
             <h4>
-              <a href="" class="cls__f_t_a">TOP 12 mẫu giày thể thao nữ đẹp nhất năm 2022</a>
+              <a href="" class="cls__f_t_a">Bộ thể thao nam nỉ bông ấm đẹp nhất năm 2022</a>
             </h4>
             <p>
-            1. Converse Chuck Taylor All Stars Đứng đầu là mẫu giày Converse Chuck Taylor All Stars phổ biến được nhiều bạn nam và nữ biết đến nhiều nhất trên thế giới Tên giày được đặt theo tên của một vận động viên bóng rổ Indiana Chuck Taylor và đến nay nó vẫn là mẫu giày đẹp và tốt nhất mọi thời đại. Với rất nhiều màu sắc, bạn có thể lựa chọn cho mình những kiểu phù hợp nhất nhé
-            2. Gucci Sneakers
-            Năm 1984 đôi giày Sneakers đầu tiên được Gucci gới thiệu cho đến nay với nhiều thiết kế thay đổi lớn so với kiểu dáng ban đầu. Đã tạo nên cơn sốt cho người dùng khi có thể sở hữu cho mình một đôi giày thể thao hàng hiệu nổi tiếng nhưng giá thành lại phù hợp túi tiền.
+            Nỉ vải nỉ bông suất dư Bên ngoài nỉ trơn mịn đẹp, bên trong nót 1lớp bông, mềm mịn, đẹp có tác dụng giữ ấm tốt. 
+            Lô gô chữ thêu sịn đét chống bong tróc chống phai.
+            Cam kết 100%  ko bao giờ xù gião phai. 
+            Kiểu dáng trẻ trung,  năng động,  lịch sự.
+            Phù hợp mặc đôi nam nữ.
+            Bo chuẩn đẹp, full tem nhãn hãng,  may kĩ,  2 túi áo túi quần có khóa dây rút quần cẩn thận.
+            Full sz m l xl từ 48kg đến 78kg.
+            2 Màu y ảnh đen sọc trắng và đen sọc đen.
+            khách ib shop để đk tư vấn size cho chuẩn trước khi đặt hàng.
             </p>
           </div>
         </div>
@@ -125,123 +131,141 @@
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://file.hstatic.net/1000355922/file/xu_huong_chunky_sneaker_1737f6f5e9824feebd9d6f668e41dfdb_grande.png"
+                    src="https://cf.shopee.vn/file/638762add77d2abd5260c57bb9f186f6"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
                 <h4>
-                  <a href="" class="cls__f_t_a">Top 10 mẫu giày thể thao yêu thích nhất hiện nay</a>
+                  <a href="" class="cls__f_t_a">QUẦN ÁO BÓNG CHUYỀN JUSTPLAY NAM VOLLY</a>
                 </h4>
                 <p class="contentt__child33">
-                Ngoài kiểu dáng kích thước nổi bật thì chất liệu tạo nên giày là một trong những yếu tố hàng đầu giúp cho sản phẩm nâng tầm cho người sử dụng.
-                Trước đây đa phần giày sẽ sử dụng chất liệu vải, da nhưng trong những năm gần đây xu hướng sử dụng chất liệu sợi dệt công nghệ cao đang được sử dụng rộng rãi giúp người dùng sủ dụng cảm giác thoải mái nhất
-                Giày thiết kế Chunky Sneaker ra đời năm 2018 đã tạo nên cơn sốt trong giới trẻ. Là loại giày có kiểu dáng kích thước to, đế giày to dày cùng với những chi tiết khỏe, trẻ trung.
-                Sản phẩm ra đời đã nhanh chóng chiếm được tình cảm của rất nhiều người là tín đồ của Sneaker và luôn là sự lựa chọn hàng đầu của giới trẻ
+                Chất liệu thun lạnh cao cấp mềm, mịn, bền, đẹp, không bị ra màu
+                có khả năng co giãn và rút mồ hôi tốt, tạo cảm giác thoải mái trong khi mặc thi đấu
+                Sợi Poly có tác dụng kháng vết bẩn khá tốt, dễ giặt và vệ sinh.
+                Chi tiết ản phẩm giống ảnh 100%
                 </p>
               </div>
             </div>
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://file.hstatic.net/1000355922/file/coman_shop_f5518fe7970843659b79aa51e1f7dd24_grande.jpg"
+                    src="https://cf.shopee.vn/file/a3b2c7b736e8684b5b72dbc59c8443fa"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
                 <h4>
-                  <a href="" class="cls__f_t_a">4 Đôi giày thể thao mới ra mắt đầu tháng 6</a>
+                  <a href="" class="cls__f_t_a">Áo gió 1 lớp nam Uniqlo chính hãng</a>
                 </h4>
                 <p class="contentt__child33">
-                Hàng được sản xuất tại Việt Nam, chất lượng luôn được đảm bảo ở hàng Fake cao nhất. Bạn sẽ nhận nhiều ưu đãi hấp dẫn mỗi khi ghé Shop để mua sắm.Vậy nên, bạn hãy đến với Coman Shop để có những đôi giày đẹp và thời trang nhất nhé!
+                Áo gió 1 lớp nam Uniqlo chính hãng
+                Pick store China
+                🌿Mô tả áo rất nhẹ và nên đặt trong túi lưu trữ để dễ dàng mang theo.  , thiết thực và nổi bật.  
+                🌿Nó phù hợp để mặc trong mùa biến đổi khí hậu, và nó có cảm giác mặc nhẹ.  Peter Saville là một nghệ sĩ đồ họa có đóng góp cho cuộc sống hàng ngày là độc nhất. 
+                🌿 Là người sáng lập và giám đốc nghệ thuật của công ty thu âm huyền thoại "Factory", ông đã làm cho tác phẩm đột phá của mình trở nên phổ biến với nhạc pop, ảnh hưởng đến quá trình văn hóa thị giác đương đại. 
+                🌿 [Thành phần vải] 100% sợi polyester. 
+                Fb CUC NGUYEN HÀNG XÁCH TAY
                 </p>
               </div>
             </div>
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://file.hstatic.net/1000355922/file/adidas_stan_smith_trainers_18260fe3568849b698d91b010d0be2be_grande.jpg"
+                    src="https://cf.shopee.vn/file/06b3fd8c823afefd2c121c6c49179b0f"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
                 <h4>
-                  <a href="" class="cls__f_t_a">Adidas Stan Smith Trainers</a>
+                  <a href="" class="cls__f_t_a">Áo Bóng Chuyền Ngắn Tay Phong Cách Nhật Bản 2022 Dành Cho Nam</a>
                 </h4>
                 <p class="contentt__child33">
-                Mẫu giày phù hợp với nhiều lứa tuổi, dù bạn 20 hay 30 tuổi, Adidas Stan Smith vẫn luôn là một lựa chọn thích hợp. Nó đã thành công lớn kể từ khi được ra mắt vào đầu những năm bảy mươi.Kể từ ngày ra mắt năm 1973 đến nay có hơn 32 triệu đôi giày bán ra trên thị trường hiện nay bạn có thể mua giày tại rất nhiều địa điểm trên toàn quốc
+                ♥️♥️♥️Chào mừng bạn đến với cửa hàng của chúng tôi, nơi chúng tôi cố gắng cung cấp cho khách hàng một loạt các sản phẩm đáp ứng nhu cầu về chất lượng và hiệu quả. Mua sản phẩm của chúng tôi từ Shopee một cách thoải mái. Mua sắm không thể dễ dàng hơn thế này, vì vậy hãy bắt đầu ngay hôm nay!💕💕
                 </p>
               </div>
             </div>
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://file.hstatic.net/1000355922/file/shop-giay-cao-co-giay-la_fd608ca76c094442a13ef9e55b46eeb5_grande.jpg"
+                    src="https://cf.shopee.vn/file/ebfe23e32501cc0e9d139dd3c082ff38"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
                 <h4>
-                  <a href="" class="cls__f_t_a">NMD Triple White</a>
+                  <a href="" class="cls__f_t_a">Bộ Quần Áo Thể Thao Nam Uniqlo Tennis Roger Federer Open</a>
                 </h4>
                 <p class="contentt__child33">
-                Có mặt tại thị trường giày thể thao nữ vào tháng 12 năm 2015 đến nay Adidas NMD Triple White vẫn khẳng định được chổ đứng trong lòng người tiêu dùng. Mặc dù không được nổi bật như những dòng giày điểm qua phía trên.
+                - Là sản phẩm được thiết kế riêng cho tay vợt Fenderer thi đấu, từ chất liệu polyester có khả năng thấm hút mồ hôi vượt trội, sử dụng công nghệ làm mát Dry-Ex kết hợp với style thiết kế thể thao, trẻ trung và nam tính mạnh mẽ là sự lựa chọn hoàn hảo với những vận động viên.
+                - Uniqlo đã thực hiện với những thiết kế phối kết hợp màu hiện đại thời trang đặc trưng của của bộ muôn tennis đã tạo nên sự đặc biệt và nổi bật trong thế giới thời trang thể thao.
                 </p>
               </div>
             </div>
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://file.hstatic.net/1000355922/file/nmd_triple_white_29f4b2a557564b9db01cd5eda727a2a6_grande.jpg"
+                    src="https://cf.shopee.vn/file/8bb7bf7a3668f7e5feffac8c32bf58e4"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
                 <h4>
-                  <a href="" class="cls__f_t_a">4 Đôi giày thể thao mới ra mắt đầu tháng 6</a>
+                  <a href="" class="cls__f_t_a">Bộ đồ thể thao nam thời trang cao cấp GUCCI GG GC</a>
                 </h4>
                 <p class="contentt__child33">
-                Mẫu Adidas này mang đến sự thoải mái linh hoạt cho cả ngày dài vận động. Đồng thời mang lại cho bạn một phong cách trẻ trung, ấn tượng.Ngoài ra, nhiều review của người dùng còn đề cao sự nhẹ nhàng và sự khéo léo cao cấp của nó, kết hợp hoàn hảo giữa tính năng dành cho vận động và phong cách trong một đôi giày thời trang.Với những đặc tính nổi bật trên không khó để EQT White Turbo lọt vào top những đôi giày thể thao nữ đẹp nhất mời thời đại
+                - Là sản phẩm được thiết kế riêng cho tay vợt Fenderer thi đấu, từ chất liệu polyester có khả năng thấm hút mồ hôi vượt trội, sử dụng công nghệ làm mát Dry-Ex kết hợp với style thiết kế thể thao, trẻ trung và nam tính mạnh mẽ là sự lựa chọn hoàn hảo với những vận động viên.
+                - Uniqlo đã thực hiện với những thiết kế phối kết hợp màu hiện đại thời trang đặc trưng của của bộ muôn tennis đã tạo nên sự đặc biệt và nổi bật trong thế giới thời trang thể thao.
                 </p>
               </div>
             </div>
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://file.hstatic.net/1000355922/file/adidas_yeezy_boost_350_trainers_81a2d2cd5b4e43ef8d4d305f12abd7a5_grande.jpg"
+                    src="https://salt.tikicdn.com/cache/w1200/ts/product/dd/a3/87/a1f271f335a4aa4ca3c0e1de70f63681.jpg"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
                 <h4>
-                  <a href="" class="cls__f_t_a">Adidas Yeezy Boost 350 Trainers</a>
+                  <a href="" class="cls__f_t_a">Bộ Quần Áo Bóng Chuyền Nam Hiwing H1-2019</a>
                 </h4>
                 <p class="contentt__child33">
-                Đây là một trong các loại giày thể thao nữ được yêu thích và mua nhiều bởi cả nam và nữ.Chắc chắn rằng Yeezy Boost 350 sẽ luôn chiếm Top 1 trong  bảng xếp hạng những mẫu giày nữ hot nhất hiện nay mà nàng nên có
+                Bộ Quần Áo Bóng Chuyền Nam Hiwing H1-2019 - Hàng Chính Hãng là sự đột phá về thiết kế và chất liệu vải thun mè cao cấp có hạt lạnh. Một sản phẩm được nghiên cứu và phát triển để trở thành một loại vải mè chuyên sâu trong sản xuất áo, quần thể thao ngoài ra chúng còn được phối với vải Interlock.
+Chất liệu vải mượt mà, mát, mịn, chắc chắ
                 </p>
               </div>
             </div>
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://file.hstatic.net/1000355922/file/nike_cortez_sneakers_f5f752b305644de9b0986a66f4ea6b10_grande.jpg"
+                    src="https://cf.shopee.vn/file/e368169cf8fada3f48b022d698cba9b0"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
                 <h4>
-                  <a href="" class="cls__f_t_a">Nike Cortez Sneakers</a>
+                  <a href="" class="cls__f_t_a">Bộ Quần áo Tennis Co Dãn Cao Cấp</a>
                 </h4>
                 <p class="contentt__child33">
-                Với thiết kế kiểu dáng thời trang và đầy thể thao Nike Cortez Sneakers được Nike giới thiệu những mẫu lần đầu vào năm 1972 và luôn nằm trong top những mẫu giày thể thao nữ được yêu thích nhất.
+                Bộ quần áo thể thao uniqlo,bộ quần áo tennis hàng cao cấp:
+              •    Chất liệu MÈ THÁI cao cấp 
+              •    KHÔNG NHĂN – KHÔNG XÙ – KHÔNG PHAI
+              •    Thấm hút mồ hôi cực tốt.
+              •    Thiết kế mạnh mẽ,  hiện đại,
+              Bảng chọn size
+              Size M từ 45 - 56 kg
+
                 </p>
               </div>
             </div>
             <div class="l__tt_c_children">
               <div class="anh__ttnb size__df">
                 <a href=""><img
-                    src="https://file.hstatic.net/1000355922/file/prophere_all_black_ea5dabd1005c47639ef0d561cfbc5912_grande.jpg"
+                    src="https://cf.shopee.vn/file/9d63627abe410e26d6313996b691ce19"
                     alt="" srcset="" /></a>
               </div>
               <div class="noidung__ttnb">
                 <h4>
-                  <a href="" class="cls__f_t_a">Prophere All Black</a>
+                  <a href="" class="cls__f_t_a">Bộ Quần Áo Thể Thao Nam Uniqlo - Bộ Quần áo Tennis Cao Cấp</a>
                 </h4>
                 <p class="contentt__child33">
-                Điểm thu hút của đôi giày này nằm ở phần đế giày, với việc áp dụng công nghệ Midsole PU chunky vào sản xuất đã tạo nên những mẫu giày mang rất nhẹ và êm chân giúp người dùng di chuyển linh hoạt và thoải mái.Được thiết kế từ các vật liệu chất lượng cao và thoải mái, đôi giày này không chỉ mang đến cho nàng một phong cách thời trang cá tính, mà còn nổi bật với ưu điểm bền bỉ và hỗ trợ hoàn hảo cho trang phục thông thường.
+                ❌ Logo dệt sắc sảo, bền đẹp không bong tróc
+                ❌ Vải Thái cao cấp, đặt dệt độc quyền mềm và mịn.
+                ❌ Một ưu điểm đặc biệt của chất liệu này đó là khả năng thấm hút tốt, chơi thể thao mồ hôi sẽ tiết ra rất nhiều gây ướt và khó chịu,  toàn bộ mồ hôi sẽ được thấm hút mang đến cho bạn sự thoải mái và tự tin hơn.
                 </p>
               </div>
             </div>
