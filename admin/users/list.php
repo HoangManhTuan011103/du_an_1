@@ -32,8 +32,8 @@
                 <thead>
                     <tr>
                         <!-- <th><input type="checkbox"></th> -->
-                        <th>STT</th>
-                        <th>Mã</th>
+                        
+                        <th>Mã khách hàng</th>
                         <th>Tên</th>
                         <th>Ảnh</th>
                         <th>Email</th>
@@ -57,7 +57,7 @@
                         ?>
                         <tr>
                             <!-- <td><input type="checkbox"></td> -->
-                            <td><?= $key + 1 ?></td>
+                            
                             <td>KH00<?= $value['id'] ?></td>
                             <td class="name"><?= $value['name'] ?></td>
                             <td class="image">

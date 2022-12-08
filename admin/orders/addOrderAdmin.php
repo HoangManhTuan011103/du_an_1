@@ -259,11 +259,15 @@
                             <p>Địa chỉ:</p>
                             <input type="text" name="addressDirect">
                         </div>
-                        <?php if(!empty($_SESSION['orderAdmin'])): ?>
-                            <div class="btn__action btn__action--addProduct">
-                                <button type="submit" class="btn--addProduct" name="btn--addProduct">Thêm đơn hàng</button>
-                            </div>
-                        <?php endif; ?>
+                    
+                        <div class="btn__action btn__action--addProduct" style="  margin-top: 15px;">
+                            <?php if(!empty($_SESSION['orderAdmin'])): ?>
+                                <button type="submit" class="btn--addProduct" name="btn--addProduct" style="margin-right: 10px;" >Thêm đơn hàng</button>
+                            <?php endif; ?>
+                            <a href="index.php?actAdmin=showOrder">Quay lại</a>
+                        </div>
+                       
+                       
                     </div>
                 </form>
             </div>

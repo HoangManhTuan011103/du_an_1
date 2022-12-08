@@ -259,8 +259,9 @@
                             <p>Địa chỉ:</p>
                             <input type="text" name="addressDirect" value="<?= $inforUserDirect['address'] ?? "" ?>">
                         </div>
-                        <div class="btn__action btn__action--addProduct">
-                            <button type="submit" class="btn--addProduct" name="btn--UpdateOrder">Cập nhật đơn hàng</button>
+                        <div class="btn__action btn__action--addProduct" style="  margin-top: 15px;">
+                            <button type="submit" class="btn--addProduct" name="btn--UpdateOrder" style="margin-right: 10px;" >Cập nhật đơn hàng</button>
+                            <a href="index.php?actAdmin=showOrder">Quay lại</a>
                         </div>
                     </div>
                 </form>
