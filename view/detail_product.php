@@ -12,12 +12,12 @@ foreach ($check_user_bying_product as $check) {
             $count_start = $_POST['count_start'];
             if ($check['user_id'] == $id && $check['product_id'] == $id_product) {
                 comment_insert($id_product, $id, $content_comment, $count_start);
-               
-                $total_comment_by_product= total_comment_id_product($id_product);
+
+                $total_comment_by_product = total_comment_id_product($id_product);
                 extract($total_comment_by_product);
                 // die;
 
-                update_total_comment_id($total_comment_id_product,$total,$id_product);
+                update_total_comment_id($total_comment_id_product, $total, $id_product);
                 header("location: " . $_SERVER['HTTP_REFERER']);
             } else {
                 echo "<script>  
@@ -26,7 +26,8 @@ foreach ($check_user_bying_product as $check) {
                         </script>";
             }
         } else {
-            require_once "./view/dangnhap.php";
+            header("Location: index.php?act=dangnhap");
+            // require_once "./view/dangnhap.php";
             exit;
         }
     }
@@ -85,8 +86,7 @@ foreach ($check_user_bying_product as $check) {
 ?>
 
 
-<div class="grid wide" style="position: relative;
-    top: 150px;">
+<div class="grid wide">
     <!-- điều hương -->
     <div class="row product_title_path">
         <p>Trang chủ</p>
@@ -145,16 +145,16 @@ foreach ($check_user_bying_product as $check) {
                         </p>
                         <p class="product_brand">
                             Kho :
-                            <?php if($quantity > 0):  ?>
+                            <?php if ($quantity > 0) :  ?>
                                 <span class="red_word">Còn hàng</span>
-                            <?php else: ?>
+                            <?php else : ?>
                                 <span class="red_word">Hết hàng</span>
                             <?php endif; ?>
                         </p>
 
                     </div>
                     <!-- hướng dẫn chọn size -->
-                  
+
 
                     <!-- giá -->
                     <div class="one_product_price_detail">
@@ -189,13 +189,13 @@ foreach ($check_user_bying_product as $check) {
                             <input type="hidden" name="giagiam" value="<?= $price - $giagiam ?>">
                             <!--  -->
                             <div class="one_product_btn_buy">
-                                <?php if($quantity > 0):  ?>
+                                <?php if ($quantity > 0) :  ?>
                                     <button type="submit" name="btn-addCart" class="btn_buy_products">Mua
-                                    ngay</button>
-                                <?php else: ?>
+                                        ngay</button>
+                                <?php else : ?>
                                     <span class="red_word"></span>
                                 <?php endif; ?>
-                               
+
                                 <div class="contact_information">
                                     <p>Mua số lượng lớn
                                         <br>
@@ -244,21 +244,21 @@ foreach ($check_user_bying_product as $check) {
 
                                             <div class="form-comment--one">
                                                 <div class="form-comment__avatar">
-                                                <?php
+                                                    <?php
                                                     if ($image != "") {
-                                                         echo'<img src="./Admin/UserAvt/'.$image.'" alt="">';
-                                                        } else {
-                                                            $string1 = $name_person_comment;
-                                                            $string = convert_vi_to_en($string1);
-                                                            $pieces = explode(' ', $string);
-                                                            $name_user1 = array_pop($pieces);
-                                                            $name_user2 = ucfirst($name_user1);
-                                                            $name_user3 = substr($name_user2, 0, 1);
-                                                            echo ' <div class="cmt_pro---img" style=" position: relative; height: 37px; width: 37px; background-color: #ff2d37; border-radius: 50%;">
-                                                            <span class="name" style=" position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: 500; font-size: 19px; ">'.$name_user3.'</span>
+                                                        echo '<img src="./Admin/UserAvt/' . $image . '" alt="">';
+                                                    } else {
+                                                        $string1 = $name_person_comment;
+                                                        $string = convert_vi_to_en($string1);
+                                                        $pieces = explode(' ', $string);
+                                                        $name_user1 = array_pop($pieces);
+                                                        $name_user2 = ucfirst($name_user1);
+                                                        $name_user3 = substr($name_user2, 0, 1);
+                                                        echo ' <div class="cmt_pro---img" style=" position: relative; height: 37px; width: 37px; background-color: #ff2d37; border-radius: 50%;">
+                                                            <span class="name" style=" position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: 500; font-size: 19px; ">' . $name_user3 . '</span>
                                                         </div>';
-                                                        }
-                                                 ?>
+                                                    }
+                                                    ?>
                                                 </div>
                                                 <div class="form-comment__content">
                                                     <div class="form__toggle_clickedit">
@@ -279,9 +279,9 @@ foreach ($check_user_bying_product as $check) {
                                                             <?php
                                                             if (isset($_SESSION['user'])) {
                                                                 if ($_SESSION['user']['id'] == $user_id) {  ?>
-                                                                    <button onclick="return confirm('Bạn có chắc chắn muốn xóa comments <?= $content ?> không?')" name="delete_comment" class="a click_change" style="margin-right: 40px;" >Delete</button> 
-                                                                    <?php
-                                                                            }
+                                                                    <button onclick="return confirm('Bạn có chắc chắn muốn xóa comments <?= $content ?> không?')" name="delete_comment" class="a click_change" style="margin-right: 40px;">Delete</button>
+                                                            <?php
+                                                                }
                                                             } ?>
                                                             <?php
 
@@ -308,7 +308,7 @@ foreach ($check_user_bying_product as $check) {
                                                             }
 
                                                             ?>
-                                                            <span style="font-size: 15px;"  >
+                                                            <span style="font-size: 15px;">
                                                                 <?= $timeCommentShow;
                                                                 ?>
                                                             </span>
@@ -497,7 +497,7 @@ foreach ($check_user_bying_product as $check) {
     const quantityCheck = document.querySelector('#quantityCheck');
 
     let btn_product_quantity_input = document.querySelector("#btn_product_quantity_input")
-            
+
     btn_incre.addEventListener("click", () => {
         if (btn_product_quantity_input.value == quantityCheck.value) {
             btn_incre.disabled = true;
