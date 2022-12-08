@@ -3,8 +3,8 @@
         <div class="contentManager--product__header--title">
             <h2 style="color: #ffffff;">Danh sách danh mục</h2>
             <form action="" method="post">
-                <input type="text" placeholder="Nhập từ khóa cần tìm kiếm">
-                <button type="submit">
+                <input type="text" placeholder="Nhập từ khóa cần tìm kiếm" name="keyWord" value="<?= $keyWord ?? "" ?>">
+                <button type="submit" name="btn-searchCategory">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
@@ -85,22 +85,73 @@
                 </tbody>
             </table>
             <ul>
-                <li>
-                    <a href=""><i class="fa-sharp fa-solid fa-angles-left"></i></a>
-                </li>
-                <li>
-                    <a href=""><i class="fa-solid fa-angle-left"></i></a>
-                </li>
-                <li><a href="" style="background-color: #F39C12; color: #ffffff;">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-                <li><a href="">4</a></li>
-                <li>
-                    <a href=""><i class="fa-solid fa-angle-right"></i></a>
-                </li>
-                <li>
-                    <a href=""><i class="fa-sharp fa-solid fa-angles-right"></i></a>
-                </li>
+                <!-- Start Pagination -->
+                <?php if(ceil($countPage) <= 1){ 
+                    $i = ""; 
+                ?>
+                <?php }else{
+                    $i = 0; 
+                ?>
+                        <?php if(isset($_GET['page']) && $_GET['page'] > 2){ $fisrtPage = 1; ?>
+                            <li><a href="index.php?actAdmin=listCategories&page=<?= $fisrtPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?> "><i class="fa-sharp fa-solid fa-angles-left"></i></a></li>
+                        <?php } ?>
+
+                        <?php if(isset($_GET['page']) && $_GET['page'] > 1){ $prevPage = $_GET['page'] - 1; ?>
+                            <li><a  href="index.php?actAdmin=listCategories&page=<?= $prevPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-solid fa-angle-left"></i></a></li>
+                        <?php } ?>
+
+                        <?php for($i; $i < $countPage; $i++): ?>
+                                <?php if(isset($_GET['page'])): ?>
+                                    <?php if($i+1 != $_GET['page']): ?>
+                                        <?php if($i+1 > $_GET['page']-2 && $i+1 < $_GET['page']+2): ?>
+                                            <li><a href="index.php?actAdmin=listCategories&page=<?= $i+1 ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><?= $i+1 ?></a></li>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                        <li><a style="background-color: #F39C12; color: #ffffff" href="index.php?actAdmin=listCategories&page=<?= $i+1 ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><?= $i+1 ?></a></li>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <?php   
+                                        if($i+1 == 1){
+                                            $backGround = "style=background-color:";
+                                            $color = "#F39C12;";
+                                            $word = "color:";
+                                            $colorWord = "#ffffff";
+                                        }else{
+                                            $backGround = "";
+                                            $color = "";
+                                            $word = "";
+                                            $colorWord = "";
+                                        } 
+                                    ?>
+                                    <?php if($i < 4): ?>
+                                        <li><a <?= $backGround.$color.$word.$colorWord ?> href="index.php?actAdmin=listCategories&page=<?= $i+1 ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><?= $i+1 ?></a></li>
+                                        
+                                    <?php endif; ?>
+                                    
+                                <?php endif; ?>
+                        <?php endfor ?>
+                       
+                          
+                        <?php if(!isset($_GET['page'])){ $nextPage = 2; ?>
+                            <li><a  href="index.php?actAdmin=listCategories&page=<?= $nextPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-solid fa-angle-right"></i></a></li>
+                        <?php } ?>
+
+                        <?php if(!isset($_GET['page'])){ $endPage = ceil($countPage); ?>
+                            <li><a  href="index.php?actAdmin=listCategories&page=<?= $endPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-sharp fa-solid fa-angles-right"></i></a></li>
+                        <?php } ?>
+                          
+                       
+                        
+                        <?php if(isset($_GET['page']) && $_GET['page'] < ceil($countPage)){ $nextPage = $_GET['page'] + 1; ?>
+                            <li><a  href="index.php?actAdmin=listCategories&page=<?= $nextPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-solid fa-angle-right"></i></a></li>
+                        <?php } ?>
+
+                        <?php if(isset($_GET['page']) && $_GET['page'] < ceil($countPage)-1){ $endPage = ceil($countPage); ?>
+                            <li><a  href="index.php?actAdmin=listCategories&page=<?= $endPage ?><?= isset($_REQUEST['keyWord']) ? "&keyWord=".$_REQUEST['keyWord'] : "" ?>"><i class="fa-sharp fa-solid fa-angles-right"></i></a></li>
+                        <?php } ?>
+
+                    <?php } ?>
+                    <!-- End Pagination -->
             </ul>
         </div>
     </div>

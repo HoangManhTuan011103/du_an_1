@@ -79,7 +79,7 @@
                         </div>
                         <div class="btn__action btn__action--addProduct">
                             <button type="submit" class="btn--addProduct" name="btn--addProduct">Thêm sản phẩm</button>
-                            <a href="index.php?actAdmin=showProduct">Quay lại</a>
+                            <a href="index.php?actAdmin=showProduct" style="font-size: 13.333px;" >Quay lại</a>
                         </div>
                     </div>
                 </form>
