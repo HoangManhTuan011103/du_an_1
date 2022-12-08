@@ -354,3 +354,16 @@ function getValidateNameProduct(){
 }
 // Select count product home
 
+// Update quantity when pay success
+function updateQuantityPaySuccess($id,$quantity){
+    $sql = "UPDATE `products` SET `quantity`=`quantity`-'$quantity' WHERE id=$id";
+    pdo_execute($sql);
+}
+function updateQuantityWhenCancelOrder($id,$quantity){
+    $sql = "UPDATE `products` SET `quantity`=`quantity`+'$quantity' WHERE id=$id";
+    pdo_execute($sql);
+}
+
+// Update quantity when pay success
+
+

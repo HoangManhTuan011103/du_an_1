@@ -145,14 +145,16 @@ foreach ($check_user_bying_product as $check) {
                         </p>
                         <p class="product_brand">
                             Kho :
-                            <span class="red_word">Còn hàng</span>
+                            <?php if($quantity > 0):  ?>
+                                <span class="red_word">Còn hàng</span>
+                            <?php else: ?>
+                                <span class="red_word">Hết hàng</span>
+                            <?php endif; ?>
                         </p>
 
                     </div>
                     <!-- hướng dẫn chọn size -->
-                    <p class="note_choose_size">
-                        <a href="">Hướng dẫn chọn size</a>
-                    </p>
+                  
 
                     <!-- giá -->
                     <div class="one_product_price_detail">
@@ -174,6 +176,7 @@ foreach ($check_user_bying_product as $check) {
                                 <p class="product_quantity_name">
                                     Số lượng :
                                 </p>
+                                <input id="quantityCheck" type="text" hidden value="<?= $quantity ?>">
                                 <div class="quantity_change_number">
                                     <div class="btn_decre">-</div>
                                     <input type="text" id="btn_product_quantity_input" min="1" name="product_quantity_input" value="1">
@@ -186,9 +189,13 @@ foreach ($check_user_bying_product as $check) {
                             <input type="hidden" name="giagiam" value="<?= $price - $giagiam ?>">
                             <!--  -->
                             <div class="one_product_btn_buy">
-
-                                <button type="submit" name="btn-addCart" class="btn_buy_products">Mua
+                                <?php if($quantity > 0):  ?>
+                                    <button type="submit" name="btn-addCart" class="btn_buy_products">Mua
                                     ngay</button>
+                                <?php else: ?>
+                                    <span class="red_word"></span>
+                                <?php endif; ?>
+                               
                                 <div class="contact_information">
                                     <p>Mua số lượng lớn
                                         <br>
@@ -272,12 +279,10 @@ foreach ($check_user_bying_product as $check) {
                                                             <?php
                                                             if (isset($_SESSION['user'])) {
                                                                 if ($_SESSION['user']['id'] == $user_id) {  ?>
-                                                                    <button name="delete_comment" class="a click_change" onclick="return 
-                                                             confirm('Bạn có chắc chắn muốn xóa comments <?= $content ?> không?')">
-                                                                        Delete
-                                                                    </button> <?php
+                                                                    <button onclick="return confirm('Bạn có chắc chắn muốn xóa comments <?= $content ?> không?')" name="delete_comment" class="a click_change" style="margin-right: 40px;" >Delete</button> 
+                                                                    <?php
                                                                             }
-                                                                        } ?>
+                                                            } ?>
                                                             <?php
 
                                                             date_default_timezone_set("Asia/Ho_Chi_Minh");
@@ -289,21 +294,21 @@ foreach ($check_user_bying_product as $check) {
 
 
                                                             // $timeCommentShow = date("s", $timeCommentCalculate)." giây";
-                                                            $timeCommentShow = "Vừa xong";
+                                                            $timeCommentShow = '<p style="white-space: normal;" >Vừa xong</p>';
                                                             if ($timeCommentCalculate > 0 && $timeCommentCalculate < 60) {
-                                                                $timeCommentShow = date("s", $timeCommentCalculate) . "<span style='margin-left:5px;'>giây</span>";
+                                                                $timeCommentShow = date("s", $timeCommentCalculate) . "<span style='margin-left:5px; font-size:15px;'>giây</span>";
                                                             } else if ($timeCommentCalculate >= 60 && $timeCommentCalculate < 60 * 60) {
-                                                                $timeCommentShow = date("i", $timeCommentCalculate) . "<span style='margin-left:5px;'>phút</span>";
+                                                                $timeCommentShow = date("i", $timeCommentCalculate) . "<span style='margin-left:5px; font-size:15px;'>phút</span>";
                                                             } else if ($timeCommentCalculate >= 60 * 60 && $timeCommentCalculate < 60 * 60 * 24) {
-                                                                $timeCommentShow = date("G", $timeCommentCalculate - 8 * 60 * 60) . "<span style='margin-left:5px;'>giờ</span>";
+                                                                $timeCommentShow = date("G", $timeCommentCalculate - 8 * 60 * 60) . "<span style='margin-left:5px; font-size:15px;'>giờ</span>";
                                                             } else if ($timeCommentCalculate >= 60 * 60 * 24 && $timeCommentCalculate < 60 * 60 * 24 * 7) {
-                                                                $timeCommentShow = floor($timeCommentCalculate / (60 * 60 * 24)) . "<span style='margin-left:5px;'>ngày</span>";
+                                                                $timeCommentShow = floor($timeCommentCalculate / (60 * 60 * 24)) . "<span style='margin-left:5px; font-size:15px;'>ngày</span>";
                                                             } else if ($timeCommentCalculate >= 60 * 60 * 24 * 7) {
-                                                                $timeCommentShow = floor($timeCommentCalculate / (60 * 60 * 24 * 7)) . "<span style='margin-left:5px;'>tuần</span>";
+                                                                $timeCommentShow = floor($timeCommentCalculate / (60 * 60 * 24 * 7)) . "<span style='margin-left:5px; font-size:15px;'>tuần</span>";
                                                             }
 
                                                             ?>
-                                                            <span>
+                                                            <span style="font-size: 15px;"  >
                                                                 <?= $timeCommentShow;
                                                                 ?>
                                                             </span>
@@ -489,17 +494,23 @@ foreach ($check_user_bying_product as $check) {
 <script>
     let btn_decre = document.querySelector(".btn_decre");
     let btn_incre = document.querySelector(".btn_incre");
+    const quantityCheck = document.querySelector('#quantityCheck');
 
     let btn_product_quantity_input = document.querySelector("#btn_product_quantity_input")
-
+            
     btn_incre.addEventListener("click", () => {
-
-        btn_product_quantity_input.value++;
+        if (btn_product_quantity_input.value == quantityCheck.value) {
+            btn_incre.disabled = true;
+            alert('Bạn đã đặt quá số lượng tồn tại');
+        } else {
+            btn_incre.style.cursor = 'pointer';
+            console.log(btn_product_quantity_input.value);
+            btn_product_quantity_input.value++;
+        }
     });
     btn_decre.addEventListener("click", () => {
         if (btn_product_quantity_input.value == 1) {
-
-            btn_decre.style.cursor = 'no-drop';
+            btn_decre.disabled = true;
         } else {
             btn_decre.style.cursor = 'pointer';
             console.log(btn_product_quantity_input.value);

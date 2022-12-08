@@ -188,10 +188,7 @@
                     <div class="over-lay-payment payment--success-hidden">
                         <div class="payment--success">
                             <h2 class="congratulation">Chúc mừng bạn đã đặt hàng thành công!!</h2>
-                            <div class="btn--linkedPag">
-                                <a href=""><button class="continues-buy" style="margin-right: 30px;">Tiếp tục mua hàng</button></a>
-                                <a href=""><button class="btn-see--detailProduct" style="background-color: #afb830; border: 1px solid #afb830; ">Xem đơn hàng</button></a>
-                            </div>
+                           
                         </div>
                     </div>
 

@@ -500,7 +500,7 @@
 }
 
 .statistical--second .statistical--orderRecent.chart {
-    width: 80%;
+    width: 100%;
     margin-bottom: 30px;
 }
 
@@ -590,3 +590,67 @@
 
 
 /* Rule add product */
+
+
+/* Statistical order money */
+
+.formOrderMoney {
+    display: flex;
+    align-items: center;
+    padding: 30px 0 0 30px;
+}
+
+.formOrderMoney p {
+    padding: 0 15px;
+}
+
+.formOrderMoney p i {
+    font-size: 23px;
+    color: #ffffff;
+}
+
+.formOrderMoney button {
+    padding: 11px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    margin-left: 10px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #00A65A;
+    cursor: pointer;
+    transition: all linear 0.3s;
+}
+
+.formOrderMoney button:hover {
+    background-color: #097545;
+}
+
+.formOrderMoney input {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    font-weight: bold;
+    border: 1px solid #000000;
+}
+
+.tableProduct ul {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.tableProduct ul li {
+    display: inline-block;
+}
+
+.tableProduct ul li a {
+    background-color: #ffffff;
+    /* display: block; */
+    font-weight: bold;
+    padding: 8px 13px;
+}
+
+
+/* Statistical order money */

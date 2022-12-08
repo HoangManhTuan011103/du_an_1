@@ -44,6 +44,43 @@
         return pdo_query($sql);
     }
     //<?= number_format($value['total_price']) . "đ" 
-  
+    function getTotalMoneyToShop(){
+        $sql = "SELECT SUM(total_price) as money FROM `orders` WHERE status=6";
+        return pdo_query_one($sql);
+    }
+    function getListMoneyOrderAdminPage($dayStart,$dayEnd){
+        $sql = "SELECT A.`id`, A.`user_id`, A.`total_price`,A.`address`, A.`created_at`,B.`name` FROM `orders` A LEFT JOIN `users` B ON A.user_id=B.id WHERE A.status = 6";
+        if($dayStart != "" && $dayEnd != ""){
+            $sql .= " AND A.created_at >= '$dayStart' and A.created_at <= '$dayEnd' ";
+        }else if($dayStart != "" && $dayEnd == ""){
+            $sql .= " AND A.created_at >= '$dayStart'";
+        }else if($dayStart == "" && $dayEnd != ""){
+            $sql .= " AND A.created_at <= '$dayEnd'";
+        }else{
+            $sql .= " order by A.id desc";
+        }
+        $numberPage = pdo_query($sql);
+        $countPage = sizeof($numberPage) / 8;
+        return $countPage;
+    }
+    function getListMoneyOrderAdmin($dayStart,$dayEnd){
+        $countPage = getListMoneyOrderAdminPage($dayStart,$dayEnd);
+        if (isset($_GET['page']) &&  $_GET['page'] > 0 && $_GET['page'] <= $countPage + 1) {
+            $page = $_GET['page'];
+        } else {
+            $page = 1;
+        }
+        $from = ($page - 1) * 8;
 
-?>
+        $sql = "SELECT A.`id`, A.`user_id`, A.`total_price`,A.`address`, A.`created_at`,B.`name` FROM `orders` A LEFT JOIN `users` B ON A.user_id=B.id WHERE A.status = 6";
+        if($dayStart != "" && $dayEnd != ""){
+            $sql .= " AND A.created_at >= '$dayStart' and A.created_at <= '$dayEnd' limit $from,8";
+        }else if($dayStart != "" && $dayEnd == ""){
+            $sql .= " AND A.created_at >= '$dayStart' limit $from,8";
+        }else if($dayStart == "" && $dayEnd != ""){
+            $sql .= " AND A.created_at <= '$dayEnd' limit $from,8";
+        }else{
+            $sql .= " order by A.id desc limit $from,8";
+        }
+        return pdo_query($sql);
+    }

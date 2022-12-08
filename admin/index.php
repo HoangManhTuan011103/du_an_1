@@ -21,6 +21,8 @@ if (!isset($_SESSION['orderAdmin'])) {
 if (!isset($_SESSION['orderUpdateAdmin'])) {
     $_SESSION['orderUpdateAdmin'] = [];
 }
+$sumMoneyShop = getTotalMoneyToShop();
+
 $countView = getViewAccessWebsite();
 $listBuyOnDay = buyProductWithDay();
 $bestSale = bestProductSales();
@@ -835,6 +837,38 @@ if (isset($_GET['actAdmin'])) {
             break;
         case 'statisticals':
             $getToTalProductChart = getToTalProductChartJs();
+      
+            if(isset($_POST['btn__find--OrderMoney'])){
+                if(isset($_POST['dayStart'])&&isset($_POST['dayEnd'])){
+                    $dayStart = $_POST['dayStart'];
+                    $dayEnd = $_POST['dayEnd'];
+                }else if(isset($_POST['dayStart'])&&!isset($_POST['dayEnd'])){
+                    $dayStart = $_POST['dayStart'];
+                    $dayEnd = "";
+                }else if(!isset($_POST['dayStart'])&&!isset($_POST['dayEnd'])){
+                    $dayStart = "";
+                    $dayEnd = $_POST['dayEnd'];
+                }else{
+                    $dayStart = "";
+                    $dayEnd = "";
+                }
+
+                $getListMoneyOrderAdmin = getListMoneyOrderAdmin($dayStart,$dayEnd);
+                $countPage = getListMoneyOrderAdminPage($dayStart,$dayEnd);
+            }else{
+                if(isset($_GET['dayStart'])&&isset($_GET['dayEnd'])) {
+                    $dayStart = $_GET['dayStart'];
+                    $dayEnd = $_GET['dayEnd'];
+                    $getListMoneyOrderAdmin = getListMoneyOrderAdmin($dayStart,$dayEnd);
+                    $countPage = getListMoneyOrderAdminPage($dayStart,$dayEnd);
+                }else{
+                    $getListMoneyOrderAdmin = getListMoneyOrderAdmin("","");
+                    $countPage = getListMoneyOrderAdminPage("","");
+                }
+              
+            }
+          
+         
             require_once "./statisticals/list.php";
             break;
         case 'comments':
@@ -925,6 +959,7 @@ if (isset($_GET['actAdmin'])) {
                 header('Location: index.php?actAdmin=detailComment'.$pageRate_1.'&parent='.$_GET['parent'].'&uid='.$uid.'&pid='.$pid.'&page='.$page_at.'&msg=Xoá bình luận thành công !');
             }
             break;
+
         case 'dangxuat':
             session_destroy();
             header("Location: ../index.php?act=dangnhap");

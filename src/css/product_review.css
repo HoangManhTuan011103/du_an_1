@@ -9,9 +9,7 @@
 
 .form-comment--one {
     display: flex;
-
 }
-
 
 .form-comment__content {
     padding-left: 5px;
@@ -54,14 +52,14 @@
     padding: 5px 5px 5px 10px;
     color: #65676B;
     font-weight: 500;
-    word-spacing: 30px;
 }
 
-.form-comment__content--button .a,.form-comment__content--button button.a {
+.form-comment__content--button .a,
+.form-comment__content--button button.a {
     color: #1d57cb;
-
 }
-.form-comment__content--button button.a{
+
+.form-comment__content--button button.a {
     padding: 5px;
     cursor: pointer;
     margin-right: 5px;
@@ -77,7 +75,7 @@
 .form_to_seen_cmt {
     color: black;
     width: 100%;
-    text-align:center;
+    text-align: center;
     margin-top: 50px;
 }
 
@@ -89,7 +87,7 @@
 }
 
 .write_comment_send {
-    padding: 7px 20px ;
+    padding: 7px 20px;
     border-radius: 5px;
     border: none;
     background: #ff2828;
@@ -103,11 +101,9 @@
     cursor: pointer;
 }
 
-
 .stars ul {
     list-style-type: none;
     padding: 0;
-
 }
 
 .star {
@@ -119,5 +115,4 @@
 
 .orange {
     color: orange !important;
-
 }
