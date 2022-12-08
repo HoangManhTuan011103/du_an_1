@@ -471,6 +471,7 @@ if (isset($_GET['act'])) {
                         $idOrder = insertToOrderClient($id, $payWhen, $totalPricePay, $note, $address,$dateToInt);
                         foreach ($_SESSION['mycart'] as $value) {
                             insertToOrderDetail($idOrder, $value['id'], $value['use_quantity_buy'], $value['giagiam']);
+                            updateQuantityPaySuccess($value['id'],$value['use_quantity_buy']);
                         }
                         // header("location: index.php?act=dsdonhang");
                         $_SESSION['mycart'] = [];
@@ -502,6 +503,7 @@ if (isset($_GET['act'])) {
                 $product_value = selectOrderCancelToCart($idOrder);
                 foreach($product_value as $value){
                     $_SESSION['mycart'][] = $value;
+                    updateQuantityWhenCancelOrder($value['id'],$value['use_quantity_buy']);
                 }
                 cancelOrderUserFromDetailOrder($idOrder);
                 cancelOrderUserFromOrder($idOrder);

@@ -48,7 +48,7 @@
                     <table border="1">
                         <thead>
                             <tr>
-                                <th><input type="checkbox"></th>
+                                <!-- <th><input type="checkbox"></th> -->
                                 <th>STT</th>
                                 <th>Tên khách hàng</th>
                                 <th>Email</th>
@@ -89,7 +89,7 @@
                                 }
                                 echo '
                                 <tr>
-                                    <td><input type="checkbox"></td>
+                                    
                                     <td>'.$stt.'</td>
                                     <td class="name">'.$nameUser['NameUser'].'</td>
                                     <td class="email">'.$nameUser['EamilUser'].'</td>
