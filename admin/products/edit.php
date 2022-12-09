@@ -1,10 +1,10 @@
 <div class="contentManager contentManager--product">
             <div class="contentManager--product__header">
                 <div class="contentManager--product__header--title">
-                    <h2 style="color: #ffffff;">Thêm sản phẩm mới</h2>
+                    <h2 style="color: #ffffff;">Chỉnh sửa sản phẩm</h2>
                 </div>
                 <div class="contentManager--product__header--control">
-                    <span><i class="fa-solid fa-house"></i>Trang chủ</span> <span style="padding: 0 10px; font-size: 22px;">></span> <span><i class="fa-brands fa-product-hunt"></i>Quản lý sản phẩm</span><span style="padding: 0 10px; font-size: 22px;">></span>                    <span>Thêm sản phẩm mới</span>
+                    <span><i class="fa-solid fa-house"></i>Trang chủ</span> <span style="padding: 0 10px; font-size: 22px;">></span> <span><i class="fa-brands fa-product-hunt"></i>Quản lý sản phẩm</span><span style="padding: 0 10px; font-size: 22px;">></span>                    <span>Chỉnh sửa sản phẩm</span>
                 </div>
             </div>
             <div class="contentManager--product__footer contentManager--product__footer--addProduct">
