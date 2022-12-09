@@ -168,7 +168,7 @@
                     <div class="input__rule">
                         <div class="btn__accepted_rule">
                             <input id="checkRule" type="checkbox" name="btn-checkRule" style="cursor: pointer;">
-                            <label for="checkRule" style="cursor: pointer;">Đồng ý với chính sách của F-Sport</label>
+                            <label for="checkRule" style="cursor: pointer;">Đồng ý với <a href="index.php?act=gioithieu">chính sách</a> của F-Sport</label>
                         </div>
                         <p style="padding: 6px 0 5px 0px;color: red; text-align:left; font-size:13px; "><?= $errors['checkRule'] ?? ""  ?></p>
                       

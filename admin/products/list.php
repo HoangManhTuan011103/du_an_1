@@ -30,7 +30,7 @@
                     <option value="" hidden>--- Lọc sản phẩm theo danh mục ---</option>
                     <option value="" <?= (isset($nameCaterory)&&$nameCaterory=="") ? "selected" : "" ?> >Tất cả sản phẩm</option>
                     <?php foreach($listProductFlCat as $value): ?>
-                        <option value="<?= $value['id'] ?>" <?= (isset($nameCaterory)&&$nameCaterory==$value['id']) ? "selected" : "" ?>  ><?= $value['name'] ?></option>
+                        <option value="<?= $value['id'] ?>" <?= (isset($_POST['nameCaterory'])&&$_POST['nameCaterory']==$value['id']||isset($_GET['nameCaterory'])&&$_GET['nameCaterory']==$value['id']) ? "selected" : "" ?>  ><?= $value['name'] ?></option>
                     <?php endforeach; ?>
                 </select>
 

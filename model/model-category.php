@@ -1,7 +1,10 @@
 
 <?php
 // panigation
-
+function getFilterCategory(){
+    $sql = "select * from categories order by id desc";
+    return pdo_query($sql);
+}
 function get_Page_Cat_admin_order($keyWord){
     $sql = "select * from categories";
     if($keyWord != ""){
