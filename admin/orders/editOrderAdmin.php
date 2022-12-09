@@ -225,7 +225,7 @@
 
                                 </td>
                                 <td class="btn-removeOrderAdmin">
-                                    <a onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm <?= $value['name'] ?> không?')" href="index.php?actAdmin=updateOrderAdmin-WithUser&&id=<?= $_GET['id'] ?>&&idRemoveOrderUp=<?= $flag ?>" class="remove"><button><i class="fa-sharp fa-solid fa-trash"></i></button></a>
+                                    <a onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm <?= $value['name']. ' (' .$value['size'] .')' ?> không?')" href="index.php?actAdmin=updateOrderAdmin-WithUser&id=<?= $_GET['id'] ?>&idRemoveOrderUp=<?= $id ?>" class="remove"><button><i class="fa-sharp fa-solid fa-trash"></i></button></a>
                                 </td>
                             </tr>
                             <?php
