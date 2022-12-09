@@ -28,7 +28,7 @@ $listBuyOnDay = buyProductWithDay();
 $bestSale = bestProductSales();
 $totalOrderWeek = totalOrderWithWeek();
 $sumMoneyMonthCurrently = sumMoneyMonthCurrently();
-$listProductFlCat = getAllCategories("");
+$listProductFlCat = getFilterCategory();
 require_once "./header.php";
 if (isset($_GET['actAdmin'])) {
     $actAdmin = $_GET['actAdmin'];
@@ -419,9 +419,11 @@ if (isset($_GET['actAdmin'])) {
                         productDeleteDetailProduct($id);
                         productDelete($id);
                         reduceProductFollowCat($getIdCategory);
+                        
                         // Update total product
                     }
                     echo "<script> alert('$sum sản phẩm đã được xóa') </script>";  
+
                 }else{
                     echo "<script> alert('Không hàng nào chịu tác động') </script>";
                 }
