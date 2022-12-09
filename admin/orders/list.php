@@ -57,6 +57,8 @@
                                             <button class="status-isset">Đơn hàng mới</button>
                                         <?php elseif($value['status'] == 1): ?>
                                             <button class="status-isset" style="background-color: #24448f;">Đơn đã duyệt</button>
+                                        <?php elseif($value['status'] == 2): ?>
+                                            <button class="status-isset" style="background-color: #008000;">Vận chuyển đơn</button>
                                         <?php elseif($value['status'] == 6): ?>
                                             <button class="status-isset" style="background-color: #DD4B39;">Đã thanh toán</button>
                                         <?php endif; ?>
@@ -70,9 +72,19 @@
                                             </div>
                                         <?php elseif($value['status'] == 1): ?>
                                             <div class="tick--Order">
+                                                <p style="color: #ffffff;">Giao hàng</p>
+                                                <a href="index.php?actAdmin=updateOrderAdmin&&status=2&&id=<?= $value['id'] ?>">
+                                                    
+                                                    <i class="fa-solid fa-arrow-right" style="color: #24448f;"></i>
+                                                </a>
+                                            </div>
+                                        <?php elseif($value['status'] == 2): ?>
+                                            <div class="tick--Order">
                                                 <p style="color: #ffffff;">Hoàn thành đơn</p>
                                                 <a href="index.php?actAdmin=updateOrderAdmin&&status=6&&id=<?= $value['id'] ?>">
-                                                    <i class="fa-solid fa-arrow-right" style="color: #24448f;"></i>
+                                                <i class="fa-solid fa-car" style="color: #008000;"></i>
+                                                
+                                               
                                                 </a>
                                             </div>
                                         <?php endif; ?>

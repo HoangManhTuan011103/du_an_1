@@ -38,6 +38,8 @@
                                         echo "Đơn hàng mới";
                                     }else if($value['status'] == 1){
                                         echo "Đã duyệt đơn";
+                                    }else if($value['status'] == 2){
+                                        echo "Đang vận chuyển";
                                     }else{
                                         echo "Đã thanh toán";
                                     }

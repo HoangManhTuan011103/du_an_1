@@ -680,8 +680,16 @@ if (isset($_GET['actAdmin'])) {
                 $status = isset($_GET['status']) ? $_GET['status'] : "";
                 if ($id > 0 && is_numeric($id) && $status >= 0 && is_numeric($status)) {
                     tickOrderAdmin($id, $status);
+                    if(isset($_POST['btn-searchOrder'])){
+                        $keyWord = $_POST['keyWord'];
+                    }else if(isset($_GET['keyWord'])){
+                        $keyWord = $_GET['keyWord'];
+                    }else{
+                        $keyWord = "";
+                    }
+                    $countPage = get_Page_Order_admin_order($keyWord);
+                    $listOrderUser = getAllOrderToAdmin($keyWord);
                 }
-                $listOrderUser = getAllOrderToAdmin("");
                 require_once "./orders/list.php";
                 break;
             case 'deleteOrder':
