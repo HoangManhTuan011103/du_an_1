@@ -154,10 +154,13 @@ if (isset($_GET['act'])) {
             }
             break;
         case 'doimatkhau':
-            if(isset($_SESSION['user'])){
+            if (isset($_SESSION['user'])) {
                 if (isset($_POST['doimatkhau'])) {
                     $password_old = $_POST['password_Old'];
-                    $password_new = $_POST['password_new'];
+                    $password_new_after = $_POST['password_new'];
+                    $password_new = preg_replace('/\s+/', '', $password_new_after);
+                    $password_new = convert_vi_to_en($password_new);
+                    $password_new = strtolower($password_new);
                     $verypassword_new = $_POST['verypassword_new'];
                     $id = $_SESSION['user']['id'];
                     $check = true;
@@ -170,33 +173,42 @@ if (isset($_GET['act'])) {
                         $thongbao[1] = "Trường này không được bỏ trống  !!!";
                         $check = false;
                     }
-                    if ($password_new == '') {
+                    if ($password_new_after == '') {
                         $thongbao[2] = "Trường này không được bỏ trống  !!!";
                         $check = false;
-                    } else if (strlen($password_new) < 8) {
-                        $thongbao[2] = "Mật khẩu tối thiểu 8 ký tự  !!!";
+                    } else if (strlen($password_new_after) < 6) {
+                        $thongbao[2] = "Mật khẩu tối thiểu 6 ký tự  !!!";
+                        $check = false;
+                    } else if ($password_new_after !== $password_new) {
+                        $thongbao[2] = "Mật khẩu phải là chữ thường viết liền !!!";
                         $check = false;
                     }
                     if ($verypassword_new == '') {
                         $thongbao[3] = "Trường này không được bỏ trống  !!!";
                         $check = false;
-                    } else if ($verypassword_new != $password_new) {
+                    } else if ($verypassword_new != $password_new_after) {
                         $thongbao[3] = "Mật khẩu xác nhận không chính xác !!!";
                         $check = false;
                     }
                     if ($check == true) {
                         $password_new_insert = md5($password_new);
                         UpdatePasstUser($password_new_insert, $id);
+                        $id = $_SESSION['user']['id'];
+                        $user = getUserFollowId($id);
+                        unset($_SESSION['user']);
+                        $_SESSION['user'] = [];
+                        $_SESSION['user'] = $user;
                         header('Location: index.php?act=doimatkhau&&msg=Cập nhật mật khẩu thành công !');
                         ob_end_flush();
                     }
                 }
                 require_once "view/doimatkhau.php";
-            }else{
+            } else {
                 header("Location: index.php");
                 ob_end_flush();
             }
             break;
+
         case 'dangnhap':
             if (isset($_POST['dangnhap']) == true) {
                 $email_login = $_POST['email_login'];
@@ -224,10 +236,10 @@ if (isset($_GET['act'])) {
                         if (($checkuser_success['status'] == 1)) {
                             $thongbao[0] = "Tài khoản của bạn đã bị vô hiệu hóa liên hệ admin để được hỗ trợ !";
                         } else {
-                            if(isset($code) && ($code>100000)) {
+                            if (isset($code) && ($code > 100000)) {
                                 $_SESSION['user'] = $checkuser_success;
-                                header("Location: index.php?act=doimatkhau&codelogin=".$code);
-                            }else{
+                                header("Location: index.php?act=doimatkhau&codelogin=" . $code);
+                            } else {
                                 $_SESSION['user'] = $checkuser_success;
                                 $thongbao[0] = "Đăng nhập thành công !";
                                 echo $_GET['code'];
@@ -244,7 +256,7 @@ if (isset($_GET['act'])) {
                 $email = $_POST['email'];
                 $name = $_POST['name'];
                 $check = true;
-                if($name == ''){
+                if ($name == '') {
                     $thongbao[4] = "Vui lòng nhập họ tên trong tài khoản";
                     $check = false;
                 }
@@ -254,26 +266,26 @@ if (isset($_GET['act'])) {
                 } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $thongbao[3] = "Email sai định dạng VD: duc@abc.xyz !";
                     $check = false;
-                } 
-                if($check==true){
-                    $pass = rand(100000,999999);
-                    $check_email = CheckEmail_Name($email,$name);
+                }
+                if ($check == true) {
+                    $pass = rand(100000, 999999);
+                    $check_email = CheckEmail_Name($email, $name);
                     if (is_array($check_email)) {
                         // $thongbao[5] = 'Mật khẩu của bạn là: ' . $pass;
                         $passins = md5($pass);
-                        Reset_pass($passins,$email,$name);
-                        header("Location: index.php?act=dangnhap&codelogin=Mật khẩu mới của bạn là: ".$pass.'&code='.$pass);
+                        Reset_pass($passins, $email, $name);
+                        header("Location: index.php?act=dangnhap&codelogin=Mật khẩu mới của bạn là: " . $pass . '&code=' . $pass);
                     } else {
-                        $thongbao[5] = 'Email "' . $email . '" hoặc họ tên "'.$name.'" không đúng';
+                        $thongbao[5] = 'Email "' . $email . '" hoặc họ tên "' . $name . '" không đúng';
                     }
                 }
             }
             // if (isset($_SESSION['user'])) {
             //     header("Location: index.php?");
             // } else {
-                //     require_once "./view/dangnhap.php";
-                // }
-            if(!isset($_SESSION['user'])){
+            //     require_once "./view/dangnhap.php";
+            // }
+            if (!isset($_SESSION['user'])) {
                 require_once "./view/dangnhap.php";
             }
 
@@ -408,8 +420,8 @@ if (isset($_GET['act'])) {
             // echo "<script>
             // window.location.href = 'index.php?act=cart';
             // </script>";
-           
-         // require_once "./view/cart/giohang.php";
+
+            // require_once "./view/cart/giohang.php";
             echo "<script>window.location.href='index.php?act=cart';</script>";
 
             break;
@@ -440,7 +452,7 @@ if (isset($_GET['act'])) {
                 exit;
             } else {
                 $totalAllProductPay = isset($_POST['totalAllProductPay']) ? $_POST['totalAllProductPay'] : $_POST['totalPricePay'];
-            
+
                 if (isset($_POST['btn-orderSuccess'])) {
                     date_default_timezone_set("Asia/Ho_Chi_Minh");
                     $errors = [];
@@ -454,11 +466,11 @@ if (isset($_GET['act'])) {
                     $dateCurrent = time();
                     $dateToInt = date("Y-m-d h:i:s", $dateCurrent);
 
-                    
-                    if(!isset($_POST['btn-checkRule'])){
+
+                    if (!isset($_POST['btn-checkRule'])) {
                         $errors['checkRule'] = "Chấp nhận chính sách để thanh toán!";
                     }
-                    
+
 
 
                     if ($phoneNumber == "") {
@@ -472,10 +484,10 @@ if (isset($_GET['act'])) {
                         $errors['address'] = "Bạn phải nhập địa chỉ";
                     }
                     if (!$errors) {
-                        $idOrder = insertToOrderClient($id, $payWhen, $totalPricePay, $note, $address,$dateToInt);
+                        $idOrder = insertToOrderClient($id, $payWhen, $totalPricePay, $note, $address, $dateToInt);
                         foreach ($_SESSION['mycart'] as $value) {
-                            insertToOrderDetail($idOrder, $value['id'], $value['use_quantity_buy'], $value['giagiam'],$value['sizeProduct']);
-                            updateQuantityPaySuccess($value['id'],$value['use_quantity_buy']);
+                            insertToOrderDetail($idOrder, $value['id'], $value['use_quantity_buy'], $value['giagiam'], $value['sizeProduct']);
+                            updateQuantityPaySuccess($value['id'], $value['use_quantity_buy']);
                         }
                         // header("location: index.php?act=dsdonhang");
                         $_SESSION['mycart'] = [];
@@ -483,7 +495,6 @@ if (isset($_GET['act'])) {
                                 alert('Bạn đã mua hàng thành công');
                                 window.location.href = 'index.php?act=dsdonhang';
                             </script>";
-                          
                     }
                 }
                 require_once "./view/cart/pay_detail.php";
@@ -502,12 +513,12 @@ if (isset($_GET['act'])) {
             break;
         case "cancelOrderUser":
             $idOrder = $_GET['idOrder'] ?? "";
-            if(is_numeric($idOrder) && $idOrder > 0){
+            if (is_numeric($idOrder) && $idOrder > 0) {
                 $_SESSION['mycart'] = [];
                 $product_value = selectOrderCancelToCart($idOrder);
-                foreach($product_value as $value){
+                foreach ($product_value as $value) {
                     $_SESSION['mycart'][] = $value;
-                    updateQuantityWhenCancelOrder($value['id'],$value['use_quantity_buy']);
+                    updateQuantityWhenCancelOrder($value['id'], $value['use_quantity_buy']);
                 }
                 cancelOrderUserFromDetailOrder($idOrder);
                 cancelOrderUserFromOrder($idOrder);
@@ -525,7 +536,7 @@ if (isset($_GET['act'])) {
             $listLowPrice = fillter_price_low();
             require_once "./view/tintuc.php";
             break;
-    
+
         default:
             // require_once "";
             break;

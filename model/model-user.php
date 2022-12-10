@@ -64,7 +64,8 @@ function SearchUser($kyw)
 {
     $sql = "SELECT * FROM users WHERE 1";
     if ($kyw != "") {
-        $sql .= " and name like '%" . $kyw . "%'";
+        $sql .= " and name like '%" . $kyw . "%' or users.email like '%" . $kyw . "%'";
+        
     }
     $sql .= " ORDER BY id DESC";
     $listUsers = pdo_query($sql);

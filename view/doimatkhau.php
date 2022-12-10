@@ -60,21 +60,21 @@
                         <form action="index.php?act=doimatkhau&&codelogin=<?= isset($_GET['codelogin']) ? $_GET['codelogin'] : $_GET['codelogin'] = ''; ?>" method="post" enctype="multipart/form-data">
                             <div>
                                 <p>Mật khẩu cũ *</p>
-                                <input type="password" value="<?= isset($_GET['codelogin']) ? $_GET['codelogin'] : $_GET['codelogin'] = ''; ?>" name="password_Old" id="email" placeholder="Mật khẩu cũ" />
+                                <input type="password" value="<?= isset($_GET['codelogin']) ? $_GET['codelogin'] : $_GET['codelogin'] = '' ?><?= $password_old ?? "" ?>" name="password_Old" id="email" placeholder="Mật khẩu cũ" />
                                 <p class="login__thongbao">
                                     <?= isset($thongbao[1]) ? $thongbao[1] : $thongbao[1] = ''; ?>
                                 </p>
                             </div>
                             <div>
                                 <p>Mật khẩu mới *</p>
-                                <input type="password" value="" name="password_new" id="email" placeholder="Mật khẩu mới" />
+                                <input type="password" value="<?= $password_new_after ?? "" ?>" name="password_new" id="email" placeholder="Mật khẩu mới" />
                                 <p class="login__thongbao">
                                     <?= isset($thongbao[2]) ? $thongbao[2] : $thongbao[2] = ''; ?>
                                 </p>
                             </div>
                             <div>
                                 <p>Xác nhận lại mật khẩu *</p>
-                                <input type="password" value="" name="verypassword_new" id="email" placeholder="Xác nhận lại mật khẩu" />
+                                <input type="password" value="<?= $verypassword_new ?? "" ?>" name="verypassword_new" id="email" placeholder="Xác nhận lại mật khẩu" />
                                 <p class="login__thongbao">
                                     <?= isset($thongbao[3]) ? $thongbao[3] : $thongbao[3] = ''; ?>
                                 </p>

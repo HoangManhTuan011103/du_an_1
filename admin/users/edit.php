@@ -39,11 +39,11 @@ if (is_array($infoUser)) {
                 </div>
                 <div class="image">
                     <p>Email:</p>
-                    <input class="name" name="email" value="<?= $email ?>" style=" background-color: #000000;" type="text" placeholder="Nhập email người dùng...">
+                    <input class="name" name="email" readonly value="<?= $email ?>" style=" background-color: #000000;" type="text" placeholder="Nhập email người dùng...">
                 </div>
                 <div class="image">
-                    <p>Mật khẩu:</p>
-                    <input class="name" name="password" value="<?= $password ?>" style=" background-color: #000000;" type="password" placeholder="Nhập mật khẩu người dùng...">
+                    
+                    <input class="name" name="password" hidden value="<?= $password ?>" style=" background-color: #000000;" type="password" placeholder="Nhập mật khẩu người dùng...">
                 </div>
                 <div class="image">
                     <p>Điện thoại:</p>
