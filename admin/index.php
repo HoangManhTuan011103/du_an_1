@@ -737,6 +737,8 @@ if (isset($_GET['actAdmin'])) {
                     $image = $_FILES['image'];
                     $email = $_POST['email'];
                     $password = $_POST['password'];
+                    $password = preg_replace('/\s+/', '', $password);
+                    $password = strtoupper($password);
                     $phone = $_POST['phone'];
                     $address = $_POST['address'];
                     $status = $_POST['status'];
@@ -828,21 +830,57 @@ if (isset($_GET['actAdmin'])) {
         case 'editUser':
             $id = $_GET['id'];
             $infoUser = getUserFollowId($id);
+            $password_old = $infoUser['password'];
             if (isset($_POST['btn--editUser'])) {
                 if (is_array($infoUser)) {
                     extract($infoUser);
                 }
                 $id = $_GET['id'];
                 $name_update = $_POST['name'];
+                $name_update_check = preg_replace('/\s+/', '', $name_update);
                 $email_update = $_POST['email'];
+                $password_old_before = $_POST['password'];
                 $password_update = $_POST['password'];
+                $password_update = preg_replace('/\s+/', '', $password_update);
+                $password_update_after = strtolower($password_update);
                 $phone_update = $_POST['phone'];
                 $address_update = $_POST['address'];
                 $image = $_FILES['image'];
                 $status_update = $_POST['status'];
                 $role_update = $_POST['role'];
-                if ($password_update != $password) {
-                    $password_update = md5($password_update);
+                $check = true;
+                if($name_update == ""){
+                    $check = false;
+                    $thongbao[1] = 'Tên người dùng không được bỏ trống !!!';
+                }elseif(mb_strlen($name_update_check) < 6){
+                    $check = false;
+                    $thongbao[1] = 'Tên người dùng tối thiểu 6 ký tự !!!';
+                }
+                if($email_update == ""){
+                    $check = false;
+                    $thongbao[2] = 'Email không được bỏ trống !!!';
+                }else if (!filter_var($email_update, FILTER_VALIDATE_EMAIL)) {
+                    $check = false;
+                    $thongbao[2] = "Email không đúng định dạng";
+                } else {
+                    $checkmail_dangky = CheckEmail($email_update);
+                    if($email_update == $infoUser['email']){
+                    }else{
+                        if (is_array($checkmail_dangky)) {
+                            $thongbao[2] = "Email đã tồn tại !";
+                            $check = false;
+                        }
+                    }
+                }
+                if(mb_strlen($password_update_after) < 6){
+                    $check = false;
+                    $thongbao[0]= 'Mật khẩu tối thiểu 6 ký tự';
+                }else{
+                    if ($password_old_before != $password_old) {
+                        $password_update = md5($password_update_after);
+                    }else{
+                        $password_update = $password_old_before;
+                    }
                 }
                 if($image['size'] <= 0){
                     $NameurlImage = $_POST['image_old'];
@@ -852,9 +890,11 @@ if (isset($_GET['actAdmin'])) {
                     $target_file = "UserAvt/" . $NameurlImage;
                     move_uploaded_file($pathImage, $target_file);
                 }
-                UpdatetUser($name_update, $email_update, $password_update, $phone_update, $address_update, $NameurlImage, $status_update, $role_update, $id);
-                header('Location: index.php?actAdmin=showUsers&&msg=Cập nhật thành công !');
-                ob_end_flush();
+                if($check == true){
+                    UpdatetUser($name_update, $email_update, $password_update, $phone_update, $address_update, $NameurlImage, $status_update, $role_update, $id);
+                    header('Location: index.php?actAdmin=showUsers&&msg=Cập nhật thành công !');
+                    ob_end_flush();
+                }
             }
             require_once "./users/edit.php";
             break;

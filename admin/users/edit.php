@@ -29,22 +29,37 @@ if (is_array($infoUser)) {
                     <p>Tên người dùng:</p>
                     <input class="name" name="name" value="<?= $name ?>" style=" background-color: #000000;" type="text" placeholder="Nhập tên người dùng...">
                 </div>
+                <?php if (isset($thongbao[1])) : ?>
+                    <p style="padding-top: 5px">
+                        <span style="color: #d53e3e;">&nbsp; <?= $thongbao[1] ?></span>
+                    </p>
+                <?php endif ?>
                 <div class="image">
                     <p>Ảnh người dùng:</p>
                     <input type="file" name="image" style="background-color: #0F172A;">
-                    <input type="text" value="<?= isset($image) ? $image : $image ='' ;?>" name="image_old" id="" hidden>
+                    <input type="text" value="<?= isset($image) ? $image : $image = ''; ?>" name="image_old" id="" hidden>
                     <div>
-                        <img src="./UserAvt/<?=$image?>" width="80px" height="80px" style="color: white; margin: 5px 5px" alt="Không có ảnh" srcset="">
+                        <img src="./UserAvt/<?= $image ?>" width="80px" height="80px" style="color: white; margin: 5px 5px" alt="Không có ảnh" srcset="">
                     </div>
                 </div>
                 <div class="image">
                     <p>Email:</p>
                     <input class="name" name="email" value="<?= $email ?>" style=" background-color: #000000;" type="text" placeholder="Nhập email người dùng...">
                 </div>
+                <?php if (isset($thongbao[2])) : ?>
+                    <p style="padding-top: 5px">
+                        <span style="color: #d53e3e;">&nbsp; <?= $thongbao[2] ?></span>
+                    </p>
+                <?php endif ?>
                 <div class="image">
                     <p>Mật khẩu:</p>
                     <input class="name" name="password" value="<?= $password ?>" style=" background-color: #000000;" type="password" placeholder="Nhập mật khẩu người dùng...">
                 </div>
+                <?php if (isset($thongbao[0])) : ?>
+                    <p style="padding-top: 5px">
+                        <span style="color: #d53e3e;">&nbsp; <?= $thongbao[0] ?></span>
+                    </p>
+                <?php endif ?>
                 <div class="image">
                     <p>Điện thoại:</p>
                     <input class="name" name="phone" value="<?= $phone ?>" style=" background-color: #000000;" type="number" placeholder="Nhập số điện thoại người dùng...">
@@ -60,16 +75,16 @@ if (is_array($infoUser)) {
                     <p>Trạng thái hoạt động:</p>
                     <select name="status" id="">
                         <option value="" hidden>-- Chọn trạng thái --</option>
-                        <option value="0" <?= ($status == 0) ? 'selected' :'' ?>>Active</option>
-                        <option value="1" <?= ($status == 1) ? 'selected' :'' ?>>Inactive</option>  
+                        <option value="0" <?= ($status == 0) ? 'selected' : '' ?>>Active</option>
+                        <option value="1" <?= ($status == 1) ? 'selected' : '' ?>>Inactive</option>
                     </select>
                 </div>
                 <div class="status">
                     <p>Quyền quản trị:</p>
                     <select name="role" id="">
                         <option value="" hidden>-- Chọn trạng thái --</option>
-                        <option value="0" <?= ($role == 0) ? 'selected' :'' ?>>Người dùng</option>
-                        <option value="1" <?= ($role == 1) ? 'selected' :'' ?>>Quản trị</option>  
+                        <option value="0" <?= ($role == 0) ? 'selected' : '' ?>>Người dùng</option>
+                        <option value="1" <?= ($role == 1) ? 'selected' : '' ?>>Quản trị</option>
                     </select>
                 </div>
                 <div class="btn__action btn__action--addProduct mrg_top--btn">

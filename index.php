@@ -287,6 +287,8 @@ if (isset($_GET['act'])) {
                 $name = $ho . ' ' . $ten;
                 $email = $_POST['email'];
                 $password = $_POST['password'];
+                $password = preg_replace('/\s+/', '', $password);
+                $password = strtoupper($password);
                 $phone = '';
                 $address = '';
                 $image = '';
