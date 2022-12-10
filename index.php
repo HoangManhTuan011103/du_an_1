@@ -157,7 +157,10 @@ if (isset($_GET['act'])) {
             if(isset($_SESSION['user'])){
                 if (isset($_POST['doimatkhau'])) {
                     $password_old = $_POST['password_Old'];
-                    $password_new = $_POST['password_new'];
+                    $password_new_after = $_POST['password_new'];
+                    $password_new = preg_replace('/\s+/', '', $password_new_after);
+                    $password_new = convert_vi_to_en($password_new);
+                    $password_new = strtolower($password_new);
                     $verypassword_new = $_POST['verypassword_new'];
                     $id = $_SESSION['user']['id'];
                     $check = true;
@@ -170,23 +173,31 @@ if (isset($_GET['act'])) {
                         $thongbao[1] = "Trường này không được bỏ trống  !!!";
                         $check = false;
                     }
-                    if ($password_new == '') {
+                    if ($password_new_after == '') {
                         $thongbao[2] = "Trường này không được bỏ trống  !!!";
                         $check = false;
-                    } else if (strlen($password_new) < 8) {
-                        $thongbao[2] = "Mật khẩu tối thiểu 8 ký tự  !!!";
+                    } else if (strlen($password_new_after) < 6) {
+                        $thongbao[2] = "Mật khẩu tối thiểu 6 ký tự  !!!";
+                        $check = false;
+                    } else if($password_new_after !== $password_new){
+                        $thongbao[2] = "Mật khẩu phải là chữ thường viết liền !!!";
                         $check = false;
                     }
                     if ($verypassword_new == '') {
                         $thongbao[3] = "Trường này không được bỏ trống  !!!";
                         $check = false;
-                    } else if ($verypassword_new != $password_new) {
+                    } else if ($verypassword_new != $password_new_after) {
                         $thongbao[3] = "Mật khẩu xác nhận không chính xác !!!";
                         $check = false;
                     }
                     if ($check == true) {
                         $password_new_insert = md5($password_new);
                         UpdatePasstUser($password_new_insert, $id);
+                        $id = $_SESSION['user']['id'];
+                        $user = getUserFollowId($id);
+                        unset($_SESSION['user']);
+                        $_SESSION['user'] = [];
+                        $_SESSION['user'] = $user;
                         header('Location: index.php?act=doimatkhau&&msg=Cập nhật mật khẩu thành công !');
                         ob_end_flush();
                     }
@@ -529,7 +540,7 @@ if (isset($_GET['act'])) {
             break;
     
         default:
-            // require_once "";
+            // require_once "view/home.php";
             break;
     }
 } else {

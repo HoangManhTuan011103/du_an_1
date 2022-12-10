@@ -48,7 +48,7 @@
                                         break;
                                 }
                             } ?>
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                         <form action="index.php?act=doimatkhau&&codelogin=<?= isset($_GET['codelogin']) ? $_GET['codelogin'] : $_GET['codelogin'] = ''; ?>" method="post" enctype="multipart/form-data">
                             <div>
                                 <p>Mật khẩu cũ *</p>
-                                <input type="password" value="<?= isset($_GET['codelogin']) ? $_GET['codelogin'] : $_GET['codelogin'] = ''; ?>" name="password_Old" id="email" placeholder="Mật khẩu cũ" />
+                                <input type="password" value="<?= isset($_GET['codelogin']) ? $_GET['codelogin'] : $_GET['codelogin'] = ''; ?><?= $password_old ?? "" ?>" name="password_Old" id="email" placeholder="Mật khẩu cũ" />
                                 <p class="login__thongbao">
                                     <?= isset($thongbao[1]) ? $thongbao[1] : $thongbao[1] = ''; ?>
                                 </p>

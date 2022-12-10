@@ -738,7 +738,8 @@ if (isset($_GET['actAdmin'])) {
                     $email = $_POST['email'];
                     $password = $_POST['password'];
                     $password = preg_replace('/\s+/', '', $password);
-                    $password = strtoupper($password);
+                    $password = strtolower($password);
+                    $password = convert_vi_to_en($password);
                     $phone = $_POST['phone'];
                     $address = $_POST['address'];
                     $status = $_POST['status'];
@@ -789,8 +790,8 @@ if (isset($_GET['actAdmin'])) {
                 if ($password == "") {
                     $thongbao[3] = "Mật khẩu không được bỏ trống !!!";
                     $check = false;
-                } else if ((strlen($password) < 8)) {
-                    $thongbao[3] = "Mật khẩu tối thiểu 8 ký tự !";
+                } else if ((strlen($password) < 6)) {
+                    $thongbao[3] = "Mật khẩu tối thiểu 6 ký tự !";
                     $check = false;
                 }
                 $password = md5($password);
@@ -839,6 +840,8 @@ if (isset($_GET['actAdmin'])) {
                 $name_update = $_POST['name'];
                 $name_update_check = preg_replace('/\s+/', '', $name_update);
                 $email_update = $_POST['email'];
+                $email_update = preg_replace('/\s+/', '', $email_update);
+                $email_update = strtolower($email_update);
                 $password_old_before = $_POST['password'];
                 $password_update = $_POST['password'];
                 $password_update = preg_replace('/\s+/', '', $password_update);
