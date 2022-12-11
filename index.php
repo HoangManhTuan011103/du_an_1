@@ -451,51 +451,53 @@ if (isset($_GET['act'])) {
                 require_once "./view/dangnhap.php";
                 exit;
             } else {
-                $totalAllProductPay = isset($_POST['totalAllProductPay']) ? $_POST['totalAllProductPay'] : $_POST['totalPricePay'];
-
-                if (isset($_POST['btn-orderSuccess'])) {
-                    date_default_timezone_set("Asia/Ho_Chi_Minh");
-                    $errors = [];
-                    $name = $_POST['name'];
-                    $id = $_SESSION['user']['id'];
-                    $phoneNumber = $_POST['phone_number'];
-                    $address = $_POST['address'];
-                    $payWhen = isset($_POST['payWhen']) ? $_POST['payWhen'] : "";
-                    $note = $_POST['note'];
-                    $totalPricePay = $_POST['totalPricePay1'];
-                    $dateCurrent = time();
-                    $dateToInt = date("Y-m-d h:i:s", $dateCurrent);
-
-
-                    if (!isset($_POST['btn-checkRule'])) {
-                        $errors['checkRule'] = "Chấp nhận chính sách để thanh toán!";
-                    }
-
-
-
-                    if ($phoneNumber == "") {
-                        $errors['phoneNumber'] = "Bạn phải nhập số điện thoại";
-                    } else if (!is_numeric($phoneNumber)) {
-                        $errors['phoneNumber'] = "Địa chỉ số điện thoại phải là số";
-                    } else if (strlen($phoneNumber) != 10  || substr($phoneNumber, 0, 1) != 0) {
-                        $errors['phoneNumber'] = "Số điện thoại không tồn tại";
-                    }
-                    if ($address == "") {
-                        $errors['address'] = "Bạn phải nhập địa chỉ";
-                    }
-                    if (!$errors) {
-                        $idOrder = insertToOrderClient($id, $payWhen, $totalPricePay, $note, $address, $dateToInt);
-                        foreach ($_SESSION['mycart'] as $value) {
-                            insertToOrderDetail($idOrder, $value['id'], $value['use_quantity_buy'], $value['giagiam'], $value['sizeProduct']);
-                            updateQuantityPaySuccess($value['id'], $value['use_quantity_buy']);
+                if(count($_SESSION['mycart']) > 0){
+                    $totalAllProductPay = isset($_POST['totalAllProductPay']) ? $_POST['totalAllProductPay'] : $_POST['totalPricePay'];
+                    if (isset($_POST['btn-orderSuccess'])) {
+                        date_default_timezone_set("Asia/Ho_Chi_Minh");
+                        $errors = [];
+                        $name = $_POST['name'];
+                        $id = $_SESSION['user']['id'];
+                        $phoneNumber = $_POST['phone_number'];
+                        $address = $_POST['address'];
+                        $payWhen = isset($_POST['payWhen']) ? $_POST['payWhen'] : "";
+                        $note = $_POST['note'];
+                        $totalPricePay = $_POST['totalPricePay1'];
+                        $dateCurrent = time();
+                        $dateToInt = date("Y-m-d h:i:s", $dateCurrent);
+    
+    
+                        if (!isset($_POST['btn-checkRule'])) {
+                            $errors['checkRule'] = "Chấp nhận chính sách để thanh toán!";
                         }
-                        // header("location: index.php?act=dsdonhang");
-                        $_SESSION['mycart'] = [];
-                        echo "<script> 
-                                alert('Bạn đã mua hàng thành công');
-                                window.location.href = 'index.php?act=dsdonhang';
-                            </script>";
+    
+                        if ($phoneNumber == "") {
+                            $errors['phoneNumber'] = "Bạn phải nhập số điện thoại";
+                        } else if (!is_numeric($phoneNumber)) {
+                            $errors['phoneNumber'] = "Địa chỉ số điện thoại phải là số";
+                        } else if (strlen($phoneNumber) != 10  || substr($phoneNumber, 0, 1) != 0) {
+                            $errors['phoneNumber'] = "Số điện thoại không tồn tại";
+                        }
+                        if ($address == "") {
+                            $errors['address'] = "Bạn phải nhập địa chỉ";
+                        }
+                        if (!$errors) {
+                            $idOrder = insertToOrderClient($id, $payWhen, $totalPricePay, $note, $address, $dateToInt);
+                            foreach ($_SESSION['mycart'] as $value) {
+                                insertToOrderDetail($idOrder, $value['id'], $value['use_quantity_buy'], $value['giagiam'], $value['sizeProduct']);
+                                updateQuantityPaySuccess($value['id'], $value['use_quantity_buy']);
+                            }
+                            // header("location: index.php?act=dsdonhang");
+                            $_SESSION['mycart'] = [];
+                            echo "<script> 
+                                    alert('Bạn đã mua hàng thành công');
+                                    window.location.href = 'index.php?act=dsdonhang';
+                                </script>";
+                        }
+                        
                     }
+                }else{
+                    header("location: index.php?act=showProducts");
                 }
                 require_once "./view/cart/pay_detail.php";
             }
